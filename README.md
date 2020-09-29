@@ -1,5 +1,5 @@
 # Monopoly
-## A Monopoly clone
+## Type: Monopoly Millionaire
 
 ### Group Members:
     - Oğuz Orhun Tüzgen 21802313
