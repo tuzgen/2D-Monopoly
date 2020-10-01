@@ -28,3 +28,5 @@
     - Cards that are drawn each round with penalties and rewards including power ups that last up to 5 rounds.
 
     - Opportunity to choose an amount of money to finish the game when reached by any of the players.
+    
+    - Tile names are customizable on game initialization
