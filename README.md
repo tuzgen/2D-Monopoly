@@ -29,4 +29,4 @@
 
     - Opportunity to choose an amount of money to finish the game when reached by any of the players.
     
-    - Tile names are customizable on game initialization
+    - Tile names are customizable on game initialization.
