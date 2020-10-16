@@ -7,7 +7,8 @@
 	- Yiğit Harun       21803241
 	- Ufuk Palpas       21702958
     - Asya Doğa Özer    21803479
-
+### What is Monopoly:
+	Monopoly is a board game for 2 to 4 players, (preferrably 4) where players have the freedom of buying tiles on the map and create constructs on them. In addition, there are cards that players draw from the middle every turn which affect the game and a jail.
 ### Features:
     - Two new non-playable characters: police and mafia, players can buy favors from the mafia such as:
         - stealing from other players
