@@ -1,2 +1,4 @@
-package com.twod.management.entity;public class Forex {
+package com.twod.management.entity;
+
+public class Forex {
 }

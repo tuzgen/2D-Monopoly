@@ -1,2 +1,4 @@
-package com.twod.management.entity;public class CardDeck {
+package com.twod.management.entity;
+
+public class CardDeck {
 }

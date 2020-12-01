@@ -4,6 +4,7 @@ import com.sun.javafx.perf.PerformanceTracker;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 
 public class FPSCounter {
@@ -11,9 +12,9 @@ public class FPSCounter {
 
 	private PerformanceTracker tracker;
 
-	public Label display(Scene scene) {
+	public Text display(Scene scene) {
 		tracker = PerformanceTracker.getSceneTracker(scene);
-		Label label = new Label();
+		Text label = new Text();
 		AnimationTimer frameRateMeter = new AnimationTimer() {
 
 			@Override
@@ -21,7 +22,7 @@ public class FPSCounter {
 				 label.setText(String.format(
 				 		"%.1f FPS", getFPS())
 				 );
-				 System.out.println("Size of tracker " + ObjectSizeCalculator.getObjectSize(tracker));
+				 label.setStyle(Style.text_FPS);
 			}
 		};
 		frameRateMeter.start();

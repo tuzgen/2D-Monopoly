@@ -37,17 +37,17 @@ public class NewGameMenu {
 		label_player4_name.setStyle(Style.text_three);
 		TextField textField_player4 = new TextField();
 
+		Button button_play = new Button("Play");
+		button_play.setStyle(Style.button_one);
+		button_play.setOnAction( e -> {
+			GameMenu.display(context);
+		});
+
 		Button button_return = new Button("Go back");
 		button_return.setStyle(Style.button_one);
 		button_return.setOnAction( e -> {
 			MainMenu.display(context);
 		});
-
-		Button button_start = new Button("Start");
-		button_start.setStyle(Style.button_one);
-		button_start.setOnAction( e -> {
-		});
-
 
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.CENTER);
@@ -67,7 +67,7 @@ public class NewGameMenu {
 		VBox layout_fields = new VBox(20);
 		layout_fields.setAlignment(Pos.CENTER);
 		layout_fields.getChildren().addAll(
-				label_title, gridPane, button_return
+				label_title, gridPane, button_play, button_return
 		);
 
 		BorderPane layout = new BorderPane(layout_fields);

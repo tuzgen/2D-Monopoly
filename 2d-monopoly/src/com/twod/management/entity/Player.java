@@ -1,2 +1,4 @@
-package com.twod.management.entity;public class Player {
+package com.twod.management.entity;
+
+public class Player {
 }

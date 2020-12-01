@@ -1,2 +1,4 @@
-package com.twod.management.entity;public class Bank {
+package com.twod.management.entity;
+
+public class Bank {
 }
