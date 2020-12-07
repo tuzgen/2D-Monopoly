@@ -8,10 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 
@@ -71,10 +69,12 @@ public class NewGameMenu {
 		);
 
 		BorderPane layout = new BorderPane(layout_fields);
+		layout.setBackground(new Background(new BackgroundFill(Color.color(0, 0, 0), null, null)));
 		Scene scene = new Scene(layout, 1280, 720);
 
 		HBox layout_FPS = new HBox(0);
 		layout_FPS.setAlignment(Pos.TOP_RIGHT);
+		layout_FPS.setBackground(new Background(new BackgroundFill(new Color(0, 0, 0, 1), null, null)));
 		layout_FPS.getChildren().add(new FPSCounter().display(scene));
 
 		layout.setTop(layout_FPS);
@@ -83,6 +83,5 @@ public class NewGameMenu {
 
 		context.setScene(scene);
 		context.show();
-
 	}
 }

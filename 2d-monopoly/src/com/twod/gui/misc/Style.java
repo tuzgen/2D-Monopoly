@@ -7,6 +7,7 @@ public class Style {
 					"-fx-font-size: 18; " +
 					"-fx-text-fill: #FF0000;";
 
+	// TODO the styles below do not work for text color...
 	public final static String text_one =
 			"-fx-font-size: 72; " +
 					"-fx-text-fill: #FF0000;";
