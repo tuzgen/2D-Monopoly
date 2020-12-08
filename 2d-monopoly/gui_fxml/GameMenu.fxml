@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="TOP_CENTER" fillHeight="false" prefHeight="89.0" prefWidth="1280.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Player 1" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="|| PAUSE" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="1280.0" style="-fx-background-color: #000000;" VBox.vgrow="NEVER">
+         <children>
+            <HBox layoutX="9.0" layoutY="-17.0" prefHeight="660.0" prefWidth="1260.0">
+               <children>
+                  <StackPane prefHeight="663.0" prefWidth="688.0">
+                     <children>
+                        <ImageView fitHeight="643.0" fitWidth="629.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../vendor/image/board.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER" prefHeight="600.0" prefWidth="661.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="166.0" prefWidth="660.0">
+                           <children>
+                              <StackPane prefHeight="166.0" prefWidth="454.0">
+                                 <children>
+                                    <Polygon accessibleRole="CONTEXT_MENU" points="327.6663818359375, 80.49996948242188, 387.6663818359375, -2.000030517578125, 825.0003051757812, -2.000030517578125, 825.0004272460938, 163.99996948242188, 387.6663818359375, 163.99996948242188" stroke="BLACK" strokeType="INSIDE">
+                                       <fill>
+                                          <LinearGradient endX="0.719047619047619" endY="1.0" startX="0.3619047619047619" startY="0.2523809523809524">
+                                             <stops>
+                                                <Stop color="#718da8" />
+                                                <Stop color="#2c0459" offset="1.0" />
+                                             </stops>
+                                          </LinearGradient>
+                                       </fill>
+                                    </Polygon>
+                                    <VBox alignment="CENTER" prefHeight="154.0" prefWidth="344.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                             <children>
+                                                <Label prefHeight="38.0" prefWidth="135.0" text="DOLLAR" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="1.2" textAlignment="RIGHT" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="25.0" prefWidth="49.0" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button alignment="CENTER" layoutX="324.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets right="15.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="62.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                             <children>
+                                                <Label prefHeight="38.0" prefWidth="138.0" text="EURO" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="2.7" textAlignment="RIGHT" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="25.0" prefWidth="49.0" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets right="15.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="107.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                             <children>
+                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANC" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="0.6" textAlignment="RIGHT" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="25.0" prefWidth="49.0" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets right="15.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="389.0" prefWidth="660.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="389.0" prefWidth="433.0" spacing="70.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="111.0" prefWidth="170.0" style="-fx-background-color: #d4f2ff; -fx-text-fill: #0047c2; -fx-border-color: #3b7ced; -fx-border-width: 5px;" text="POWERUP xxx TL" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Button>
+                                    <VBox alignment="TOP_CENTER" prefHeight="145.0" prefWidth="382.0">
+                                       <children>
+                                          <Label alignment="CENTER" text="YOU (XXXNAMEXXX)" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="200.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0">
+                                                   <fill>
+                                                      <LinearGradient endX="0.45238095238095233" endY="1.0" startX="0.3333333333333333" startY="0.1904761904761904">
+                                                         <stops>
+                                                            <Stop color="#818a8f" />
+                                                            <Stop color="#cfd0b1" offset="1.0" />
+                                                         </stops>
+                                                      </LinearGradient>
+                                                   </fill>
+                                                </Rectangle>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="12.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="285.0" spacing="15.0">
+                                                         <children>
+                                                            <Label prefHeight="27.0" prefWidth="29.0" text="Label" />
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Line endX="101.29289245605469" endY="0.2928932309150696" startX="-100.0" />
+                                                      <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" prefHeight="71.0" prefWidth="285.0">
+                                                         <children>
+                                                            <Label text="Label" />
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Line endX="101.29289245605469" endY="0.2928932309150696" layoutX="196.0" layoutY="110.0" startX="-100.0" />
+                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="179.0" prefHeight="71.0" prefWidth="285.0">
+                                                         <children>
+                                                            <Label text="Label" />
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Line endX="101.29289245605469" endY="0.2928932309150696" layoutX="196.0" layoutY="111.0" startX="-100.0" />
+                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="197.0" prefHeight="71.0" prefWidth="285.0">
+                                                         <children>
+                                                            <Label text="Label" />
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </VBox>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                       <padding>
+                                          <Insets left="50.0" right="50.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <ScrollPane prefHeight="389.0" prefWidth="350.0" style="-fx-background-color: #000000;">
+                                 <content>
+                                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="253.0" style="-fx-background-color: #000000;">
+                                       <children>
+                                          <ImageView fitHeight="601.0" fitWidth="262.0" layoutX="-14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../vendor/image/test.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

@@ -4,6 +4,7 @@ import com.sun.javafx.perf.PerformanceTracker;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 
@@ -22,7 +23,7 @@ public class FPSCounter {
 				 label.setText(String.format(
 				 		"%.1f FPS", getFPS())
 				 );
-				 label.setStyle(Style.text_FPS);
+				 label.setFill(new Color(0.094, 1, 0.047, 1));
 			}
 		};
 		frameRateMeter.start();
