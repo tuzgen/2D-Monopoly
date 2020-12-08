@@ -53,6 +53,12 @@
                               <Image url="@../vendor/image/board.png" />
                            </image>
                         </ImageView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button alignment="CENTER" layoutX="107.0" layoutY="17.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="63.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button alignment="CENTER" layoutX="180.0" layoutY="28.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </StackPane>
                   <VBox alignment="CENTER" prefHeight="600.0" prefWidth="661.0">
