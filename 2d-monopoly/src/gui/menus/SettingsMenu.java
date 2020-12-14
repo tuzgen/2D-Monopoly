@@ -6,16 +6,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import management.GameManager;
 
 public class SettingsMenu {
 	// Constants
 
-
 	// State variables
-
+	GameManager gameManager;
 
 	// Components
 	private Scene scene_settings_menu;
@@ -25,6 +28,8 @@ public class SettingsMenu {
 	private CheckBox checkBox_colorblind, checkBox_mute;
 
 	public void display(Stage context) {
+		gameManager = GameManager.getInstance();
+
 		// initialize components
 		label_title = new Label("Settings");
 		label_title.setStyle(Style.text_two);
@@ -34,12 +39,16 @@ public class SettingsMenu {
 
 		checkBox_colorblind = new CheckBox();
 		checkBox_colorblind.setStyle(Style.checkbox_one);
+		checkBox_colorblind.setOnAction( e -> updateSettings() );
 
 		label_mute = new Label("Mute Sound");
 		label_mute.setStyle(Style.text_three);
 
 		checkBox_mute = new CheckBox();
 		checkBox_mute.setStyle(Style.checkbox_one);
+		checkBox_mute.setOnAction( e -> updateSettings() );
+
+		updateDisplay();
 
 		button_return = new Button("Go back");
 		button_return.setStyle(Style.button_one);
@@ -65,6 +74,7 @@ public class SettingsMenu {
 		);
 		layout_main_menu.setAlignment(Pos.CENTER);
 
+		layout_main_menu.setBackground(new Background(new BackgroundFill(Color.color(0, 0, 0), null, null)));
 		scene_settings_menu = new Scene(layout_main_menu, 1280, 720);
 
 		context.setScene(scene_settings_menu);
@@ -72,6 +82,17 @@ public class SettingsMenu {
 	}
 
 	private void onPressed_button_return(Stage context) {
+		updateSettings();
 		new MainMenu().display(context);
+	}
+
+	private void updateSettings() {
+		gameManager.updateSettings(
+				checkBox_colorblind.isSelected(), checkBox_mute.isSelected());
+	}
+
+	private void updateDisplay() {
+		checkBox_mute.setSelected(gameManager.loadSettings().getMutedMode());
+		checkBox_colorblind.setSelected(gameManager.loadSettings().getColorblindMode());
 	}
 }

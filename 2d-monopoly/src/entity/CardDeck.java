@@ -1,4 +1,4 @@
-package management.entity;
+package entity;
 
 public class CardDeck {
 }

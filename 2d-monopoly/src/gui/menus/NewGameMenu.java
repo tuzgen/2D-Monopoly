@@ -83,8 +83,6 @@ public class NewGameMenu {
 
 		layout.setTop(layout_FPS);
 
-		Box emptyBox = new Box(0, 50, 0);
-
 		context.setScene(scene);
 		context.show();
 	}

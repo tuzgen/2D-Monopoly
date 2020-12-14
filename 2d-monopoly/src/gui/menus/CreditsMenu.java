@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -18,6 +19,10 @@ public class CreditsMenu {
 		button_return.setOnAction( e -> {
 			new MainMenu().display(context);
 		});
+
+		Text title = new Text("Contributors");
+		title.setStyle(Style.text_two);
+		title.setFill(new Color(1,0,0,1));
 
 		Text name1 = new Text("Oğuz Orhun Tüzgen");
 		name1.setStyle(Style.text_two);
@@ -37,7 +42,7 @@ public class CreditsMenu {
 		VBox layout_credits = new VBox(20);
 		layout_credits.setAlignment(Pos.CENTER);
 		layout_credits.getChildren().addAll(
-				name1, name2, name3, name4, name5, button_return
+				title, name1, name2, name3, name4, name5, button_return
 		);
 
 		BorderPane layout = new BorderPane(layout_credits);
