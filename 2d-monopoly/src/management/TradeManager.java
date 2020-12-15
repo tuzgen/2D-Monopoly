@@ -63,7 +63,7 @@ public class TradeManager {
        targetPlayer.removeTrade(trade);
     }
 
-    public void denyTrade(Trade trade) { // This only deletes from the target lists in players 
+    public void denyTrade(Trade trade) { // This only deletes from the target lists in players
         Player owner = trade.getOwner();
         Player targetPlayer = trade.getTarget();
         owner.removeTrade(trade);
