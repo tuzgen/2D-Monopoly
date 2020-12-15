@@ -1,7 +1,7 @@
 package management;
 
 import cached.Settings;
-import entity.Player;
+import entity.player.Player;
 
 import java.io.*;
 
