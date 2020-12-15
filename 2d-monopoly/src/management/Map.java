@@ -1,4 +1,4 @@
-package entity.map;
+package management;
 
 public class Map {
 }
