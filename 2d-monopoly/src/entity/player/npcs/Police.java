@@ -1,6 +1,5 @@
 package entity.player.npcs;
 
-import entity.Character;
 import entity.player.Player;
 
 public class Police extends NPC {

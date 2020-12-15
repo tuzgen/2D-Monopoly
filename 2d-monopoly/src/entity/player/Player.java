@@ -4,9 +4,8 @@ import entity.Account;
 import entity.PowerUp;
 import entity.Trade;
 import entity.card.Card;
-import entity.card.CardDeck;
-import entity.map.Tile.Tile;
 import entity.map.property.Property;
+import entity.map.tile.Tile;
 
 import java.util.ArrayList;
 

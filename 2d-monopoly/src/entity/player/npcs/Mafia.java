@@ -1,7 +1,5 @@
 package entity.player.npcs;
 
-//import entity.map.Tile;
-import entity.Character;
 import entity.player.Player;
 
 import java.util.*;

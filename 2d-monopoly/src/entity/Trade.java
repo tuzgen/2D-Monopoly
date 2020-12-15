@@ -1,6 +1,6 @@
 package entity;
 
-import entity.map.Tile.Tile;
+import entity.map.tile.Tile;
 import entity.player.Player;
 
 public class Trade {
