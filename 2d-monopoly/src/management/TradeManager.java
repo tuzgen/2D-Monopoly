@@ -4,15 +4,19 @@ import entity.Trade;
 import entity.player.Player;
 
 public class TradeManager {
+    private static TradeManager tradeManager;
+
+    private TradeManager(){    }
 
     public TradeManager getInstance(){
-        //TODO
-        return null;
+        if(tradeManager == null)
+            tradeManager = new TradeManager();
+        return tradeManager;
     }
 
-    public boolean openTrade(Player owner, Player targetPlayer) {
-        //TODO
-        return false;
+    public Trade openTrade(Player owner, Player targetPlayer) {
+        Trade trade = new Trade(owner, targetPlayer);
+        return null;
     }
 
     public boolean checkTrades() {
@@ -20,11 +24,11 @@ public class TradeManager {
         return false;
     }
 
-    public void acceptTrade(Trade trade) {
+    public void acceptTrade(Trade trade, Player player) {
         //TODO
     }
 
-    public void denyTrade(Trade trade) {
+    public void denyTrade(Trade trade, Player player) {
         //TODO
     }
 }
