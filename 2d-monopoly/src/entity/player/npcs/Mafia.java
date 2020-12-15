@@ -1,11 +1,12 @@
-package entity;
+package entity.player.npcs;
 
 //import entity.map.Tile;
+import entity.Character;
 import entity.player.Player;
 
 import java.util.*;
 
-public class Mafia extends Character{
+public class Mafia extends Character {
 
     public double shareRate;
     public boolean isArrested;

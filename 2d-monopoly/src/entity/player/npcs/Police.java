@@ -1,6 +1,9 @@
-package entity;
+package entity.player.npcs;
 
-public class Police extends Character{
+import entity.Character;
+import entity.player.Player;
+
+public class Police extends Character {
     public boolean deal;
 
     Police(){
