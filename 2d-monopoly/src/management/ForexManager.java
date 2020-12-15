@@ -87,6 +87,8 @@ public class ForexManager {
         return this;
     }
 
+
+
 }
 
 
