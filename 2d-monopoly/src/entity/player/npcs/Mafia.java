@@ -2,6 +2,7 @@ package entity.player.npcs;
 
 //import entity.map.Tile;
 import entity.Character;
+import entity.map.Tile.Tile;
 import entity.player.Player;
 
 import java.util.*;
@@ -18,9 +19,9 @@ public class Mafia extends Character {
         pastDeals = new ArrayList<Player>();
     }
 
-//    public void attackHotel(Tile tile){
-//        //todo
-//    }
+    public void attackHotel(Tile tile){
+        //todo
+    }
 
     public void blackmail(Player player){
         // todo

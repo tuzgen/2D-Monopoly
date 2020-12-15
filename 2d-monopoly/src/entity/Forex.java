@@ -2,10 +2,10 @@ package entity;
 
 public class Forex {
 
-    public double dollarExRate;
-    public double euroExRate;
-    public double tryExRate;
-    public double frankExRate;
+    private double dollarExRate;
+    private double euroExRate;
+    private double tryExRate;
+    private double frankExRate;
 
     public double getDollarExRate(){
         return dollarExRate;
