@@ -3,7 +3,7 @@ package entity;
 import entity.player.Player;
 import management.ForexManager;
 
-public class Bank {
+public class Bank { // Methods in this class may be static so that no one need bank object.
 
     private ForexManager forexManager;
     private Forex forex;
@@ -15,6 +15,8 @@ public class Bank {
     }
 
     public boolean swapMoney(Player payerPlayer, Player payeePlayer, double moneyAmount) { //Check if payer does not have enough money after todo in takeMoney function
+        if(moneyAmount == 0)
+            return true;
         if(takeMoney(payerPlayer, moneyAmount)){
             giveMoney(payeePlayer, moneyAmount);
             return true;
@@ -27,6 +29,18 @@ public class Bank {
         plAccount.setTrl(plAccount.getTrl() + moneyAmount);
         return true;
     }
+
+    public  boolean hasEnoughMoney(Player player, double amount) {
+        plAccount = player.getAccount();
+        double totalMoney = (player.getAccount().getDollar()) * forex.getDollarExRate()
+                + (player.getAccount().getEuro()) * forex.getEuroExRate()
+                + (player.getAccount().getSwissFrank()) * forex.getFrankExRate()
+                + (player.getAccount().getTrl());
+        if(totalMoney >= amount)
+            return true;
+        return false;
+    }
+
 
     public boolean takeMoney(Player player, double moneyAmount) {
         plAccount = player.getAccount();
