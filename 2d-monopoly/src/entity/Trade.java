@@ -11,7 +11,9 @@ public class Trade {
     private int offeredAmount;
     private int requestedAmount;
 
-    public Trade(){
+    public Trade(Player owner, Player target){
+        this.owner = owner;
+        this.target = target;
         ownersTile = new Tile[22];
         targetTile = new Tile[22];
         offeredAmount = 0;
