@@ -6,7 +6,7 @@ import entity.player.Player;
 public class TradeManager {
     private static TradeManager tradeManager;
 
-    private TradeManager(){    }
+    private TradeManager(){}
 
     public TradeManager getInstance(){
         if(tradeManager == null)

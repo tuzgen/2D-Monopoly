@@ -1,3 +1,4 @@
+import entity.Dice;
 import entity.map.tile.CityTile;
 import gui.menus.MainMenu;
 import gui.menus.popups.ClosePopup;
