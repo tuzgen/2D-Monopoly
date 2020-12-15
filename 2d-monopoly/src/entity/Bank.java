@@ -2,7 +2,7 @@ package entity;
 
 import entity.player.Player;
 
-public class Bank { // BU KISIM PUSH SONRASI YAZILACAK 
+public class Bank { // BU KISIM PUSH SONRASI YAZILACAK
 
 
     public boolean swapMoney(Player payerPlayer, Player payeePlayer, double moneyAmount) {
