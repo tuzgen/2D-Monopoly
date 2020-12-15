@@ -6,13 +6,14 @@ import entity.player.Player;
 
 import java.util.*;
 
-public class Mafia extends Character {
+public class Mafia extends NPC {
 
     public double shareRate;
     public boolean isArrested;
     ArrayList<Player> pastDeals;
 
     Mafia(){
+        super("Mafia");
         isArrested = false;
         shareRate = 0;
         pastDeals = new ArrayList<Player>();
