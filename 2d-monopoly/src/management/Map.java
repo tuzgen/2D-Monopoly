@@ -20,6 +20,10 @@ public class Map {
 		// TODO
 	}
 
+	public Tile getTileAt(int index) {
+		return tiles[index];
+	}
+
 	private void createMap() {
 		tiles = new Tile[TILECOUNT];
 
@@ -63,5 +67,15 @@ public class Map {
 		tiles[37] = new CityTile("City 21", 37, 100, 6, 50, 70);
 		tiles[38] = new TaxTile("Tax 2", 38, 100);
 		tiles[39] = new CityTile("City 22", 39, 100, 6, 50, 70);
+	}
+
+	public String toString() {
+		String result = "";
+
+		for (Tile t : tiles) {
+			result = result + t.toString();
+		}
+
+		return result;
 	}
 }

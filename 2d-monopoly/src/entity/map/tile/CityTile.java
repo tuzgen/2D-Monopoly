@@ -20,36 +20,61 @@ public class CityTile extends BuyableTile {
 	public int getHouseCount() {
 		int result = 0;
 		// count each class in properties with class House
-		for (Property p : properties) {
-			if (p.getClass() == House.class) {
+		for (int i = 0; i < PROPERTY_COUNT - 1; i++) {
+			if (properties[i] != null) {
 				result++;
 			}
 		}
-		return 0;
+		return result;
 	}
 
 	public void addHouse() {
 		// Search if there are a slot for a new house
 		for (int i = 0; i < PROPERTY_COUNT - 1; i++) {
-			if (properties[i].getClass() != House.class) {
+			if (properties[i] == null) {//.getClass() != House.class) {
 				properties[i] = new House(houseBuildPrice);
+				System.out.println("Building a house...");
+				return;
 			}
 		}
-		// TODO test
+
+		System.out.println("Cannot build a house...");
+	}
+
+	public void removeHouse() {
+		// search the first available house for deletion
+		for (int i = 2; i >= 0; i--) {
+			if (properties[i] != null) {
+				properties[i] = null;
+				System.out.println("Removing a house...");
+				return;
+			}
+		}
+		System.out.println("Cannot remove a house...");
 	}
 
 	public int getHotelCount() {
-		return properties[3].getClass() == Hotel.class ? 1 : 0; // TODO
+		return properties[3] == null ? 0 : 1;
 	}
 
 	public void addHotel() {
 		if (isHotelBuildAvailable()) {
 			properties[3] = new Hotel(hotelBuildPrice);
+			System.out.println("Building a hotel...");
+			return;
 		}
-		// TODO
+		System.out.println("Cannot build a hotel...");
+	}
+
+	public void removeHotel() {
+		if (getHotelCount() == 1) {
+			properties[3] = null;
+		}
 	}
 
 	public boolean isHotelBuildAvailable() {
+		System.out.println(getHouseCount());
+		System.out.println(getHotelCount());
 		return getHouseCount() == 3 && getHotelCount() == 0; // TODO test
 	}
 }

@@ -1,7 +1,9 @@
+import entity.map.tile.CityTile;
 import gui.menus.MainMenu;
 import gui.menus.popups.ClosePopup;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import management.Map;
 
 public class Main extends Application {
 	// Constants
@@ -14,7 +16,21 @@ public class Main extends Application {
 	public static void main( String[] args ) {
 		// write your code here
 		launch(args);
+
+		Map map = new Map();
+//
+		// ((CityTile) map.getTileAt(1)).addHouse();
+		// ((CityTile) map.getTileAt(1)).addHouse();
+		// ((CityTile) map.getTileAt(1)).addHouse();
+		// ((CityTile) map.getTileAt(1)).removeHouse();
+		// ((CityTile) map.getTileAt(1)).addHouse();
+		// ((CityTile) map.getTileAt(1)).addHouse();
+		// ((CityTile) map.getTileAt(1)).addHotel();
+		// ((CityTile) map.getTileAt(1)).removeHotel();
+		// ((CityTile) map.getTileAt(1)).addHotel();
+
 	}
+
 
 	@Override
 	public void start( Stage primaryStage ) throws Exception {
@@ -33,4 +49,5 @@ public class Main extends Application {
 	private void closeProgram() {
 		new ClosePopup().display(window);
 	}
+
 }
