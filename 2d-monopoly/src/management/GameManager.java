@@ -9,7 +9,8 @@ public class GameManager implements Serializable {
 	private static GameManager instance;
 
 	// FILE PATHS
-	private static final String SETTINGS_DIRECTORY = "local/settings.ser";
+	private static final String SETTINGS_DIRECTORY = "local/";
+	private static final String SETTINGS_FILE = "settings.ser";
 	private static Settings settings;
 
 	// properties
@@ -44,7 +45,7 @@ public class GameManager implements Serializable {
 
 	public void updateSettings(boolean colorblind, boolean muted) {
 		try {
-			FileOutputStream writeFile = new FileOutputStream(new File(SETTINGS_DIRECTORY));
+			FileOutputStream writeFile = new FileOutputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
 			ObjectOutputStream writeObject = new ObjectOutputStream(writeFile);
 			settings.setColorblindMode(colorblind);
 			settings.setMutedMode(muted);
@@ -58,7 +59,7 @@ public class GameManager implements Serializable {
 
 	public Settings loadSettings() {
 		try {
-			FileInputStream readFile = new FileInputStream(new File(SETTINGS_DIRECTORY));
+			FileInputStream readFile = new FileInputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
 			ObjectInputStream readObject = new ObjectInputStream(readFile);
 
 			settings = (Settings) readObject.readObject();
@@ -67,7 +68,10 @@ public class GameManager implements Serializable {
 			return settings;
 		} catch (Exception e) {
 			System.err.println("Read failed setting the default settings to false, false");
+			File saveFile = new File(SETTINGS_DIRECTORY);
+			saveFile.mkdir();
 			settings = new Settings(false, false);
+			updateSettings(settings.getColorblindMode(), settings.getMutedMode());
 			return settings;
 		}
 	}
