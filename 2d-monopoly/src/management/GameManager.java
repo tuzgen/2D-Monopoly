@@ -5,7 +5,7 @@ import entity.Player;
 
 import java.io.*;
 
-public class GameManager {
+public class GameManager implements Serializable {
 	private static GameManager instance;
 
 	// FILE PATHS
