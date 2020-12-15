@@ -18,9 +18,12 @@ public class Police extends Character {
     }
 
     public void arrestMafia(){
+        //todo
     }
 
-    public void arrestPlayer(Player player){}
+    public void arrestPlayer(Player player){
+        //todo
+    }
 
     public boolean isDeal(){
         return deal;
