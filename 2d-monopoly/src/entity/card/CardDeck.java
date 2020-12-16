@@ -12,7 +12,7 @@ public class CardDeck {
         currentCard = 0;
     }
 
-    public void shuffleCard(){
+    private void shuffleCard(){
         boolean isit = false;
         int valid = 0;
         int[] past = new int[DECKSIZE*2];
@@ -69,7 +69,6 @@ public class CardDeck {
             cards[2] = new Card(new MovementByNumCardStrategy(), "Police raid!!! Move 5 tiles backward .", 5);
             cards[3] = new Card(new MovementToCardStrategy(), "You stole a car. Move until you arrive start tile.", 0);
         }
-
+        shuffleCard();
     }
-
 }
