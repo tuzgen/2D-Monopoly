@@ -4,14 +4,21 @@ import entity.player.Player;
 import management.ForexManager;
 
 public class Bank { // Methods in this class may be static so that no one need bank object.
+    private static Bank instance;
 
     private ForexManager forexManager;
     private Forex forex;
     private Account plAccount;
 
-    public Bank(ForexManager forexManager){
-        this.forexManager = forexManager;
+    private Bank(){
+        this.forexManager = ForexManager.getInstance();
         forex = forexManager.getForex();
+    }
+
+    public static Bank getInstance() {
+        if (instance == null)
+            instance = new Bank();
+        return instance;
     }
 
     public boolean swapMoney(Player payerPlayer, Player payeePlayer, double moneyAmount) { //Check if payer does not have enough money after todo in takeMoney function

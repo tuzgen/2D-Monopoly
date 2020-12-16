@@ -1,6 +1,7 @@
 package entity.player;
 
 import entity.Account;
+import entity.Bank;
 import entity.PowerUp;
 import entity.Trade;
 import entity.card.Card;
@@ -27,7 +28,7 @@ public class Player extends Character{
     private int vehicleCount;
 
     //constructor
-    public Player( Playable playable, String name){
+    public Player(Playable playable, String name){
         super(name);
         this.playable = playable;
         powerUps = new ArrayList<PowerUp>();
@@ -38,7 +39,7 @@ public class Player extends Character{
         isArrested = false;
         isBankrupt = false;
         salary = 1;
-        account = new Account( salary);
+        account = new Account(salary);
         speed = 1;
         vehicleCount = 0;
     }
@@ -46,16 +47,19 @@ public class Player extends Character{
     //Methods
     public void playTurn(){
         //TODO
+        System.out.println(super.getName());
     }
 
     public void useMafiaFavour(){ // ENUM enum
         //TODO
     }
 
-    public void playCard(Card card) {
-        //TODO
-        removeFromDeck(card);
+    public void playCard() {
+        Card c = cards.get(0);
+        c.activateCard(this, Bank.getInstance());
+        removeFromDeck(c);
     }
+    public void setBehavior(Playable playable) { this.playable = playable; }
 
     public boolean addTrade(Trade trade) {
         return trades.add(trade);

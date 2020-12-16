@@ -9,7 +9,7 @@ public class Card {
     private int amount;
     private Bank bank;
 
-    //Constructor
+    // Constructor
     public Card(CardStrategy cardStrategy, String feature, int amount){
         this.cardStrategy = cardStrategy;
         this.feature = feature;

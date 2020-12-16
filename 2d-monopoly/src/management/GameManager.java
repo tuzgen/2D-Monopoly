@@ -3,7 +3,9 @@ package management;
 import cached.Settings;
 import entity.Bank;
 import entity.Dice;
+import entity.player.BotCharacter;
 import entity.player.Player;
+import entity.player.User;
 
 import java.io.*;
 
@@ -25,8 +27,14 @@ public class GameManager implements Serializable {
 	Player[] players;
 	Dice dice;
 
-	private GameManager() {
+	private GameManager(String name0, String name1, boolean isBot1, String name2,
+						boolean isBot2, String name3, boolean isBot3) {
 		players = new Player[4];
+		players[0] = new Player(new User(), "Player 1");
+		players[1] = new Player(new User(), "Player 69");
+		players[2] = new Player(new User(), "Player 420");
+		players[3] = new Player(new User(), "Player 619 reymisteryo");
+
 		settings = new Settings(false, false);
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
@@ -34,15 +42,54 @@ public class GameManager implements Serializable {
 		map = Map.getInstance();
 	}
 
+	public static void deleteInstance() {
+		instance = null;
+	}
+
 	public static synchronized GameManager getInstance() {
 		if (instance == null) {
-			instance = new GameManager();
+			instance = new GameManager("", "", false, "", false ,"", false);
 		}
 		return instance;
 	}
 
+	public static synchronized GameManager getInstance(String name0,
+													   String name1, boolean isBot1,
+													   String name2, boolean isBot2,
+													   String name3, boolean isBot3) {
+		if (instance == null) {
+			System.out.println(name0 + "false" + " \n" +
+					name1 + isBot1 + " \n" +
+					name2 + isBot2 + " \n" +
+					name3 + isBot3 + " \n");
+			instance = new GameManager(
+					name0, name1, isBot1, name2, isBot2, name3, isBot3);
+		}
+
+		//else {
+		//	instance.setGameManager(name0, name1, isBot1, name2, isBot2, name3, isBot3);
+		//}
+
+		return instance;
+	}
+
+	// garbage
+	private void setGameManager(String name0, String name1, boolean isBot1, String name2, boolean isBot2, String name3, boolean isBot3) {
+		players[0].setName(name0);
+
+		players[1].setBehavior(isBot1 ? new User() : new BotCharacter());
+		players[1].setName(name1);
+
+		players[2].setBehavior(isBot2 ? new User() : new BotCharacter());
+		players[2].setName(name2);
+
+		players[3].setBehavior(isBot3 ? new User() : new BotCharacter());
+		players[3].setName(name3);
+
+	}
+
 	public void update() {
-		while (!isGameOver()) {
+		while (isGameOver()) {
 			for (Player player : players) {
 				playTurn(player);
 			}

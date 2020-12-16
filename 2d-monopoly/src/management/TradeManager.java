@@ -10,7 +10,7 @@ public class TradeManager {
     private Bank bank;
 
     private TradeManager(){
-        bank = new Bank(ForexManager.getInstance());
+        bank = Bank.getInstance();
     }
 
     public static TradeManager getInstance(){
