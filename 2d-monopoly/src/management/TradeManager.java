@@ -8,7 +8,7 @@ public class TradeManager {
 
     private TradeManager(){}
 
-    public TradeManager getInstance(){
+    public static TradeManager getInstance(){
         if(tradeManager == null)
             tradeManager = new TradeManager();
         return tradeManager;

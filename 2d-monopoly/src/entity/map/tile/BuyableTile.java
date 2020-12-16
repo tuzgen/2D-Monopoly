@@ -8,7 +8,7 @@ public abstract class BuyableTile extends Tile {
 
 	// state variables
 	private boolean isOwned;
-	private Player whoseTile;
+	private Player owner;
 	private int price;
 	private double rentAmount;
 	private boolean soldByMafia;
@@ -21,7 +21,7 @@ public abstract class BuyableTile extends Tile {
 		this.isMortgage = false;
 		this.isOwned = false;
 		this.soldByMafia = false;
-		this.whoseTile = null;
+		this.owner = null;
 	}
 
 	// getters and setters
@@ -34,14 +34,14 @@ public abstract class BuyableTile extends Tile {
 		isOwned = owned;
 	}
 
-	public void setWhoseTile(Player whoseTile) {
-		this.whoseTile = whoseTile;
-		if (whoseTile == null)
+	public void setOwner(Player whoseTile) {
+		if (this.owner == null)
 			setOwned(true);
+		this.owner = whoseTile;
 	}
 
-	public Player getWhoseTile() {
-		return whoseTile;
+	public Player getOwner() {
+		return owner;
 	}
 
 	public int getPrice() {

@@ -1,6 +1,7 @@
 package management;
 
 import cached.Settings;
+import entity.Bank;
 import entity.Dice;
 import entity.player.Player;
 
@@ -9,18 +10,28 @@ import java.io.*;
 public class GameManager implements Serializable {
 	private static GameManager instance;
 
+	// Cached singletons
+	private ForexManager forexManager;
+	private Bank bank;
+	private Map map;
+	private TradeManager tradeManager;
+
 	// FILE PATHS
 	private static final String SETTINGS_DIRECTORY = "local/";
 	private static final String SETTINGS_FILE = "settings.ser";
 	private static Settings settings;
 
 	// properties
-	Player players[];
+	Player[] players;
 	Dice dice;
 
 	private GameManager() {
+		players = new Player[4];
 		settings = new Settings(false, false);
 		dice = new Dice();
+		tradeManager = TradeManager.getInstance();
+		forexManager = ForexManager.getInstance();
+		map = Map.getInstance();
 	}
 
 	public static synchronized GameManager getInstance() {
@@ -53,12 +64,18 @@ public class GameManager implements Serializable {
 		return false;
 	}
 
-	public void updateSettings(boolean colorblind, boolean muted) {
+
+	public void mapBuyTile(Player player, int tileNo) { map.buyTile(player, tileNo); }
+	public void mapSellTile(Player player, int tileNo) { map.sellTile(player, tileNo); }
+	public void buildHouse(Player player, int tileNo) { map.buildHouse(player, tileNo); }
+	public void buildHotel(Player player, int tileNo) { map.buildHotel(player, tileNo); }
+
+	public void updateSettings(Settings settings) {
 		try {
 			FileOutputStream writeFile = new FileOutputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
 			ObjectOutputStream writeObject = new ObjectOutputStream(writeFile);
-			settings.setColorblindMode(colorblind);
-			settings.setMutedMode(muted);
+			this.settings.setColorblindMode(settings.getColorblindMode());
+			this.settings.setMutedMode(settings.getMutedMode());
 
 			writeObject.writeObject(settings);
 			System.out.println("Saved settings successfully.");
@@ -66,7 +83,6 @@ public class GameManager implements Serializable {
 			System.err.println("Save failed settings cannot be saved.");
 		}
 	}
-
 	public Settings loadSettings() {
 		try {
 			FileInputStream readFile = new FileInputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
@@ -81,11 +97,10 @@ public class GameManager implements Serializable {
 			File saveFile = new File(SETTINGS_DIRECTORY);
 			saveFile.mkdir();
 			settings = new Settings(false, false);
-			updateSettings(settings.getColorblindMode(), settings.getMutedMode());
+			updateSettings(settings);
 			return settings;
 		}
 	}
-
 	public Settings getSettings() {
 		return settings;
 	}

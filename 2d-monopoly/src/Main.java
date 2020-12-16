@@ -1,5 +1,4 @@
-import entity.Dice;
-import entity.map.tile.CityTile;
+import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.player.User;
 import gui.menus.MainMenu;
@@ -20,35 +19,55 @@ public class Main extends Application {
 		// write your code here
 		// launch(args);
 
-		Player p1, p2;
+		Player p1, p2, p3;
 		p1 = new Player(new User(), "Player 1");
 		p2 = new Player(new User(), "Player 2");
+		p3 = new Player(new BotCharacter(), "Player 3");
 
-		Map map = new Map();
+		Map map = Map.getInstance();
+		// can buy
+		map.buyTile(p1, 1);
+		map.buyTile(p1, 3);
 
-		((CityTile)map.getTileAt(6)).setWhoseTile(p1);
-		System.out.println(map.isColorGroupOwnedByPlayer(p1, 2));
-		((CityTile)map.getTileAt(8)).setWhoseTile(p1);
-		System.out.println(map.isColorGroupOwnedByPlayer(p1, 2));
-		((CityTile)map.getTileAt(9)).setWhoseTile(p1);
-		System.out.println(map.isColorGroupOwnedByPlayer(p1, 2));
+		// Cannot buy since owned
+		map.buyTile(p2, 1);
+		map.buyTile(p2, 3);
+
+		// can buy
+		map.buyTile(p3, 6);
+		// cannot build hotels the color group not owned
+		//map.buildHouse(p3, 6);
+		//map.buildHouse(p3, 6);
+
+		map.buyTile(p3, 8);
+		map.buyTile(p3, 9);
+		map.buildHouse(p3, 6);
+		map.buildHouse(p3, 6); // dont
+		map.buildHouse(p3, 8);
+		map.buildHouse(p3, 8); // dont
+		map.buildHouse(p3, 9);
+		map.buildHouse(p3, 9);
+		map.buildHouse(p3, 6);
+		map.buildHouse(p3, 8);
+		map.buildHouse(p3, 8);
+		map.buildHouse(p3, 6);
+		map.buildHouse(p3, 9);
+		map.buildHotel(p3, 6);
+		map.buildHotel(p3, 9);
+		map.buildHotel(p3, 8);
+		map.buildHotel(p3, 8);
+		map.buildHotel(p3, 6);
 
 
-		map.isColorGroupOwnedByPlayer(p1, 2);
-		map.isColorGroupOwnedByPlayer(p1, 2);
-//
-		// ((CityTile) map.getTileAt(1)).addHouse();
-		// ((CityTile) map.getTileAt(1)).addHouse();
-		// ((CityTile) map.getTileAt(1)).addHouse();
-		// ((CityTile) map.getTileAt(1)).removeHouse();
-		// ((CityTile) map.getTileAt(1)).addHouse();
-		// ((CityTile) map.getTileAt(1)).addHouse();
-		// ((CityTile) map.getTileAt(1)).addHotel();
-		// ((CityTile) map.getTileAt(1)).removeHotel();
-		// ((CityTile) map.getTileAt(1)).addHotel();
-
+		// map.buildHouse(p3, 6);
+		// map.buildHouse(p1, 1);
+		// map.buildHouse(p1, 1);
+		// map.buildHouse(p2, 1);
+		// map.buildHouse(p1, 1);
+		// map.buildHotel(p1, 1);
+		// map.buildHotel(p1, 1);
+		// map.buildHotel(p1, 1);
 	}
-
 
 	@Override
 	public void start( Stage primaryStage ) throws Exception {
@@ -67,5 +86,4 @@ public class Main extends Application {
 	private void closeProgram() {
 		new ClosePopup().display(window);
 	}
-
 }

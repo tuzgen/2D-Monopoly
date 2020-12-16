@@ -1,16 +1,21 @@
 package management;
 
-
 import entity.map.tile.*;
 import entity.player.Player;
 
 public class Map {
+	private static Map instance;
 	private final int TILECOUNT = 40;
 
+	public static Map getInstance() {
+		if (instance == null)
+			instance = new Map();
+		return instance;
+	}
 	// properties
 	Tile[] tiles;
 
-	public Map() {
+	private Map() {
 		createMap();
 	}
 
@@ -19,7 +24,7 @@ public class Map {
 	}
 
 	public void updateMap() {
-		// TODO
+		// TODO what to do here
 	}
 
 	public Tile getTileAt(int index) {
@@ -35,15 +40,15 @@ public class Map {
 		tiles[3] = new CityTile("City 2", 3, 60, 4, 50, 70, 1);
 		tiles[4] = new TaxTile("Tax 1", 4, 60);
 		tiles[5] = new TransportationTile("Transportation 1", 5, 60, 3);
-		tiles[6] = new CityTile("City 3", 5, 100, 6, 50, 70, 2);
-		tiles[7] = new CardTile("Card 2", 6, true);
-		tiles[8] = new CityTile("City 4", 7, 100, 6, 50, 70, 2);
-		tiles[9] = new CityTile("City 5", 8, 100, 6, 50, 70, 2);
-		tiles[10] = new DoNothingTile("Jail visit", 9, false);
-		tiles[11] = new CityTile("City 6", 10, 100, 6, 50, 70, 3);
-		tiles[12] = new CompanyTile("Company 1", 11, 100, 6);
-		tiles[13] = new CityTile("City 7", 12, 100, 6, 50, 70, 3);
-		tiles[14] = new CityTile("City 8", 13, 100, 6, 50, 70, 3);
+		tiles[6] = new CityTile("City 3", 6, 100, 6, 50, 70, 2);
+		tiles[7] = new CardTile("Card 2", 7, true);
+		tiles[8] = new CityTile("City 4", 8, 100, 6, 50, 70, 2);
+		tiles[9] = new CityTile("City 5", 9, 100, 6, 50, 70, 2);
+		tiles[10] = new DoNothingTile("Jail visit", 10, false);
+		tiles[11] = new CityTile("City 6", 11, 100, 6, 50, 70, 3);
+		tiles[12] = new CompanyTile("Company 1", 12, 100, 6);
+		tiles[13] = new CityTile("City 7", 13, 100, 6, 50, 70, 3);
+		tiles[14] = new CityTile("City 8", 14, 100, 6, 50, 70, 3);
 		tiles[15] = new TransportationTile("Transportation 2", 15, 100, 6);
 		tiles[16] = new CityTile("City 9", 16, 100, 6, 50, 70, 4);
 		tiles[17] = new CardTile("Card 3", 17, false);
@@ -71,13 +76,58 @@ public class Map {
 		tiles[39] = new CityTile("City 22", 39, 100, 6, 50, 70, 8);
 	}
 
-	public boolean isColorGroupOwnedByPlayer(Player player, int colorGroup) {
+	// Invokes CityTile's setOwner method
+	public void buyTile(Player player, int tileNo) {
+		if (!((CityTile)tiles[tileNo]).isOwned())
+			((CityTile)tiles[tileNo]).setOwner(player);
+	}
+
+	public void sellTile(Player player, int tileNo) {
+		if (((CityTile)tiles[tileNo]).getOwner().equals(player)) {
+			((CityTile)tiles[tileNo]).setOwner(null);
+		}
+	}
+
+	public void buildHouse(Player player, int tileNo) {
+		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo]))
+			((CityTile) tiles[tileNo]).addHouse();
+	}
+
+	private boolean isHouseBuildAvailable(Player player, CityTile tile) {
+		// assume the player has built the house and build
+		// if the absolute difference is smaller than or equal to one
+		int minHouse = 50; // giving absurdly high initial value
+		for (Tile t : tiles) {
+			if (t.getClass() == CityTile.class && ((CityTile) t).getColorGroup() == tile.getColorGroup()) {
+				// for every tile in the same color group as "tile"
+				minHouse = Math.min(minHouse, ((CityTile)t).getHouseCount());
+			}
+		}
+		/*
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (Math.abs(colorGroup[i].getHouseCount() - colorGroup[j].))
+			}
+		}
+		*/
+
+		return isColorGroupOwnedByPlayer(player, tile.getColorGroup())
+				&& (Math.abs(minHouse - (tile.getHouseCount() + 1)) <= 1);
+	}
+
+	public void buildHotel(Player player, int tileNo) {
+		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo])
+		&& ((CityTile)tiles[tileNo]).isHotelBuildAvailable())
+			((CityTile)tiles[tileNo]).addHotel();
+	}
+
+	private boolean isColorGroupOwnedByPlayer(Player player, int colorGroup) {
 		boolean result = true;
 		for (Tile tile : tiles) {
 			if (tile.getClass() == CityTile.class && ((CityTile) tile).getColorGroup() == colorGroup) {
 				// if the tile is a city tile and the tile is in the specified color group
 				// return false if the player is not the owner
-				if (!player.equals(((CityTile) tile).getWhoseTile()))
+				if (!player.equals(((CityTile) tile).getOwner()))
 					result = false;
 			}
 		}
