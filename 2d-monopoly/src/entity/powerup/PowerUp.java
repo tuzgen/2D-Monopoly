@@ -30,7 +30,7 @@ public class PowerUp {
     }
 
     public void activate(){
-        behaviour.activate();
+        behaviour.activate(lifetime, behaviour, amount, target);
     }
 
     //get and set methods

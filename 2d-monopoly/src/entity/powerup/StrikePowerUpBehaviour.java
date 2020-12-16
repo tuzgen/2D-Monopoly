@@ -3,12 +3,8 @@ package entity.powerup;
 import java.util.ArrayList;
 
 public class StrikePowerUpBehaviour implements PowerUpBehaviour{
-     public StrikePowerUpBehaviour(){
-
-     }
-
      @Override
-     public void activate() {
+     public void activate(int lifetime, PowerUpBehaviour behaviour, double amount, String target) {
 
      }
 }

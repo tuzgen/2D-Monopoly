@@ -1,8 +1,12 @@
 package entity.powerup;
 
-public class ForexPowerUpBehaviour implements PowerUpBehaviour{
-    @Override
-    public void activate() {
+import management.ForexManager;
 
+public class ForexPowerUpBehaviour implements PowerUpBehaviour{
+    ForexManager fm = ForexManager.getInstance();
+
+    @Override
+    public void activate(int lifetime, PowerUpBehaviour behaviour, double amount, String target) {
+        fm.updateExRates(target, amount);
     }
 }
