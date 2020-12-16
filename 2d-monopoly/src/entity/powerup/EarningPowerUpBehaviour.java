@@ -6,6 +6,6 @@ public class EarningPowerUpBehaviour implements PowerUpBehaviour{
 
     @Override
     public void activate(int lifetime, PowerUpBehaviour behaviour, double amount, String target, Player p) {
-
+        p.setSalary(p.getSalary() * (int)amount);
     }
 }
