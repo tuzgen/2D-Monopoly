@@ -69,6 +69,18 @@ public class Player extends Character{
         return properties.add(property);
     }
 
+    public boolean addToTileList(Tile tile) {
+        return tileList.add(tile);
+    }
+
+    public boolean removeFromTileList(Tile tile) {
+        return tileList.remove(tile);
+    }
+
+    public boolean containsTile(Tile tile) {
+        return tileList.contains(tile);
+    }
+
     public boolean removeProperty(Property property){
         return properties.remove(property);
     }
