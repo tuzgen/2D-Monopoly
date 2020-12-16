@@ -1,5 +1,8 @@
 package entity.card;
 
+import entity.Bank;
+import entity.player.Player;
+
 public class CardDeck {
     private final int DECKSIZE = 4;
     private Card[] cards;
@@ -51,13 +54,13 @@ public class CardDeck {
         }
     }
 
-    public Card drawCard(){
+    public Card drawCard(Player player){ // It takes reference of the card it might cause a problem think about it
         Card drawn = cards[currentCard % DECKSIZE];
         currentCard++;
         return drawn;
     }
 
-    public void createDeck(){
+    public void createDeck(Bank bank){
         if(chance){
             cards[0] = new Card(new TransactionCardStrategy(), "RTUK has fined you 30.000 TL for your radio program.", -30000);
             cards[1] = new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0);
