@@ -9,13 +9,13 @@ public class TradeManager {
     private static TradeManager tradeManager;
     private Bank bank;
 
-    private TradeManager(Bank bank){
-        this.bank = bank;
+    private TradeManager(){
+        bank = new Bank(ForexManager.getInstance());
     }
 
     public static TradeManager getInstance(){
         if(tradeManager == null)
-            tradeManager = new TradeManager(bank);
+            tradeManager = new TradeManager();
         return tradeManager;
     }
 
