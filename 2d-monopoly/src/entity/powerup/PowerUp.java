@@ -1,5 +1,7 @@
 package entity.powerup;
 
+import entity.player.Player;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PowerUp {
@@ -29,8 +31,8 @@ public class PowerUp {
         target = "";
     }
 
-    public void activate(){
-        behaviour.activate(lifetime, behaviour, amount, target);
+    public void activate(Player p){
+        behaviour.activate(lifetime, behaviour, amount, target, p);
     }
 
     //get and set methods
