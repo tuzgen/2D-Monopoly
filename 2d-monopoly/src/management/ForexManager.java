@@ -4,22 +4,15 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ForexManager {
-    private static ForexManager instance;
-
     private Forex forex;
-    public Stack<Integer> dollarTrans = new Stack<Integer>();
-    public Stack<Integer> euroTrans = new Stack<Integer>();
-    public Stack<Integer> frankTrans = new Stack<Integer>();
+    public Stack<Double> dollarTrans = new Stack<Double>();
+    public Stack<Double> euroTrans = new Stack<Double>();
+    public Stack<Double> frankTrans = new Stack<Double>();
 
-    private ForexManager(){
+    ForexManager(){
         forex = new Forex();
         resetExRates();
-    }
 
-    public static ForexManager getInstance() {
-        if (instance == null)
-            instance = new ForexManager();
-        return instance;
     }
 
     public void resetExRates(){
@@ -34,46 +27,20 @@ public class ForexManager {
         double randomNumFrank = ThreadLocalRandom.current().nextDouble(-1.0, 1.0 + 1.0);
 
         while (!dollarTrans.empty()) {
-             int dollar = dollarTrans.pop();
-            if (dollar > 200000) {
-                updateExRates("Dollar", forex.getDollarExRate() / ((forex.getDollarExRate() * dollar) / 228000));
-            } else if (dollar > 0) {
-                updateExRates("Dollar", forex.getDollarExRate() * 8000 / dollar);
-            } else if (dollar > -3000) {
-                updateExRates("Dollar", forex.getDollarExRate() + (double)((-1*dollar) / 250000));
-            } else {
-                updateExRates("Dollar", forex.getDollarExRate() + (double)((-1*dollar) / 25000));
-            }
+            double dollar = dollarTrans.pop();
+            updateExRates("Dollar", forex.getDollarExRate() * Math.pow(2,-dollar/350000));
         }
-
-
-//        updateExRates("Dollar", forex.getDollarExRate() + (randomNumDollar/1000));
+        updateExRates("Dollar", forex.getDollarExRate() + (randomNumDollar/100));
 
         while (!euroTrans.empty()) {
-            int euro = euroTrans.pop();
-            if (euro > 3000) {
-                updateExRates("Euro", forex.getEuroExRate() - (euro / 25000));
-            } else if (euro > 0) {
-                updateExRates("Euro", forex.getEuroExRate() - (euro / 250000));
-            } else if (euro > -3000) {
-                updateExRates("Euro", forex.getEuroExRate() + (euro / 250000));
-            } else {
-                updateExRates("Euro", forex.getEuroExRate() + (euro / 25000));
-            }
+            double euro = euroTrans.pop();
+            updateExRates("Euro", forex.getEuroExRate() * Math.pow(2,-euro/350000));
         }
         updateExRates("Euro", forex.getEuroExRate() + (randomNumEuro/1000));
 
         while (!frankTrans.empty()) {
-            int frank = frankTrans.pop();
-            if (frank > 3000) {
-                updateExRates("Frank", forex.getFrankExRate() - (frank / 25000));
-            } else if (frank > 0) {
-                updateExRates("Frank", forex.getFrankExRate() - (frank / 250000));
-            } else if (frank > -3000) {
-                updateExRates("Frank", forex.getFrankExRate() + (frank / 250000));
-            } else {
-                updateExRates("Frank", forex.getFrankExRate() + (frank / 25000));
-            }
+            double frank = frankTrans.pop();
+            updateExRates("Frank", forex.getFrankExRate() * Math.pow(2, -frank/350000));
         }
         updateExRates("Frank", forex.getFrankExRate() + (randomNumFrank/1000));
     }
@@ -90,6 +57,10 @@ public class ForexManager {
 
         if( currency.equals("Frank"))
             forex.setFrankExRate(exRa);
+    }
+
+    public ForexManager getInstance(){
+        return this;
     }
 
 
@@ -113,5 +84,27 @@ public class ForexManager {
         return this.forex;
     }
 
+    public void push(String currency, double money){
+        if(currency.equals("Dollar")) dollarTrans.push(money);
+        if(currency.equals("Euro")) euroTrans.push(money);
+        if(currency.equals("Frank")) frankTrans.push(money);
+    }
 
+
+
+}
+
+
+class Test{
+    public static void main(String[] args){
+        ForexManager manager = new ForexManager();
+//        manager.dollarTrans.push(-1000000.0);
+//        manager.dollarTrans.push(1000000.0);
+        manager.push("Dollar", 20000);
+        manager.calcSupDemand();
+
+        System.out.println(manager.getDollarExRate());
+
+
+    }
 }
