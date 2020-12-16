@@ -29,11 +29,17 @@ public class GameManager implements Serializable {
 
 	private GameManager(String name0, String name1, boolean isBot1, String name2,
 						boolean isBot2, String name3, boolean isBot3) {
+
+		System.out.println("Constructor\n" + name0 + " " + "false" + " \n" +
+				name1 + " " + isBot1 + " \n" +
+				name2 + " " + isBot2 + " \n" +
+				name3 + " " + isBot3 + " \n");
+
 		players = new Player[4];
-		players[0] = new Player(new User(), "Player 1");
-		players[1] = new Player(new User(), "Player 69");
-		players[2] = new Player(new User(), "Player 420");
-		players[3] = new Player(new User(), "Player 619 reymisteryo");
+		players[0] = new Player(new User(), name0.equals("") ? "Player1" : name0);
+		players[1] = new Player(isBot1 ? new User() : new BotCharacter(), name1.equals("") ? "Player2" : name1);
+		players[2] = new Player(isBot2 ? new User() : new BotCharacter(), name2.equals("") ? "Player3" : name2);
+		players[3] = new Player(isBot3 ? new User() : new BotCharacter(), name3.equals("") ? "Player4" : name3);
 
 		settings = new Settings(false, false);
 		dice = new Dice();
@@ -70,7 +76,7 @@ public class GameManager implements Serializable {
 	}
 
 	// garbage
-	private void setGameManager(String name0, String name1, boolean isBot1, String name2, boolean isBot2, String name3, boolean isBot3) {
+	/* private void setGameManager(String name0, String name1, boolean isBot1, String name2, boolean isBot2, String name3, boolean isBot3) {
 		players[0].setName(name0);
 
 		players[1].setBehavior(isBot1 ? new User() : new BotCharacter());
@@ -83,6 +89,7 @@ public class GameManager implements Serializable {
 		players[3].setName(name3);
 
 	}
+	*/
 
 	public void update() {
 		while (isGameOver()) {
@@ -112,6 +119,9 @@ public class GameManager implements Serializable {
 	public void mapSellTile(Player player, int tileNo) { map.sellTile(player, tileNo); }
 	public void buildHouse(Player player, int tileNo) { map.buildHouse(player, tileNo); }
 	public void buildHotel(Player player, int tileNo) { map.buildHotel(player, tileNo); }
+	public double getForexDollar() { return forexManager.getDollarExRate(); }
+	public double getForexEuro() { return forexManager.getEuroExRate(); }
+	public double getForexFrank() { return forexManager.getFrankExRate(); }
 
 	public Player getPlayerAt(int index) { return players[index]; }
 

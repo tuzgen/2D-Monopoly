@@ -24,23 +24,26 @@
       <AnchorPane prefHeight="107.0" prefWidth="1280.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="64.0" layoutX="16.0" layoutY="16.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="738.0" />
-            <StackPane layoutX="14.0" layoutY="26.0" prefHeight="49.0" prefWidth="135.0">
+            <StackPane layoutX="14.0" layoutY="31.0" prefHeight="46.0" prefWidth="135.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="49.0" prefWidth="153.0" spacing="15.0">
+                        <HBox alignment="CENTER" prefHeight="21.0" prefWidth="135.0" spacing="15.0">
                            <children>
-                              <Label text="Player 1" textFill="WHITE" />
+                              <Label fx:id="infoPlayer1Name" text="yarra" textFill="WHITE" />
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/green-player.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="18.0" layoutX="100.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="100.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/turn-diamond.png" />
+                                 </image></ImageView>
                            </children>
                         </HBox>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                        <Text fx:id="infoPlayer1Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -48,20 +51,23 @@
             <StackPane layoutX="139.0" layoutY="31.0" prefHeight="39.0" prefWidth="122.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="26.0" prefWidth="181.0" spacing="15.0">
                            <children>
-                              <Label text="Player 2" textFill="WHITE" />
+                              <Label fx:id="infoPlayer2Name" text="Player 2" textFill="WHITE" />
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/red-player.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/turn-diamond.png" />
+                                 </image></ImageView>
                            </children>
                         </HBox>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                        <Text fx:id="infoPlayer2Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -69,11 +75,11 @@
             <StackPane layoutX="272.0" layoutY="31.0" prefHeight="25.0" prefWidth="122.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="10.0" prefWidth="147.0" spacing="15.0">
                            <children>
-                              <Label text="Player 3" textFill="WHITE" />
+                              <Label fx:id="infoPlayer3Name" text="Player 3" textFill="WHITE" />
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/pink-player.png" />
@@ -86,28 +92,31 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                        <Text fx:id="infoPlayer3Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
             </StackPane>
-            <StackPane layoutX="428.0" layoutY="31.0" prefHeight="39.0" prefWidth="122.0">
+            <StackPane layoutX="410.0" layoutY="31.0" prefHeight="39.0" prefWidth="122.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="121.0" spacing="15.0">
                            <children>
-                              <Label text="Player 4" textFill="WHITE" />
+                              <Label fx:id="infoPlayer4Name" text="Player 4" textFill="WHITE" />
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/blue-player.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/turn-diamond.png" />
+                                 </image></ImageView>
                            </children>
                         </HBox>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                        <Text fx:id="infoPlayer4Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -167,7 +176,7 @@
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="1.2" textAlignment="RIGHT" textFill="WHITE">
+                                                <Label fx:id="textForexDollar" alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="1.2" textAlignment="RIGHT" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
@@ -187,7 +196,7 @@
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="2.7" textAlignment="RIGHT" textFill="WHITE">
+                                                <Label fx:id="textForexEuro" alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="2.7" textAlignment="RIGHT" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
@@ -202,12 +211,12 @@
                                           </HBox>
                                           <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="107.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                              <children>
-                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANC" textFill="WHITE">
+                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANK" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="0.6" textAlignment="RIGHT" textFill="WHITE">
+                                                <Label fx:id="textForexFrank" alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="0.6" textAlignment="RIGHT" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
