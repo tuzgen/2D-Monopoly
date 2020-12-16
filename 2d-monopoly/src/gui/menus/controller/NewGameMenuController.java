@@ -24,7 +24,6 @@ public class NewGameMenuController {
 		checkBox2 = new CheckBox();
 		checkBox3 = new CheckBox();
 		checkBox4 = new CheckBox();
-
 	}
 
 	public void returnToMainMenu() {

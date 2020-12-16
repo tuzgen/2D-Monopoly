@@ -66,10 +66,6 @@ public class GameManager implements Serializable {
 					name0, name1, isBot1, name2, isBot2, name3, isBot3);
 		}
 
-		//else {
-		//	instance.setGameManager(name0, name1, isBot1, name2, isBot2, name3, isBot3);
-		//}
-
 		return instance;
 	}
 
@@ -116,6 +112,8 @@ public class GameManager implements Serializable {
 	public void mapSellTile(Player player, int tileNo) { map.sellTile(player, tileNo); }
 	public void buildHouse(Player player, int tileNo) { map.buildHouse(player, tileNo); }
 	public void buildHotel(Player player, int tileNo) { map.buildHotel(player, tileNo); }
+
+	public Player getPlayerAt(int index) { return players[index]; }
 
 	public void updateSettings(Settings settings) {
 		try {

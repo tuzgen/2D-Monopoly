@@ -2,7 +2,6 @@ import gui.menus.MainMenu;
 import gui.menus.popups.ClosePopup;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import management.GameManager;
 
 public class Main extends Application {
 	// Constants
