@@ -6,15 +6,16 @@ import entity.map.property.Property;
 
 public class CityTile extends BuyableTile {
 	private final int PROPERTY_COUNT = 4;
-	final private int houseBuildPrice;
-	final private int hotelBuildPrice;
+	final private int houseBuildPrice, hotelBuildPrice, colorGroup;
+
 	Property[] properties;
 
-	public CityTile(String name, int id, int price, int rentAmount, int houseBuildPrice, int hotelBuildPrice) {
+	public CityTile(String name, int id, int price, int rentAmount, int houseBuildPrice, int hotelBuildPrice, int colorGroup) {
 		super(name, id, price, rentAmount);
 		properties = new Property[PROPERTY_COUNT]; // has a max of four properties
 		this.houseBuildPrice = houseBuildPrice;
 		this.hotelBuildPrice = hotelBuildPrice;
+		this.colorGroup = colorGroup;
 	}
 
 	public int getHouseCount() {
@@ -76,5 +77,9 @@ public class CityTile extends BuyableTile {
 		System.out.println(getHouseCount());
 		System.out.println(getHotelCount());
 		return getHouseCount() == 3 && getHotelCount() == 0; // TODO test
+	}
+
+	public int getColorGroup() {
+		return colorGroup;
 	}
 }

@@ -30,12 +30,14 @@ public abstract class BuyableTile extends Tile {
 		return isOwned;
 	}
 
-	public void setOwned(boolean owned) {
+	private void setOwned(boolean owned) {
 		isOwned = owned;
 	}
 
 	public void setWhoseTile(Player whoseTile) {
 		this.whoseTile = whoseTile;
+		if (whoseTile == null)
+			setOwned(true);
 	}
 
 	public Player getWhoseTile() {
