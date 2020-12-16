@@ -18,10 +18,12 @@ public class Police extends NPC {
 
     public void arrestMafia(Mafia mafia){
         mafia.setIsArrested(true);
+        // mafia.setLocation();
     }
 
     public void arrestPlayer(Player player){
         player.setIsArrested(true);
+        // player.setLocation();
     }
 
     public boolean isDeal(){
