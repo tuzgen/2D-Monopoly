@@ -13,7 +13,7 @@ public class Card {
     }
 
     public void activateCard(){
-        //TODO
+        cardStrategy.activateCard();
     }
 
     // get-set Methods
