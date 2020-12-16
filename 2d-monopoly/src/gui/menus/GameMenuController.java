@@ -2,9 +2,11 @@ package gui.menus;
 
 import gui.menus.popups.PausePopup;
 import javafx.stage.Stage;
+import management.GameManager;
 
 public class GameMenuController {
-	Stage context;
+	private GameManager gameManager;
+	private Stage context;
 
 	public void setStage(Stage context) {
 		this.context = context;

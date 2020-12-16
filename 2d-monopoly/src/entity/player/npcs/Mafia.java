@@ -1,19 +1,23 @@
 package entity.player.npcs;
 
+<<<<<<< HEAD
 //import entity.map.Tile;
 import entity.Character;
 import entity.map.Tile.Tile;
+=======
+>>>>>>> origin/management
 import entity.player.Player;
 
 import java.util.*;
 
-public class Mafia extends Character {
+public class Mafia extends NPC {
 
     public double shareRate;
     public boolean isArrested;
     ArrayList<Player> pastDeals;
 
     Mafia(){
+        super("Mafia");
         isArrested = false;
         shareRate = 0;
         pastDeals = new ArrayList<Player>();

@@ -1,6 +1,7 @@
 package management;
 
 import cached.Settings;
+import entity.Dice;
 import entity.player.Player;
 
 import java.io.*;
@@ -15,9 +16,11 @@ public class GameManager implements Serializable {
 
 	// properties
 	Player players[];
+	Dice dice;
 
 	private GameManager() {
 		settings = new Settings(false, false);
+		dice = new Dice();
 	}
 
 	public static synchronized GameManager getInstance() {
@@ -29,8 +32,15 @@ public class GameManager implements Serializable {
 
 	public void update() {
 		while (!isGameOver()) {
-
+			for (Player player : players) {
+				playTurn(player);
+			}
 		}
+	}
+
+	private void playTurn(Player player) {
+		dice.rollTheDice();
+		player.playTurn();
 	}
 
 	public boolean isGameOver() {
