@@ -1,7 +1,11 @@
 package entity.player.npcs;
 
+import entity.Account;
+import entity.Bank;
 import entity.map.tile.*;
+import entity.player.Playable;
 import entity.player.Player;
+import entity.player.User;
 
 import java.util.*;
 
@@ -11,11 +15,15 @@ public class Mafia extends NPC {
     public boolean isArrested;
     ArrayList<Player> pastDeals;
 
-    Mafia(){
+    // newly added bank
+    Bank bank;
+
+    public Mafia(Bank bank){
         super("Mafia");
         isArrested = false;
         shareRate = 0;
         pastDeals = new ArrayList<Player>();
+        this.bank = bank;
     }
 
     public void attackHotel(Tile tile){
@@ -24,6 +32,11 @@ public class Mafia extends NPC {
 
     public void blackmail(Player player){
         // todo
+        // test it inside game manager
+        Account account = player.getAccount();
+        double money = account.getTrl();
+        money = money * 15 / 100;
+        bank.takeMoney(player, money);
     }
 
     public double getShareRate() {
@@ -34,8 +47,9 @@ public class Mafia extends NPC {
         this.shareRate = rate;
     }
 
-    public boolean sellTile(int tile){
+    public boolean sellTile(int tile, Player player){
         // todo
+
         return true;
     }
 
