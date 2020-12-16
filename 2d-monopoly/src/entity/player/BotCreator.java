@@ -6,18 +6,18 @@ import entity.player.npcs.Police;
 
 public class BotCreator {
 
-    public BotCreator(Bank bank){
+    public BotCreator(){
         createPolice();
         createBots();
-        createMafia(bank);
+        createMafia();
     }
 
     public void createPolice(){
         Police police = new Police();
     }
 
-    public void createMafia(Bank bank){
-        Mafia mafia = new Mafia(bank);
+    public void createMafia(){
+        Mafia mafia = new Mafia();
     }
 
     public void createBots(){

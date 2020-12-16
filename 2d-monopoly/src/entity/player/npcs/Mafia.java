@@ -15,22 +15,19 @@ public class Mafia extends NPC {
     public boolean isArrested;
     ArrayList<Player> pastDeals;
 
-    // newly added bank
-    Bank bank;
 
-    public Mafia(Bank bank){
+    public Mafia(){
         super("Mafia");
         isArrested = false;
         shareRate = 0;
         pastDeals = new ArrayList<Player>();
-        this.bank = bank;
     }
 
     public void attackHotel(Tile tile){
         //todo
     }
 
-    public void blackmail(Player player){
+    public void blackmail(Player player, Bank bank){
         // todo
         // test it inside game manager
         Account account = player.getAccount();
