@@ -11,7 +11,7 @@ public class Bank {
 
     public Bank(ForexManager forexManager){
         this.forexManager = forexManager;
-        forex = forexManager.forex; //Will be changed with get method.
+        forex = forexManager.getForex();
     }
 
     public boolean swapMoney(Player payerPlayer, Player payeePlayer, double moneyAmount) { //Check if payer does not have enough money after todo in takeMoney function

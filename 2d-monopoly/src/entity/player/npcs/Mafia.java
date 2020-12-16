@@ -1,11 +1,6 @@
 package entity.player.npcs;
 
-<<<<<<< HEAD
-//import entity.map.Tile;
-import entity.Character;
-import entity.map.Tile.Tile;
-=======
->>>>>>> origin/management
+import entity.map.tile.*;
 import entity.player.Player;
 
 import java.util.*;

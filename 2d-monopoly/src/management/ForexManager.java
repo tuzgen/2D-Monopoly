@@ -89,7 +89,7 @@ public class ForexManager {
         return this;
     }
 
-<<<<<<< HEAD
+
     public double getDollarExRate(){
         return forex.getDollarExRate();
     }
@@ -105,9 +105,11 @@ public class ForexManager {
     public double getFrankExRate(){
         return forex.getFrankExRate();
     }
-=======
 
->>>>>>> origin/management
+    public Forex getForex(){
+        return this.forex;
+    }
+
 
 }
 
