@@ -6,8 +6,10 @@ public class Card {
     private int amount;
 
     //Constructor
-    public Card(CardStrategy cardStrategy){
+    public Card(CardStrategy cardStrategy, String feature, int amount){
         this.cardStrategy = cardStrategy;
+        this.feature = feature;
+        this.amount = amount;
     }
 
     public void activateCard(){
