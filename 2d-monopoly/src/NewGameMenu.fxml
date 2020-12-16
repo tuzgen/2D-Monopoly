@@ -19,7 +19,7 @@
             </Text>
             <TextField fx:id="textField1" layoutX="371.0" layoutY="284.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
             <TextField fx:id="textField2" layoutX="661.0" layoutY="284.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
-            <TextField fx:id="textField3" layoutX="661.0" layoutY="372.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
+            <TextField fx:id="textField4" layoutX="661.0" layoutY="372.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
             <TextField fx:id="textField3" layoutX="371.0" layoutY="372.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
             <CheckBox fx:id="checkBox2" layoutX="887.0" layoutY="299.0" mnemonicParsing="false" text="BOT?" textFill="WHITE" />
             <CheckBox fx:id="checkBox3" layoutX="580.0" layoutY="387.0" mnemonicParsing="false" text="BOT?" textFill="WHITE" />

@@ -4,15 +4,22 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ForexManager {
-    private Forex forex;
-    public Stack<Double> dollarTrans = new Stack<Double>();
-    public Stack<Double> euroTrans = new Stack<Double>();
-    public Stack<Double> frankTrans = new Stack<Double>();
+    private static ForexManager instance;
 
-    ForexManager(){
+    private Forex forex;
+    private Stack<Double> dollarTrans = new Stack<Double>();
+    private Stack<Double> euroTrans = new Stack<Double>();
+    private Stack<Double> frankTrans = new Stack<Double>();
+
+   private ForexManager(){
         forex = new Forex();
         resetExRates();
+    }
 
+    public static ForexManager getInstance(){
+        if (instance == null)
+            instance = new ForexManager();
+        return instance;
     }
 
     public void resetExRates(){
@@ -59,9 +66,6 @@ public class ForexManager {
             forex.setFrankExRate(exRa);
     }
 
-    public ForexManager getInstance(){
-        return this;
-    }
 
 
     public double getDollarExRate(){
@@ -92,19 +96,4 @@ public class ForexManager {
 
 
 
-}
-
-
-class Test{
-    public static void main(String[] args){
-        ForexManager manager = new ForexManager();
-//        manager.dollarTrans.push(-1000000.0);
-//        manager.dollarTrans.push(1000000.0);
-        manager.push("Dollar", 20000);
-        manager.calcSupDemand();
-
-        System.out.println(manager.getDollarExRate());
-
-
-    }
 }

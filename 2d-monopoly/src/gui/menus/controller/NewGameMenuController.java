@@ -2,6 +2,7 @@ package gui.menus.controller;
 
 import gui.menus.GameMenu;
 import gui.menus.MainMenu;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -11,26 +12,29 @@ public class NewGameMenuController {
 	private Stage context;
 
 	@FXML
-	TextField textField1, textField2, textField3, textField4;
+	private TextField textField1;
 	@FXML
-	CheckBox checkBox2, checkBox3, checkBox4;
+	private TextField textField2;
+	@FXML
+	private TextField textField4;
+	@FXML
+	private TextField textField3;
+	@FXML
+	private CheckBox checkBox2;
+	@FXML
+	private CheckBox checkBox3;
+	@FXML
+	private CheckBox checkBox4;
 
 	@FXML
-	void initialize() {
-		textField1 = new TextField();
-		textField2 = new TextField();
-		textField3 = new TextField();
-		textField4 = new TextField();
-		checkBox2 = new CheckBox();
-		checkBox3 = new CheckBox();
-		checkBox4 = new CheckBox();
-	}
-
-	public void returnToMainMenu() {
+	void returnToMainMenu(ActionEvent event) {
 		new MainMenu().display(context);
 	}
 
-	public void startNewGame() throws Exception {
+	@FXML
+	void startNewGame(ActionEvent event) throws Exception {
+		System.out.println("StartButton");
+		System.out.println("Invoked " + textField1.getText());
 
 		new GameMenu().display(context, textField1.getText(),
 				textField2.getText(),
