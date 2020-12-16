@@ -5,24 +5,23 @@ import entity.player.Player;
 public class Police extends NPC {
     public boolean deal;
 
-    Police(){
+    public Police(){
         super("Police");
         setName("Police");
         setLocation(1);
         deal = false;
     }
 
-    public boolean getAtSameLoc(){
-        // todo
-        return true;
+    public boolean getAtSameLoc(Mafia mafia){
+        return mafia.getLocation() == this.getLocation();
     }
 
-    public void arrestMafia(){
-        //todo
+    public void arrestMafia(Mafia mafia){
+        mafia.setIsArrested(true);
     }
 
     public void arrestPlayer(Player player){
-        //todo
+        player.setIsArrested(true);
     }
 
     public boolean isDeal(){
