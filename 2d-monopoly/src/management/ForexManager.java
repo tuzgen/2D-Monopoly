@@ -27,20 +27,10 @@ public class ForexManager {
         double randomNumFrank = ThreadLocalRandom.current().nextDouble(-1.0, 1.0 + 1.0);
 
         while (!dollarTrans.empty()) {
-             int dollar = dollarTrans.pop();
-            if (dollar > 200000) {
-                updateExRates("Dollar", forex.getDollarExRate() / ((forex.getDollarExRate() * dollar) / 228000));
-            } else if (dollar > 0) {
-                updateExRates("Dollar", forex.getDollarExRate() * 8000 / dollar);
-            } else if (dollar > -3000) {
-                updateExRates("Dollar", forex.getDollarExRate() + (double)((-1*dollar) / 250000));
-            } else {
-                updateExRates("Dollar", forex.getDollarExRate() + (double)((-1*dollar) / 25000));
-            }
+            double dollar = dollarTrans.pop();
+            updateExRates("Dollar", forex.getDollarExRate() * Math.pow(2,-dollar/350000));
         }
-
-
-//        updateExRates("Dollar", forex.getDollarExRate() + (randomNumDollar/1000));
+        updateExRates("Dollar", forex.getDollarExRate() + (randomNumDollar/100));
 
         while (!euroTrans.empty()) {
             double euro = euroTrans.pop();
@@ -108,9 +98,9 @@ public class ForexManager {
 class Test{
     public static void main(String[] args){
         ForexManager manager = new ForexManager();
-        manager.dollarTrans.push(201001);
-
-
+//        manager.dollarTrans.push(-1000000.0);
+//        manager.dollarTrans.push(1000000.0);
+        manager.push("Dollar", 20000);
         manager.calcSupDemand();
 
         System.out.println(manager.getDollarExRate());
