@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.menus.controller.NewGameMenuController">
+   <children>
+      <AnchorPane prefHeight="744.0" prefWidth="1280.0" style="-fx-background-color: #282C34;">
+         <children>
+            <Text fill="WHITE" layoutX="420.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Game" textAlignment="CENTER" wrappingWidth="417.9375">
+               <font>
+                  <Font name="Forte" size="72.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textField1" layoutX="371.0" layoutY="284.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
+            <TextField fx:id="textField2" layoutX="661.0" layoutY="284.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
+            <TextField fx:id="textField3" layoutX="661.0" layoutY="372.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
+            <TextField fx:id="textField3" layoutX="371.0" layoutY="372.0" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #7F8CA6;" />
+            <CheckBox fx:id="checkBox2" layoutX="887.0" layoutY="299.0" mnemonicParsing="false" text="BOT?" textFill="WHITE" />
+            <CheckBox fx:id="checkBox3" layoutX="580.0" layoutY="387.0" mnemonicParsing="false" text="BOT?" textFill="WHITE" />
+            <CheckBox fx:id="checkBox4" layoutX="887.0" layoutY="387.0" mnemonicParsing="false" text="BOT?" textFill="WHITE" />
+            <Button alignment="CENTER" layoutX="494.0" layoutY="440.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="101.0" prefWidth="266.0" style="-fx-background-color: rgba(0,0,0,0);" text="Start Game" textFill="#f24646">
+               <font>
+                  <Font name="Forte" size="36.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="568.0" layoutY="558.0" mnemonicParsing="false" onAction="#returnToMainMenu" style="-fx-background-color: rgba(0,0,0,0);" text="Go back" textFill="#bf6a32">
+               <font>
+                  <Font name="Forte" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

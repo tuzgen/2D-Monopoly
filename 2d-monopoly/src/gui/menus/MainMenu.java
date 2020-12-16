@@ -19,7 +19,6 @@ public class MainMenu {
 	// Constants
 
 	// State variables
-	static GameManager gameManager;
 
 	// Components
 	private Scene scene_main_menu;
@@ -30,7 +29,7 @@ public class MainMenu {
 	private AudioClip clip_main;
 
 	public void display(Stage context) {
-		gameManager = gameManager.getInstance();
+		GameManager.deleteInstance();
 		// "D:\\dev\\courses\\cs319\\2D-Monopoly\\2d-monopoly\\vendor\\sound\\main_menu.wav").toURI().toString()
 		// clip_main = new AudioClip("file:vendor/sound/main_menu.wav");
 		// clip_main.play();
@@ -51,7 +50,7 @@ public class MainMenu {
 				onPressed_button_new_game(context);
 
 			} catch (Exception exception) {
-				System.err.println(exception.toString());
+				System.err.println(exception.toString());// exception.toString());
 			}
 		} );
 

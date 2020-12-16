@@ -1,5 +1,6 @@
 package gui.menus;
 
+import cached.Settings;
 import gui.misc.Style;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -88,7 +89,7 @@ public class SettingsMenu {
 
 	private void updateSettings() {
 		gameManager.updateSettings(
-				checkBox_colorblind.isSelected(), checkBox_mute.isSelected());
+				new Settings(checkBox_colorblind.isSelected(), checkBox_mute.isSelected()));
 	}
 
 	private void updateDisplay() {

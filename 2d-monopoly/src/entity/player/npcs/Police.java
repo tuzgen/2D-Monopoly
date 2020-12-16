@@ -1,26 +1,30 @@
 package entity.player.npcs;
 
-import entity.Character;
 import entity.player.Player;
 
-public class Police extends Character {
+public class Police extends NPC {
     public boolean deal;
 
-    Police(){
+    public Police(){
+        super("Police");
         setName("Police");
         setLocation(1);
         deal = false;
     }
 
-    public boolean getAtSameLoc(){
-        // todo
-        return true;
+    public boolean getAtSameLoc(Mafia mafia){
+        return mafia.getLocation() == this.getLocation();
     }
 
-    public void arrestMafia(){
+    public void arrestMafia(Mafia mafia){
+        mafia.setIsArrested(true);
+        // mafia.setLocation();
     }
 
-    public void arrestPlayer(Player player){}
+    public void arrestPlayer(Player player){
+        player.setIsArrested(true);
+        // player.setLocation();
+    }
 
     public boolean isDeal(){
         return deal;
