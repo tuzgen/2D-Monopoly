@@ -24,6 +24,18 @@ public class GameMenuController {
 	}
 
 	@FXML
+	private Label currentPlayerName = new Label();
+
+	@FXML
+	private Label showDollarAmount = new Label();
+
+	@FXML
+	private Label showEuroAmount = new Label();
+
+	@FXML
+	private Label showFrancAmount = new Label();
+
+	@FXML
 	private Label infoPlayer1Name = new Label();
 	@FXML
 	private Text infoPlayer1Money = new Text();
@@ -68,14 +80,15 @@ public class GameMenuController {
 
 	@FXML
 	public void initialize() {
+		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
 		infoPlayer1Name.setText(GameManager.getInstance().getPlayerAt(0).getName());
 		infoPlayer2Name.setText(GameManager.getInstance().getPlayerAt(1).getName());
 		infoPlayer3Name.setText(GameManager.getInstance().getPlayerAt(2).getName());
 		infoPlayer4Name.setText(GameManager.getInstance().getPlayerAt(3).getName());
-		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
-		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
-		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
-		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
+		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
+		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
+		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
+		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
 		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
 		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
 		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
@@ -129,10 +142,14 @@ public class GameMenuController {
 	public void update() {
 		System.out.println(
 				Double.toString(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
-		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
-		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
-		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
-		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
+		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
+		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
+		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
+		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
+		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
+		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
+		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
+		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName()); // Bu burada mı olmalı her tur sonunda değiştirilcek
 	}
 
 	public void setStage(Stage context) {
