@@ -14,10 +14,10 @@ public class Card {
         this.cardStrategy = cardStrategy;
         this.feature = feature;
         this.amount = amount;
+        bank = Bank.getInstance();
     }
 
-    public void activateCard(Player player, Bank bank){
-        this.bank = bank;
+    public void activateCard(Player player){
         cardStrategy.activateCard(player, this);
     }
 
@@ -40,5 +40,9 @@ public class Card {
 
     public Bank getBank() {
         return bank;
+    }
+
+    public CardStrategy getCardStrategy() {
+        return cardStrategy;
     }
 }
