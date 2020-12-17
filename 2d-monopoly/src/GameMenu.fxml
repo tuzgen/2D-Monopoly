@@ -251,6 +251,36 @@
                               <Button fx:id="buttonTile2" alignment="CENTER" layoutX="432.0" layoutY="538.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
                               <Button fx:id="buttonTile1" alignment="CENTER" layoutX="481.0" layoutY="537.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
                               <Button fx:id="buttonTile0" alignment="CENTER" layoutX="534.0" layoutY="539.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <ImageView fx:id="iconPlayer1" fitHeight="24.0" fitWidth="32.0" layoutX="543.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-green.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconMafia" fitHeight="20.0" fitWidth="24.0" layoutX="564.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/mafia-face.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPlayer3" fitHeight="24.0" fitWidth="32.0" layoutX="542.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-pink.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPolice" fitHeight="20.0" fitWidth="24.0" layoutX="565.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/police-logo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPlayer2" fitHeight="24.0" fitWidth="32.0" layoutX="587.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-red.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPlayer4" fitHeight="24.0" fitWidth="32.0" layoutX="586.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-blue.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>

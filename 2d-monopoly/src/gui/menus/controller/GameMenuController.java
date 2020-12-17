@@ -6,9 +6,12 @@ import gui.menus.popups.TilePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
@@ -160,8 +163,21 @@ public class GameMenuController {
 	private Button buttonTile0= new Button();
 	@FXML
 	private Button buttonPowerUpCrate = new Button();
+	@FXML
+	private ImageView iconPlayer1; // = new ImageView(new Image("file:src/vendor/image/diamond-green.png"));
+	@FXML
+	private ImageView iconMafia; // = new ImageView(new Image("file:src/vendor/image/mafia-face.png"));
+	@FXML
+	private ImageView iconPlayer3; // = new ImageView(new Image("file:src/vendor/image/diamond-pink.png"));
+	@FXML
+	private ImageView iconPolice; // = new ImageView(new Image("file:src/vendor/image/police-logo.png"));
+	@FXML
+	private ImageView iconPlayer2; // = new ImageView(new Image("file:src/vendor/image/diamond-red.png"));
+	@FXML
+	private ImageView iconPlayer4; // = new ImageView(new Image("file:src/vendor/image/diamond-blue.png"));
 
 	private Stage context;
+	private Button[] buttons;
 
 	@FXML
 	public void initialize() {
@@ -226,11 +242,22 @@ public class GameMenuController {
 		buttonTile37.setOnAction(e -> showTileActions(37));
 		buttonTile38.setOnAction(e -> showTileActions(38));
 		buttonTile39.setOnAction(e -> showTileActions(39));
+
+		buttons = new Button[] {
+				buttonTile0,buttonTile1,buttonTile2,buttonTile3,buttonTile4,
+				buttonTile5,buttonTile6,buttonTile7,buttonTile8,buttonTile9,
+				buttonTile10,buttonTile11,buttonTile12,buttonTile13,buttonTile14,
+				buttonTile15,buttonTile16,buttonTile17,buttonTile18,buttonTile19,
+				buttonTile20,buttonTile21,buttonTile22,buttonTile23,buttonTile24,
+				buttonTile25,buttonTile26,buttonTile27,buttonTile28,buttonTile29,
+				buttonTile30,buttonTile31,buttonTile32,buttonTile33,buttonTile34,
+				buttonTile35,buttonTile36,buttonTile37,buttonTile38,buttonTile39
+		};
 	}
 
 	private void showTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
-			new TilePopup().display("City Tile");
+			new TilePopup().display("City Tile", (CityTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
@@ -295,6 +322,22 @@ public class GameMenuController {
 	}
 
 	public void buttonOpenPowerUpCrate() {
+		System.out.println(buttonTile0.getLayoutX() + " " + buttonTile0.getLayoutY());
+		System.out.println(buttonTile1.getLayoutX() + " " + buttonTile1.getLayoutY());
+		System.out.println(buttonTile2.getLayoutX() + " " + buttonTile2.getLayoutY());
+		System.out.println(buttonTile3.getLayoutX() + " " + buttonTile3.getLayoutY());
+		System.out.println();
+		System.out.println(iconPlayer1.getLayoutX() + " " + iconPlayer1.getLayoutX());
+		System.out.println(iconPlayer2.getLayoutX() + " " + iconPlayer2.getLayoutX());
+		System.out.println(iconPlayer3.getLayoutX() + " " + iconPlayer3.getLayoutX());
+		System.out.println(iconPlayer4.getLayoutX() + " " + iconPlayer4.getLayoutX());
+		System.out.println(iconMafia.getLayoutX() + " " + iconMafia.getLayoutX());
+		System.out.println(iconPolice.getLayoutX() + " " + iconPolice.getLayoutX());
+		int offset = 2;
+		iconPlayer1.setLayoutX(buttons[2].getLayoutX() + offset);
+		iconPlayer1.setLayoutY(buttons[2].getLayoutY() + offset);
+		iconMafia.setLayoutX(buttons[25].getLayoutX() + offset);
+		iconMafia.setLayoutY(buttons[25].getLayoutY() + offset);
 		GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOfPlayerIndex());
 		update();
 	}
@@ -309,6 +352,7 @@ public class GameMenuController {
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
+
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName()); // Bu burada mı olmalı her tur sonunda değiştirilcek
 	}
 
