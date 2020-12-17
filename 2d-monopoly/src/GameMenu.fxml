@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -345,25 +346,28 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="389.0" prefWidth="433.0" spacing="70.0">
                                  <children>
-                                    <VBox alignment="TOP_CENTER" prefHeight="145.0" prefWidth="382.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="191.0" prefWidth="337.0">
                                        <children>
-                                          <Label alignment="CENTER" text="YOU (XXXNAMEXXX)" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="currentPlayerName" alignment="CENTER" text="YOU (XXXNAMEXXX)" textAlignment="CENTER" textFill="WHITE">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font name="Forte" size="18.0" />
                                              </font>
                                           </Label>
                                           <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="200.0">
                                              <children>
-                                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0">
-                                                   <fill>
-                                                      <LinearGradient endX="1.0" endY="1.0" startX="0.6" startY="0.17619047619047623">
-                                                         <stops>
-                                                            <Stop color="#796196" />
-                                                            <Stop color="#718da8" offset="1.0" />
-                                                         </stops>
-                                                      </LinearGradient>
-                                                   </fill>
-                                                </Rectangle>
+                                                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e3fbeb" height="182.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="200.0" />
+                                                <AnchorPane prefHeight="170.0" prefWidth="203.0">
+                                                   <children>
+                                                      <Label layoutX="21.0" layoutY="30.0" prefHeight="21.0" prefWidth="58.0" text="Dollar:" />
+                                                      <Label layoutX="21.0" layoutY="88.0" text="Euro:" />
+                                                      <Label layoutX="21.0" layoutY="147.0" text="Swiss Franc:" />
+                                                      <Line endX="100.0" layoutX="101.0" layoutY="67.0" startX="-100.0" />
+                                                      <Line endX="100.0" layoutX="101.0" layoutY="126.0" startX="-100.0" />
+                                                      <Label fx:id="showDollarAmount" layoutX="117.0" layoutY="30.0" text="0$" />
+                                                      <Label fx:id="showEuroAmount" layoutX="117.0" layoutY="88.0" text="€0" />
+                                                      <Label fx:id="showFrancAmount" layoutX="117.0" layoutY="147.0" text="CHR 0" />
+                                                   </children>
+                                                </AnchorPane>
                                              </children>
                                           </StackPane>
                                        </children>

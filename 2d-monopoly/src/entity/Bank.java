@@ -48,6 +48,10 @@ public class Bank { // Methods in this class may be static so that no one need b
         return false;
     }
 
+    public boolean hasEnoughTRY(Player player, double amount) {
+        return player.getAccount().getTrl() >= amount;
+    }
+
 
     public boolean takeMoney(Player player, double moneyAmount) {
         plAccount = player.getAccount();
