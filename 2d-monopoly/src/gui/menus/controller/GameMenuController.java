@@ -1,6 +1,8 @@
 package gui.menus.controller;
 
+import entity.map.tile.*;
 import gui.menus.popups.PausePopup;
+import gui.menus.popups.TilePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
+import management.Map;
 
 import java.text.DecimalFormat;
 
@@ -183,50 +186,70 @@ public class GameMenuController {
 		buttonEuroSell.setOnAction(buttonEuroSell());
 		buttonFrancSell.setOnAction(buttonFrancSell());
 
-		/*
-		buttonTile0.setOnAction();
-		buttonTile1.setOnAction();
-		buttonTile2.setOnAction();
-		buttonTile3.setOnAction();
-		buttonTile4.setOnAction();
-		buttonTile5.setOnAction();
-		buttonTile6.setOnAction();
-		buttonTile7.setOnAction();
-		buttonTile8.setOnAction();
-		buttonTile9.setOnAction();
-		buttonTile10.setOnAction();
-		buttonTile11.setOnAction();
-		buttonTile12.setOnAction();
-		buttonTile13.setOnAction();
-		buttonTile14.setOnAction();
-		buttonTile15.setOnAction();
-		buttonTile16.setOnAction();
-		buttonTile17.setOnAction();
-		buttonTile18.setOnAction();
-		buttonTile19.setOnAction();
-		buttonTile20.setOnAction();
-		buttonTile21.setOnAction();
-		buttonTile22.setOnAction();
-		buttonTile23.setOnAction();
-		buttonTile24.setOnAction();
-		buttonTile25.setOnAction();
-		buttonTile26.setOnAction();
-		buttonTile27.setOnAction();
-		buttonTile28.setOnAction();
-		buttonTile29.setOnAction();
-		buttonTile30.setOnAction();
-		buttonTile31.setOnAction();
-		buttonTile32.setOnAction();
-		buttonTile33.setOnAction();
-		buttonTile34.setOnAction();
-		buttonTile35.setOnAction();
-		buttonTile36.setOnAction();
-		buttonTile37.setOnAction();
-		buttonTile38.setOnAction();
-		buttonTile39.setOnAction();
-		*/
+		buttonTile0.setOnAction(e -> showTileActions(0));
+		buttonTile1.setOnAction(e -> showTileActions(1));
+		buttonTile2.setOnAction(e -> showTileActions(2));
+		buttonTile3.setOnAction(e -> showTileActions(3));
+		buttonTile4.setOnAction(e -> showTileActions(4));
+		buttonTile5.setOnAction(e -> showTileActions(5));
+		buttonTile6.setOnAction(e -> showTileActions(6));
+		buttonTile7.setOnAction(e -> showTileActions(7));
+		buttonTile8.setOnAction(e -> showTileActions(8));
+		buttonTile9.setOnAction(e -> showTileActions(9));
+		buttonTile10.setOnAction(e -> showTileActions(10));
+		buttonTile11.setOnAction(e -> showTileActions(11));
+		buttonTile12.setOnAction(e -> showTileActions(12));
+		buttonTile13.setOnAction(e -> showTileActions(13));
+		buttonTile14.setOnAction(e -> showTileActions(14));
+		buttonTile15.setOnAction(e -> showTileActions(15));
+		buttonTile16.setOnAction(e -> showTileActions(16));
+		buttonTile17.setOnAction(e -> showTileActions(17));
+		buttonTile18.setOnAction(e -> showTileActions(18));
+		buttonTile19.setOnAction(e -> showTileActions(19));
+		buttonTile20.setOnAction(e -> showTileActions(20));
+		buttonTile21.setOnAction(e -> showTileActions(21));
+		buttonTile22.setOnAction(e -> showTileActions(22));
+		buttonTile23.setOnAction(e -> showTileActions(23));
+		buttonTile24.setOnAction(e -> showTileActions(24));
+		buttonTile25.setOnAction(e -> showTileActions(25));
+		buttonTile26.setOnAction(e -> showTileActions(26));
+		buttonTile27.setOnAction(e -> showTileActions(27));
+		buttonTile28.setOnAction(e -> showTileActions(28));
+		buttonTile29.setOnAction(e -> showTileActions(29));
+		buttonTile30.setOnAction(e -> showTileActions(30));
+		buttonTile31.setOnAction(e -> showTileActions(31));
+		buttonTile32.setOnAction(e -> showTileActions(32));
+		buttonTile33.setOnAction(e -> showTileActions(33));
+		buttonTile34.setOnAction(e -> showTileActions(34));
+		buttonTile35.setOnAction(e -> showTileActions(35));
+		buttonTile36.setOnAction(e -> showTileActions(36));
+		buttonTile37.setOnAction(e -> showTileActions(37));
+		buttonTile38.setOnAction(e -> showTileActions(38));
+		buttonTile39.setOnAction(e -> showTileActions(39));
+	}
+
+	private void showTileActions(int tileNo) {
+		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
+			new TilePopup().display("City Tile");
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
+
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
+
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
+
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == StartTile.class) {
+
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TaxTile.class) {
+
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
+
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
+
+		}
 
 	}
+
+
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
 		return e -> {
