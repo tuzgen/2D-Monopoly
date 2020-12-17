@@ -138,7 +138,7 @@
                <children>
                   <StackPane alignment="CENTER_LEFT" prefHeight="663.0" prefWidth="695.0">
                      <children>
-                        <ImageView fitHeight="623.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="623.0" fitWidth="668.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@vendor/image/board.png" />
                            </image>
@@ -182,8 +182,8 @@
                                                    </font>
                                                 </Label>
                                                 <TextField prefHeight="25.0" prefWidth="49.0" />
-                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
-                                                <Button alignment="CENTER" layoutX="324.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                                <Button fx:id="buttonDollarBuy" mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button fx:id="buttonDollarSell" alignment="CENTER" layoutX="324.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets right="15.0" />
@@ -202,8 +202,8 @@
                                                    </font>
                                                 </Label>
                                                 <TextField prefHeight="25.0" prefWidth="49.0" />
-                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
-                                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                                <Button fx:id="buttonEuroBuy" mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button fx:id="buttonEuroSell" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets right="15.0" />
@@ -211,7 +211,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="107.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                              <children>
-                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANK" textFill="WHITE">
+                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANC" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
@@ -222,8 +222,8 @@
                                                    </font>
                                                 </Label>
                                                 <TextField prefHeight="25.0" prefWidth="49.0" />
-                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
-                                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                                <Button fx:id="buttonFrancBuy" mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button fx:id="buttonFrancSell" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets right="15.0" />

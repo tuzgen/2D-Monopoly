@@ -75,22 +75,6 @@ public class GameManager implements Serializable {
 		return instance;
 	}
 
-	// garbage
-	/* private void setGameManager(String name0, String name1, boolean isBot1, String name2, boolean isBot2, String name3, boolean isBot3) {
-		players[0].setName(name0);
-
-		players[1].setBehavior(isBot1 ? new User() : new BotCharacter());
-		players[1].setName(name1);
-
-		players[2].setBehavior(isBot2 ? new User() : new BotCharacter());
-		players[2].setName(name2);
-
-		players[3].setBehavior(isBot3 ? new User() : new BotCharacter());
-		players[3].setName(name3);
-
-	}
-	*/
-
 	public void update() {
 		while (isGameOver()) {
 			for (Player player : players) {
