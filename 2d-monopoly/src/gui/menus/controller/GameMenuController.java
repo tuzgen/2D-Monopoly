@@ -182,41 +182,91 @@ public class GameMenuController {
 		buttonDollarSell.setOnAction(buttonDollarSell());
 		buttonEuroSell.setOnAction(buttonEuroSell());
 		buttonFrancSell.setOnAction(buttonFrancSell());
+
+		/*
+		buttonTile0.setOnAction();
+		buttonTile1.setOnAction();
+		buttonTile2.setOnAction();
+		buttonTile3.setOnAction();
+		buttonTile4.setOnAction();
+		buttonTile5.setOnAction();
+		buttonTile6.setOnAction();
+		buttonTile7.setOnAction();
+		buttonTile8.setOnAction();
+		buttonTile9.setOnAction();
+		buttonTile10.setOnAction();
+		buttonTile11.setOnAction();
+		buttonTile12.setOnAction();
+		buttonTile13.setOnAction();
+		buttonTile14.setOnAction();
+		buttonTile15.setOnAction();
+		buttonTile16.setOnAction();
+		buttonTile17.setOnAction();
+		buttonTile18.setOnAction();
+		buttonTile19.setOnAction();
+		buttonTile20.setOnAction();
+		buttonTile21.setOnAction();
+		buttonTile22.setOnAction();
+		buttonTile23.setOnAction();
+		buttonTile24.setOnAction();
+		buttonTile25.setOnAction();
+		buttonTile26.setOnAction();
+		buttonTile27.setOnAction();
+		buttonTile28.setOnAction();
+		buttonTile29.setOnAction();
+		buttonTile30.setOnAction();
+		buttonTile31.setOnAction();
+		buttonTile32.setOnAction();
+		buttonTile33.setOnAction();
+		buttonTile34.setOnAction();
+		buttonTile35.setOnAction();
+		buttonTile36.setOnAction();
+		buttonTile37.setOnAction();
+		buttonTile38.setOnAction();
+		buttonTile39.setOnAction();
+		*/
+
 	}
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
 		return e -> {
-			GameManager.getInstance().buyForexDollar(Double.parseDouble(textFieldDollar.getText()));
+			GameManager.getInstance().buyForexDollar(
+					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
 		};
 	}
 	private EventHandler<ActionEvent> buttonDollarSell() {
 		return e -> {
-			GameManager.getInstance().sellForexDollar(Double.parseDouble(textFieldDollar.getText()));
+			GameManager.getInstance().sellForexDollar(
+					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
 		};
 	}
 	private EventHandler<ActionEvent> buttonEuroBuy() {
 		return e -> {
-			GameManager.getInstance().buyForexEuro(Double.parseDouble(textFieldEuro.getText()));
+			GameManager.getInstance().buyForexEuro(
+					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
 		};
 	}
 	private EventHandler<ActionEvent> buttonEuroSell() {
 		return e -> {
-			GameManager.getInstance().sellForexEuro(Double.parseDouble(textFieldEuro.getText()));
+			GameManager.getInstance().sellForexEuro(
+					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
 		};
 	}
 	private EventHandler<ActionEvent> buttonFrancBuy() {
 		return e -> {
-			GameManager.getInstance().buyForexFranc(Double.parseDouble(textFieldFranc.getText()));
+			GameManager.getInstance().buyForexFranc(
+					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
 		};
 	}
 	private EventHandler<ActionEvent> buttonFrancSell() {
 		return e -> {
-			GameManager.getInstance().sellForexFranc(Double.parseDouble(textFieldEuro.getText()));
+			GameManager.getInstance().sellForexFranc(
+					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
 		};
 	}
