@@ -38,7 +38,7 @@ public class Player extends Character{
         cards = new ArrayList<Card>();
         isArrested = false;
         isBankrupt = false;
-        salary = 1;
+        salary = 500000; // change xdeee
         account = new Account(salary);
         speed = 1;
         vehicleCount = 0;

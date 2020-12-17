@@ -1,14 +1,25 @@
 package gui.menus.controller;
 
 import gui.menus.popups.PausePopup;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
 
 public class GameMenuController {
+	private static GameMenuController instance;
+
+	public static GameMenuController getInstance() {
+		if (instance == null)
+			instance = new GameMenuController();
+		return instance;
+	}
+
 	@FXML
 	private Label infoPlayer1Name = new Label();
 	@FXML
@@ -43,10 +54,13 @@ public class GameMenuController {
 	private Button buttonFrancBuy = new Button();
 	@FXML
 	private Button buttonFrancSell = new Button();
+	@FXML
+	private TextField textFieldDollar = new TextField();
+	@FXML
+	private TextField textFieldEuro = new TextField();
+	@FXML
+	private TextField textFieldFranc = new TextField();
 
-
-
-	private GameManager gameManager;
 	private Stage context;
 
 	@FXML
@@ -63,8 +77,63 @@ public class GameMenuController {
 		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
 		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
 
-		buttonDollarBuy.setOnAction(e -> {
-		});
+		buttonDollarBuy.setOnAction(buttonDollarBuy());
+		buttonEuroBuy.setOnAction(buttonEuroBuy());
+		buttonFrancBuy.setOnAction(buttonFrancBuy());
+
+		buttonDollarSell.setOnAction(buttonDollarSell());
+		buttonEuroSell.setOnAction(buttonEuroSell());
+		buttonFrancSell.setOnAction(buttonFrancSell());
+	}
+
+	private EventHandler<ActionEvent> buttonDollarBuy() {
+		return e -> {
+			GameManager.getInstance().buyForexDollar(Double.parseDouble(textFieldDollar.getText()));
+			update();
+		};
+	}
+	private EventHandler<ActionEvent> buttonDollarSell() {
+		return e -> {
+			GameManager.getInstance().sellForexDollar(Double.parseDouble(textFieldDollar.getText()));
+			update();
+		};
+	}
+	private EventHandler<ActionEvent> buttonEuroBuy() {
+		return e -> {
+			GameManager.getInstance().buyForexEuro(Double.parseDouble(textFieldEuro.getText()));
+			update();
+		};
+	}
+	private EventHandler<ActionEvent> buttonEuroSell() {
+		return e -> {
+			GameManager.getInstance().sellForexEuro(Double.parseDouble(textFieldEuro.getText()));
+			update();
+		};
+	}
+	private EventHandler<ActionEvent> buttonFrancBuy() {
+		return e -> {
+			GameManager.getInstance().buyForexFranc(Double.parseDouble(textFieldFranc.getText()));
+			update();
+		};
+	}
+	private EventHandler<ActionEvent> buttonFrancSell() {
+		return e -> {
+			GameManager.getInstance().sellForexFranc(Double.parseDouble(textFieldEuro.getText()));
+			update();
+		};
+	}
+
+	public void update() {
+		System.out.println(
+				Double.toString(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
+		infoPlayer1Money.setText(Double.toString(
+				GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
+		infoPlayer2Money.setText(Double.toString(
+				GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
+		infoPlayer3Money.setText(Double.toString(
+				GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
+		infoPlayer4Money.setText(Double.toString(
+				GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
 	}
 
 	public void setStage(Stage context) {

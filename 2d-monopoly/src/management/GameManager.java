@@ -6,6 +6,7 @@ import entity.Dice;
 import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.player.User;
+import gui.menus.controller.GameMenuController;
 
 import java.io.*;
 
@@ -27,6 +28,9 @@ public class GameManager implements Serializable {
 	Player[] players;
 	Dice dice;
 
+	// state variables
+	private int turnOfPlayerIndex;
+
 	private GameManager(String name0, String name1, boolean isBot1, String name2,
 						boolean isBot2, String name3, boolean isBot3) {
 
@@ -45,7 +49,9 @@ public class GameManager implements Serializable {
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
 		forexManager = ForexManager.getInstance();
+		bank = Bank.getInstance();
 		map = Map.getInstance();
+		turnOfPlayerIndex = 0;
 	}
 
 	public static void deleteInstance() {
@@ -106,6 +112,101 @@ public class GameManager implements Serializable {
 	public double getForexDollar() { return forexManager.getDollarExRate(); }
 	public double getForexEuro() { return forexManager.getEuroExRate(); }
 	public double getForexFrank() { return forexManager.getFrankExRate(); }
+	public void buyForexDollar(double amount) {
+		double tryAmount = forexManager.getDollarExRate() * amount;
+		if (bank.hasEnoughMoney(players[turnOfPlayerIndex], tryAmount)) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() + amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			forexManager.push("Dollar", amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void buyForexEuro(double amount) {
+		double tryAmount = forexManager.getEuroExRate() * amount;
+		if (bank.hasEnoughMoney(players[turnOfPlayerIndex], tryAmount)) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() + amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			forexManager.push("Euro", amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void buyForexFranc(double amount) {
+		double tryAmount = forexManager.getFrankExRate() * amount;
+		if (bank.hasEnoughMoney(players[turnOfPlayerIndex], tryAmount)) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() + amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			forexManager.push("Frank", amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void sellForexDollar(double amount) {
+		double tryAmount = forexManager.getDollarExRate() * amount;
+		if (players[turnOfPlayerIndex].getAccount().getDollar() >= amount) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() - amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			forexManager.push("Dollar", -amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void sellForexEuro(double amount) {
+		double tryAmount = forexManager.getEuroExRate() * amount;
+		if (players[turnOfPlayerIndex].getAccount().getEuro() >= amount) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() - amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			forexManager.push("Euro", -amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void sellForexFranc(double amount) {
+		double tryAmount = forexManager.getFrankExRate() * amount;
+		if (players[turnOfPlayerIndex].getAccount().getSwissFrank() >= amount) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() - amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			forexManager.push("Frank", -amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+		}
+	}
 
 	public Player getPlayerAt(int index) { return players[index]; }
 
@@ -143,4 +244,6 @@ public class GameManager implements Serializable {
 	public Settings getSettings() {
 		return settings;
 	}
+
+
 }
