@@ -114,7 +114,7 @@ public class GameManager implements Serializable {
 	public double getForexFrank() { return forexManager.getFrankExRate(); }
 	public void buyForexDollar(double amount) {
 		double tryAmount = forexManager.getDollarExRate() * amount;
-		if (bank.hasEnoughMoney(players[turnOfPlayerIndex], tryAmount)) {
+		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
 			// TODO refactor
 			players[turnOfPlayerIndex].getAccount()
 					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() + amount);
@@ -130,7 +130,7 @@ public class GameManager implements Serializable {
 	}
 	public void buyForexEuro(double amount) {
 		double tryAmount = forexManager.getEuroExRate() * amount;
-		if (bank.hasEnoughMoney(players[turnOfPlayerIndex], tryAmount)) {
+		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
 			// TODO refactor
 			players[turnOfPlayerIndex].getAccount()
 					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() + amount);
@@ -146,7 +146,7 @@ public class GameManager implements Serializable {
 	}
 	public void buyForexFranc(double amount) {
 		double tryAmount = forexManager.getFrankExRate() * amount;
-		if (bank.hasEnoughMoney(players[turnOfPlayerIndex], tryAmount)) {
+		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
 			// TODO refactor
 			players[turnOfPlayerIndex].getAccount()
 					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() + amount);
