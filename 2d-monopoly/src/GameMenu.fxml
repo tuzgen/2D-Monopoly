@@ -210,8 +210,46 @@
                         </ImageView>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button alignment="CENTER" layoutX="81.0" layoutY="6.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="54.0" style="-fx-background-color: rgba(0,0,0,0);" />
-                              <Button alignment="CENTER" layoutX="135.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile39" alignment="CENTER" layoutX="534.0" layoutY="488.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile38" alignment="CENTER" layoutX="534.0" layoutY="439.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile37" alignment="CENTER" layoutX="534.0" layoutY="389.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile36" alignment="CENTER" layoutX="533.0" layoutY="338.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile35" alignment="CENTER" layoutX="533.0" layoutY="288.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile34" alignment="CENTER" layoutX="532.0" layoutY="238.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="82.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile33" alignment="CENTER" layoutX="532.0" layoutY="188.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="82.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile32" alignment="CENTER" layoutX="533.0" layoutY="138.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile31" alignment="CENTER" layoutX="533.0" layoutY="88.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile30" alignment="CENTER" layoutX="534.0" layoutY="6.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile29" alignment="CENTER" layoutX="481.0" layoutY="7.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile28" alignment="CENTER" layoutX="431.0" layoutY="5.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile27" alignment="CENTER" layoutX="381.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile26" alignment="CENTER" layoutX="332.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="49.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile25" alignment="CENTER" layoutX="285.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile24" alignment="CENTER" layoutX="231.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="54.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile23" alignment="CENTER" layoutX="182.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="49.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile22" alignment="CENTER" layoutX="135.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile21" alignment="CENTER" layoutX="81.0" layoutY="6.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="54.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile20" alignment="CENTER" layoutX="3.0" layoutY="6.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile19" alignment="CENTER" layoutX="1.0" layoutY="87.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile18" alignment="CENTER" layoutX="3.0" layoutY="138.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile17" alignment="CENTER" layoutX="2.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile16" alignment="CENTER" layoutX="2.0" layoutY="238.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile15" alignment="CENTER" layoutX="2.0" layoutY="289.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="79.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile14" alignment="CENTER" layoutX="2.0" layoutY="338.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile13" alignment="CENTER" layoutX="3.0" layoutY="388.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile12" alignment="CENTER" layoutY="437.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="82.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile11" alignment="CENTER" layoutX="2.0" layoutY="488.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="79.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile10" alignment="CENTER" layoutX="2.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile9" alignment="CENTER" layoutX="83.0" layoutY="538.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile8" alignment="CENTER" layoutX="131.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile7" alignment="CENTER" layoutX="181.0" layoutY="537.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile6" alignment="CENTER" layoutX="233.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile5" alignment="CENTER" layoutX="283.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile4" alignment="CENTER" layoutX="331.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile3" alignment="CENTER" layoutX="383.0" layoutY="539.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile2" alignment="CENTER" layoutX="432.0" layoutY="538.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile1" alignment="CENTER" layoutX="481.0" layoutY="537.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile0" alignment="CENTER" layoutX="534.0" layoutY="539.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
                            </children>
                         </AnchorPane>
                      </children>
