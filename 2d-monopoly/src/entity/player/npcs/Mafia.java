@@ -11,17 +11,30 @@ import java.util.*;
 
 public class Mafia extends NPC {
 
+    private double JAILBREAKAMOUNT = 50000;
     public double shareRate;
     public boolean isArrested;
     ArrayList<Player> pastDeals;
-
+    private Bank bank;
 
     public Mafia(){
         super("Mafia");
         isArrested = false;
-        shareRate = 0;
+        shareRate = 20;
+        bank = bank.getInstance();
         pastDeals = new ArrayList<Player>();
     }
+
+    public boolean jailbreak(Player player){
+        if(player.getIsArrested()){
+            if(!bank.takeMoney(player, JAILBREAKAMOUNT))
+                return false;
+            player.setIsArrested(false);
+            return true;
+        }
+        return false;
+    }
+
 
     public void attackHotel(Tile tile){
         //todo

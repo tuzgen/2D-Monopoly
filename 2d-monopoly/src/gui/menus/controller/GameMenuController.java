@@ -298,5 +298,6 @@ public class GameMenuController {
 		new PausePopup().display(context);
 	}
 
-	public void mafiaButton() { new MafiaPopup().display(context); }
+	public void mafiaButton() { new MafiaPopup().display(context);
+		update();}
 }
