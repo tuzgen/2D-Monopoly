@@ -60,6 +60,86 @@ public class GameMenuController {
 	private TextField textFieldEuro = new TextField();
 	@FXML
 	private TextField textFieldFranc = new TextField();
+	@FXML
+	private Button buttonTile39 = new Button();
+	@FXML
+	private Button buttonTile38 = new Button();
+	@FXML
+	private Button buttonTile37 = new Button();
+	@FXML
+	private Button buttonTile36 = new Button();
+	@FXML
+	private Button buttonTile35 = new Button();
+	@FXML
+	private Button buttonTile34 = new Button();
+	@FXML
+	private Button buttonTile33 = new Button();
+	@FXML
+	private Button buttonTile32 = new Button();
+	@FXML
+	private Button buttonTile31 = new Button();
+	@FXML
+	private Button buttonTile30 = new Button();
+	@FXML
+	private Button buttonTile29 = new Button();
+	@FXML
+	private Button buttonTile28 = new Button();
+	@FXML
+	private Button buttonTile27 = new Button();
+	@FXML
+	private Button buttonTile26 = new Button();
+	@FXML
+	private Button buttonTile25 = new Button();
+	@FXML
+	private Button buttonTile24 = new Button();
+	@FXML
+	private Button buttonTile23 = new Button();
+	@FXML
+	private Button buttonTile22 = new Button();
+	@FXML
+	private Button buttonTile21 = new Button();
+	@FXML
+	private Button buttonTile20 = new Button();
+	@FXML
+	private Button buttonTile19 = new Button();
+	@FXML
+	private Button buttonTile18 = new Button();
+	@FXML
+	private Button buttonTile17 = new Button();
+	@FXML
+	private Button buttonTile16 = new Button();
+	@FXML
+	private Button buttonTile15 = new Button();
+	@FXML
+	private Button buttonTile14 = new Button();
+	@FXML
+	private Button buttonTile13 = new Button();
+	@FXML
+	private Button buttonTile12 = new Button();
+	@FXML
+	private Button buttonTile11 = new Button();
+	@FXML
+	private Button buttonTile10 = new Button();
+	@FXML
+	private Button buttonTile9 = new Button();
+	@FXML
+	private Button buttonTile8 = new Button();
+	@FXML
+	private Button buttonTile7 = new Button();
+	@FXML
+	private Button buttonTile6 = new Button();
+	@FXML
+	private Button buttonTile5 = new Button();
+	@FXML
+	private Button buttonTile4 = new Button();
+	@FXML
+	private Button buttonTile3 = new Button();
+	@FXML
+	private Button buttonTile2 = new Button();
+	@FXML
+	private Button buttonTile1 = new Button();
+	@FXML
+	private Button buttonTile0 = new Button();
 
 	private Stage context;
 
