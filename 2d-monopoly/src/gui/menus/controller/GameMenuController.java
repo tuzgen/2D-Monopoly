@@ -11,8 +11,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
 
+import java.text.DecimalFormat;
+
 public class GameMenuController {
 	private static GameMenuController instance;
+	private DecimalFormat df = new DecimalFormat("####.##");
 
 	public static GameMenuController getInstance() {
 		if (instance == null)
@@ -69,10 +72,10 @@ public class GameMenuController {
 		infoPlayer2Name.setText(GameManager.getInstance().getPlayerAt(1).getName());
 		infoPlayer3Name.setText(GameManager.getInstance().getPlayerAt(2).getName());
 		infoPlayer4Name.setText(GameManager.getInstance().getPlayerAt(3).getName());
-		infoPlayer1Money.setText(Double.toString(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
-		infoPlayer2Money.setText(Double.toString(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
-		infoPlayer3Money.setText(Double.toString(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
-		infoPlayer4Money.setText(Double.toString(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
+		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
+		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
+		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
+		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
 		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
 		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
 		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
@@ -126,14 +129,10 @@ public class GameMenuController {
 	public void update() {
 		System.out.println(
 				Double.toString(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
-		infoPlayer1Money.setText(Double.toString(
-				GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
-		infoPlayer2Money.setText(Double.toString(
-				GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
-		infoPlayer3Money.setText(Double.toString(
-				GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
-		infoPlayer4Money.setText(Double.toString(
-				GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
+		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
+		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()));
+		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()));
+		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()));
 	}
 
 	public void setStage(Stage context) {
