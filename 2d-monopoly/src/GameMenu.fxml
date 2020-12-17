@@ -128,26 +128,28 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="122.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="121.0" spacing="15.0">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="150.0" prefWidth="60.0">
+                        <Button mnemonicParsing="false" onAction="#mafiaButton" prefHeight="53.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00">
+                           <graphic>
+                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="121.0" spacing="15.0">
                                  <children>
-                                    <Label text="The Mafia" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Make a deal" />
+                                    <VBox alignment="CENTER" prefHeight="150.0" prefWidth="60.0">
+                                       <children>
+                                          <Label text="The Mafia" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Make a deal" />
+                                       </children>
+                                    </VBox>
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/mafia-face.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
-                              </VBox>
-                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/mafia-face.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
+                              </HBox>
+                           </graphic></Button>
                      </children>
                   </StackPane>
                   <StackPane layoutX="571.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="122.0">

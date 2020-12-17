@@ -1,5 +1,6 @@
 package gui.menus.controller;
 
+import gui.menus.popups.MafiaPopup;
 import gui.menus.popups.PausePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -296,4 +297,6 @@ public class GameMenuController {
 	public void pauseGame() {
 		new PausePopup().display(context);
 	}
+
+	public void mafiaButton() { new MafiaPopup().display(context); }
 }
