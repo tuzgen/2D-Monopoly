@@ -174,7 +174,7 @@
                   </StackPane>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #d4f2ff; -fx-text-fill: #0047c2; -fx-border-color: #3b7ced; -fx-border-width: 5px;" text="POWERUP xxx TL" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <Button fx:id="buttonPowerUpCrate" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #d4f2ff; -fx-text-fill: #0047c2; -fx-border-color: #3b7ced; -fx-border-width: 5px;" text="POWERUP xxx TL" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

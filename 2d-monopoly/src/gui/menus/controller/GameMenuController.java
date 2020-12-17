@@ -1,5 +1,6 @@
 package gui.menus.controller;
 
+import gui.menus.GameMenu;
 import gui.menus.popups.PausePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
+import org.omg.PortableInterceptor.ACTIVE;
 
 public class GameMenuController {
 	private static GameMenuController instance;
@@ -140,6 +142,8 @@ public class GameMenuController {
 	private Button buttonTile1= new Button();
 	@FXML
 	private Button buttonTile0= new Button();
+	@FXML
+	private Button buttonPowerUpCrate = new Button();
 
 	private Stage context;
 
@@ -200,6 +204,12 @@ public class GameMenuController {
 		return e -> {
 			GameManager.getInstance().sellForexFranc(Double.parseDouble(textFieldEuro.getText()));
 			update();
+		};
+	}
+
+	private EventHandler<ActionEvent> buttonOpenPowerUpCrate() {
+		return e -> {
+			GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOfPlayerIndex());
 		};
 	}
 

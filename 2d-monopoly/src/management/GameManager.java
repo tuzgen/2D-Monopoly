@@ -105,6 +105,9 @@ public class GameManager implements Serializable {
 	}
 
 
+	public void openPowerUpCrate(Player player) {
+		// TODO
+	}
 	public void mapBuyTile(Player player, int tileNo) { map.buyTile(player, tileNo); }
 	public void mapSellTile(Player player, int tileNo) { map.sellTile(player, tileNo); }
 	public void buildHouse(Player player, int tileNo) { map.buildHouse(player, tileNo); }
@@ -209,6 +212,8 @@ public class GameManager implements Serializable {
 	}
 
 	public Player getPlayerAt(int index) { return players[index]; }
+
+	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
 	public void updateSettings(Settings settings) {
 		try {
