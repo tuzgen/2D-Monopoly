@@ -12,7 +12,8 @@ import java.util.*;
 public class Mafia extends NPC {
 
     private double JAILBREAKAMOUNT = 50000;
-    public double shareRate;
+    private int BLACKMAILRATE = 15;
+    private double shareRate;
     public boolean isArrested;
     ArrayList<Player> pastDeals;
     private Bank bank;
@@ -20,7 +21,7 @@ public class Mafia extends NPC {
     public Mafia(){
         super("Mafia");
         isArrested = false;
-        shareRate = 20;
+        shareRate = 15;
         bank = bank.getInstance();
         pastDeals = new ArrayList<Player>();
     }
@@ -40,13 +41,13 @@ public class Mafia extends NPC {
         //todo
     }
 
-    public void blackmail(Player player, Bank bank){
-        // todo
-        // test it inside game manager
+    public boolean blackmail(Player blackmailedPlayer, Player player){ // 25% ihtimalle paraya çökmesi eklenebilir. Mafia PopUp da değiştirilmeli o casede
         Account account = player.getAccount();
-        double money = account.getTrl();
-        money = money * 15 / 100;
-        bank.takeMoney(player, money);
+        double money = account.getTrl() + account.getSwissFrank() + account.getEuro() + account.getDollar();
+        money = money * BLACKMAILRATE / 100;
+        bank.takeMoney(blackmailedPlayer, money);
+        bank.giveMoney(player, money * (100 - shareRate) / 100);
+        return true;
     }
 
     public double getShareRate() {

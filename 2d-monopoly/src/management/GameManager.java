@@ -214,7 +214,9 @@ public class GameManager implements Serializable {
 	}
 
 	public Player getPlayerAt(int index) { return players[index]; }
+
 	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
+
 	public Mafia getMafia() {return mafia; }
 
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }

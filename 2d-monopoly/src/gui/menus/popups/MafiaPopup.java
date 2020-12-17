@@ -1,5 +1,7 @@
 package gui.menus.popups;
 
+import entity.player.Playable;
+import entity.player.Player;
 import gui.misc.Style;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
@@ -19,10 +21,12 @@ import management.GameManager;
 import sun.misc.JavaLangAccess;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class MafiaPopup {
 
     public void display(Stage context){
+        PauseTransition delay = new PauseTransition(Duration.millis(1500));
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setResizable(false);
@@ -68,7 +72,6 @@ public class MafiaPopup {
             finalLabel.setPadding(new Insets(10,0,0,0));
             finalLabel.setTextFill(Color.WHITE);
             jlayout.getChildren().add(finalLabel);
-            PauseTransition delay = new PauseTransition(Duration.millis(1500));
             delay.setOnFinished(event -> window.close());
             delay.play();
         });
@@ -87,7 +90,56 @@ public class MafiaPopup {
         Scene jscene = new Scene(jlayout);
 
         //Blackmail----------------------------------------------------------------------------------
+        ArrayList<Player> otherPlayers = new ArrayList<Player>();
+        Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
+        Label blabel = new Label("I'm gonna make him an offer he can't refuse.\n\t\t\tSelect one of them.");
+        Label endLabel = new Label("Great deal...");
+        int yourIndex = GameManager.getInstance().getTurnOfPlayerIndex();
+        for(int i = 0; i < 4; i++)
+            if( i != yourIndex)
+                otherPlayers.add(GameManager.getInstance().getPlayerAt(i));
+        Button pl1 = new Button(otherPlayers.get(0).getName());
+        Button pl2 = new Button(otherPlayers.get(1).getName());
+        Button pl3 = new Button(otherPlayers.get(2).getName());
+        VBox blayout = new VBox(10);
 
+        pl1.setOnAction(event -> {
+            GameManager.getInstance().getMafia().blackmail(otherPlayers.get(0), currentPlayer);
+            blayout.getChildren().clear();
+            blayout.getChildren().add(endLabel);
+            delay.setOnFinished(e -> window.close());
+            delay.play();
+
+        });
+
+        pl2.setOnAction(event -> {
+            GameManager.getInstance().getMafia().blackmail(otherPlayers.get(1), currentPlayer);
+            blayout.getChildren().clear();
+            blayout.getChildren().add(endLabel);
+            delay.setOnFinished(e -> window.close());
+            delay.play();
+        });
+
+        pl3.setOnAction(event -> {
+            GameManager.getInstance().getMafia().blackmail(otherPlayers.get(2), currentPlayer);
+            blayout.getChildren().clear();
+            blayout.getChildren().add(endLabel);
+            delay.setOnFinished(e-> window.close());
+            delay.play();
+        });
+
+        pl1.setStyle(Style.button_one);
+        pl2.setStyle(Style.button_one);
+        pl3.setStyle(Style.button_one);
+
+        blabel.setPadding(new Insets(10,5,0,5));
+        blabel.setTextFill(Color.WHITE);
+        endLabel.setTextFill(Color.WHITE);
+
+        blayout.setAlignment(Pos.CENTER);
+        blayout.getChildren().addAll(blabel, pl1, pl2, pl3);
+        blayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+        Scene bscene = new Scene(blayout);
 
         //CommunityCard------------------------------------------------------------------------------
 
@@ -98,7 +150,7 @@ public class MafiaPopup {
         });
 
         blackmailButton.setOnAction(event -> {
-            System.out.println("Blackmail");
+            window.setScene(bscene);
         });
 
         buyCommunityCardButton.setOnAction(event -> {
