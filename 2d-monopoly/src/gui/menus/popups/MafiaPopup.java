@@ -142,7 +142,37 @@ public class MafiaPopup {
         Scene bscene = new Scene(blayout);
 
         //CommunityCard------------------------------------------------------------------------------
+        Label clabel = new Label("This will cost you 20.000₺. Are you sure?");
+        Button yButton = new Button("Yes");
+        VBox clayout = new VBox(10);
+        HBox chlayout = new HBox(10);
 
+        clabel.setPadding(new Insets(10,0,0,0));
+        clabel.setTextFill(Color.WHITE);
+
+        yButton.setOnAction( e -> {
+            Player player = GameManager.getInstance().getTurnOfPlayer();
+            String result = GameManager.getInstance().getMafia().sellCard(player);
+            if(result.equals("false"))
+            {
+                clabel.setText("You couldn't meet the requirements,\n\t\tdeal is over, leave!");
+            } else {
+                clabel.setText("Feature: " + result);
+            }
+            window.setWidth(600);
+            clayout.getChildren().clear();
+            clayout.getChildren().add(clabel);
+            delay.setOnFinished(event -> window.close());
+            delay.play();
+        });
+
+        yButton.setStyle(Style.button_one);
+        chlayout.getChildren().addAll(yButton, noButton);
+        chlayout.setAlignment(Pos.CENTER);
+        clayout.getChildren().addAll(clabel, chlayout);
+        clayout.setAlignment(Pos.CENTER);
+        clayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+        Scene cscene = new Scene(clayout);
 
         // End of the popup
         jailbreakButton.setOnAction(event -> {
@@ -154,7 +184,7 @@ public class MafiaPopup {
         });
 
         buyCommunityCardButton.setOnAction(event -> {
-            System.out.println("buyCommunityCardButton");
+            window.setScene(cscene);
         });
 
         Scene scene = new Scene(layout);

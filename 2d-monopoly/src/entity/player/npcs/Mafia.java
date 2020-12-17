@@ -2,6 +2,7 @@ package entity.player.npcs;
 
 import entity.Account;
 import entity.Bank;
+import entity.card.*;
 import entity.map.tile.*;
 import entity.player.Playable;
 import entity.player.Player;
@@ -11,9 +12,12 @@ import java.util.*;
 
 public class Mafia extends NPC {
 
-    private double JAILBREAKAMOUNT = 50000;
-    private int BLACKMAILRATE = 15;
+    private final double JAILBREAKAMOUNT = 50000;
+    private final double CARDAMOUNT = 20000;
+    private final int BLACKMAILRATE = 15;
+
     private double shareRate;
+    private CardDeck deck;
     public boolean isArrested;
     ArrayList<Player> pastDeals;
     private Bank bank;
@@ -24,6 +28,8 @@ public class Mafia extends NPC {
         shareRate = 15;
         bank = bank.getInstance();
         pastDeals = new ArrayList<Player>();
+        deck = new CardDeck(false, true);
+        deck.createDeck();
     }
 
     public boolean jailbreak(Player player){
@@ -42,20 +48,12 @@ public class Mafia extends NPC {
     }
 
     public boolean blackmail(Player blackmailedPlayer, Player player){ // 25% ihtimalle paraya çökmesi eklenebilir. Mafia PopUp da değiştirilmeli o casede
-        Account account = player.getAccount();
+        Account account = player.getAccount(); // bide tur sınırı getirile bilir ona göre bırakıyorum şuan
         double money = account.getTrl() + account.getSwissFrank() + account.getEuro() + account.getDollar();
         money = money * BLACKMAILRATE / 100;
         bank.takeMoney(blackmailedPlayer, money);
         bank.giveMoney(player, money * (100 - shareRate) / 100);
         return true;
-    }
-
-    public double getShareRate() {
-        return shareRate;
-    }
-
-    public void setShareRate(double rate){
-        this.shareRate = rate;
     }
 
     public boolean sellTile(int tile, Player player){
@@ -64,14 +62,11 @@ public class Mafia extends NPC {
         return true;
     }
 
-    public boolean sellChanceCard(){
-        // todo
-        return true;
-    }
-
-    public boolean sellCommunityCard(){
-        // todo
-        return true;
+    public String sellCard(Player player){ //başak false condition avr mı check it
+        if(!bank.takeMoney(player, CARDAMOUNT))
+            return "false";
+        Card card = deck.drawCard(player);
+        return card.getFeature();
     }
 
     public boolean getIsArrested(){
@@ -84,15 +79,22 @@ public class Mafia extends NPC {
     }
 
     public void addDeal(Player player){
-        // todo
+        pastDeals.add(player);
     }
 
-    public boolean deleteDeal(Player player){
-        // todo
-        return true;
+    public void deleteDeal(Player player){
+        pastDeals.remove(player);
     }
 
     public ArrayList<Player> getDeals(){
         return pastDeals;
+    }
+
+    public double getShareRate() {
+        return shareRate;
+    }
+
+    public void setShareRate(double rate){
+        this.shareRate = rate;
     }
 }
