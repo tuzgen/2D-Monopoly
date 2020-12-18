@@ -7,6 +7,7 @@ import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.player.User;
 import entity.player.npcs.Mafia;
+import entity.player.npcs.Police;
 
 import java.io.*;
 
@@ -29,6 +30,12 @@ public class GameManager implements Serializable {
 	Player[] players;
 	Dice dice;
 	Mafia mafia;
+	Police police;
+	Player player1;
+	Player player2;
+	Player player3;
+	Player player4;
+	Player[] players1;
 
 	// state variables
 	private int turnOfPlayerIndex;
@@ -42,11 +49,16 @@ public class GameManager implements Serializable {
 				name3 + " " + isBot3 + " \n");
 
 		players = new Player[4];
-		players[0] = new Player(new User(), name0.equals("") ? "Player1" : name0);
-		players[1] = new Player(isBot1 ? new User() : new BotCharacter(), name1.equals("") ? "Player2" : name1);
-		players[2] = new Player(isBot2 ? new User() : new BotCharacter(), name2.equals("") ? "Player3" : name2);
-		players[3] = new Player(isBot3 ? new User() : new BotCharacter(), name3.equals("") ? "Player4" : name3);
+		player1 = new Player(new User(), name0.equals("") ? "Player1" : name0);
+		player2 = new Player(isBot1 ? new User() : new BotCharacter(), name1.equals("") ? "Player2" : name1);
+		player3 = new Player(isBot2 ? new User() : new BotCharacter(), name2.equals("") ? "Player3" : name2);
+		player4 = new Player(isBot3 ? new User() : new BotCharacter(), name3.equals("") ? "Player4" : name3);
+		players[0] = player1;
+		players[1] = player2;
+		players[2] = player3;
+		players[3] = player4;
 		mafia = new Mafia();
+		police = new Police();
 
 		settings = new Settings(false, false);
 		dice = new Dice();
@@ -84,7 +96,7 @@ public class GameManager implements Serializable {
 
 	public static synchronized GameManager getInstance() {
 		if (instance == null) {
-			instance = new GameManager("", "", false, "", false ,"", false);
+			instance = new GameManager("", "", false, "", false, "", false);
 		}
 		return instance;
 	}
@@ -118,7 +130,7 @@ public class GameManager implements Serializable {
 	}
 
 	public boolean isGameOver() {
-		for (Player p: players) {
+		for (Player p : players) {
 			// TODO if any player has over the limit end game
 			if (true) {
 				return true;
@@ -127,14 +139,78 @@ public class GameManager implements Serializable {
 		return false;
 	}
 
-	public void determineTurn() {
-		int sum;
-		for (int i = 0; 6 > i; i++) {
+	public Player[] determineTurn() {
+		int sum1, sum2, sum3, sum4, sum5, sum6;
+		Player tmp;
+		int[] arr = new int[4];
+		players1 = new Player[4];
+		dice.rollTheDice();
+		sum1 = dice.getSum();
+		arr[0] = sum1;
+
+		dice.rollTheDice();
+		sum2 = dice.getSum();
+		while(sum1 == sum2){
 			dice.rollTheDice();
-			sum = dice.getSum();
-			// TODO order[i] = sum;
+			sum2 = dice.getSum();
 		}
+		arr[1] = sum2;
+
+		dice.rollTheDice();
+		sum3 = dice.getSum();
+		while(sum1 == sum3 || sum2 == sum3){
+			dice.rollTheDice();
+			sum3 = dice.getSum();
+		}
+		arr[2] = sum3;
+
+		dice.rollTheDice();
+		sum4 = dice.getSum();
+		while(sum1 == sum4 || sum2 == sum4 || sum3 == sum4){
+			dice.rollTheDice();
+			sum4 = dice.getSum();
+		}
+		arr[3] = sum4;
+
+		bubbleSort(arr);
+
+		for (int i = 0; i < 4; i++) {
+			System.out.println(arr[i]);
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (arr[i] == sum1) {
+				players1[i] = player1;
+			} else if (arr[i] == sum2) {
+				players1[i] = player2;
+			} else if (arr[i] == sum3) {
+				players1[i] = player3;
+			} else if (arr[i] == sum4) {
+				players1[i] = player4;
+			}
+		}
+
+		for (int i = 0; i < 4; i++) {
+			System.out.println("Real: " + players[i].getName());
+			System.out.println("\tChanged: " + players1[i].getName());
+		}
+
+		return players1;
 	}
+
+void bubbleSort(int arr[])
+{
+	int n = arr.length;
+	for (int i = 0; i < n - 1; i++)
+		for (int j = 0; j < n - i - 1; j++)
+			if (arr[j] > arr[j + 1]) {
+				// swap temp and arr[i]
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+}
+
 
 	public void openPowerUpCrate(Player player) {
 		// TODO
@@ -146,6 +222,7 @@ public class GameManager implements Serializable {
 	public double getForexDollar() { return forexManager.getDollarExRate(); }
 	public double getForexEuro() { return forexManager.getEuroExRate(); }
 	public double getForexFrank() { return forexManager.getFrankExRate(); }
+
 	public void buyForexDollar(double amount) {
 		double tryAmount = forexManager.getDollarExRate() * amount;
 		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
@@ -162,6 +239,7 @@ public class GameManager implements Serializable {
 
 		}
 	}
+
 	public void buyForexEuro(double amount) {
 		double tryAmount = forexManager.getEuroExRate() * amount;
 		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
@@ -177,6 +255,7 @@ public class GameManager implements Serializable {
 					"Franc rate: " + forexManager.getFrankExRate());
 		}
 	}
+
 	public void buyForexFranc(double amount) {
 		double tryAmount = forexManager.getFrankExRate() * amount;
 		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
@@ -193,6 +272,7 @@ public class GameManager implements Serializable {
 
 		}
 	}
+
 	public void sellForexDollar(double amount) {
 		double tryAmount = forexManager.getDollarExRate() * amount;
 		if (players[turnOfPlayerIndex].getAccount().getDollar() >= amount) {
@@ -209,6 +289,7 @@ public class GameManager implements Serializable {
 
 		}
 	}
+
 	public void sellForexEuro(double amount) {
 		double tryAmount = forexManager.getEuroExRate() * amount;
 		if (players[turnOfPlayerIndex].getAccount().getEuro() >= amount) {
@@ -225,6 +306,7 @@ public class GameManager implements Serializable {
 
 		}
 	}
+
 	public void sellForexFranc(double amount) {
 		double tryAmount = forexManager.getFrankExRate() * amount;
 		if (players[turnOfPlayerIndex].getAccount().getSwissFrank() >= amount) {
@@ -241,11 +323,18 @@ public class GameManager implements Serializable {
 		}
 	}
 
-	public Player getPlayerAt(int index) { return players[index]; }
+	public Player getPlayerAt(int index) {
+		if(players1 == null){
+			return players[index];
+		}
+		return players[index];
+	}
 
 	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
 
 	public Mafia getMafia() {return mafia; }
+
+	public Police getPolice(){return police;}
 
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
@@ -285,22 +374,42 @@ public class GameManager implements Serializable {
 	}
 
 	public int playTurn() {
-		dice.rollTheDice();
-		int diceTotal = dice.getSum();
-		int initLoc = players[turnOfPlayerIndex].getLocation();
-		System.out.println(
-		"Turn of: " + turnOfPlayerIndex + "\n" +
-				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
-						"DiceTotal: " + diceTotal + "\n" +
-						"Location after: " + (players[turnOfPlayerIndex].getLocation() + diceTotal) + "\n");
-		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
 
-		if (getTurnOfPlayer().getLocation() / Map.TILECOUNT > initLoc / Map.TILECOUNT) {
-			players[turnOfPlayerIndex].addToAccount(getTurnOfPlayer().getSalary());
+		dice.rollTheDice();
+
+		int diceTotal = dice.getSum();
+
+		int temp = turnOfPlayerIndex;
+		if(temp == 4){
+			mafia.setLocation(mafia.getLocation() + diceTotal % 40);
+
+			turnOfPlayerIndex = 5;
+			return 4;
+		}
+		if(temp == 5){
+			police.setLocation(police.getLocation() + diceTotal -1 % 40);
+
+			System.out.println(police.getLocation());
+			turnOfPlayerIndex = 0;
+			return 5;
 		}
 
-		int result = turnOfPlayerIndex;
-		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
+		if(players[turnOfPlayerIndex].getName() == players1[turnOfPlayerIndex].getName()){
+			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % 40);
+			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
+		}else{
+			while(players[temp].getName() != players1[turnOfPlayerIndex].getName()){
+				temp++;
+				if(temp > 3)
+					temp = 0;
+			}
+			players[temp].setLocation(players[temp].getLocation() + diceTotal % 40);
+			System.out.println("Player: " + players[temp].getName());
+		}
+
+
+		int result = temp;
+		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6); // TODO add mafia and police to the loop + NPC_COUNT);
 
 		return result;
 	}
