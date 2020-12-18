@@ -10,13 +10,14 @@ import entity.player.User;
 import java.io.*;
 
 public class GameManager implements Serializable {
+	private static final int NPC_COUNT = 2;
 	private static GameManager instance;
 
 	// Cached singletons
-	private ForexManager forexManager;
-	private Bank bank;
-	private Map map;
-	private TradeManager tradeManager;
+	private static ForexManager forexManager;
+	private static Bank bank;
+	private static Map map;
+	private static TradeManager tradeManager;
 
 	// FILE PATHS
 	private static final String SETTINGS_DIRECTORY = "local/";
@@ -26,6 +27,9 @@ public class GameManager implements Serializable {
 	// properties
 	Player[] players;
 	Dice dice;
+
+	// state variables
+	private int turnOfPlayerIndex;
 
 	private GameManager(String name0, String name1, boolean isBot1, String name2,
 						boolean isBot2, String name3, boolean isBot3) {
@@ -45,10 +49,22 @@ public class GameManager implements Serializable {
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
 		forexManager = ForexManager.getInstance();
+		bank = Bank.getInstance();
 		map = Map.getInstance();
+		turnOfPlayerIndex = 0;
+	}
+
+	// TODO delete Debug
+	public int[] rollTheDicePair() {
+		dice.rollTheDice();
+		return dice.getPair();
 	}
 
 	public static void deleteInstance() {
+		map = null;
+		tradeManager = null;
+		forexManager = null;
+		bank = null;
 		instance = null;
 	}
 
@@ -75,33 +91,12 @@ public class GameManager implements Serializable {
 		return instance;
 	}
 
-	// garbage
-	/* private void setGameManager(String name0, String name1, boolean isBot1, String name2, boolean isBot2, String name3, boolean isBot3) {
-		players[0].setName(name0);
-
-		players[1].setBehavior(isBot1 ? new User() : new BotCharacter());
-		players[1].setName(name1);
-
-		players[2].setBehavior(isBot2 ? new User() : new BotCharacter());
-		players[2].setName(name2);
-
-		players[3].setBehavior(isBot3 ? new User() : new BotCharacter());
-		players[3].setName(name3);
-
-	}
-	*/
-
 	public void update() {
 		while (isGameOver()) {
 			for (Player player : players) {
-				playTurn(player);
+				//playTurn(player);
 			}
 		}
-	}
-
-	private void playTurn(Player player) {
-		dice.rollTheDice();
-		player.playTurn();
 	}
 
 	public boolean isGameOver() {
@@ -115,6 +110,9 @@ public class GameManager implements Serializable {
 	}
 
 
+	public void openPowerUpCrate(Player player) {
+		// TODO
+	}
 	public void mapBuyTile(Player player, int tileNo) { map.buyTile(player, tileNo); }
 	public void mapSellTile(Player player, int tileNo) { map.sellTile(player, tileNo); }
 	public void buildHouse(Player player, int tileNo) { map.buildHouse(player, tileNo); }
@@ -122,8 +120,105 @@ public class GameManager implements Serializable {
 	public double getForexDollar() { return forexManager.getDollarExRate(); }
 	public double getForexEuro() { return forexManager.getEuroExRate(); }
 	public double getForexFrank() { return forexManager.getFrankExRate(); }
+	public void buyForexDollar(double amount) {
+		double tryAmount = forexManager.getDollarExRate() * amount;
+		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() + amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			forexManager.push("Dollar", amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void buyForexEuro(double amount) {
+		double tryAmount = forexManager.getEuroExRate() * amount;
+		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() + amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			forexManager.push("Euro", amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void buyForexFranc(double amount) {
+		double tryAmount = forexManager.getFrankExRate() * amount;
+		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() + amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			forexManager.push("Frank", amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void sellForexDollar(double amount) {
+		double tryAmount = forexManager.getDollarExRate() * amount;
+		if (players[turnOfPlayerIndex].getAccount().getDollar() >= amount) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() - amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			forexManager.push("Dollar", -amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void sellForexEuro(double amount) {
+		double tryAmount = forexManager.getEuroExRate() * amount;
+		if (players[turnOfPlayerIndex].getAccount().getEuro() >= amount) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() - amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			forexManager.push("Euro", -amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+
+		}
+	}
+	public void sellForexFranc(double amount) {
+		double tryAmount = forexManager.getFrankExRate() * amount;
+		if (players[turnOfPlayerIndex].getAccount().getSwissFrank() >= amount) {
+			// TODO refactor
+			players[turnOfPlayerIndex].getAccount()
+					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() - amount);
+			players[turnOfPlayerIndex].getAccount()
+					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			forexManager.push("Frank", -amount);
+			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
+			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
+					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
+					"Franc rate: " + forexManager.getFrankExRate());
+		}
+	}
 
 	public Player getPlayerAt(int index) { return players[index]; }
+	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
+	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
 	public void updateSettings(Settings settings) {
 		try {
@@ -158,5 +253,17 @@ public class GameManager implements Serializable {
 	}
 	public Settings getSettings() {
 		return settings;
+	}
+
+
+	public void playTurn() {
+		dice.rollTheDice();
+		int diceTotal = dice.getSum();
+		System.out.println(
+				"TurnOf: " + turnOfPlayerIndex + "\n" +
+				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
+						"");
+		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
+		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
 	}
 }

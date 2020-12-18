@@ -38,7 +38,7 @@ public class Player extends Character{
         cards = new ArrayList<Card>();
         isArrested = false;
         isBankrupt = false;
-        salary = 1;
+        salary = 500000; // change xdeee
         account = new Account(salary);
         speed = 1;
         vehicleCount = 0;
@@ -54,11 +54,16 @@ public class Player extends Character{
         //TODO
     }
 
-    public void playCard() {
-        Card c = cards.get(0);
-        c.activateCard(this, Bank.getInstance());
-        removeFromDeck(c);
+    public boolean playCard() {
+        if(getIsArrested() && cards.size() != 0){
+            Card c = cards.get(0);
+            c.activateCard(this);
+            removeFromDeck(c);
+            return true;
+        }
+        return false;
     }
+
     public void setBehavior(Playable playable) { this.playable = playable; }
 
     public boolean addTrade(Trade trade) {

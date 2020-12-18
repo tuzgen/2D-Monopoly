@@ -43,13 +43,13 @@ public class ForexManager {
             double euro = euroTrans.pop();
             updateExRates("Euro", forex.getEuroExRate() * Math.pow(2,-euro/350000));
         }
-        updateExRates("Euro", forex.getEuroExRate() + (randomNumEuro/1000));
+        updateExRates("Euro", forex.getEuroExRate() + (randomNumEuro/100));
 
         while (!frankTrans.empty()) {
             double frank = frankTrans.pop();
             updateExRates("Frank", forex.getFrankExRate() * Math.pow(2, -frank/350000));
         }
-        updateExRates("Frank", forex.getFrankExRate() + (randomNumFrank/1000));
+        updateExRates("Frank", forex.getFrankExRate() + (randomNumFrank/100));
     }
 
     public void updateExRates(String currency, double exRa){

@@ -5,7 +5,7 @@ import entity.player.Player;
 
 public class Map {
 	private static Map instance;
-	private final int TILECOUNT = 40;
+	public static final int TILECOUNT = 40;
 
 	public static Map getInstance() {
 		if (instance == null)
@@ -82,6 +82,7 @@ public class Map {
 			((CityTile)tiles[tileNo]).setOwner(player);
 	}
 
+	// Invokes CityTile's setOwner method
 	public void sellTile(Player player, int tileNo) {
 		if (((CityTile)tiles[tileNo]).getOwner().equals(player)) {
 			((CityTile)tiles[tileNo]).setOwner(null);

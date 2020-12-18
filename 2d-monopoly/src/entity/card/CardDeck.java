@@ -15,6 +15,30 @@ public class CardDeck {
         currentCard = 0;
     }
 
+    public void drawCard(Player player){ // It takes reference of the card it might cause a problem think about it
+        Card drawn = cards[currentCard % DECKSIZE];
+        currentCard++;
+        if(drawn.getCardStrategy().getClass() == GetOutOfJailCardStrategy.class){
+            player.addToDeck(new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0));
+        } else
+            drawn.activateCard(player);
+    }
+
+    public void createDeck(){
+        if(chance){
+            cards[0] = new Card(new TransactionCardStrategy(), "RTUK has fined you 30.000 TL for your radio program.", -30000);
+            cards[1] = new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0);
+            cards[2] = new Card(new MovementByNumCardStrategy(), "Mafia shot a butcher in next tile, move 3 tiles backward.", -3);
+            cards[3] = new Card(new MovementToCardStrategy(), "You stabbed a guy who don't like your new music album. Get into jail!", 30);
+        } else {
+            cards[0] = new Card(new TransactionCardStrategy(), "You went on holiday to Russia, got on a train from St. Petersburg to Moscow. Pay 50000 TL.", -50000);
+            cards[1] = new Card(new TransactionCardStrategy(), "You worked in the field, get 2000 TL.", 2000);
+            cards[2] = new Card(new MovementByNumCardStrategy(), "Police raid!!! Move 5 tiles backward .", -5);
+            cards[3] = new Card(new MovementToCardStrategy(), "You stole a car. Move until you arrive start tile.", 0);
+        }
+        shuffleCard();
+    }
+
     private void shuffleCard(){
         boolean isit = false;
         int valid = 0;
@@ -52,26 +76,5 @@ public class CardDeck {
             cards[random1] = cards[random2];
             cards[random2] = mycard;
         }
-    }
-
-    public Card drawCard(Player player){ // It takes reference of the card it might cause a problem think about it
-        Card drawn = cards[currentCard % DECKSIZE];
-        currentCard++;
-        return drawn;
-    }
-
-    public void createDeck(Bank bank){
-        if(chance){
-            cards[0] = new Card(new TransactionCardStrategy(), "RTUK has fined you 30.000 TL for your radio program.", -30000);
-            cards[1] = new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0);
-            cards[2] = new Card(new MovementByNumCardStrategy(), "Mafia shot a butcher in next tile, move 3 tiles backward.", 3);
-            cards[3] = new Card(new MovementToCardStrategy(), "You stabbed a guy who don't like your new music album. Get into jail!", 30);
-        } else {
-            cards[0] = new Card(new TransactionCardStrategy(), "You went on holiday to Russia, got on a train from St. Petersburg to Moscow. Pay 50000 TL.", -50000);
-            cards[1] = new Card(new TransactionCardStrategy(), "You worked in the field, get 2000 TL.", 2000);
-            cards[2] = new Card(new MovementByNumCardStrategy(), "Police raid!!! Move 5 tiles backward .", 5);
-            cards[3] = new Card(new MovementToCardStrategy(), "You stole a car. Move until you arrive start tile.", 0);
-        }
-        shuffleCard();
     }
 }

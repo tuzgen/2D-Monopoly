@@ -23,105 +23,171 @@
   <children>
       <AnchorPane prefHeight="107.0" prefWidth="1280.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="64.0" layoutX="16.0" layoutY="16.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="738.0" />
-            <StackPane layoutX="14.0" layoutY="31.0" prefHeight="46.0" prefWidth="135.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="64.0" layoutX="16.0" layoutY="16.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="830.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" AnchorPane.leftAnchor="12.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="135.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="21.0" prefWidth="135.0" spacing="15.0">
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="infoPlayer1Name" text="yarra" textFill="WHITE" />
+                              <HBox alignment="CENTER" prefHeight="21.0" prefWidth="135.0" spacing="15.0">
+                                 <children>
+                                    <Label fx:id="infoPlayer1Name" text="yarra" textFill="WHITE" />
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/green-player.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="100.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/turn-diamond.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Text fx:id="infoPlayer1Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="122.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="26.0" prefWidth="181.0" spacing="15.0">
+                                 <children>
+                                    <Label fx:id="infoPlayer2Name" text="Player 2" textFill="WHITE" />
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/red-player.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/turn-diamond.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Text fx:id="infoPlayer2Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="122.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="10.0" prefWidth="147.0" spacing="15.0">
+                                 <children>
+                                    <Label fx:id="infoPlayer3Name" text="Player 3" textFill="WHITE" />
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/pink-player.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/turn-diamond.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Text fx:id="infoPlayer3Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="122.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="10.0" prefWidth="121.0" spacing="15.0">
+                                 <children>
+                                    <Label fx:id="infoPlayer4Name" text="Player 4" textFill="WHITE" />
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/blue-player.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/turn-diamond.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Text fx:id="infoPlayer4Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="122.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="121.0" spacing="15.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="150.0" prefWidth="60.0">
+                                 <children>
+                                    <Label text="The Mafia" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Make a deal" />
+                                 </children>
+                              </VBox>
                               <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@vendor/image/green-player.png" />
+                                    <Image url="@vendor/image/mafia-face.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="100.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/turn-diamond.png" />
-                                 </image></ImageView>
                            </children>
                         </HBox>
-                        <Text fx:id="infoPlayer1Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
                      </children>
-                  </VBox>
-               </children>
-            </StackPane>
-            <StackPane layoutX="139.0" layoutY="31.0" prefHeight="39.0" prefWidth="122.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  </StackPane>
+                  <StackPane layoutX="571.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="122.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="26.0" prefWidth="181.0" spacing="15.0">
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="infoPlayer2Name" text="Player 2" textFill="WHITE" />
-                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/red-player.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/turn-diamond.png" />
-                                 </image></ImageView>
+                              <HBox alignment="CENTER" prefHeight="10.0" prefWidth="121.0" spacing="15.0">
+                                 <children>
+                                    <Label text="The Police" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@vendor/image/police-logo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <Text fx:id="infoPlayer2Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                        </VBox>
                      </children>
-                  </VBox>
-               </children>
-            </StackPane>
-            <StackPane layoutX="272.0" layoutY="31.0" prefHeight="25.0" prefWidth="122.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  </StackPane>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="10.0" prefWidth="147.0" spacing="15.0">
-                           <children>
-                              <Label fx:id="infoPlayer3Name" text="Player 3" textFill="WHITE" />
-                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/pink-player.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/turn-diamond.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <Text fx:id="infoPlayer3Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
+                        <Button fx:id="buttonPowerUpCrate" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonOpenPowerUpCrate" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #d4f2ff; -fx-text-fill: #0047c2; -fx-border-color: #3b7ced; -fx-border-width: 5px;" text="POWERUP xxx TL" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
                      </children>
-                  </VBox>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
                </children>
-            </StackPane>
-            <StackPane layoutX="410.0" layoutY="31.0" prefHeight="39.0" prefWidth="122.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: #000000;" textFill="#ffffff00" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="51.0" prefWidth="121.0" spacing="15.0">
-                           <children>
-                              <Label fx:id="infoPlayer4Name" text="Player 4" textFill="WHITE" />
-                              <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/blue-player.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@vendor/image/turn-diamond.png" />
-                                 </image></ImageView>
-                           </children>
-                        </HBox>
-                        <Text fx:id="infoPlayer4Money" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="150 K" textAlignment="CENTER" />
-                     </children>
-                  </VBox>
-               </children>
-            </StackPane>
-            <HBox alignment="CENTER_RIGHT" layoutX="1080.0" prefHeight="80.0" prefWidth="200.0">
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="1157.0" prefHeight="80.0" prefWidth="123.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#pauseGame" style="-fx-background-color: rgba(0,0,0,0);" text="|| PAUSE" textFill="RED">
                      <font>
@@ -130,6 +196,11 @@
                   </Button>
                </children>
             </HBox>
+            <ImageView fitHeight="65.0" fitWidth="63.0" layoutX="1060.0" layoutY="18.0" onMouseClicked="#rollTheDice">
+               <image>
+                  <Image url="@vendor/image/dice.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1280.0" style="-fx-background-color: #000000;" VBox.vgrow="NEVER">
@@ -138,15 +209,83 @@
                <children>
                   <StackPane alignment="CENTER_LEFT" prefHeight="663.0" prefWidth="695.0">
                      <children>
-                        <ImageView fitHeight="623.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="623.0" fitWidth="668.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@vendor/image/board.png" />
                            </image>
                         </ImageView>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button alignment="CENTER" layoutX="81.0" layoutY="6.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="54.0" style="-fx-background-color: rgba(0,0,0,0);" />
-                              <Button alignment="CENTER" layoutX="135.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile39" alignment="CENTER" layoutX="534.0" layoutY="488.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile38" alignment="CENTER" layoutX="534.0" layoutY="439.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile37" alignment="CENTER" layoutX="534.0" layoutY="389.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile36" alignment="CENTER" layoutX="533.0" layoutY="338.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile35" alignment="CENTER" layoutX="533.0" layoutY="288.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile34" alignment="CENTER" layoutX="532.0" layoutY="238.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="82.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile33" alignment="CENTER" layoutX="532.0" layoutY="188.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="82.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile32" alignment="CENTER" layoutX="533.0" layoutY="138.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile31" alignment="CENTER" layoutX="533.0" layoutY="88.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile30" alignment="CENTER" layoutX="534.0" layoutY="6.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile29" alignment="CENTER" layoutX="481.0" layoutY="7.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile28" alignment="CENTER" layoutX="431.0" layoutY="5.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile27" alignment="CENTER" layoutX="381.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile26" alignment="CENTER" layoutX="332.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="49.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile25" alignment="CENTER" layoutX="285.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile24" alignment="CENTER" layoutX="231.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="54.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile23" alignment="CENTER" layoutX="182.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="49.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile22" alignment="CENTER" layoutX="135.0" layoutY="3.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="47.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile21" alignment="CENTER" layoutX="81.0" layoutY="6.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="54.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile20" alignment="CENTER" layoutX="3.0" layoutY="6.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile19" alignment="CENTER" layoutX="1.0" layoutY="87.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile18" alignment="CENTER" layoutX="3.0" layoutY="138.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile17" alignment="CENTER" layoutX="2.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile16" alignment="CENTER" layoutX="2.0" layoutY="238.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile15" alignment="CENTER" layoutX="2.0" layoutY="289.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="79.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile14" alignment="CENTER" layoutX="2.0" layoutY="338.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile13" alignment="CENTER" layoutX="3.0" layoutY="388.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile12" alignment="CENTER" layoutY="437.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="82.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile11" alignment="CENTER" layoutX="2.0" layoutY="488.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="79.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile10" alignment="CENTER" layoutX="2.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="81.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile9" alignment="CENTER" layoutX="83.0" layoutY="538.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile8" alignment="CENTER" layoutX="131.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile7" alignment="CENTER" layoutX="181.0" layoutY="537.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile6" alignment="CENTER" layoutX="233.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile5" alignment="CENTER" layoutX="283.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile4" alignment="CENTER" layoutX="331.0" layoutY="538.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile3" alignment="CENTER" layoutX="383.0" layoutY="539.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile2" alignment="CENTER" layoutX="432.0" layoutY="538.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile1" alignment="CENTER" layoutX="481.0" layoutY="537.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <Button fx:id="buttonTile0" alignment="CENTER" layoutX="534.0" layoutY="539.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
+                              <ImageView fx:id="iconPlayer1" fitHeight="24.0" fitWidth="32.0" layoutX="543.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-green.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconMafia" fitHeight="19.0" fitWidth="18.0" layoutX="565.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/mafia-face.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPlayer3" fitHeight="24.0" fitWidth="32.0" layoutX="542.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-pink.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPolice" fitHeight="18.0" fitWidth="15.0" layoutX="567.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/police-logo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPlayer2" fitHeight="24.0" fitWidth="32.0" layoutX="587.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-red.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="iconPlayer4" fitHeight="24.0" fitWidth="32.0" layoutX="586.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@vendor/image/diamond-blue.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -181,9 +320,9 @@
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField prefHeight="25.0" prefWidth="49.0" />
-                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
-                                                <Button alignment="CENTER" layoutX="324.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                                <TextField fx:id="textFieldDollar" prefHeight="25.0" prefWidth="49.0" />
+                                                <Button fx:id="buttonDollarBuy" mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button fx:id="buttonDollarSell" alignment="CENTER" layoutX="324.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets right="15.0" />
@@ -201,9 +340,9 @@
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField prefHeight="25.0" prefWidth="49.0" />
-                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
-                                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                                <TextField fx:id="textFieldEuro" prefHeight="25.0" prefWidth="49.0" />
+                                                <Button fx:id="buttonEuroBuy" mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button fx:id="buttonEuroSell" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets right="15.0" />
@@ -211,7 +350,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="107.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                              <children>
-                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANK" textFill="WHITE">
+                                                <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANC" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
@@ -221,9 +360,9 @@
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField prefHeight="25.0" prefWidth="49.0" />
-                                                <Button mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
-                                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
+                                                <TextField fx:id="textFieldFranc" prefHeight="25.0" prefWidth="49.0" />
+                                                <Button fx:id="buttonFrancBuy" mnemonicParsing="false" style="-fx-background-color: rgba(94, 78, 76,205); -fx-text-fill: #ff1500;" text="BUY" />
+                                                <Button fx:id="buttonFrancSell" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #bf1c08; -fx-text-fill: #cfcfcf;" text="SELL" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets right="15.0" />
@@ -242,84 +381,28 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="389.0" prefWidth="433.0" spacing="70.0">
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="111.0" prefWidth="170.0" style="-fx-background-color: #d4f2ff; -fx-text-fill: #0047c2; -fx-border-color: #3b7ced; -fx-border-width: 5px;" text="POWERUP xxx TL" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
-                                       <font>
-                                          <Font name="System Bold" size="25.0" />
-                                       </font>
-                                    </Button>
-                                    <VBox alignment="TOP_CENTER" prefHeight="145.0" prefWidth="382.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="191.0" prefWidth="337.0">
                                        <children>
-                                          <Label alignment="CENTER" text="YOU (XXXNAMEXXX)" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="currentPlayerName" alignment="CENTER" text="YOU (XXXNAMEXXX)" textAlignment="CENTER" textFill="WHITE">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font name="Forte" size="18.0" />
                                              </font>
                                           </Label>
                                           <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="200.0">
                                              <children>
-                                                <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0">
-                                                   <fill>
-                                                      <LinearGradient endX="0.45238095238095233" endY="1.0" startX="0.3333333333333333" startY="0.1904761904761904">
-                                                         <stops>
-                                                            <Stop color="#818a8f" />
-                                                            <Stop color="#cfd0b1" offset="1.0" />
-                                                         </stops>
-                                                      </LinearGradient>
-                                                   </fill>
-                                                </Rectangle>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="12.0">
+                                                <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e3fbeb" height="182.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="200.0" />
+                                                <AnchorPane prefHeight="170.0" prefWidth="203.0">
                                                    <children>
-                                                      <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="285.0" spacing="15.0">
-                                                         <children>
-                                                            <Label prefHeight="27.0" prefWidth="29.0" text="Label" />
-                                                         </children>
-                                                         <opaqueInsets>
-                                                            <Insets />
-                                                         </opaqueInsets>
-                                                         <VBox.margin>
-                                                            <Insets left="10.0" />
-                                                         </VBox.margin>
-                                                      </HBox>
-                                                      <Line endX="101.29289245605469" endY="0.2928932309150696" startX="-100.0" />
-                                                      <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" prefHeight="71.0" prefWidth="285.0">
-                                                         <children>
-                                                            <Label text="Label" />
-                                                         </children>
-                                                         <opaqueInsets>
-                                                            <Insets />
-                                                         </opaqueInsets>
-                                                         <VBox.margin>
-                                                            <Insets left="10.0" />
-                                                         </VBox.margin>
-                                                      </HBox>
-                                                      <Line endX="101.29289245605469" endY="0.2928932309150696" layoutX="196.0" layoutY="110.0" startX="-100.0" />
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="179.0" prefHeight="71.0" prefWidth="285.0">
-                                                         <children>
-                                                            <Label text="Label" />
-                                                         </children>
-                                                         <opaqueInsets>
-                                                            <Insets />
-                                                         </opaqueInsets>
-                                                         <VBox.margin>
-                                                            <Insets left="10.0" />
-                                                         </VBox.margin>
-                                                      </HBox>
-                                                      <Line endX="101.29289245605469" endY="0.2928932309150696" layoutX="196.0" layoutY="111.0" startX="-100.0" />
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="197.0" prefHeight="71.0" prefWidth="285.0">
-                                                         <children>
-                                                            <Label text="Label" />
-                                                         </children>
-                                                         <opaqueInsets>
-                                                            <Insets />
-                                                         </opaqueInsets>
-                                                         <VBox.margin>
-                                                            <Insets left="10.0" />
-                                                         </VBox.margin>
-                                                      </HBox>
+                                                      <Label layoutX="21.0" layoutY="30.0" prefHeight="21.0" prefWidth="58.0" text="Dollar:" />
+                                                      <Label layoutX="21.0" layoutY="88.0" text="Euro:" />
+                                                      <Label layoutX="21.0" layoutY="147.0" text="Swiss Franc:" />
+                                                      <Line endX="100.0" layoutX="101.0" layoutY="67.0" startX="-100.0" />
+                                                      <Line endX="100.0" layoutX="101.0" layoutY="126.0" startX="-100.0" />
+                                                      <Label fx:id="showDollarAmount" layoutX="117.0" layoutY="30.0" text="0$" />
+                                                      <Label fx:id="showEuroAmount" layoutX="117.0" layoutY="88.0" text="€0" />
+                                                      <Label fx:id="showFrancAmount" layoutX="117.0" layoutY="147.0" text="CHR 0" />
                                                    </children>
-                                                   <opaqueInsets>
-                                                      <Insets />
-                                                   </opaqueInsets>
-                                                </VBox>
+                                                </AnchorPane>
                                              </children>
                                           </StackPane>
                                        </children>
