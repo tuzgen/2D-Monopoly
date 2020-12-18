@@ -23,8 +23,8 @@ public class SettingsMenu {
 	// State variables
 
 	// Components
+	public static int muteSound = 0;
 	private Scene scene_settings_menu;
-
 	private Label label_title, label_colorblind, label_mute;
 	private Button button_return;
 	private CheckBox checkBox_colorblind, checkBox_mute;
@@ -50,10 +50,14 @@ public class SettingsMenu {
 		checkBox_mute.setOnAction( e -> updateSettings() );
 
 		checkBox_mute.setOnAction(event -> {
-			if(checkBox_mute.isSelected() == true)
+			if(checkBox_mute.isSelected() == true) {
 				MainMenu.sm.getMediaPlayer().setMute(true);
-			else
+				muteSound = 1;
+			}
+			else {
 				MainMenu.sm.getMediaPlayer().setMute(false);
+				muteSound = 0;
+			}
 		});
 
 		updateDisplay();

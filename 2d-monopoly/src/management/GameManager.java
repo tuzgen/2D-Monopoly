@@ -9,6 +9,7 @@ import entity.player.User;
 import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
+import gui.menus.SettingsMenu;
 import sun.applet.Main;
 
 import java.io.*;
@@ -63,7 +64,8 @@ public class GameManager implements Serializable {
 		bank = Bank.getInstance();
 		map = Map.getInstance();
 		turnOfPlayerIndex = 0;
-		MainMenu.sm.music(1);
+		if(SettingsMenu.muteSound == 0)
+			MainMenu.sm.music(1);
 	}
 
 	public static boolean loadGame() {
