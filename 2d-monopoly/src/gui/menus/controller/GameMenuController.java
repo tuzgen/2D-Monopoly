@@ -296,6 +296,7 @@ public class GameMenuController {
 	public void trade(){
 		//new TradePopup(1).display(context);
 		new ShowTradesPopup().display(context);
+		update();
 	}
 
 	public void pl1trade(){

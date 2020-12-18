@@ -47,9 +47,14 @@ public class TradeManager {
         return true; // Some other things may be added
     }
 
-    public void acceptTrade(Trade trade) {
+    public boolean acceptTrade(Trade trade) {
        Player owner = trade.getOwner();
        Player targetPlayer = trade.getTarget();
+
+        if(!bank.swapMoney(owner, targetPlayer, trade.getOfferedAmount()))
+            return false;
+        if(!bank.swapMoney(targetPlayer, owner, trade.getRequestedAmount()))
+            return false;
 
        for(int i = 0; i < trade.getOwnersTile().size(); i++){
            owner.removeFromTileList(trade.getOwnersTile().get(i));
@@ -59,11 +64,11 @@ public class TradeManager {
            targetPlayer.removeFromTileList(trade.getTargetTile().get(k));
            owner.addToTileList(trade.getTargetTile().get(k));
        }
-       bank.swapMoney(owner, targetPlayer, trade.getOfferedAmount());
-       bank.swapMoney(targetPlayer, owner, trade.getRequestedAmount());
 
        owner.removeTrade(trade);
        targetPlayer.removeTrade(trade);
+       
+       return true;
     }
 
     public void denyTrade(Trade trade) { // This only deletes from the target lists in players
