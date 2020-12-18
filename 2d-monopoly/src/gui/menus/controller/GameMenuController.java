@@ -1,6 +1,7 @@
 package gui.menus.controller;
 
 import entity.map.tile.*;
+import entity.player.Player;
 import gui.menus.popups.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +26,7 @@ public class GameMenuController {
 			instance = new GameMenuController();
 		return instance;
 	}
-
+	
 	@FXML private Label currentPlayerName = new Label();
 	@FXML private Label showDollarAmount = new Label();
 	@FXML private Label showEuroAmount = new Label();

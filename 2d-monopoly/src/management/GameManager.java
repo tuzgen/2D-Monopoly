@@ -8,6 +8,8 @@ import entity.player.Playable;
 import entity.player.Player;
 import entity.player.User;
 import entity.player.npcs.Mafia;
+import gui.menus.GameMenu;
+import gui.menus.controller.GameMenuController;
 
 import java.io.*;
 
