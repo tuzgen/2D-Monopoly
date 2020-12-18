@@ -1,6 +1,6 @@
 package gui.menus;
 
-import gui.menus.popups.ClosePopup;
+import gui.popups.ClosePopup;
 import gui.misc.FPSCounter;
 import gui.misc.Style;
 import javafx.geometry.Pos;

@@ -1,10 +1,8 @@
 package gui.menus.controller;
 
-import entity.Trade;
 import entity.map.tile.*;
-import entity.player.Character;
 import entity.player.Player;
-import gui.menus.popups.*;
+import gui.popups.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -268,10 +266,10 @@ public class GameMenuController {
 		buttonTile37.setOnAction(e -> showTileActions(37));
 		buttonTile38.setOnAction(e -> showTileActions(38));
 		buttonTile39.setOnAction(e -> showTileActions(39));
-		buttonPlayer1.setOnAction(e -> showTradeActions(e));
-		buttonPlayer2.setOnAction(e -> showTradeActions(e));
-		buttonPlayer3.setOnAction(e -> showTradeActions(e));
-		buttonPlayer4.setOnAction(e -> showTradeActions(e));
+		buttonPlayer1.setOnAction(this::showTradeActions); // TODO this may not work
+		buttonPlayer2.setOnAction(this::showTradeActions);
+		buttonPlayer3.setOnAction(this::showTradeActions);
+		buttonPlayer4.setOnAction(this::showTradeActions);
 
 		buttons = new Button[]{
 				buttonTile0, buttonTile1, buttonTile2, buttonTile3, buttonTile4,
@@ -284,7 +282,6 @@ public class GameMenuController {
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
 		Player[] player = GameManager.getInstance().determineTurn();
-
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
@@ -305,7 +302,6 @@ public class GameMenuController {
 		update();
 	}
 
-
 	private void showTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			new TilePopup().display("City Tile", (CityTile) Map.getInstance().getTileAt(tileNo));
@@ -325,6 +321,12 @@ public class GameMenuController {
 
 		}
 
+	}
+
+	private void handleTileLanded(int tileNo) {
+		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
+
+		}
 	}
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
@@ -387,8 +389,6 @@ public class GameMenuController {
 	}
 
 	public void update() {
-		System.out.println(
-				Double.toString(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
 		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
 		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
@@ -400,27 +400,20 @@ public class GameMenuController {
 
 		// set turn indicators for each player
 		// set opaque if the turn is the player's
+		System.out.println("Turnof -- update: " + turnOf);
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
 		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
 
+		updateAllLocations();
+	}
 
-		for (int i = 0; i < 4; i++) { // TODO 4 is hardcoded for debug purposes it is player index.
-			icons[i].setLayoutX(buttons[GameManager.getInstance()
-					.getPlayerAt(i).getLocation() % Map.TILECOUNT].getLayoutX() + offsets[i][0]);
-			icons[i].setLayoutY(buttons[GameManager.getInstance()
-					.getPlayerAt(i).getLocation() % Map.TILECOUNT].getLayoutY() + offsets[i][1]);
+	private void updateAllLocations() {
+		for (int i = 0; i < 6; i++) {
+			updateLocations(i);
 		}
-		icons[4].setLayoutX(buttons[GameManager.getInstance()
-				.getMafia().getLocation() % Map.TILECOUNT].getLayoutX());
-		icons[4].setLayoutY(buttons[GameManager.getInstance()
-				.getMafia().getLocation() % Map.TILECOUNT].getLayoutY());
-		icons[5].setLayoutX(buttons[GameManager.getInstance()
-				.getPolice().getLocation() % Map.TILECOUNT].getLayoutX());
-		icons[5].setLayoutY(buttons[GameManager.getInstance()
-				.getPolice().getLocation() % Map.TILECOUNT].getLayoutY());
 	}
 
 	public void setStage(Stage context) {
@@ -431,12 +424,16 @@ public class GameMenuController {
 		SoundManager sm = new SoundManager();
 		sm.music(2);
 
-		int index = GameManager.getInstance().playTurn();
+		GameManager.getInstance().playTurn();
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
+		update();
+	}
+
+	private void updateLocations(int index) {
 		if (index == 4) {
 			System.out.println(GameManager.getInstance().getMafia().getLocation() % 40);
-			if (GameManager.getInstance().getMafia().getLocation() % 40 > 0 && GameManager.getInstance().getMafia().getLocation() % 40 <= 10) {
+			if (GameManager.getInstance().getMafia().getLocation() % 40 >= 0 && GameManager.getInstance().getMafia().getLocation() % 40 <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 14);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 44);
 			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 10 && GameManager.getInstance().getMafia().getLocation() % 40 <= 20) {
@@ -450,8 +447,8 @@ public class GameMenuController {
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 5);
 			}
 		} else if (index == 5) {
-			System.out.println(GameManager.getInstance().getPolice().getLocation() % 40);
-			if (GameManager.getInstance().getPolice().getLocation() % 40 > 0 && GameManager.getInstance().getPolice().getLocation() % 40 <= 10) {
+			System.out.println("Police " + GameManager.getInstance().getPolice().getLocation() % 40);
+			if (GameManager.getInstance().getPolice().getLocation() % 40 >= 0 && GameManager.getInstance().getPolice().getLocation() % 40 <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 31);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 43);
 			} else if (GameManager.getInstance().getPolice().getLocation() % 40 > 10 && GameManager.getInstance().getPolice().getLocation() % 40 <= 20) {
@@ -462,7 +459,7 @@ public class GameMenuController {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 16);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 17);
 			}
-			if (GameManager.getInstance().getPolice().getLocation() % 40 > 30 && GameManager.getInstance().getPolice().getLocation() % 40 < 40) {
+			if (GameManager.getInstance().getPolice().getLocation() % 40 > 30) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 41);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 29);
 			}
@@ -471,7 +468,7 @@ public class GameMenuController {
 			System.out.println("-----------");
 
 			if (index == 0) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 3);
 					icons[index]
@@ -494,7 +491,7 @@ public class GameMenuController {
 				}
 
 			} else if (index == 1) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 34);
 					icons[index]
@@ -517,7 +514,7 @@ public class GameMenuController {
 				}
 
 			} else if (index == 2) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 4);
 					icons[index]
@@ -540,7 +537,7 @@ public class GameMenuController {
 				}
 
 			} else if (index == 3) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 33);
 					icons[index]

@@ -4,12 +4,11 @@ import entity.Account;
 import entity.Bank;
 import entity.card.*;
 import entity.map.tile.*;
-import entity.player.Playable;
+import management.Map;
 import entity.player.Player;
-import entity.player.User;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
 
 public class Mafia extends NPC implements Serializable {
 
@@ -63,7 +62,7 @@ public class Mafia extends NPC implements Serializable {
         return true;
     }
 
-    public String sellCard(Player player){ //başak false condition avr mı check it
+    public String sellCard(Player player){ // başak false condition avr mı check it
         if(!bank.takeMoney(player, CARDAMOUNT))
             return "false";
         Card card = deck.drawCard(player);
@@ -76,7 +75,7 @@ public class Mafia extends NPC implements Serializable {
 
     public void setIsArrested(boolean arrested){
         isArrested = arrested;
-//        location = jailtile;
+        setLocation(Map.JAILNO);
     }
 
     public void addDeal(Player player){

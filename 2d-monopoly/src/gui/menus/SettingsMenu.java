@@ -20,7 +20,6 @@ public class SettingsMenu {
 	// Constants
 
 	// State variables
-	GameManager gameManager;
 
 	// Components
 	private Scene scene_settings_menu;
@@ -30,7 +29,6 @@ public class SettingsMenu {
 	private CheckBox checkBox_colorblind, checkBox_mute;
 
 	public void display(Stage context) {
-		gameManager = GameManager.getInstance();
 
 		// initialize components
 		label_title = new Label("Settings");

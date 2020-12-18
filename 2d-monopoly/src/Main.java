@@ -1,5 +1,5 @@
 import gui.menus.MainMenu;
-import gui.menus.popups.ClosePopup;
+import gui.popups.ClosePopup;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

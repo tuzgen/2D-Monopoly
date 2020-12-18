@@ -1,6 +1,5 @@
-package gui.menus.popups;
+package gui.popups;
 
-import entity.Trade;
 import entity.map.tile.Tile;
 import entity.player.Player;
 import gui.misc.Style;

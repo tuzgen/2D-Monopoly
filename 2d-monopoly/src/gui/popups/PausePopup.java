@@ -1,7 +1,6 @@
-package gui.menus.popups;
+package gui.popups;
 
 import gui.menus.MainMenu;
-import gui.menus.SettingsMenu;
 import gui.misc.Style;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

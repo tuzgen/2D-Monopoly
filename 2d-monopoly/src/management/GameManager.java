@@ -30,7 +30,7 @@ public class GameManager implements Serializable {
 	Player player2;
 	Player player3;
 	Player player4;
-	Player[] players1;
+	Player[] turnOrder;
 
 	// state variables
 	private int turnOfPlayerIndex;
@@ -135,37 +135,37 @@ public class GameManager implements Serializable {
 	}
 
 	public Player[] determineTurn() {
-		int sum1, sum2, sum3, sum4, sum5, sum6;
+		int sum0, sum1, sum2, sum3;
 		Player tmp;
 		int[] arr = new int[4];
-		players1 = new Player[4];
+		turnOrder = new Player[4];
+		dice.rollTheDice();
+		sum0 = dice.getSum();
+		arr[0] = sum0;
+
 		dice.rollTheDice();
 		sum1 = dice.getSum();
-		arr[0] = sum1;
+		while(sum0 == sum1){
+			dice.rollTheDice();
+			sum1 = dice.getSum();
+		}
+		arr[1] = sum1;
 
 		dice.rollTheDice();
 		sum2 = dice.getSum();
-		while(sum1 == sum2){
+		while(sum0 == sum2 || sum1 == sum2){
 			dice.rollTheDice();
 			sum2 = dice.getSum();
 		}
-		arr[1] = sum2;
+		arr[2] = sum2;
 
 		dice.rollTheDice();
 		sum3 = dice.getSum();
-		while(sum1 == sum3 || sum2 == sum3){
+		while(sum0 == sum3 || sum1 == sum3 || sum2 == sum3){
 			dice.rollTheDice();
 			sum3 = dice.getSum();
 		}
-		arr[2] = sum3;
-
-		dice.rollTheDice();
-		sum4 = dice.getSum();
-		while(sum1 == sum4 || sum2 == sum4 || sum3 == sum4){
-			dice.rollTheDice();
-			sum4 = dice.getSum();
-		}
-		arr[3] = sum4;
+		arr[3] = sum3;
 
 		bubbleSort(arr);
 
@@ -174,27 +174,26 @@ public class GameManager implements Serializable {
 		}
 
 		for (int i = 0; i < 4; i++) {
-			if (arr[i] == sum1) {
-				players1[i] = player1;
+			if (arr[i] == sum0) {
+				turnOrder[i] = player1;
+			} else if (arr[i] == sum1) {
+				turnOrder[i] = player2;
 			} else if (arr[i] == sum2) {
-				players1[i] = player2;
+				turnOrder[i] = player3;
 			} else if (arr[i] == sum3) {
-				players1[i] = player3;
-			} else if (arr[i] == sum4) {
-				players1[i] = player4;
+				turnOrder[i] = player4;
 			}
 		}
 
 		for (int i = 0; i < 4; i++) {
 			System.out.println("Real: " + players[i].getName());
-			System.out.println("\tChanged: " + players1[i].getName());
+			System.out.println("\tChanged: " + players[i].getName());
 		}
 
-		return players1;
+		return turnOrder;
 	}
 
-void bubbleSort(int arr[])
-{
+void bubbleSort(int arr[]) {
 	int n = arr.length;
 	for (int i = 0; i < n - 1; i++)
 		for (int j = 0; j < n - i - 1; j++)
@@ -205,7 +204,6 @@ void bubbleSort(int arr[])
 				arr[j + 1] = temp;
 			}
 }
-
 
 	public void openPowerUpCrate(Player player) {
 		// TODO
@@ -318,12 +316,7 @@ void bubbleSort(int arr[])
 		}
 	}
 
-	public Player getPlayerAt(int index) {
-		if(players1 == null){
-			return players[index];
-		}
-		return players[index];
-	}
+	public Player getPlayerAt(int index) { return players[index]; }
 
 	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
 
@@ -333,8 +326,6 @@ void bubbleSort(int arr[])
 
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
-
-
 	public int playTurn() {
 
 		dice.rollTheDice();
@@ -343,32 +334,31 @@ void bubbleSort(int arr[])
 
 		int temp = turnOfPlayerIndex;
 		if(temp == 4){
-			mafia.setLocation(mafia.getLocation() + diceTotal % 40);
+			mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
 
 			turnOfPlayerIndex = 5;
 			return 4;
 		}
 		if(temp == 5){
-			police.setLocation(police.getLocation() + diceTotal -1 % 40);
+			police.setLocation(police.getLocation() + diceTotal % Map.TILE_COUNT);
 
 			System.out.println(police.getLocation());
 			turnOfPlayerIndex = 0;
 			return 5;
 		}
 
-		if(players[turnOfPlayerIndex].getName() == players1[turnOfPlayerIndex].getName()){
-			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % 40);
+		if(players[turnOfPlayerIndex].getName().equals(turnOrder[turnOfPlayerIndex].getName())){
+			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
-		}else{
-			while(players[temp].getName() != players1[turnOfPlayerIndex].getName()){
+		} else{
+			while(!players[temp].getName().equals(turnOrder[turnOfPlayerIndex].getName())) {
 				temp++;
 				if(temp > 3)
 					temp = 0;
 			}
-			players[temp].setLocation(players[temp].getLocation() + diceTotal % 40);
+			players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
 			System.out.println("Player: " + players[temp].getName());
 		}
-
 
 		int result = temp;
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6); // TODO add mafia and police to the loop + NPC_COUNT);

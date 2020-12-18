@@ -1,6 +1,5 @@
-package gui.menus.popups;
+package gui.popups;
 
-import entity.player.Playable;
 import entity.player.Player;
 import gui.misc.Style;
 import javafx.animation.PauseTransition;
@@ -19,9 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import management.GameManager;
-import sun.misc.JavaLangAccess;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class MafiaPopup {

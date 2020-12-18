@@ -1,4 +1,4 @@
-package gui.menus.popups;
+package gui.popups;
 
 import entity.player.Player;
 import gui.misc.Style;
@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import management.GameManager;

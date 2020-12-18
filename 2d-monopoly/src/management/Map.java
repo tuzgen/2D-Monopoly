@@ -7,7 +7,9 @@ import java.io.Serializable;
 
 public class Map implements Serializable {
 	private static Map instance;
-	public static final int TILECOUNT = 40;
+
+	public static final int TILE_COUNT = 40;
+	public static final int JAILNO = 30;
 
 	public static Map getInstance() {
 		if (instance == null)
@@ -34,7 +36,7 @@ public class Map implements Serializable {
 	}
 
 	private void createMap() {
-		tiles = new Tile[TILECOUNT];
+		tiles = new Tile[TILE_COUNT];
 
 		tiles[0] = new StartTile("Start", 0);
 		tiles[1] = new CityTile("City 1", 1, 60, 2, 50, 70, 1);

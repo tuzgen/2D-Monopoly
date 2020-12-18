@@ -1,4 +1,4 @@
-package gui.menus.popups;
+package gui.popups;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

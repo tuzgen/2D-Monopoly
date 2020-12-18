@@ -10,7 +10,7 @@ public class Police extends NPC implements Serializable {
     public Police(){
         super("Police");
         setName("Police");
-        setLocation(1);
+        setLocation(0);
         deal = false;
     }
 
