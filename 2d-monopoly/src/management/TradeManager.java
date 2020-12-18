@@ -5,6 +5,8 @@ import entity.Trade;
 import entity.map.tile.Tile;
 import entity.player.Player;
 
+import java.util.ArrayList;
+
 public class TradeManager {
     private static TradeManager tradeManager;
     private Bank bank;
@@ -19,12 +21,15 @@ public class TradeManager {
         return tradeManager;
     }
 
-    public boolean openTrade(Player owner, Player targetPlayer, Tile[] targetTiles, Tile[] offeredTiles, int offeredAmount, int requestedAmount) {
+    public boolean openTrade(Player owner, Player targetPlayer, ArrayList<Tile> targetTiles, ArrayList<Tile> offeredTiles, int offeredAmount, int requestedAmount) {
         Trade trade = new Trade(owner, targetPlayer);
         trade.setOfferedAmount(offeredAmount);
         trade.setRequestedAmount(requestedAmount);
         trade.setOwnersTile(offeredTiles);
         trade.setTargetTile(targetTiles);
+
+        System.out.println(owner.getTileList().size());
+        System.out.println(targetTiles.size());
 
         if(checkTrades(owner, targetPlayer, targetTiles, offeredTiles)){
             owner.addTrade(trade);
@@ -34,12 +39,13 @@ public class TradeManager {
         return false;
     }
 
-    public boolean checkTrades(Player owner, Player targetPlayer, Tile[] targetTiles, Tile[] offeredTiles) { // This methods functionality might be implemented in UI so it may be removed
-        for(int i = 0; i < offeredTiles.length; i++)
-            if(!owner.containsTile(offeredTiles[i]))
+    public boolean checkTrades(Player owner, Player targetPlayer, ArrayList<Tile> targetTiles, ArrayList<Tile> offeredTiles) { // This methods functionality might be implemented in UI so it may be removed
+        for(int i = 0; i < offeredTiles.size(); i++)
+            if (!owner.containsTile(offeredTiles.get(i)))
                 return false;
-        for(int k = 0; k < targetTiles.length; k++)
-            if(!targetPlayer.containsTile(offeredTiles[k]))
+
+        for(int k = 0; k < targetTiles.size(); k++)
+            if (!targetPlayer.containsTile(targetTiles.get(k)))
                 return false;
         return true; // Some other things may be added
     }
@@ -48,13 +54,13 @@ public class TradeManager {
        Player owner = trade.getOwner();
        Player targetPlayer = trade.getTarget();
 
-       for(int i = 0; i < trade.getOwnersTile().length; i++){
-           owner.removeFromTileList(trade.getOwnersTile()[i]);
-           targetPlayer.addToTileList(trade.getOwnersTile()[i]);
+       for(int i = 0; i < trade.getOwnersTile().size(); i++){
+           owner.removeFromTileList(trade.getOwnersTile().get(i));
+           targetPlayer.addToTileList(trade.getOwnersTile().get(i));
        }
-       for(int k = 0; k < trade.getTargetTile().length; k++){
-           targetPlayer.removeFromTileList(trade.getTargetTile()[k]);
-           owner.addToTileList(trade.getTargetTile()[k]);
+       for(int k = 0; k < trade.getTargetTile().size(); k++){
+           targetPlayer.removeFromTileList(trade.getTargetTile().get(k));
+           owner.addToTileList(trade.getTargetTile().get(k));
        }
        bank.swapMoney(owner, targetPlayer, trade.getOfferedAmount());
        bank.swapMoney(targetPlayer, owner, trade.getRequestedAmount());

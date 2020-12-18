@@ -6,6 +6,7 @@ import entity.PowerUp;
 import entity.Trade;
 import entity.card.Card;
 import entity.map.property.Property;
+import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
 
 import java.util.ArrayList;
@@ -42,6 +43,10 @@ public class Player extends Character{
         account = new Account(salary);
         speed = 1;
         vehicleCount = 0;
+        /*tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 1));*/
     }
 
     //Methods
@@ -153,6 +158,10 @@ public class Player extends Character{
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public ArrayList<Tile> getTileList(){
+        return tileList;
     }
 }
 

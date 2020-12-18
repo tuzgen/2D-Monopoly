@@ -2,6 +2,7 @@ package gui.menus.controller;
 
 import gui.menus.popups.MafiaPopup;
 import gui.menus.popups.PausePopup;
+import gui.menus.popups.TradePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,16 +27,12 @@ public class GameMenuController {
 
 	@FXML
 	private Label currentPlayerName = new Label();
-
 	@FXML
 	private Label showDollarAmount = new Label();
-
 	@FXML
 	private Label showEuroAmount = new Label();
-
 	@FXML
 	private Label showFrancAmount = new Label();
-
 	@FXML
 	private Label infoPlayer1Name = new Label();
 	@FXML
@@ -298,6 +295,25 @@ public class GameMenuController {
 		new PausePopup().display(context);
 	}
 
-	public void mafiaButton() { new MafiaPopup().display(context);
-		update();}
+	public void mafiaButton() {
+		new MafiaPopup().display(context);
+		update();
+	}
+
+	public void trade(){
+		new TradePopup(1).display(context);
+	}
+
+	public void pl1trade(){
+		new TradePopup(1).display(context);
+	}
+
+	public void pl2trade(){
+		new TradePopup(2).display(context);
+	}
+
+	public void pl3trade(){
+		new TradePopup(3).display(context);
+	}
+
 }
