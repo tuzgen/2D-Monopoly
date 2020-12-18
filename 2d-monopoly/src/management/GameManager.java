@@ -262,7 +262,7 @@ public class GameManager implements Serializable {
 		System.out.println(
 				"TurnOf: " + turnOfPlayerIndex + "\n" +
 				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
-						"");
+						"DiceTotal: " + diceTotal);
 		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
 	}
