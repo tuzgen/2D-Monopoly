@@ -58,6 +58,7 @@ public class GameManager implements Serializable {
 		bank = Bank.getInstance();
 		map = Map.getInstance();
 		turnOfPlayerIndex = 0;
+		SoundManager.getInstance().music(1);
 	}
 
 	// TODO delete Debug

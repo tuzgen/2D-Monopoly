@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import management.SoundManager;
 
 public class PausePopup {
 	public void display(Stage context) {
@@ -43,6 +44,7 @@ public class PausePopup {
 
 	private void onPressed_button_return_main_menu(Stage context, Stage window) {
 		// Push the settings screen to the context
+		SoundManager.getInstance().stopMusic();
 		window.close();
 		new MainMenu().display(context);
 	}

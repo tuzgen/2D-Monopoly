@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
 import management.Map;
+import management.SoundManager;
 
 import java.text.DecimalFormat;
 
@@ -26,7 +27,7 @@ public class GameMenuController {
 			instance = new GameMenuController();
 		return instance;
 	}
-	
+
 	@FXML private Label currentPlayerName = new Label();
 	@FXML private Label showDollarAmount = new Label();
 	@FXML private Label showEuroAmount = new Label();
@@ -276,6 +277,8 @@ public class GameMenuController {
 
 	public void rollTheDice() {
 		int index = GameManager.getInstance().playTurn();
+		SoundManager sm = new SoundManager();
+		sm.music(2);
 
 		icons[index]
 				.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutX()
