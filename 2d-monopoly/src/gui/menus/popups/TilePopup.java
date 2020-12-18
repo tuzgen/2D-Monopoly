@@ -1,6 +1,7 @@
 package gui.menus.popups;
 
 import entity.map.tile.CityTile;
+import entity.map.tile.TransportationTile;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,4 +46,32 @@ public class TilePopup {
 			window.setScene(scene);
 			window.showAndWait();
 		}
+		public static void display(String title, TransportationTile tile) {
+		// Initiate pop up
+		System.out.println();
+		Stage window = new Stage();
+		window.initStyle(StageStyle.UNDECORATED);
+		window.initModality(Modality.APPLICATION_MODAL);
+		window.setTitle(title);
+		window.setMinWidth(250);
+
+		Text infoText = new Text(tile.getName() + " Tile no " + tile.getId());
+
+		// A button which displays a message and quits
+		Button yesButton = new Button("Return");
+		yesButton.setOnAction( e -> {
+			System.out.println("Button pressed on pop up");
+			window.close();
+		});
+
+		// Create layout and add Text and Button
+		VBox layout = new VBox(10);
+		layout.getChildren().addAll(infoText, yesButton);
+		layout.setAlignment(Pos.CENTER);
+
+		// Set the scene for the pop up
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		window.showAndWait();
+	}
 	}

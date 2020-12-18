@@ -2,7 +2,7 @@ package entity.player;
 
 import entity.Account;
 import entity.Bank;
-import entity.PowerUp;
+import entity.powerup.PowerUp;
 import entity.Trade;
 import entity.card.Card;
 import entity.map.property.Property;
@@ -38,7 +38,7 @@ public class Player extends Character{
         cards = new ArrayList<Card>();
         isArrested = false;
         isBankrupt = false;
-        salary = 500000; // change xdeee
+        salary = 500000; // TODO change initial money
         account = new Account(salary);
         speed = 1;
         vehicleCount = 0;
