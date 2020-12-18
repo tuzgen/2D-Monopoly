@@ -19,6 +19,10 @@ public class SoundManager {
         musicList[3] = "../2d-monopoly/src/vendor/sound/money.mp3";
     }
 
+    public static void deleteInstance(){
+        instance = null;
+    }
+
     public static SoundManager getInstance(){
         if(instance == null)
             instance = new SoundManager();
@@ -42,6 +46,10 @@ public class SoundManager {
 
     public void continueMusic(){
         mediaPlayer.play();
+    }
+
+    public MediaPlayer getMediaPlayer(){
+        return mediaPlayer;
     }
 
 

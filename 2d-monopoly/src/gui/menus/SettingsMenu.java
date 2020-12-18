@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import management.FileManager;
 import management.GameManager;
+import management.SoundManager;
 
 public class SettingsMenu {
 	// Constants
@@ -47,6 +48,13 @@ public class SettingsMenu {
 		checkBox_mute = new CheckBox();
 		checkBox_mute.setStyle(Style.checkbox_one);
 		checkBox_mute.setOnAction( e -> updateSettings() );
+
+		checkBox_mute.setOnAction(event -> {
+			if(checkBox_mute.isSelected() == true)
+				MainMenu.sm.getMediaPlayer().setMute(true);
+			else
+				MainMenu.sm.getMediaPlayer().setMute(false);
+		});
 
 		updateDisplay();
 
