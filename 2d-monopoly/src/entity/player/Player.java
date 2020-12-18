@@ -1,7 +1,6 @@
 package entity.player;
 
 import entity.Account;
-import entity.Bank;
 import entity.powerup.PowerUp;
 import entity.Trade;
 import entity.card.Card;
@@ -24,6 +23,7 @@ public class Player extends Character{
     private boolean isArrested;
     private ArrayList<Trade> trades;
     private Playable playable;
+    private int startMoney;
     private int salary;
     private double speed;
     private int vehicleCount;
@@ -39,8 +39,9 @@ public class Player extends Character{
         cards = new ArrayList<Card>();
         isArrested = false;
         isBankrupt = false;
-        salary = 500000; // TODO change initial money
-        account = new Account(salary);
+        salary = 15000;
+        startMoney = 500000; // TODO change initial money
+        account = new Account(startMoney);
         speed = 1;
         vehicleCount = 0;
         tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
@@ -132,6 +133,10 @@ public class Player extends Character{
         isBankrupt = bankrupt;
     }
 
+    public void addToAccount(int amount) {
+        account.setTrl(account.getTrl() + amount);
+    }
+
     public Account getAccount() {
         return account;
     }
@@ -152,16 +157,24 @@ public class Player extends Character{
         return vehicleCount;
     }
 
+    public int getStartMoney() {
+        return startMoney;
+    }
+
+    public void setStartMoney(int startMoney) {
+        this.startMoney = startMoney;
+    }
+
+    public ArrayList<Tile> getTileList(){
+        return tileList;
+    }
+
     public int getSalary() {
         return salary;
     }
 
     public void setSalary(int salary) {
         this.salary = salary;
-    }
-
-    public ArrayList<Tile> getTileList(){
-        return tileList;
     }
 }
 

@@ -4,7 +4,6 @@ import cached.Settings;
 import entity.Bank;
 import entity.Dice;
 import entity.player.BotCharacter;
-import entity.player.Playable;
 import entity.player.Player;
 import entity.player.User;
 import entity.player.npcs.Mafia;
@@ -273,14 +272,21 @@ public class GameManager implements Serializable {
 	public int playTurn() {
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
+		int initLoc = players[turnOfPlayerIndex].getLocation();
 		System.out.println(
 		"Turn of: " + turnOfPlayerIndex + "\n" +
 				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
 						"DiceTotal: " + diceTotal + "\n" +
 						"Location after: " + (players[turnOfPlayerIndex].getLocation() + diceTotal) + "\n");
 		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
+
+		if (getTurnOfPlayer().getLocation() / Map.TILECOUNT > initLoc / Map.TILECOUNT) {
+			players[turnOfPlayerIndex].addToAccount(getTurnOfPlayer().getSalary());
+		}
+
 		int result = turnOfPlayerIndex;
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
+
 
 		return result;
 	}

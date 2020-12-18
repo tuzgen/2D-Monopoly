@@ -1,5 +1,6 @@
 package gui.menus.controller;
 
+import entity.Trade;
 import entity.map.tile.*;
 import gui.menus.popups.TilePopup;
 import gui.menus.popups.MafiaPopup;
@@ -100,6 +101,14 @@ public class GameMenuController {
 	@FXML private ImageView iconPolice; // = new ImageView(new Image("file:src/vendor/image/police-logo.png"));
 	@FXML private ImageView iconPlayer2; // = new ImageView(new Image("file:src/vendor/image/diamond-red.png"));
 	@FXML private ImageView iconPlayer4; // = new ImageView(new Image("file:src/vendor/image/diamond-blue.png"));
+	@FXML private Button buttonPlayer1;
+	@FXML private Button buttonPlayer2;
+	@FXML private Button buttonPlayer3;
+	@FXML private Button buttonPlayer4;
+	@FXML private ImageView turnIndicator1;
+	@FXML private ImageView turnIndicator2;
+	@FXML private ImageView turnIndicator3;
+	@FXML private ImageView turnIndicator4;
 
 	private Stage context;
 	private Button[] buttons;
@@ -173,6 +182,7 @@ public class GameMenuController {
 		buttonTile37.setOnAction(e -> showTileActions(37));
 		buttonTile38.setOnAction(e -> showTileActions(38));
 		buttonTile39.setOnAction(e -> showTileActions(39));
+		buttonPlayer1.setOnAction(e -> showTradeActions(e));
 
 		buttons = new Button[] {
 				buttonTile0,buttonTile1,buttonTile2,buttonTile3,buttonTile4,
@@ -187,7 +197,21 @@ public class GameMenuController {
 		icons = new ImageView[] {
 			iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
 		};
+		update();
 	}
+
+	private void showTradeActions(ActionEvent e) {
+		if (e.getSource() == buttonPlayer1) {
+			new TradePopup(0).display(context);
+		} else if (e.getSource() == buttonPlayer2) {
+			new TradePopup(1).display(context);
+		} else if (e.getSource() == buttonPlayer3) {
+			new TradePopup(2).display(context);
+		} else if (e.getSource() == buttonPlayer4) {
+			new TradePopup(3).display(context);
+		}
+	}
+
 
 	private void showTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
@@ -268,7 +292,12 @@ public class GameMenuController {
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
-
+		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+		// set opacity to 0
+		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
+		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
+		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
+		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName()); // Bu burada mı olmalı her tur sonunda değiştirilcek
 	}
 
@@ -285,6 +314,7 @@ public class GameMenuController {
 		icons[index]
 				.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutY()
 						+ offsets[index][1]);
+		update();
 	}
 
 	public void pauseGame() {
@@ -296,20 +326,25 @@ public class GameMenuController {
 		update();
 	}
 
+	// TODO
 	public void trade(){
 		new TradePopup(1).display(context);
+		update();
 	}
 
 	public void pl1trade(){
 		new TradePopup(1).display(context);
+		update();
 	}
 
 	public void pl2trade(){
 		new TradePopup(2).display(context);
+		update();
 	}
 
 	public void pl3trade(){
 		new TradePopup(3).display(context);
+		update();
 	}
 
 }

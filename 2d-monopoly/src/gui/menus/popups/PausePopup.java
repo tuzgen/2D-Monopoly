@@ -12,12 +12,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PausePopup {
 	public void display(Stage context) {
 		Stage window = new Stage();
 
 		window.initModality(Modality.APPLICATION_MODAL);
+		window.initStyle(StageStyle.UNDECORATED);
 		window.setTitle("Pause game");
 		window.setResizable(false);
 		window.setMinWidth(300);

@@ -28,19 +28,19 @@
                <children>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="153.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#trade" prefHeight="61.0" prefWidth="146.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer1" mnemonicParsing="false" onAction="#trade" prefHeight="61.0" prefWidth="146.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="51.0" prefWidth="109.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="30.0" prefWidth="107.0" spacing="15.0">
                                        <children>
-                                          <Label fx:id="infoPlayer1Name" text="yarra" textFill="WHITE" />
+                                          <Label fx:id="infoPlayer1Name" text="Player 1" textFill="WHITE" />
                                           <ImageView fitHeight="30.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@vendor/image/green-player.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="100.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="turnIndicator1" fitHeight="25.0" fitWidth="25.0" layoutX="100.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@vendor/image/turn-diamond.png" />
                                              </image>
@@ -55,7 +55,7 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="145.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#pl1trade" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer2" mnemonicParsing="false" onAction="#pl1trade" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="51.0" prefWidth="132.0">
                                  <children>
@@ -67,7 +67,7 @@
                                                 <Image url="@vendor/image/red-player.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="turnIndicator2" fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@vendor/image/turn-diamond.png" />
                                              </image>
@@ -82,7 +82,7 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="166.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#pl2trade" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer3" mnemonicParsing="false" onAction="#pl2trade" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
@@ -94,7 +94,7 @@
                                                 <Image url="@vendor/image/pink-player.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="turnIndicator3" fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@vendor/image/turn-diamond.png" />
                                              </image>
@@ -109,7 +109,7 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="161.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#pl3trade" prefHeight="61.0" prefWidth="144.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer4" mnemonicParsing="false" onAction="#pl3trade" prefHeight="61.0" prefWidth="144.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="50.0" prefWidth="136.0">
                                  <children>
@@ -121,7 +121,7 @@
                                                 <Image url="@vendor/image/blue-player.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="turnIndicator4" fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@vendor/image/turn-diamond.png" />
                                              </image>

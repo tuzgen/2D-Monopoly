@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import management.GameManager;
 import sun.misc.JavaLangAccess;
@@ -28,6 +29,7 @@ public class MafiaPopup {
     public void display(Stage context){
         PauseTransition delay = new PauseTransition(Duration.millis(1500));
         Stage window = new Stage();
+        window.initStyle(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setResizable(false);
         window.setTitle("Use Mafia Favour.");

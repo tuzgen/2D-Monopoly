@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import management.GameManager;
 import management.TradeManager;
@@ -32,6 +33,7 @@ public class TradePopup {
 
     public void display(Stage context) {
         Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
         PauseTransition delay = new PauseTransition(Duration.millis(2000));
         ArrayList<Tile> yourTiles = GameManager.getInstance().getTurnOfPlayer().getTileList();
         ArrayList<Tile> theirTiles = GameManager.getInstance().getPlayerAt(playerNo).getTileList();
