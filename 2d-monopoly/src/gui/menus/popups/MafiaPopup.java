@@ -146,6 +146,7 @@ public class MafiaPopup {
         Button yButton = new Button("Yes");
         VBox clayout = new VBox(10);
         HBox chlayout = new HBox(10);
+        Button nButton = new Button("No");
 
         clabel.setPadding(new Insets(10,0,0,0));
         clabel.setTextFill(Color.WHITE);
@@ -166,8 +167,13 @@ public class MafiaPopup {
             delay.play();
         });
 
+        nButton.setOnAction( e -> {
+            window.close();
+        });
+
         yButton.setStyle(Style.button_one);
-        chlayout.getChildren().addAll(yButton, noButton);
+        nButton.setStyle(Style.button_one);
+        chlayout.getChildren().addAll(yButton, nButton);
         chlayout.setAlignment(Pos.CENTER);
         clayout.getChildren().addAll(clabel, chlayout);
         clayout.setAlignment(Pos.CENTER);
