@@ -2,12 +2,17 @@ package entity.powerup;
 
 import entity.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class PowerUpCrate {
+public class PowerUpCrate implements Serializable {
     private ArrayList<PowerUp> powerUps;
     private double price;
+
+    public PowerUpCrate() {
+        powerUps = new ArrayList<PowerUp>();
+    }
 
     public PowerUpCrate(Player p){
         powerUps.add(new PowerUp(new ForexPowerUpBehaviour()));

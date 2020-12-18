@@ -4,7 +4,9 @@ import entity.map.property.Hotel;
 import entity.map.property.House;
 import entity.map.property.Property;
 
-public class CityTile extends BuyableTile {
+import java.io.Serializable;
+
+public class CityTile extends BuyableTile implements Serializable {
 	private final int PROPERTY_COUNT = 4;
 	final private int houseBuildPrice, hotelBuildPrice, colorGroup;
 
@@ -17,7 +19,7 @@ public class CityTile extends BuyableTile {
 		this.hotelBuildPrice = hotelBuildPrice;
 		this.colorGroup = colorGroup;
 	}
-
+	// TODO getters for houseBuild and hotelBuild
 	public int getHouseCount() {
 		int result = 0;
 		// count each class in properties with class House

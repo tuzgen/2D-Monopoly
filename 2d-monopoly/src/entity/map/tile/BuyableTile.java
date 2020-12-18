@@ -2,7 +2,9 @@ package entity.map.tile;
 
 import entity.player.Player;
 
-public abstract class BuyableTile extends Tile {
+import java.io.Serializable;
+
+public abstract class BuyableTile extends Tile implements Serializable {
 	// constants
 	public final double MORTGAGE_RATE = 0.5; // TODO
 

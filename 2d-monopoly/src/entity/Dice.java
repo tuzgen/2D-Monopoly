@@ -1,9 +1,11 @@
 package entity;
 
+import java.io.Serializable;
+
 /*
 	Roll the dice instance then retrieve the values.
  */
-public class Dice {
+public class Dice implements Serializable {
 	private int die1, die2;
 
 	public Dice() {}

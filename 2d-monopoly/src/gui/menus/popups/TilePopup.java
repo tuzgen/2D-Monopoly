@@ -1,6 +1,7 @@
 package gui.menus.popups;
 
 import entity.map.tile.CityTile;
+import entity.map.tile.CompanyTile;
 import entity.map.tile.TransportationTile;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ public class TilePopup {
 		// State variables
 
 		// Methods
-		public static void display(String title, CityTile tile) {
+		public void display(String title, CityTile tile) {
 			// Initiate pop up
 			Stage window = new Stage();
 			window.initStyle(StageStyle.UNDECORATED);
@@ -85,7 +86,7 @@ public class TilePopup {
 			window.setScene(scene);
 			window.showAndWait();
 		}
-		public static void display(String title, TransportationTile tile) {
+		public void display(String title, TransportationTile tile) {
 		// Initiate pop up
 		System.out.println();
 		Stage window = new Stage();
@@ -113,4 +114,7 @@ public class TilePopup {
 		window.setScene(scene);
 		window.showAndWait();
 	}
+		public void display(String title, CompanyTile tile) {
+
+		}
 	}

@@ -9,9 +9,23 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import management.GameManager;
 
 public class LoadGameMenu {
 	public void display(Stage context) {
+		Button button_start = new Button("Start game");
+		button_start.setStyle(Style.button_one);
+		button_start.setOnAction( e -> {
+			if (GameManager.loadGame())
+				try {
+					new GameMenu().display(context);
+				} catch (Exception exception) {
+					System.err.println("Load failed.");
+				}
+			else
+				System.err.println("Load Failed");
+		});
+
 		Button button_return = new Button("Go back");
 		button_return.setStyle(Style.button_one);
 		button_return.setOnAction( e -> {
@@ -21,7 +35,7 @@ public class LoadGameMenu {
 		VBox layout_load_game = new VBox(20);
 		layout_load_game.setAlignment(Pos.CENTER);
 		layout_load_game.getChildren().addAll(
-				button_return
+				button_start, button_return
 		);
 
 		BorderPane layout = new BorderPane(layout_load_game);

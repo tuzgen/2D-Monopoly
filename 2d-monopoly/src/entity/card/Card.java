@@ -3,7 +3,9 @@ package entity.card;
 import entity.Bank;
 import entity.player.Player;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     private String feature;
     private CardStrategy cardStrategy;
     private int amount;

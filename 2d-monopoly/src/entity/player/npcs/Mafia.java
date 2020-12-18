@@ -8,9 +8,10 @@ import entity.player.Playable;
 import entity.player.Player;
 import entity.player.User;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Mafia extends NPC {
+public class Mafia extends NPC implements Serializable {
 
     private final double JAILBREAKAMOUNT = 50000;
     private final double CARDAMOUNT = 20000;

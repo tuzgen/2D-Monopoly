@@ -2,7 +2,9 @@ package entity.player.npcs;
 
 import entity.player.Player;
 
-public class Police extends NPC {
+import java.io.Serializable;
+
+public class Police extends NPC implements Serializable {
     public boolean deal;
 
     public Police(){

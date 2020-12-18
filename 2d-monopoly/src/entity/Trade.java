@@ -3,9 +3,10 @@ package entity;
 import entity.map.tile.Tile;
 import entity.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Trade {
+public class Trade implements Serializable {
     private Player owner;
     private Player target;
     private ArrayList<Tile> ownersTile;

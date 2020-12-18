@@ -3,7 +3,9 @@ package entity.card;
 import entity.Bank;
 import entity.player.Player;
 
-public class CardDeck {
+import java.io.Serializable;
+
+public class CardDeck implements Serializable {
     private final int DECKSIZE = 4;
     private Card[] cards;
     private boolean chance;

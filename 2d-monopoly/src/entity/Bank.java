@@ -1,11 +1,11 @@
 package entity;
 
 import entity.player.Player;
-import gui.menus.controller.GameMenuController;
 import management.ForexManager;
-import management.GameManager;
 
-public class Bank { // Methods in this class may be static so that no one need bank object.
+import java.io.Serializable;
+
+public class Bank implements Serializable { // Methods in this class may be static so that no one need bank object.
     private static Bank instance;
 
     private ForexManager forexManager;

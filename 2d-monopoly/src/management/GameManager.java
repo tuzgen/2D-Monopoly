@@ -57,6 +57,17 @@ public class GameManager implements Serializable {
 		turnOfPlayerIndex = 0;
 	}
 
+	public static boolean loadGame() {
+		try {
+			FileManager.loadGame();
+			return true;
+
+		} catch (Exception e) {
+			System.err.println("Load game not successfull");
+			return false;
+		}
+	}
+
 	// TODO delete Debug
 	public int[] rollTheDicePair() {
 		dice.rollTheDice();
@@ -76,6 +87,10 @@ public class GameManager implements Serializable {
 			instance = new GameManager("", "", false, "", false ,"", false);
 		}
 		return instance;
+	}
+
+	public static synchronized void setInstance(GameManager load) {
+		instance = load;
 	}
 
 	public static synchronized GameManager getInstance(String name0,
@@ -238,8 +253,8 @@ public class GameManager implements Serializable {
 		try {
 			FileOutputStream writeFile = new FileOutputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
 			ObjectOutputStream writeObject = new ObjectOutputStream(writeFile);
-			this.settings.setColorblindMode(settings.getColorblindMode());
-			this.settings.setMutedMode(settings.getMutedMode());
+			settings.setColorblindMode(settings.getColorblindMode());
+			settings.setMutedMode(settings.getMutedMode());
 
 			writeObject.writeObject(settings);
 			System.out.println("Saved settings successfully.");
@@ -287,7 +302,10 @@ public class GameManager implements Serializable {
 		int result = turnOfPlayerIndex;
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
 
-
 		return result;
+	}
+
+	public String toString() {
+		return players[0].toString() + players[1].toString() + players[2].toString() + players[3].toString();
 	}
 }

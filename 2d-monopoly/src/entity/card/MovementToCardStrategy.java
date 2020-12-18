@@ -2,7 +2,9 @@ package entity.card;
 
 import entity.player.Player;
 
-public class MovementToCardStrategy implements CardStrategy{
+import java.io.Serializable;
+
+public class MovementToCardStrategy implements CardStrategy, Serializable {
 
     @Override
     public void activateCard(Player player, Card card) {

@@ -4,7 +4,9 @@ import entity.player.Player;
 
 import management.ForexManager;
 
-public class ForexPowerUpBehaviour implements PowerUpBehaviour{
+import java.io.Serializable;
+
+public class ForexPowerUpBehaviour implements PowerUpBehaviour, Serializable {
     ForexManager fm = ForexManager.getInstance();
 
     @Override

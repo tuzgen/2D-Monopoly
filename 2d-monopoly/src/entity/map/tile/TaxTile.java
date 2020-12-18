@@ -1,6 +1,8 @@
 package entity.map.tile;
 
-public class TaxTile extends Tile {
+import java.io.Serializable;
+
+public class TaxTile extends Tile implements Serializable {
 	private int amount;
 
 	public TaxTile(String name, int id, int amount) {

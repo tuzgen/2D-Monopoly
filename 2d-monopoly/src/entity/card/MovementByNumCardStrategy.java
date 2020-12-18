@@ -2,7 +2,9 @@ package entity.card;
 
 import entity.player.Player;
 
-public class MovementByNumCardStrategy implements CardStrategy{
+import java.io.Serializable;
+
+public class MovementByNumCardStrategy implements CardStrategy, Serializable {
     @Override
     public void activateCard(Player player, Card card) {
         int amount = card.getAmount();

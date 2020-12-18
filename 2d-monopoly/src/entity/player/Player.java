@@ -8,10 +8,11 @@ import entity.map.property.Property;
 import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Player extends Character{
+public class Player extends Character implements Serializable {
 
     //properties
     private boolean isBankrupt;
@@ -175,6 +176,10 @@ public class Player extends Character{
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public String toString() {
+        return "Name: " + getName() + "\nLocation: " + getLocation() + "\n";
     }
 }
 

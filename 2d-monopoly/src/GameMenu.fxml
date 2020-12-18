@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.menus.controller.GameMenuController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.menus.controller.GameMenuController">
   <children>
       <AnchorPane prefHeight="107.0" prefWidth="1280.0">
          <children>
@@ -28,7 +28,7 @@
                <children>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="153.0">
                      <children>
-                        <Button fx:id="buttonPlayer1" mnemonicParsing="false" onAction="#trade" prefHeight="61.0" prefWidth="146.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer1" mnemonicParsing="false" prefHeight="61.0" prefWidth="146.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="51.0" prefWidth="109.0">
                                  <children>
@@ -55,7 +55,7 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="145.0">
                      <children>
-                        <Button fx:id="buttonPlayer2" mnemonicParsing="false" onAction="#pl1trade" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer2" mnemonicParsing="false" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="51.0" prefWidth="132.0">
                                  <children>
@@ -82,7 +82,7 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="166.0">
                      <children>
-                        <Button fx:id="buttonPlayer3" mnemonicParsing="false" onAction="#pl2trade" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer3" mnemonicParsing="false" prefHeight="61.0" prefWidth="148.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
@@ -109,7 +109,7 @@
                   </StackPane>
                   <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="161.0">
                      <children>
-                        <Button fx:id="buttonPlayer4" mnemonicParsing="false" onAction="#pl3trade" prefHeight="61.0" prefWidth="144.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
+                        <Button fx:id="buttonPlayer4" mnemonicParsing="false" prefHeight="61.0" prefWidth="144.0" style="-fx-background-color: rgba(0,0,0,0);" textFill="#ffffff00">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="50.0" prefWidth="136.0">
                                  <children>
@@ -268,32 +268,32 @@
                               <Button fx:id="buttonTile2" alignment="CENTER" layoutX="432.0" layoutY="538.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
                               <Button fx:id="buttonTile1" alignment="CENTER" layoutX="481.0" layoutY="537.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="51.0" style="-fx-background-color: rgba(0,0,0,0);" />
                               <Button fx:id="buttonTile0" alignment="CENTER" layoutX="534.0" layoutY="539.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: rgba(0,0,0,0);" />
-                              <ImageView fx:id="iconPlayer1" fitHeight="24.0" fitWidth="32.0" layoutX="543.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconPlayer1" fitHeight="24.0" fitWidth="32.0" layoutX="552.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/diamond-green.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconMafia" fitHeight="19.0" fitWidth="18.0" layoutX="565.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconMafia" fitHeight="16.0" fitWidth="24.0" layoutX="573.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/mafia-face.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconPlayer3" fitHeight="24.0" fitWidth="32.0" layoutX="542.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconPlayer3" fitHeight="24.0" fitWidth="32.0" layoutX="553.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/diamond-pink.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconPolice" fitHeight="18.0" fitWidth="15.0" layoutX="567.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconPolice" fitHeight="16.0" fitWidth="24.0" layoutX="575.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/police-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconPlayer2" fitHeight="24.0" fitWidth="32.0" layoutX="587.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconPlayer2" fitHeight="24.0" fitWidth="32.0" layoutX="596.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/diamond-red.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconPlayer4" fitHeight="24.0" fitWidth="32.0" layoutX="586.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconPlayer4" fitHeight="24.0" fitWidth="32.0" layoutX="596.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/diamond-blue.png" />
                                  </image>

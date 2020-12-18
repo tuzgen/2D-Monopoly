@@ -1,6 +1,8 @@
 package entity.map.property;
 
-public class House extends Property {
+import java.io.Serializable;
+
+public class House extends Property implements Serializable {
 	public House(int price) {
 		super(price);
 	}

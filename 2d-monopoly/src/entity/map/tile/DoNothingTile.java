@@ -1,6 +1,8 @@
 package entity.map.tile;
 
-public class DoNothingTile extends Tile {
+import java.io.Serializable;
+
+public class DoNothingTile extends Tile implements Serializable {
 	private boolean isFreePark;
 
 	public DoNothingTile(String name, int id, boolean isFreePark) {

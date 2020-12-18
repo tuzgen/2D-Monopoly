@@ -3,7 +3,9 @@ package management;
 import entity.map.tile.*;
 import entity.player.Player;
 
-public class Map {
+import java.io.Serializable;
+
+public class Map implements Serializable {
 	private static Map instance;
 	public static final int TILECOUNT = 40;
 

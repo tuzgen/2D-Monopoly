@@ -4,7 +4,9 @@ import entity.Bank;
 import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 
-public class BotCreator {
+import java.io.Serializable;
+
+public class BotCreator implements Serializable {
 
     public BotCreator(){
         createPolice();

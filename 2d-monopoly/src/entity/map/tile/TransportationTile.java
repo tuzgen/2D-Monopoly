@@ -1,6 +1,8 @@
 package entity.map.tile;
 
-public class TransportationTile extends BuyableTile{
+import java.io.Serializable;
+
+public class TransportationTile extends BuyableTile implements Serializable {
 	private double rentAmount;
 
 	public TransportationTile(String name, int id, int price, int rentAmount) {

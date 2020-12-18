@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
@@ -109,14 +112,15 @@ public class GameMenuController {
 	@FXML private ImageView turnIndicator2;
 	@FXML private ImageView turnIndicator3;
 	@FXML private ImageView turnIndicator4;
+	@FXML private VBox root;// = new VBox();
 
 	private Stage context;
 	private Button[] buttons;
 	private ImageView[] icons;
 	private final int[][] offsets = new int[][]{
-			{8, 28}, {28, 28},
-			{8, 48}, {28, 48},
-			{8, 68}, {28, 68},
+			{22, 17}, {32, 17},
+			{22, 27}, {32, 27},
+			{22, 37}, {32, 37},
 	};
 
 	@FXML
@@ -183,6 +187,9 @@ public class GameMenuController {
 		buttonTile38.setOnAction(e -> showTileActions(38));
 		buttonTile39.setOnAction(e -> showTileActions(39));
 		buttonPlayer1.setOnAction(e -> showTradeActions(e));
+		buttonPlayer2.setOnAction(e -> showTradeActions(e));
+		buttonPlayer3.setOnAction(e -> showTradeActions(e));
+		buttonPlayer4.setOnAction(e -> showTradeActions(e));
 
 		buttons = new Button[] {
 				buttonTile0,buttonTile1,buttonTile2,buttonTile3,buttonTile4,
@@ -210,6 +217,7 @@ public class GameMenuController {
 		} else if (e.getSource() == buttonPlayer4) {
 			new TradePopup(3).display(context);
 		}
+		update();
 	}
 
 
@@ -217,7 +225,7 @@ public class GameMenuController {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			new TilePopup().display("City Tile", (CityTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
-
+			// new TilePopup().display("Card Tile", (CardTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
@@ -293,12 +301,31 @@ public class GameMenuController {
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-		// set opacity to 0
+
+		// set turn indicators for each player
+		// set opaque if the turn is the player's
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
 		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
-		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName()); // Bu burada mı olmalı her tur sonunda değiştirilcek
+		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+
+		//for (ImageView i : icons) { // Debug
+		//	System.out.println((buttons[39].getLayoutX() - i.getLayoutX()) + " " + (buttons[39].getLayoutY() - i.getLayoutY())); // 11 -> left (11 <= < 21) 21 -> top (21 <= < 31)
+			//System.out.println((buttons[1].getLayoutX() - i.getLayoutX()) + " " + (buttons[1].getLayoutY() - i.getLayoutY())); // 11 -> left (11 <= < 21) 21 -> top (21 <= < 31)
+			//System.out.println((buttons[21].getLayoutX() - i.getLayoutX()) + " " + (buttons[21].getLayoutY() - i.getLayoutY())); // 11 -> left (11 <= < 21) 21 -> top (21 <= < 31)
+			// System.out.println((buttons[11].getLayoutX() - i.getLayoutX()) + " " + (buttons[11].getLayoutY() - i.getLayoutY())); // 11 -> left (11 <= < 21) 21 -> top (21 <= < 31)
+		//}
+
+		for (int i = 0; i < 4; i++) { // TODO 4 is hardcoded for debug purposes it is player index.
+			icons[i].setLayoutX(buttons[GameManager.getInstance()
+					.getPlayerAt(i).getLocation() % Map.TILECOUNT].getLayoutX() + offsets[i][0]);
+			icons[i].setLayoutY(buttons[GameManager.getInstance()
+					.getPlayerAt(i).getLocation() % Map.TILECOUNT].getLayoutY() + offsets[i][1]);
+		}
+
+		//icons[4].setLayoutX(buttons[GameManager.getInstance()
+		//		.getMafia().getLocation() % Map.TILECOUNT].getLayoutX());
 	}
 
 	public void setStage(Stage context) {
@@ -318,33 +345,24 @@ public class GameMenuController {
 	}
 
 	public void pauseGame() {
+		blurScreen();
 		new PausePopup().display(context);
+		removeBlur();
+	}
+
+	private void removeBlur() {
+		root.setEffect(null);
+	}
+
+	private void blurScreen() {
+		ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
+		GaussianBlur blur = new GaussianBlur(55);
+		adj.setInput(blur);
+		root.setEffect(adj);
 	}
 
 	public void mafiaButton() {
 		new MafiaPopup().display(context);
 		update();
 	}
-
-	// TODO
-	public void trade(){
-		new TradePopup(1).display(context);
-		update();
-	}
-
-	public void pl1trade(){
-		new TradePopup(1).display(context);
-		update();
-	}
-
-	public void pl2trade(){
-		new TradePopup(2).display(context);
-		update();
-	}
-
-	public void pl3trade(){
-		new TradePopup(3).display(context);
-		update();
-	}
-
 }

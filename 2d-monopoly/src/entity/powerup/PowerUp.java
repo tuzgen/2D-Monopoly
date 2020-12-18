@@ -2,9 +2,10 @@ package entity.powerup;
 
 import entity.player.Player;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class PowerUp {
+public class PowerUp implements Serializable {
     private int lifetime;
     private PowerUpBehaviour behaviour;
     private double amount;

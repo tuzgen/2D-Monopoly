@@ -1,6 +1,8 @@
 package entity.player;
 
-public abstract class Character {
+import java.io.Serializable;
+
+public abstract class Character implements Serializable {
     private int location;
     private String name;
 

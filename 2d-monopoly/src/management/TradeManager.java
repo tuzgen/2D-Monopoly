@@ -5,9 +5,10 @@ import entity.Trade;
 import entity.map.tile.Tile;
 import entity.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TradeManager {
+public class TradeManager implements Serializable {
     private static TradeManager tradeManager;
     private Bank bank;
 

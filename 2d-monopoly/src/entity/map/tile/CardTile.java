@@ -1,6 +1,8 @@
 package entity.map.tile;
 
-public class CardTile extends Tile {
+import java.io.Serializable;
+
+public class CardTile extends Tile implements Serializable {
 	private boolean isChance;
 
 	public CardTile(String name, int id, boolean isChance) {

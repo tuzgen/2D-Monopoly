@@ -1,9 +1,11 @@
 package management;
 import entity.Forex;
+
+import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ForexManager {
+public class ForexManager implements Serializable {
     private static ForexManager instance;
 
     private Forex forex;

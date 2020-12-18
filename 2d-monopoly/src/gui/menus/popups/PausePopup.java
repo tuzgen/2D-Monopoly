@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import management.FileManager;
 
 public class PausePopup {
 	public void display(Stage context) {
@@ -46,6 +47,11 @@ public class PausePopup {
 	private void onPressed_button_return_main_menu(Stage context, Stage window) {
 		// Push the settings screen to the context
 		window.close();
+		try {
+			FileManager.saveGame();
+		} catch (Exception e) {
+			System.err.println(e.toString());
+		}
 		new MainMenu().display(context);
 	}
 }

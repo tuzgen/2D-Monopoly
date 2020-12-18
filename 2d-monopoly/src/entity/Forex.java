@@ -1,6 +1,8 @@
 package entity;
 
-public class Forex {
+import java.io.Serializable;
+
+public class Forex implements Serializable {
 
     private double dollarExRate;
     private double euroExRate;

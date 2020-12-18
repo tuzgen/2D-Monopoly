@@ -1,6 +1,8 @@
 package entity.map.property;
 
-public class Hotel extends Property {
+import java.io.Serializable;
+
+public class Hotel extends Property implements Serializable {
 	public Hotel(int price) {
 		super(price);
 	}

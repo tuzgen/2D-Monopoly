@@ -1,6 +1,8 @@
 package entity.map.property;
 
-public abstract class Property {
+import java.io.Serializable;
+
+public abstract class Property implements Serializable {
 	// Properties
 	private int price;
 
