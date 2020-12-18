@@ -109,6 +109,8 @@ public class GameMenuController {
 			{8, 68}, {28, 68},
 	};
 
+	SoundManager sm = new SoundManager();
+
 	@FXML
 	public void initialize() {
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
@@ -211,6 +213,7 @@ public class GameMenuController {
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().buyForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
@@ -218,6 +221,7 @@ public class GameMenuController {
 	}
 	private EventHandler<ActionEvent> buttonDollarSell() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().sellForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
@@ -225,6 +229,7 @@ public class GameMenuController {
 	}
 	private EventHandler<ActionEvent> buttonEuroBuy() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().buyForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
@@ -232,6 +237,7 @@ public class GameMenuController {
 	}
 	private EventHandler<ActionEvent> buttonEuroSell() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().sellForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
@@ -239,6 +245,7 @@ public class GameMenuController {
 	}
 	private EventHandler<ActionEvent> buttonFrancBuy() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().buyForexFranc(
 					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
@@ -246,6 +253,7 @@ public class GameMenuController {
 	}
 	private EventHandler<ActionEvent> buttonFrancSell() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().sellForexFranc(
 					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
@@ -289,6 +297,7 @@ public class GameMenuController {
 	}
 
 	public void pauseGame() {
+		SoundManager.getInstance().pauseMusic();
 		new PausePopup().display(context);
 	}
 

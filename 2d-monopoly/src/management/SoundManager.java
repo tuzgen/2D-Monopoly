@@ -16,6 +16,7 @@ public class SoundManager {
         musicList[0] = "../2d-monopoly/src/vendor/sound/mainmenu.mp3";
         musicList[1] = "../2d-monopoly/src/vendor/sound/gamemenu.mp3";
         musicList[2] = "../2d-monopoly/src/vendor/sound/dice.mp3";
+        musicList[3] = "../2d-monopoly/src/vendor/sound/money.mp3";
     }
 
     public static SoundManager getInstance(){
@@ -33,6 +34,14 @@ public class SoundManager {
 
     public void stopMusic(){
         mediaPlayer.stop();
+    }
+
+    public void pauseMusic(){
+        mediaPlayer.pause();
+    }
+
+    public void continueMusic(){
+        mediaPlayer.play();
     }
 
 
