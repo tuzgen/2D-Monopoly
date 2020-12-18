@@ -41,42 +41,34 @@ public class TradePopup {
         ArrayList<CheckBox> theirChecks = new ArrayList<CheckBox>();
         Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
         Player targetPlayer = GameManager.getInstance().getPlayerAt(playerNo);
+        Label showTheirTiles = new Label("Select the tiles you want: (0 or more)");
+        Label showYourTiles = new Label("Select tiles to offer: (0 or more)");
+        Button offerBtn = new Button("Offer");
+        Button cancelBtn = new Button("Cancel");
+        TextField yourTF = new TextField();
+        TextField theirTF = new TextField();
+        VBox selectYours = new VBox(10);
+        VBox selectTheirs = new VBox(10);
+        VBox buttonsLayout = new VBox(10);
+        HBox finalLayout = new HBox(10);
+
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setTitle("Trade with me");
         stage.setMinWidth(600);
         stage.setMaxHeight(600);
 
-        Label showTheirTiles = new Label("Select the tiles you want: (0 or more)");
-        Label showYourTiles = new Label("Select tiles to offer: (0 or more)");
         showTheirTiles.setPadding(new Insets(10,5,0,5));
         showYourTiles.setPadding(new Insets(10,5,0,5));
         showTheirTiles.setTextFill(Color.rgb(194,58,178));
         showYourTiles.setTextFill(Color.rgb(130,178,255));
 
-        Button offerBtn = new Button("Offer");
-        Button cancelBtn = new Button("Cancel");
         offerBtn.setStyle(Style.button_one);
         cancelBtn.setStyle(Style.button_one);
 
-        TextField yourTF = new TextField();
-        TextField theirTF = new TextField();
         yourTF.setPromptText("Offered amount: (optional)");
         theirTF.setPromptText("Requested amount: (optional)");
 
-        for(int i = 0; i < yourTiles.size(); i++) {
-            yourChecks.add(new CheckBox(yourTiles.get(i).getName()));
-            yourChecks.get(i).setTextFill(Color.rgb(130,178,255));
-        }
-        for(int k = 0; k < theirTiles.size(); k++) {
-            theirChecks.add(new CheckBox(theirTiles.get(k).getName()));
-            theirChecks.get(k).setTextFill(Color.rgb(194,58,178));
-        }
-
-        VBox selectYours = new VBox(10);
-        VBox selectTheirs = new VBox(10);
-        VBox buttonsLayout = new VBox(10);
-        HBox finalLayout = new HBox(10);
         selectYours.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         selectTheirs.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         buttonsLayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
@@ -90,10 +82,21 @@ public class TradePopup {
         buttonsLayout.getChildren().addAll(offerBtn, cancelBtn);
         finalLayout.getChildren().addAll(selectYours, selectTheirs, buttonsLayout);
 
-        for(int j = 0; j < yourChecks.size(); j++)
-            selectYours.getChildren().add(yourChecks.get(j));
-        for(int m = 0; m < theirChecks.size(); m++)
-            selectTheirs.getChildren().add(theirChecks.get(m));
+        for(int i = 0; i < yourTiles.size(); i++) {
+            yourChecks.add(new CheckBox(yourTiles.get(i).getName()));
+            yourChecks.get(i).setTextFill(Color.rgb(130,178,255));
+            selectYours.getChildren().add(yourChecks.get(i));
+        }
+        for(int k = 0; k < theirTiles.size(); k++) {
+            theirChecks.add(new CheckBox(theirTiles.get(k).getName()));
+            theirChecks.get(k).setTextFill(Color.rgb(194,58,178));
+            selectTheirs.getChildren().add(theirChecks.get(k));
+        }
+
+       // for(int j = 0; j < yourChecks.size(); j++) // will be deleted if works fine later
+         //   selectYours.getChildren().add(yourChecks.get(j));
+       // for(int m = 0; m < theirChecks.size(); m++)
+         //   selectTheirs.getChildren().add(theirChecks.get(m));
 
         selectYours.getChildren().add(yourTF);
         selectTheirs.getChildren().add(theirTF);
@@ -110,7 +113,7 @@ public class TradePopup {
                 if(theirChecks.get(k).isSelected())
                     selectedtheirs.add(theirTiles.get(k));
             if(!((yourChecks.size() == 0) && (theirChecks.size() == 0))) {
-                TradeManager.getInstance().openTrade(currentPlayer, targetPlayer, selectedtheirs, selectedyours, yourtxt, theirtxt);
+                System.out.println(TradeManager.getInstance().openTrade(currentPlayer, targetPlayer, selectedtheirs, selectedyours, yourtxt, theirtxt));
 
                 Label lastLbl = new Label("We will ask, wait your next turn for a result!\nNote that the lowest price isn't always the best deal...");
                 lastLbl.setTextFill(Color.GREEN);
