@@ -3,19 +3,21 @@ package entity;
 import entity.map.tile.Tile;
 import entity.player.Player;
 
+import java.util.ArrayList;
+
 public class Trade {
     private Player owner;
     private Player target;
-    private Tile[] ownersTile;
-    private Tile[] targetTile;
+    private ArrayList<Tile> ownersTile;
+    private ArrayList<Tile> targetTile;
     private int offeredAmount;
     private int requestedAmount;
 
     public Trade(Player owner, Player target){
         this.owner = owner;
         this.target = target;
-        ownersTile = new Tile[22];
-        targetTile = new Tile[22];
+        ownersTile = new ArrayList<Tile>();
+        targetTile = new ArrayList<Tile>();
         offeredAmount = 0;
         requestedAmount = 0;
     }
@@ -52,19 +54,19 @@ public class Trade {
         this.target = target;
     }
 
-    public Tile[] getTargetTile() {
+    public ArrayList<Tile> getTargetTile() {
         return targetTile;
     }
 
-    public void setTargetTile(Tile[] targetTile) {
+    public void setTargetTile(ArrayList<Tile> targetTile) {
         this.targetTile = targetTile;
     }
 
-    public Tile[] getOwnersTile() {
+    public ArrayList<Tile> getOwnersTile() {
         return ownersTile;
     }
 
-    public void setOwnersTile(Tile[] ownersTile) {
+    public void setOwnersTile(ArrayList<Tile> ownersTile) {
         this.ownersTile = ownersTile;
     }
 }

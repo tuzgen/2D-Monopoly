@@ -1,7 +1,9 @@
 package entity;
 
 import entity.player.Player;
+import gui.menus.controller.GameMenuController;
 import management.ForexManager;
+import management.GameManager;
 
 public class Bank { // Methods in this class may be static so that no one need bank object.
     private static Bank instance;
@@ -85,6 +87,7 @@ public class Bank { // Methods in this class may be static so that no one need b
                     }
                 }
             }
+
             return true;
         } else {
             //TODO
