@@ -58,6 +58,7 @@ public class TilePopup {
 			Button mafiaButton = new Button("Deal");
 			mafiaButton.setOnAction( e -> {
 				System.out.println("Button pressed on pop up");
+				GameManager.getInstance().getMafia().sellCard(GameManager.getInstance().getTurnOfPlayer());
 				window.close();
 			});
 
