@@ -1,6 +1,8 @@
 package gui.menus.controller;
 
 import entity.map.tile.*;
+import entity.player.Character;
+import entity.player.Player;
 import gui.menus.popups.TilePopup;
 import gui.menus.popups.MafiaPopup;
 import gui.menus.popups.PausePopup;
@@ -184,6 +186,9 @@ public class GameMenuController {
 				buttonTile30,buttonTile31,buttonTile32,buttonTile33,buttonTile34,
 				buttonTile35,buttonTile36,buttonTile37,buttonTile38,buttonTile39
 		};
+		Player[] player = GameManager.getInstance().determineTurn();
+
+
 		icons = new ImageView[] {
 			iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
 		};
@@ -273,18 +278,21 @@ public class GameMenuController {
 	}
 
 	public void setStage(Stage context) {
+
+
+
+
 		this.context = context;
 	}
 
 	public void rollTheDice() {
 		int index = GameManager.getInstance().playTurn();
-
+//		GameManager.getInstance().determineTurn();
+		System.out.println("index: \t" + index + " and Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation());
 		icons[index]
-				.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutX()
-						+ offsets[index][0]);
+				.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() );
 		icons[index]
-				.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutY()
-						+ offsets[index][1]);
+				.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() );
 	}
 
 	public void pauseGame() {
