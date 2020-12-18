@@ -114,7 +114,7 @@ public class TradePopup {
             if(!((yourChecks.size() == 0) && (theirChecks.size() == 0))) {
                 TradeManager.getInstance().openTrade(currentPlayer, targetPlayer, selectedtheirs, selectedyours, yourtxt, theirtxt);
 
-                Label lastLbl = new Label("We will ask, wait your next turn for a result!\nNote that the lowest price isn' always the best deal...");
+                Label lastLbl = new Label("We will ask, wait your next turn for a result!\nNote that the lowest price isn't always the best deal...");
                 lastLbl.setTextFill(Color.GREEN);
                 lastLbl.setAlignment(Pos.CENTER);
                 VBox vbox = new VBox(10);
