@@ -61,7 +61,6 @@ public class GameManager implements Serializable {
 		players[3] = player4;
 		mafia = new Mafia();
 
-
 		settings = new Settings(false, false);
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
@@ -321,6 +320,8 @@ void bubbleSort(int arr[])
 
 	public Mafia getMafia() {return mafia; }
 
+	public Police getPolice(){return police;}
+
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
 	public void updateSettings(Settings settings) {
@@ -364,8 +365,20 @@ void bubbleSort(int arr[])
 
 		int diceTotal = dice.getSum();
 
-
 		int temp = turnOfPlayerIndex;
+		if(temp == 4){
+			mafia.setLocation(mafia.getLocation() + diceTotal % 40);
+
+			turnOfPlayerIndex = 5;
+			return 4;
+		}
+		if(temp == 5){
+			police.setLocation(police.getLocation() + diceTotal -1 % 40);
+
+			System.out.println(police.getLocation());
+			turnOfPlayerIndex = 0;
+			return 5;
+		}
 
 		if(players[turnOfPlayerIndex].getName() == players1[turnOfPlayerIndex].getName()){
 			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % 40);
@@ -381,13 +394,9 @@ void bubbleSort(int arr[])
 		}
 
 
-
-
 		int result = temp;
-		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
-		temp = (temp + 1) % (4);
-//		System.out.println("Result and temp\t" + result + " " + temp);
-		// (arr[(turnofplayerindex + 1) % 4)
+		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6); // TODO add mafia and police to the loop + NPC_COUNT);
+
 		return result;
 	}
 }
