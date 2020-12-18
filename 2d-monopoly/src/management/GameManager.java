@@ -4,8 +4,10 @@ import cached.Settings;
 import entity.Bank;
 import entity.Dice;
 import entity.player.BotCharacter;
+import entity.player.Playable;
 import entity.player.Player;
 import entity.player.User;
+import entity.player.npcs.Mafia;
 
 import java.io.*;
 
@@ -27,6 +29,7 @@ public class GameManager implements Serializable {
 	// properties
 	Player[] players;
 	Dice dice;
+	Mafia mafia;
 
 	// state variables
 	private int turnOfPlayerIndex;
@@ -44,6 +47,7 @@ public class GameManager implements Serializable {
 		players[1] = new Player(isBot1 ? new User() : new BotCharacter(), name1.equals("") ? "Player2" : name1);
 		players[2] = new Player(isBot2 ? new User() : new BotCharacter(), name2.equals("") ? "Player3" : name2);
 		players[3] = new Player(isBot3 ? new User() : new BotCharacter(), name3.equals("") ? "Player4" : name3);
+		mafia = new Mafia();
 
 		settings = new Settings(false, false);
 		dice = new Dice();
@@ -109,6 +113,14 @@ public class GameManager implements Serializable {
 		return false;
 	}
 
+	public void determineTurn() {
+		int sum;
+		for (int i = 0; 6 > i; i++) {
+			dice.rollTheDice();
+			sum = dice.getSum();
+			// TODO order[i] = sum;
+		}
+	}
 
 	public void openPowerUpCrate(Player player) {
 		// TODO
@@ -149,7 +161,6 @@ public class GameManager implements Serializable {
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
-
 		}
 	}
 	public void buyForexFranc(double amount) {
@@ -217,7 +228,11 @@ public class GameManager implements Serializable {
 	}
 
 	public Player getPlayerAt(int index) { return players[index]; }
+
 	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
+
+	public Mafia getMafia() {return mafia; }
+
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
 	public void updateSettings(Settings settings) {
@@ -255,15 +270,18 @@ public class GameManager implements Serializable {
 		return settings;
 	}
 
-
-	public void playTurn() {
+	public int playTurn() {
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
 		System.out.println(
-				"TurnOf: " + turnOfPlayerIndex + "\n" +
+		"Turn of: " + turnOfPlayerIndex + "\n" +
 				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
-						"DiceTotal: " + diceTotal);
+						"DiceTotal: " + diceTotal + "\n" +
+						"Location after: " + (players[turnOfPlayerIndex].getLocation() + diceTotal) + "\n");
 		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
+		int result = turnOfPlayerIndex;
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
+
+		return result;
 	}
 }

@@ -2,10 +2,11 @@ package entity.player;
 
 import entity.Account;
 import entity.Bank;
-import entity.PowerUp;
+import entity.powerup.PowerUp;
 import entity.Trade;
 import entity.card.Card;
 import entity.map.property.Property;
+import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
 
 import java.util.ArrayList;
@@ -38,10 +39,14 @@ public class Player extends Character{
         cards = new ArrayList<Card>();
         isArrested = false;
         isBankrupt = false;
-        salary = 500000; // change xdeee
+        salary = 500000; // TODO change initial money
         account = new Account(salary);
         speed = 1;
         vehicleCount = 0;
+        tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 1));
     }
 
     //Methods
@@ -153,6 +158,10 @@ public class Player extends Character{
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public ArrayList<Tile> getTileList(){
+        return tileList;
     }
 }
 

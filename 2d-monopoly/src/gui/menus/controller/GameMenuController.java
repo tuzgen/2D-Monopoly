@@ -1,8 +1,10 @@
 package gui.menus.controller;
 
 import entity.map.tile.*;
-import gui.menus.popups.PausePopup;
 import gui.menus.popups.TilePopup;
+import gui.menus.popups.MafiaPopup;
+import gui.menus.popups.PausePopup;
+import gui.menus.popups.TradePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -103,9 +105,9 @@ public class GameMenuController {
 	private Button[] buttons;
 	private ImageView[] icons;
 	private final int[][] offsets = new int[][]{
-			{8, 18}, {28, 18},
-			{8, 38}, {28, 38},
-			{8, 58}, {28, 58},
+			{8, 28}, {28, 28},
+			{8, 48}, {28, 48},
+			{8, 68}, {28, 68},
 	};
 
 	@FXML
@@ -275,18 +277,39 @@ public class GameMenuController {
 	}
 
 	public void rollTheDice() {
-		GameManager.getInstance().playTurn();
-		System.out.println("Player location " + GameManager.getInstance().getTurnOfPlayer().getLocation());
+		int index = GameManager.getInstance().playTurn();
 
-		icons[GameManager.getInstance().getTurnOfPlayerIndex()]
-				.setLayoutX(buttons[GameManager.getInstance().getTurnOfPlayer().getLocation() % Map.TILECOUNT].getLayoutX()
-						+ offsets[GameManager.getInstance().getTurnOfPlayerIndex()][0]);
-		icons[GameManager.getInstance().getTurnOfPlayerIndex()]
-				.setLayoutY(buttons[GameManager.getInstance().getTurnOfPlayer().getLocation() % Map.TILECOUNT].getLayoutY()
-						+ offsets[GameManager.getInstance().getTurnOfPlayerIndex()][1]);
+		icons[index]
+				.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutX()
+						+ offsets[index][0]);
+		icons[index]
+				.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutY()
+						+ offsets[index][1]);
 	}
 
 	public void pauseGame() {
 		new PausePopup().display(context);
 	}
+
+	public void mafiaButton() {
+		new MafiaPopup().display(context);
+		update();
+	}
+
+	public void trade(){
+		new TradePopup(1).display(context);
+	}
+
+	public void pl1trade(){
+		new TradePopup(1).display(context);
+	}
+
+	public void pl2trade(){
+		new TradePopup(2).display(context);
+	}
+
+	public void pl3trade(){
+		new TradePopup(3).display(context);
+	}
+
 }

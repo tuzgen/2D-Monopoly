@@ -13,19 +13,19 @@ public class PowerUp {
     public PowerUp(PowerUpBehaviour behaviour){
         this.behaviour = behaviour;
         lifetime = ThreadLocalRandom.current().nextInt(2, 6);
-        if(behaviour.getClass().getName() == "ForexPowerUpBehaviour"){
+        if(behaviour.getClass() == ForexPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextInt(3, 36);
             int[] signs = {-1, 1};
             amount *= signs[ThreadLocalRandom.current().nextInt(0, 2)];
         }
-        if(behaviour.getClass().getName() == "EarningPowerUpBehaviour"){
+        if(behaviour.getClass() == EarningPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextDouble(1.1, 6.0);
 
         }
-        if(behaviour.getClass().getName() == "StrikePowerUpBehaviour"){
+        if(behaviour.getClass() == StrikePowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextInt(2, 13);
         }
-        if(behaviour.getClass().getName() == "SlowDownPowerUpBehaviour"){
+        if(behaviour.getClass() == SlowDownPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextDouble((1/3), (5/6));
         }
         target = "";
@@ -34,20 +34,16 @@ public class PowerUp {
     public void activate(Player p){
         behaviour.activate(lifetime, behaviour, amount, target, p);
     }
-
     //get and set methods
     public int getLifetime() {
         return lifetime;
     }
-
     public void setLifetime(int lifetime) {
         this.lifetime = lifetime;
     }
-
     public double getAmount() {
         return amount;
     }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
