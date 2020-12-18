@@ -116,6 +116,9 @@ public class Player extends Character{
     }
 
     //get-set methods
+
+    public  ArrayList<Trade> getTrades(){ return trades; }
+
     public boolean getIsArrested() {
         return isArrested;
     }

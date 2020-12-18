@@ -1,10 +1,7 @@
 package gui.menus.controller;
 
 import entity.map.tile.*;
-import gui.menus.popups.TilePopup;
-import gui.menus.popups.MafiaPopup;
-import gui.menus.popups.PausePopup;
-import gui.menus.popups.TradePopup;
+import gui.menus.popups.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -297,7 +294,8 @@ public class GameMenuController {
 	}
 
 	public void trade(){
-		new TradePopup(1).display(context);
+		//new TradePopup(1).display(context);
+		new ShowTradesPopup().display(context);
 	}
 
 	public void pl1trade(){
