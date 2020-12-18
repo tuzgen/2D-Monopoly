@@ -32,16 +32,8 @@ public class MainMenu {
 
 	public void display(Stage context) {
 		GameManager.deleteInstance();
-		// "D:\\dev\\courses\\cs319\\2D-Monopoly\\2d-monopoly\\vendor\\sound\\main_menu.wav").toURI().toString()
-		// clip_main = new AudioClip("file:vendor/sound/main_menu.wav");
-		// clip_main.play();
-
-		// Media media = new Media(new File("D:\\dev\\courses\\cs319\\2D-Monopoly\\2d-monopoly\\vendor\\sound\\main_menu.wav").toURI().toString());
-		// MediaPlayer mediaPlayer = new MediaPlayer(media);
-		// mediaPlayer.play();
 
 		// initialize components
-		//SoundManager.getInstance().music(0); // delete if music works fine
 		if(soundCreated == 0)
 			sm.music(0);
 		soundCreated = 1;
