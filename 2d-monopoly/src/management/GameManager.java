@@ -60,6 +60,7 @@ public class GameManager implements Serializable {
 		players[2] = player3;
 		players[3] = player4;
 		mafia = new Mafia();
+		police = new Police();
 
 		settings = new Settings(false, false);
 		dice = new Dice();
