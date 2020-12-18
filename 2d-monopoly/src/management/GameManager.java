@@ -109,6 +109,14 @@ public class GameManager implements Serializable {
 		return false;
 	}
 
+	public void determineTurn() {
+		int sum;
+		for (int i = 0; 6 > i; i++) {
+			dice.rollTheDice();
+			sum = dice.getSum();
+			// TODO order[i] = sum;
+		}
+	}
 
 	public void openPowerUpCrate(Player player) {
 		// TODO
@@ -255,15 +263,18 @@ public class GameManager implements Serializable {
 		return settings;
 	}
 
-
-	public void playTurn() {
+	public int playTurn() {
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
 		System.out.println(
-				"TurnOf: " + turnOfPlayerIndex + "\n" +
+		"Turn of: " + turnOfPlayerIndex + "\n" +
 				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
-						"DiceTotal: " + diceTotal);
+						"DiceTotal: " + diceTotal + "\n" +
+						"Location after: " + (players[turnOfPlayerIndex].getLocation() + diceTotal) + "\n");
 		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
+		int result = turnOfPlayerIndex;
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
+
+		return result;
 	}
 }

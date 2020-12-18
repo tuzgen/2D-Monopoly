@@ -103,9 +103,9 @@ public class GameMenuController {
 	private Button[] buttons;
 	private ImageView[] icons;
 	private final int[][] offsets = new int[][]{
-			{8, 18}, {28, 18},
-			{8, 38}, {28, 38},
-			{8, 58}, {28, 58},
+			{8, 28}, {28, 28},
+			{8, 48}, {28, 48},
+			{8, 68}, {28, 68},
 	};
 
 	@FXML
@@ -275,15 +275,14 @@ public class GameMenuController {
 	}
 
 	public void rollTheDice() {
-		GameManager.getInstance().playTurn();
-		System.out.println("Player location " + GameManager.getInstance().getTurnOfPlayer().getLocation());
+		int index = GameManager.getInstance().playTurn();
 
-		icons[GameManager.getInstance().getTurnOfPlayerIndex()]
-				.setLayoutX(buttons[GameManager.getInstance().getTurnOfPlayer().getLocation() % Map.TILECOUNT].getLayoutX()
-						+ offsets[GameManager.getInstance().getTurnOfPlayerIndex()][0]);
-		icons[GameManager.getInstance().getTurnOfPlayerIndex()]
-				.setLayoutY(buttons[GameManager.getInstance().getTurnOfPlayer().getLocation() % Map.TILECOUNT].getLayoutY()
-						+ offsets[GameManager.getInstance().getTurnOfPlayerIndex()][1]);
+		icons[index]
+				.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutX()
+						+ offsets[index][0]);
+		icons[index]
+				.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILECOUNT].getLayoutY()
+						+ offsets[index][1]);
 	}
 
 	public void pauseGame() {
