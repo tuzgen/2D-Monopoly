@@ -29,9 +29,6 @@ public class TradeManager implements Serializable {
         trade.setOwnersTile(offeredTiles);
         trade.setTargetTile(targetTiles);
 
-        System.out.println(owner.getTileList().size());
-        System.out.println(targetTiles.size());
-
         if(checkTrades(owner, targetPlayer, targetTiles, offeredTiles)){
             owner.addTrade(trade);
             targetPlayer.addTrade(trade);
@@ -51,9 +48,14 @@ public class TradeManager implements Serializable {
         return true; // Some other things may be added
     }
 
-    public void acceptTrade(Trade trade) {
+    public boolean acceptTrade(Trade trade) {
        Player owner = trade.getOwner();
        Player targetPlayer = trade.getTarget();
+
+        if(!bank.swapMoney(owner, targetPlayer, trade.getOfferedAmount()))
+            return false;
+        if(!bank.swapMoney(targetPlayer, owner, trade.getRequestedAmount()))
+            return false;
 
        for(int i = 0; i < trade.getOwnersTile().size(); i++){
            owner.removeFromTileList(trade.getOwnersTile().get(i));
@@ -63,11 +65,11 @@ public class TradeManager implements Serializable {
            targetPlayer.removeFromTileList(trade.getTargetTile().get(k));
            owner.addToTileList(trade.getTargetTile().get(k));
        }
-       bank.swapMoney(owner, targetPlayer, trade.getOfferedAmount());
-       bank.swapMoney(targetPlayer, owner, trade.getRequestedAmount());
 
        owner.removeTrade(trade);
        targetPlayer.removeTrade(trade);
+       
+       return true;
     }
 
     public void denyTrade(Trade trade) { // This only deletes from the target lists in players

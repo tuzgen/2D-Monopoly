@@ -4,10 +4,7 @@ import entity.Trade;
 import entity.map.tile.*;
 import entity.player.Character;
 import entity.player.Player;
-import gui.menus.popups.TilePopup;
-import gui.menus.popups.MafiaPopup;
-import gui.menus.popups.PausePopup;
-import gui.menus.popups.TradePopup;
+import gui.menus.popups.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
 import management.Map;
+import management.SoundManager;
 
 import java.text.DecimalFormat;
 
@@ -35,86 +33,166 @@ public class GameMenuController {
 		return instance;
 	}
 
-	@FXML private Label currentPlayerName = new Label();
-	@FXML private Label showDollarAmount = new Label();
-	@FXML private Label showEuroAmount = new Label();
-	@FXML private Label showFrancAmount = new Label();
-	@FXML private Label infoPlayer1Name = new Label();
-	@FXML private Text infoPlayer1Money = new Text();
-	@FXML private Label infoPlayer2Name = new Label();
-	@FXML private Text infoPlayer2Money = new Text();
-	@FXML private Label infoPlayer3Name = new Label();
-	@FXML private Text infoPlayer3Money = new Text();
-	@FXML private Label infoPlayer4Name = new Label();
-	@FXML private Text infoPlayer4Money = new Text();
-	@FXML private Label textForexDollar = new Label();
-	@FXML private Button buttonDollarBuy = new Button();
-	@FXML private Button buttonDollarSell = new Button();
-	@FXML private Label textForexEuro = new Label();
-	@FXML private Button buttonEuroBuy = new Button();
-	@FXML private Button buttonEuroSell = new Button();
-	@FXML private Label textForexFrank = new Label();
-	@FXML private Button buttonFrancBuy = new Button();
-	@FXML private Button buttonFrancSell = new Button();
-	@FXML private TextField textFieldDollar = new TextField();
-	@FXML private TextField textFieldEuro = new TextField();
-	@FXML private TextField textFieldFranc = new TextField();
-	@FXML private Button buttonTile39 = new Button();
-	@FXML private Button buttonTile38 = new Button();
-	@FXML private Button buttonTile37 = new Button();
-	@FXML private Button buttonTile36 = new Button();
-	@FXML private Button buttonTile35 = new Button();
-	@FXML private Button buttonTile34= new Button();
-	@FXML private Button buttonTile33= new Button();
-	@FXML private Button buttonTile32= new Button();
-	@FXML private Button buttonTile31= new Button();
-	@FXML private Button buttonTile30= new Button();
-	@FXML private Button buttonTile29= new Button();
-	@FXML private Button buttonTile28= new Button();
-	@FXML private Button buttonTile27= new Button();
-	@FXML private Button buttonTile26= new Button();
-	@FXML private Button buttonTile25= new Button();
-	@FXML private Button buttonTile24= new Button();
-	@FXML private Button buttonTile23= new Button();
-	@FXML private Button buttonTile22= new Button();
-	@FXML private Button buttonTile21= new Button();
-	@FXML private Button buttonTile20= new Button();
-	@FXML private Button buttonTile19= new Button();
-	@FXML private Button buttonTile18= new Button();
-	@FXML private Button buttonTile17= new Button();
-	@FXML private Button buttonTile16= new Button();
-	@FXML private Button buttonTile15= new Button();
-	@FXML private Button buttonTile14= new Button();
-	@FXML private Button buttonTile13= new Button();
-	@FXML private Button buttonTile12= new Button();
-	@FXML private Button buttonTile11= new Button();
-	@FXML private Button buttonTile10= new Button();
-	@FXML private Button buttonTile9= new Button();
-	@FXML private Button buttonTile8= new Button();
-	@FXML private Button buttonTile7= new Button();
-	@FXML private Button buttonTile6= new Button();
-	@FXML private Button buttonTile5= new Button();
-	@FXML private Button buttonTile4= new Button();
-	@FXML private Button buttonTile3= new Button();
-	@FXML private Button buttonTile2= new Button();
-	@FXML private Button buttonTile1= new Button();
-	@FXML private Button buttonTile0= new Button();
-	@FXML private Button buttonPowerUpCrate = new Button();
-	@FXML private ImageView iconPlayer1; // = new ImageView(new Image("file:src/vendor/image/diamond-green.png"));
-	@FXML private ImageView iconMafia; // = new ImageView(new Image("file:src/vendor/image/mafia-face.png"));
-	@FXML private ImageView iconPlayer3; // = new ImageView(new Image("file:src/vendor/image/diamond-pink.png"));
-	@FXML private ImageView iconPolice; // = new ImageView(new Image("file:src/vendor/image/police-logo.png"));
-	@FXML private ImageView iconPlayer2; // = new ImageView(new Image("file:src/vendor/image/diamond-red.png"));
-	@FXML private ImageView iconPlayer4; // = new ImageView(new Image("file:src/vendor/image/diamond-blue.png"));
-	@FXML private Button buttonPlayer1;
-	@FXML private Button buttonPlayer2;
-	@FXML private Button buttonPlayer3;
-	@FXML private Button buttonPlayer4;
-	@FXML private ImageView turnIndicator1;
-	@FXML private ImageView turnIndicator2;
-	@FXML private ImageView turnIndicator3;
-	@FXML private ImageView turnIndicator4;
-	@FXML private VBox root;// = new VBox();
+	@FXML
+	private Label currentPlayerName = new Label();
+	@FXML
+	private Label showDollarAmount = new Label();
+	@FXML
+	private Label showEuroAmount = new Label();
+	@FXML
+	private Label showFrancAmount = new Label();
+	@FXML
+	private Label infoPlayer1Name = new Label();
+	@FXML
+	private Text infoPlayer1Money = new Text();
+	@FXML
+	private Label infoPlayer2Name = new Label();
+	@FXML
+	private Text infoPlayer2Money = new Text();
+	@FXML
+	private Label infoPlayer3Name = new Label();
+	@FXML
+	private Text infoPlayer3Money = new Text();
+	@FXML
+	private Label infoPlayer4Name = new Label();
+	@FXML
+	private Text infoPlayer4Money = new Text();
+	@FXML
+	private Label textForexDollar = new Label();
+	@FXML
+	private Button buttonDollarBuy = new Button();
+	@FXML
+	private Button buttonDollarSell = new Button();
+	@FXML
+	private Label textForexEuro = new Label();
+	@FXML
+	private Button buttonEuroBuy = new Button();
+	@FXML
+	private Button buttonEuroSell = new Button();
+	@FXML
+	private Label textForexFrank = new Label();
+	@FXML
+	private Button buttonFrancBuy = new Button();
+	@FXML
+	private Button buttonFrancSell = new Button();
+	@FXML
+	private TextField textFieldDollar = new TextField();
+	@FXML
+	private TextField textFieldEuro = new TextField();
+	@FXML
+	private TextField textFieldFranc = new TextField();
+	@FXML
+	private Button buttonTile39 = new Button();
+	@FXML
+	private Button buttonTile38 = new Button();
+	@FXML
+	private Button buttonTile37 = new Button();
+	@FXML
+	private Button buttonTile36 = new Button();
+	@FXML
+	private Button buttonTile35 = new Button();
+	@FXML
+	private Button buttonTile34 = new Button();
+	@FXML
+	private Button buttonTile33 = new Button();
+	@FXML
+	private Button buttonTile32 = new Button();
+	@FXML
+	private Button buttonTile31 = new Button();
+	@FXML
+	private Button buttonTile30 = new Button();
+	@FXML
+	private Button buttonTile29 = new Button();
+	@FXML
+	private Button buttonTile28 = new Button();
+	@FXML
+	private Button buttonTile27 = new Button();
+	@FXML
+	private Button buttonTile26 = new Button();
+	@FXML
+	private Button buttonTile25 = new Button();
+	@FXML
+	private Button buttonTile24 = new Button();
+	@FXML
+	private Button buttonTile23 = new Button();
+	@FXML
+	private Button buttonTile22 = new Button();
+	@FXML
+	private Button buttonTile21 = new Button();
+	@FXML
+	private Button buttonTile20 = new Button();
+	@FXML
+	private Button buttonTile19 = new Button();
+	@FXML
+	private Button buttonTile18 = new Button();
+	@FXML
+	private Button buttonTile17 = new Button();
+	@FXML
+	private Button buttonTile16 = new Button();
+	@FXML
+	private Button buttonTile15 = new Button();
+	@FXML
+	private Button buttonTile14 = new Button();
+	@FXML
+	private Button buttonTile13 = new Button();
+	@FXML
+	private Button buttonTile12 = new Button();
+	@FXML
+	private Button buttonTile11 = new Button();
+	@FXML
+	private Button buttonTile10 = new Button();
+	@FXML
+	private Button buttonTile9 = new Button();
+	@FXML
+	private Button buttonTile8 = new Button();
+	@FXML
+	private Button buttonTile7 = new Button();
+	@FXML
+	private Button buttonTile6 = new Button();
+	@FXML
+	private Button buttonTile5 = new Button();
+	@FXML
+	private Button buttonTile4 = new Button();
+	@FXML
+	private Button buttonTile3 = new Button();
+	@FXML
+	private Button buttonTile2 = new Button();
+	@FXML
+	private Button buttonTile1 = new Button();
+	@FXML
+	private Button buttonTile0 = new Button();
+	@FXML
+	private Button buttonPowerUpCrate = new Button();
+	@FXML
+	private ImageView iconPlayer1; // = new ImageView(new Image("file:src/vendor/image/diamond-green.png"));
+	@FXML
+	private ImageView iconMafia; // = new ImageView(new Image("file:src/vendor/image/mafia-face.png"));
+	@FXML
+	private ImageView iconPlayer3; // = new ImageView(new Image("file:src/vendor/image/diamond-pink.png"));
+	@FXML
+	private ImageView iconPolice; // = new ImageView(new Image("file:src/vendor/image/police-logo.png"));
+	@FXML
+	private ImageView iconPlayer2; // = new ImageView(new Image("file:src/vendor/image/diamond-red.png"));
+	@FXML
+	private ImageView iconPlayer4; // = new ImageView(new Image("file:src/vendor/image/diamond-blue.png"));
+	@FXML
+	private Button buttonPlayer1;
+	@FXML
+	private Button buttonPlayer2;
+	@FXML
+	private Button buttonPlayer3;
+	@FXML
+	private Button buttonPlayer4;
+	@FXML
+	private ImageView turnIndicator1;
+	@FXML
+	private ImageView turnIndicator2;
+	@FXML
+	private ImageView turnIndicator3;
+	@FXML
+	private ImageView turnIndicator4;
+	@FXML
+	private VBox root;// = new VBox();
 
 	private Stage context;
 	private Button[] buttons;
@@ -124,6 +202,8 @@ public class GameMenuController {
 			{22, 27}, {32, 27},
 			{22, 37}, {32, 37},
 	};
+
+	SoundManager sm = new SoundManager();
 
 	@FXML
 	public void initialize() {
@@ -193,21 +273,21 @@ public class GameMenuController {
 		buttonPlayer3.setOnAction(e -> showTradeActions(e));
 		buttonPlayer4.setOnAction(e -> showTradeActions(e));
 
-		buttons = new Button[] {
-				buttonTile0,buttonTile1,buttonTile2,buttonTile3,buttonTile4,
-				buttonTile5,buttonTile6,buttonTile7,buttonTile8,buttonTile9,
-				buttonTile10,buttonTile11,buttonTile12,buttonTile13,buttonTile14,
-				buttonTile15,buttonTile16,buttonTile17,buttonTile18,buttonTile19,
-				buttonTile20,buttonTile21,buttonTile22,buttonTile23,buttonTile24,
-				buttonTile25,buttonTile26,buttonTile27,buttonTile28,buttonTile29,
-				buttonTile30,buttonTile31,buttonTile32,buttonTile33,buttonTile34,
-				buttonTile35,buttonTile36,buttonTile37,buttonTile38,buttonTile39
+		buttons = new Button[]{
+				buttonTile0, buttonTile1, buttonTile2, buttonTile3, buttonTile4,
+				buttonTile5, buttonTile6, buttonTile7, buttonTile8, buttonTile9,
+				buttonTile10, buttonTile11, buttonTile12, buttonTile13, buttonTile14,
+				buttonTile15, buttonTile16, buttonTile17, buttonTile18, buttonTile19,
+				buttonTile20, buttonTile21, buttonTile22, buttonTile23, buttonTile24,
+				buttonTile25, buttonTile26, buttonTile27, buttonTile28, buttonTile29,
+				buttonTile30, buttonTile31, buttonTile32, buttonTile33, buttonTile34,
+				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
 		Player[] player = GameManager.getInstance().determineTurn();
 
 
-		icons = new ImageView[] {
-			iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
+		icons = new ImageView[]{
+				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
 		};
 		update();
 	}
@@ -249,41 +329,52 @@ public class GameMenuController {
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().buyForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
 		};
 	}
+
 	private EventHandler<ActionEvent> buttonDollarSell() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().sellForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
 		};
 	}
+
 	private EventHandler<ActionEvent> buttonEuroBuy() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().buyForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
 		};
 	}
+
 	private EventHandler<ActionEvent> buttonEuroSell() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().sellForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
 		};
 	}
+
 	private EventHandler<ActionEvent> buttonFrancBuy() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().buyForexFranc(
 					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
 		};
 	}
+
 	private EventHandler<ActionEvent> buttonFrancSell() {
 		return e -> {
+			sm.music(3);
 			GameManager.getInstance().sellForexFranc(
 					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
@@ -332,132 +423,139 @@ public class GameMenuController {
 				.getPolice().getLocation() % Map.TILECOUNT].getLayoutY());
 	}
 
-	public void setStage(Stage context) { this.context = context; }
+	public void setStage(Stage context) {
+		this.context = context;
+	}
 
 	public void rollTheDice() {
+		SoundManager sm = new SoundManager();
+		sm.music(2);
+
 		int index = GameManager.getInstance().playTurn();
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
-		if(index == 4){
+		if (index == 4) {
 			System.out.println(GameManager.getInstance().getMafia().getLocation() % 40);
-			if(GameManager.getInstance().getMafia().getLocation() % 40 > 0 && GameManager.getInstance().getMafia().getLocation() % 40 <= 10){
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 14 );
+			if (GameManager.getInstance().getMafia().getLocation() % 40 > 0 && GameManager.getInstance().getMafia().getLocation() % 40 <= 10) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 14);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 44);
-			}else if(GameManager.getInstance().getMafia().getLocation() % 40 > 10 && GameManager.getInstance().getMafia().getLocation() % 40 <= 20){
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 24 );
+			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 10 && GameManager.getInstance().getMafia().getLocation() % 40 <= 20) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 24);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 28);
-			}else if(GameManager.getInstance().getMafia().getLocation() % 40 > 20 && GameManager.getInstance().getMafia().getLocation() % 40 <= 30){
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 16 );
+			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 20 && GameManager.getInstance().getMafia().getLocation() % 40 <= 30) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 16);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 37);
-			}else if(GameManager.getInstance().getMafia().getLocation() % 40 > 30 && GameManager.getInstance().getMafia().getLocation() % 40 < 40){
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 39 );
+			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 30 && GameManager.getInstance().getMafia().getLocation() % 40 < 40) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 39);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 5);
 			}
-		}else if(index == 5){
+		} else if (index == 5) {
 			System.out.println(GameManager.getInstance().getPolice().getLocation() % 40);
-			if(GameManager.getInstance().getPolice().getLocation() % 40 > 0 && GameManager.getInstance().getPolice().getLocation() % 40 <= 10){
+			if (GameManager.getInstance().getPolice().getLocation() % 40 > 0 && GameManager.getInstance().getPolice().getLocation() % 40 <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 31);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 43);
-			}else if(GameManager.getInstance().getPolice().getLocation() % 40 > 10 && GameManager.getInstance().getPolice().getLocation() % 40 <= 20){
+			} else if (GameManager.getInstance().getPolice().getLocation() % 40 > 10 && GameManager.getInstance().getPolice().getLocation() % 40 <= 20) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 26);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 7);
-			}if(GameManager.getInstance().getPolice().getLocation() % 40 > 20 && GameManager.getInstance().getPolice().getLocation() % 40 <= 30){
+			}
+			if (GameManager.getInstance().getPolice().getLocation() % 40 > 20 && GameManager.getInstance().getPolice().getLocation() % 40 <= 30) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 16);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 17);
-			}if(GameManager.getInstance().getPolice().getLocation() % 40 > 30 && GameManager.getInstance().getPolice().getLocation() % 40 < 40){
+			}
+			if (GameManager.getInstance().getPolice().getLocation() % 40 > 30 && GameManager.getInstance().getPolice().getLocation() % 40 < 40) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 41);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 29);
 			}
-		}else {
-			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() %40);
+		} else {
+			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % 40);
 			System.out.println("-----------");
 
-			if(index == 0){
-				if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 10){
+			if (index == 0) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 3);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 20);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 20){
-                    icons[index]
-                            .setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() -1);
-                    icons[index]
-                            .setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
-                }else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 30){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() -1);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() - 1);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 < 40){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
+					icons[index]
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() - 1);
+					icons[index]
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 18);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
 				}
 
-			}else if(index == 1){
-				if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 10){
+			} else if (index == 1) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 34);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 20);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 20){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX()  +43);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 43);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 2);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 30){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 30);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 0);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 < 40){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 62);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
 				}
 
-			}else if(index == 2){
-				if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 10){
+			} else if (index == 2) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 4);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 58);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 20){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() +1);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 1);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 27);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 30){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 0);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 39);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 < 40){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 19);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 26);
 				}
 
-			}else if(index == 3){
-				if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 10){
+			} else if (index == 3) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 33);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 60);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 20){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() +44);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 44);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 25);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 <= 30){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 30);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 40);
-				}else if(GameManager.getInstance().getPlayerAt(index).getLocation()%40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation()%40 < 40){
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 62);
 					icons[index]
@@ -468,6 +566,7 @@ public class GameMenuController {
 	}
 
 	public void pauseGame() {
+		SoundManager.getInstance().pauseMusic();
 		blurScreen();
 		new PausePopup().display(context);
 		removeBlur();
@@ -477,15 +576,23 @@ public class GameMenuController {
 		root.setEffect(null);
 	}
 
-	private void blurScreen() {
+	public void trade () {
+			//new TradePopup(1).display(context);
+		new ShowTradesPopup().display(context);
+		update();
+	}
+
+	private void blurScreen () {
 		ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
 		GaussianBlur blur = new GaussianBlur(55);
 		adj.setInput(blur);
 		root.setEffect(adj);
 	}
 
-	public void mafiaButton() {
+	public void mafiaButton () {
 		new MafiaPopup().display(context);
 		update();
 	}
+
+
 }

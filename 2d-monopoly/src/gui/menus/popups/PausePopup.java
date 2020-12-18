@@ -14,6 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.FileManager;
+import management.SoundManager;
+
 
 public class PausePopup {
 	public void display(Stage context) {
@@ -28,7 +30,10 @@ public class PausePopup {
 
 		Button button_continue = new Button("Continue");
 		button_continue.setStyle(Style.button_one);
-		button_continue.setOnAction( e -> window.close());
+		button_continue.setOnAction( e -> {
+			SoundManager.getInstance().continueMusic();
+			window.close();
+		});
 
 		Button button_return_main_menu = new Button("Go back to main menu");
 		button_return_main_menu.setStyle(Style.button_one);
@@ -46,6 +51,7 @@ public class PausePopup {
 
 	private void onPressed_button_return_main_menu(Stage context, Stage window) {
 		// Push the settings screen to the context
+		SoundManager.getInstance().stopMusic();
 		window.close();
 		try {
 			FileManager.saveGame();
