@@ -51,6 +51,7 @@ public class PausePopup {
 
 	private void onPressed_button_return_main_menu(Stage context, Stage window) {
 		// Push the settings screen to the context
+		MainMenu.soundCreated = 0;
 		SoundManager.getInstance().stopMusic();
 		window.close();
 		try {

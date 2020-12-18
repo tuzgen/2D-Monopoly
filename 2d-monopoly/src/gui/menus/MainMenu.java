@@ -23,7 +23,8 @@ public class MainMenu {
 
 	// Components
 	private Scene scene_main_menu;
-
+	public static int soundCreated = 0;
+	public static SoundManager sm = SoundManager.getInstance();
 	private Text label_title;
 	private Button button_new_game, button_settings_menu, button_how_to_play,
 			button_load_game, button_credits_menu, button_quit_game;
@@ -40,7 +41,10 @@ public class MainMenu {
 		// mediaPlayer.play();
 
 		// initialize components
-		SoundManager.getInstance().music(0);
+		//SoundManager.getInstance().music(0); // delete if music works fine
+		if(soundCreated == 0)
+			sm.music(0);
+		soundCreated = 1;
 		label_title = new Text("Monopoly Sicilia");
 		label_title.setStyle(Style.text_one);
 		label_title.setFill(Color.RED);
@@ -49,7 +53,6 @@ public class MainMenu {
 		button_new_game.setStyle(Style.button_one);
 		button_new_game.setOnAction( e -> {
 			try {
-				SoundManager.getInstance().stopMusic();
 				onPressed_button_new_game(context);
 
 			} catch (Exception exception) {
@@ -61,7 +64,6 @@ public class MainMenu {
 		button_how_to_play.setStyle(Style.button_one);
 		button_how_to_play.setOnAction( e -> {
 			try {
-				SoundManager.getInstance().stopMusic();
 				onPressed_button_how_to_play(context);
 			} catch (Exception exception) {
 				System.err.println(exception.toString());
@@ -72,7 +74,6 @@ public class MainMenu {
 		button_settings_menu.setStyle(Style.button_one);
 		button_settings_menu.setOnAction( e -> {
 			try {
-				SoundManager.getInstance().stopMusic();
 				onPressed_button_settings_menu(context);
 			} catch (Exception exception) {
 				System.err.println(exception.toString());
@@ -83,7 +84,6 @@ public class MainMenu {
 		button_load_game.setStyle(Style.button_one);
 		button_load_game.setOnAction( e -> {
 			try {
-				SoundManager.getInstance().stopMusic();
 				onPressed_button_load_game(context);
 			} catch (Exception exception) {
 				System.err.println(exception.toString());
@@ -94,7 +94,6 @@ public class MainMenu {
 		button_credits_menu.setStyle(Style.button_one);
 		button_credits_menu.setOnAction( e -> {
 			try {
-				SoundManager.getInstance().stopMusic();
 				onPressed_button_credits_menu(context);
 			} catch (Exception exception) {
 				System.err.println(exception.toString());
@@ -105,7 +104,6 @@ public class MainMenu {
 		button_quit_game.setStyle(Style.button_one);
 		button_quit_game.setOnAction( e -> {
 			try {
-				SoundManager.getInstance().stopMusic();
 				onPressed_button_quit_game(context);
 			} catch (Exception exception) {
 				System.err.println(exception.toString());
