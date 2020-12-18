@@ -6,11 +6,9 @@ import gui.menus.popups.TilePopup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -29,155 +27,86 @@ public class GameMenuController {
 		return instance;
 	}
 
-	@FXML
-	private Label currentPlayerName = new Label();
-
-	@FXML
-	private Label showDollarAmount = new Label();
-
-	@FXML
-	private Label showEuroAmount = new Label();
-
-	@FXML
-	private Label showFrancAmount = new Label();
-
-	@FXML
-	private Label infoPlayer1Name = new Label();
-	@FXML
-	private Text infoPlayer1Money = new Text();
-	@FXML
-	private Label infoPlayer2Name = new Label();
-	@FXML
-	private Text infoPlayer2Money = new Text();;
-	@FXML
-	private Label infoPlayer3Name = new Label();
-	@FXML
-	private Text infoPlayer3Money = new Text();;
-	@FXML
-	private Label infoPlayer4Name = new Label();
-	@FXML
-	private Text infoPlayer4Money = new Text();;
-	@FXML
-	private Label textForexDollar = new Label();
-	@FXML
-	private Button buttonDollarBuy = new Button();
-	@FXML
-	private Button buttonDollarSell = new Button();
-	@FXML
-	private Label textForexEuro = new Label();
-	@FXML
-	private Button buttonEuroBuy = new Button();
-	@FXML
-	private Button buttonEuroSell = new Button();
-	@FXML
-	private Label textForexFrank = new Label();
-	@FXML
-	private Button buttonFrancBuy = new Button();
-	@FXML
-	private Button buttonFrancSell = new Button();
-	@FXML
-	private TextField textFieldDollar = new TextField();
-	@FXML
-	private TextField textFieldEuro = new TextField();
-	@FXML
-	private TextField textFieldFranc = new TextField();
-	@FXML
-	private Button buttonTile39 = new Button();
-	@FXML
-	private Button buttonTile38 = new Button();
-	@FXML
-	private Button buttonTile37 = new Button();
-	@FXML
-	private Button buttonTile36 = new Button();
-	@FXML
-	private Button buttonTile35 = new Button();
-	@FXML
-	private Button buttonTile34= new Button();
-	@FXML
-	private Button buttonTile33= new Button();
-	@FXML
-	private Button buttonTile32= new Button();
-	@FXML
-	private Button buttonTile31= new Button();
-	@FXML
-	private Button buttonTile30= new Button();
-	@FXML
-	private Button buttonTile29= new Button();
-	@FXML
-	private Button buttonTile28= new Button();
-	@FXML
-	private Button buttonTile27= new Button();
-	@FXML
-	private Button buttonTile26= new Button();
-	@FXML
-	private Button buttonTile25= new Button();
-	@FXML
-	private Button buttonTile24= new Button();
-	@FXML
-	private Button buttonTile23= new Button();
-	@FXML
-	private Button buttonTile22= new Button();
-	@FXML
-	private Button buttonTile21= new Button();
-	@FXML
-	private Button buttonTile20= new Button();
-	@FXML
-	private Button buttonTile19= new Button();
-	@FXML
-	private Button buttonTile18= new Button();
-	@FXML
-	private Button buttonTile17= new Button();
-	@FXML
-	private Button buttonTile16= new Button();
-	@FXML
-	private Button buttonTile15= new Button();
-	@FXML
-	private Button buttonTile14= new Button();
-	@FXML
-	private Button buttonTile13= new Button();
-	@FXML
-	private Button buttonTile12= new Button();
-	@FXML
-	private Button buttonTile11= new Button();
-	@FXML
-	private Button buttonTile10= new Button();
-	@FXML
-	private Button buttonTile9= new Button();
-	@FXML
-	private Button buttonTile8= new Button();
-	@FXML
-	private Button buttonTile7= new Button();
-	@FXML
-	private Button buttonTile6= new Button();
-	@FXML
-	private Button buttonTile5= new Button();
-	@FXML
-	private Button buttonTile4= new Button();
-	@FXML
-	private Button buttonTile3= new Button();
-	@FXML
-	private Button buttonTile2= new Button();
-	@FXML
-	private Button buttonTile1= new Button();
-	@FXML
-	private Button buttonTile0= new Button();
-	@FXML
-	private Button buttonPowerUpCrate = new Button();
-	@FXML
-	private ImageView iconPlayer1; // = new ImageView(new Image("file:src/vendor/image/diamond-green.png"));
-	@FXML
-	private ImageView iconMafia; // = new ImageView(new Image("file:src/vendor/image/mafia-face.png"));
-	@FXML
-	private ImageView iconPlayer3; // = new ImageView(new Image("file:src/vendor/image/diamond-pink.png"));
-	@FXML
-	private ImageView iconPolice; // = new ImageView(new Image("file:src/vendor/image/police-logo.png"));
-	@FXML
-	private ImageView iconPlayer2; // = new ImageView(new Image("file:src/vendor/image/diamond-red.png"));
-	@FXML
-	private ImageView iconPlayer4; // = new ImageView(new Image("file:src/vendor/image/diamond-blue.png"));
+	@FXML private Label currentPlayerName = new Label();
+	@FXML private Label showDollarAmount = new Label();
+	@FXML private Label showEuroAmount = new Label();
+	@FXML private Label showFrancAmount = new Label();
+	@FXML private Label infoPlayer1Name = new Label();
+	@FXML private Text infoPlayer1Money = new Text();
+	@FXML private Label infoPlayer2Name = new Label();
+	@FXML private Text infoPlayer2Money = new Text();
+	@FXML private Label infoPlayer3Name = new Label();
+	@FXML private Text infoPlayer3Money = new Text();
+	@FXML private Label infoPlayer4Name = new Label();
+	@FXML private Text infoPlayer4Money = new Text();
+	@FXML private Label textForexDollar = new Label();
+	@FXML private Button buttonDollarBuy = new Button();
+	@FXML private Button buttonDollarSell = new Button();
+	@FXML private Label textForexEuro = new Label();
+	@FXML private Button buttonEuroBuy = new Button();
+	@FXML private Button buttonEuroSell = new Button();
+	@FXML private Label textForexFrank = new Label();
+	@FXML private Button buttonFrancBuy = new Button();
+	@FXML private Button buttonFrancSell = new Button();
+	@FXML private TextField textFieldDollar = new TextField();
+	@FXML private TextField textFieldEuro = new TextField();
+	@FXML private TextField textFieldFranc = new TextField();
+	@FXML private Button buttonTile39 = new Button();
+	@FXML private Button buttonTile38 = new Button();
+	@FXML private Button buttonTile37 = new Button();
+	@FXML private Button buttonTile36 = new Button();
+	@FXML private Button buttonTile35 = new Button();
+	@FXML private Button buttonTile34= new Button();
+	@FXML private Button buttonTile33= new Button();
+	@FXML private Button buttonTile32= new Button();
+	@FXML private Button buttonTile31= new Button();
+	@FXML private Button buttonTile30= new Button();
+	@FXML private Button buttonTile29= new Button();
+	@FXML private Button buttonTile28= new Button();
+	@FXML private Button buttonTile27= new Button();
+	@FXML private Button buttonTile26= new Button();
+	@FXML private Button buttonTile25= new Button();
+	@FXML private Button buttonTile24= new Button();
+	@FXML private Button buttonTile23= new Button();
+	@FXML private Button buttonTile22= new Button();
+	@FXML private Button buttonTile21= new Button();
+	@FXML private Button buttonTile20= new Button();
+	@FXML private Button buttonTile19= new Button();
+	@FXML private Button buttonTile18= new Button();
+	@FXML private Button buttonTile17= new Button();
+	@FXML private Button buttonTile16= new Button();
+	@FXML private Button buttonTile15= new Button();
+	@FXML private Button buttonTile14= new Button();
+	@FXML private Button buttonTile13= new Button();
+	@FXML private Button buttonTile12= new Button();
+	@FXML private Button buttonTile11= new Button();
+	@FXML private Button buttonTile10= new Button();
+	@FXML private Button buttonTile9= new Button();
+	@FXML private Button buttonTile8= new Button();
+	@FXML private Button buttonTile7= new Button();
+	@FXML private Button buttonTile6= new Button();
+	@FXML private Button buttonTile5= new Button();
+	@FXML private Button buttonTile4= new Button();
+	@FXML private Button buttonTile3= new Button();
+	@FXML private Button buttonTile2= new Button();
+	@FXML private Button buttonTile1= new Button();
+	@FXML private Button buttonTile0= new Button();
+	@FXML private Button buttonPowerUpCrate = new Button();
+	@FXML private ImageView iconPlayer1; // = new ImageView(new Image("file:src/vendor/image/diamond-green.png"));
+	@FXML private ImageView iconMafia; // = new ImageView(new Image("file:src/vendor/image/mafia-face.png"));
+	@FXML private ImageView iconPlayer3; // = new ImageView(new Image("file:src/vendor/image/diamond-pink.png"));
+	@FXML private ImageView iconPolice; // = new ImageView(new Image("file:src/vendor/image/police-logo.png"));
+	@FXML private ImageView iconPlayer2; // = new ImageView(new Image("file:src/vendor/image/diamond-red.png"));
+	@FXML private ImageView iconPlayer4; // = new ImageView(new Image("file:src/vendor/image/diamond-blue.png"));
 
 	private Stage context;
 	private Button[] buttons;
+	private ImageView[] icons;
+	private final int[][] offsets = new int[][]{
+			{8, 18}, {28, 18},
+			{8, 38}, {28, 38},
+			{8, 58}, {28, 58},
+	};
 
 	@FXML
 	public void initialize() {
@@ -253,6 +182,9 @@ public class GameMenuController {
 				buttonTile30,buttonTile31,buttonTile32,buttonTile33,buttonTile34,
 				buttonTile35,buttonTile36,buttonTile37,buttonTile38,buttonTile39
 		};
+		icons = new ImageView[] {
+			iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
+		};
 	}
 
 	private void showTileActions(int tileNo) {
@@ -275,8 +207,6 @@ public class GameMenuController {
 		}
 
 	}
-
-
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
 		return e -> {
@@ -322,22 +252,6 @@ public class GameMenuController {
 	}
 
 	public void buttonOpenPowerUpCrate() {
-		System.out.println(buttonTile0.getLayoutX() + " " + buttonTile0.getLayoutY());
-		System.out.println(buttonTile1.getLayoutX() + " " + buttonTile1.getLayoutY());
-		System.out.println(buttonTile2.getLayoutX() + " " + buttonTile2.getLayoutY());
-		System.out.println(buttonTile3.getLayoutX() + " " + buttonTile3.getLayoutY());
-		System.out.println();
-		System.out.println(iconPlayer1.getLayoutX() + " " + iconPlayer1.getLayoutX());
-		System.out.println(iconPlayer2.getLayoutX() + " " + iconPlayer2.getLayoutX());
-		System.out.println(iconPlayer3.getLayoutX() + " " + iconPlayer3.getLayoutX());
-		System.out.println(iconPlayer4.getLayoutX() + " " + iconPlayer4.getLayoutX());
-		System.out.println(iconMafia.getLayoutX() + " " + iconMafia.getLayoutX());
-		System.out.println(iconPolice.getLayoutX() + " " + iconPolice.getLayoutX());
-		int offset = 2;
-		iconPlayer1.setLayoutX(buttons[2].getLayoutX() + offset);
-		iconPlayer1.setLayoutY(buttons[2].getLayoutY() + offset);
-		iconMafia.setLayoutX(buttons[25].getLayoutX() + offset);
-		iconMafia.setLayoutY(buttons[25].getLayoutY() + offset);
 		GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOfPlayerIndex());
 		update();
 	}
@@ -358,6 +272,18 @@ public class GameMenuController {
 
 	public void setStage(Stage context) {
 		this.context = context;
+	}
+
+	public void rollTheDice() {
+		GameManager.getInstance().playTurn();
+		System.out.println("Player location " + GameManager.getInstance().getTurnOfPlayer().getLocation());
+
+		icons[GameManager.getInstance().getTurnOfPlayerIndex()]
+				.setLayoutX(buttons[GameManager.getInstance().getTurnOfPlayer().getLocation() % Map.TILECOUNT].getLayoutX()
+						+ offsets[GameManager.getInstance().getTurnOfPlayerIndex()][0]);
+		icons[GameManager.getInstance().getTurnOfPlayerIndex()]
+				.setLayoutY(buttons[GameManager.getInstance().getTurnOfPlayer().getLocation() % Map.TILECOUNT].getLayoutY()
+						+ offsets[GameManager.getInstance().getTurnOfPlayerIndex()][1]);
 	}
 
 	public void pauseGame() {

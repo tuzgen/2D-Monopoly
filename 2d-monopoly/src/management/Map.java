@@ -5,7 +5,7 @@ import entity.player.Player;
 
 public class Map {
 	private static Map instance;
-	private final int TILECOUNT = 40;
+	public static final int TILECOUNT = 40;
 
 	public static Map getInstance() {
 		if (instance == null)

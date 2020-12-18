@@ -187,7 +187,7 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="1080.0" prefHeight="80.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="1157.0" prefHeight="80.0" prefWidth="123.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#pauseGame" style="-fx-background-color: rgba(0,0,0,0);" text="|| PAUSE" textFill="RED">
                      <font>
@@ -196,6 +196,11 @@
                   </Button>
                </children>
             </HBox>
+            <ImageView fitHeight="65.0" fitWidth="63.0" layoutX="1060.0" layoutY="18.0" onMouseClicked="#rollTheDice">
+               <image>
+                  <Image url="@vendor/image/dice.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1280.0" style="-fx-background-color: #000000;" VBox.vgrow="NEVER">
@@ -256,7 +261,7 @@
                                     <Image url="@vendor/image/diamond-green.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconMafia" fitHeight="20.0" fitWidth="24.0" layoutX="564.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconMafia" fitHeight="19.0" fitWidth="18.0" layoutX="565.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/mafia-face.png" />
                                  </image>
@@ -266,7 +271,7 @@
                                     <Image url="@vendor/image/diamond-pink.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="iconPolice" fitHeight="20.0" fitWidth="24.0" layoutX="565.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconPolice" fitHeight="18.0" fitWidth="15.0" layoutX="567.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/police-logo.png" />
                                  </image>

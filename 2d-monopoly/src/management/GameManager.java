@@ -10,13 +10,14 @@ import entity.player.User;
 import java.io.*;
 
 public class GameManager implements Serializable {
+	private static final int NPC_COUNT = 2;
 	private static GameManager instance;
 
 	// Cached singletons
-	private ForexManager forexManager;
-	private Bank bank;
-	private Map map;
-	private TradeManager tradeManager;
+	private static ForexManager forexManager;
+	private static Bank bank;
+	private static Map map;
+	private static TradeManager tradeManager;
 
 	// FILE PATHS
 	private static final String SETTINGS_DIRECTORY = "local/";
@@ -53,7 +54,17 @@ public class GameManager implements Serializable {
 		turnOfPlayerIndex = 0;
 	}
 
+	// TODO delete Debug
+	public int[] rollTheDicePair() {
+		dice.rollTheDice();
+		return dice.getPair();
+	}
+
 	public static void deleteInstance() {
+		map = null;
+		tradeManager = null;
+		forexManager = null;
+		bank = null;
 		instance = null;
 	}
 
@@ -83,14 +94,9 @@ public class GameManager implements Serializable {
 	public void update() {
 		while (isGameOver()) {
 			for (Player player : players) {
-				playTurn(player);
+				//playTurn(player);
 			}
 		}
-	}
-
-	private void playTurn(Player player) {
-		dice.rollTheDice();
-		player.playTurn();
 	}
 
 	public boolean isGameOver() {
@@ -212,7 +218,6 @@ public class GameManager implements Serializable {
 
 	public Player getPlayerAt(int index) { return players[index]; }
 	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
-
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
 	public void updateSettings(Settings settings) {
@@ -251,4 +256,14 @@ public class GameManager implements Serializable {
 	}
 
 
+	public void playTurn() {
+		dice.rollTheDice();
+		int diceTotal = dice.getSum();
+		System.out.println(
+				"TurnOf: " + turnOfPlayerIndex + "\n" +
+				"Location before: " + players[turnOfPlayerIndex].getLocation() + "\n" +
+						"");
+		players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal);
+		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (players.length); // TODO add mafia and police to the loop + NPC_COUNT);
+	}
 }
