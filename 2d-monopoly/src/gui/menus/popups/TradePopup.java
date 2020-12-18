@@ -90,8 +90,6 @@ public class TradePopup {
         buttonsLayout.getChildren().addAll(offerBtn, cancelBtn);
         finalLayout.getChildren().addAll(selectYours, selectTheirs, buttonsLayout);
 
-        System.out.println(yourChecks.size());
-
         for(int j = 0; j < yourChecks.size(); j++)
             selectYours.getChildren().add(yourChecks.get(j));
         for(int m = 0; m < theirChecks.size(); m++)

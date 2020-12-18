@@ -28,9 +28,6 @@ public class TradeManager {
         trade.setOwnersTile(offeredTiles);
         trade.setTargetTile(targetTiles);
 
-        System.out.println(owner.getTileList().size());
-        System.out.println(targetTiles.size());
-
         if(checkTrades(owner, targetPlayer, targetTiles, offeredTiles)){
             owner.addTrade(trade);
             targetPlayer.addTrade(trade);
