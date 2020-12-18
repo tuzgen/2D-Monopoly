@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import management.FileManager;
 import management.GameManager;
 
 public class SettingsMenu {
@@ -88,12 +89,12 @@ public class SettingsMenu {
 	}
 
 	private void updateSettings() {
-		gameManager.updateSettings(
+		FileManager.updateSettings(
 				new Settings(checkBox_colorblind.isSelected(), checkBox_mute.isSelected()));
 	}
 
 	private void updateDisplay() {
-		checkBox_mute.setSelected(gameManager.loadSettings().getMutedMode());
-		checkBox_colorblind.setSelected(gameManager.loadSettings().getColorblindMode());
+		checkBox_mute.setSelected(FileManager.loadSettings().getMutedMode());
+		checkBox_colorblind.setSelected(FileManager.loadSettings().getColorblindMode());
 	}
 }

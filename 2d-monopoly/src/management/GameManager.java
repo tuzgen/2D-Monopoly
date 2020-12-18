@@ -21,11 +21,6 @@ public class GameManager implements Serializable {
 	private static Map map;
 	private static TradeManager tradeManager;
 
-	// FILE PATHS
-	private static final String SETTINGS_DIRECTORY = "local/";
-	private static final String SETTINGS_FILE = "settings.ser";
-	private static Settings settings;
-
 	// properties
 	Player[] players;
 	Dice dice;
@@ -60,7 +55,6 @@ public class GameManager implements Serializable {
 		mafia = new Mafia();
 		police = new Police();
 
-		settings = new Settings(false, false);
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
 		forexManager = ForexManager.getInstance();
@@ -338,40 +332,7 @@ void bubbleSort(int arr[])
 
 	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
 
-	public void updateSettings(Settings settings) {
-		try {
-			FileOutputStream writeFile = new FileOutputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
-			ObjectOutputStream writeObject = new ObjectOutputStream(writeFile);
-			settings.setColorblindMode(settings.getColorblindMode());
-			settings.setMutedMode(settings.getMutedMode());
 
-			writeObject.writeObject(settings);
-			System.out.println("Saved settings successfully.");
-		} catch (Exception e) {
-			System.err.println("Save failed settings cannot be saved.");
-		}
-	}
-	public Settings loadSettings() {
-		try {
-			FileInputStream readFile = new FileInputStream(new File(SETTINGS_DIRECTORY + SETTINGS_FILE));
-			ObjectInputStream readObject = new ObjectInputStream(readFile);
-
-			settings = (Settings) readObject.readObject();
-
-			System.out.println("Read successful settings object created.\n" + settings.toString());
-			return settings;
-		} catch (Exception e) {
-			System.err.println("Read failed setting the default settings to false, false");
-			File saveFile = new File(SETTINGS_DIRECTORY);
-			saveFile.mkdir();
-			settings = new Settings(false, false);
-			updateSettings(settings);
-			return settings;
-		}
-	}
-	public Settings getSettings() {
-		return settings;
-	}
 
 	public int playTurn() {
 
