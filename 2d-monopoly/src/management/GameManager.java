@@ -96,12 +96,6 @@ public class GameManager implements Serializable {
 		}
 	}
 
-	// TODO delete Debug
-	public int[] rollTheDicePair() {
-		dice.rollTheDice();
-		return dice.getPair();
-	}
-
 	public static void deleteInstance() {
 		map = null;
 		tradeManager = null;
@@ -222,19 +216,19 @@ public class GameManager implements Serializable {
 	}
 
 	void bubbleSort(int arr[]) {
-	int n = arr.length;
-	for (int i = 0; i < n - 1; i++)
-		for (int j = 0; j < n - i - 1; j++)
-			if (arr[j] > arr[j + 1]) {
-				// swap temp and arr[i]
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-}
+		int n = arr.length;
+		for (int i = 0; i < n - 1; i++)
+			for (int j = 0; j < n - i - 1; j++)
+				if (arr[j] > arr[j + 1]) {
+					// swap temp and arr[i]
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+	}
 
 	public void openPowerUpCrate(Player player) {
-		// TODO
+		// TODO fill this with the functionality in the PowerUpPopup
 	}
 
 	public void mapBuyTile(Player player, int tileNo, boolean fromMafia) {
@@ -255,7 +249,7 @@ public class GameManager implements Serializable {
 
 	public void mapSellTile(Player player, int tileNo) {
 		if (map.sellTile(player, tileNo))
-		// add to the player's account
+			// add to the player's account
 			player.getAccount().setTrl(player.getAccount().getTrl() + ((BuyableTile) map.getTileAt(tileNo)).getPrice());
 
 	}
@@ -406,19 +400,18 @@ public class GameManager implements Serializable {
 		return players[players.length - 1];
 	}
 
-	public Mafia getMafia() {return mafia; }
+	public Mafia getMafia() { return mafia; }
 
-	public Police getPolice(){return police;}
+	public Police getPolice() { return police;}
 
 	public int getTurnOfPlayerIndex() {
-		if(turnOfPlayerIndex > 3){
+		if (turnOfPlayerIndex > 3){
 			return turnOfPlayerIndex;
-		}else
+		} else
 			return turnOrder[turnOfPlayerIndex];
 	}
 
 	public int playTurn() {
-
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
 
@@ -481,12 +474,7 @@ public class GameManager implements Serializable {
 			System.out.println("Player: " + players[temp].getName());
 		}
 
-
-
-		int result = temp;
-		 // TODO add mafia and police to the loop + NPC_COUNT);
-
-		return result;
+		return temp;
 	}
 
 	public void increaseTurn(){

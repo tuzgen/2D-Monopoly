@@ -41,7 +41,6 @@ public class TilePopup {
 		Text price = new Text(tile.getPrice() + "₺");
 		price.setFill(Color.WHITE);
 
-
 		// A button which displays a message and quits
 		Button returnButton = new Button("Return");
 		returnButton.setOnAction( e -> {
