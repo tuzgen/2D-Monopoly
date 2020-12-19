@@ -207,26 +207,8 @@ public class GameMenuController {
 
 	@FXML
 	public void initialize() {
-		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
-		infoPlayer1Name.setText(GameManager.getInstance().getPlayerAt(0).getName());
-		infoPlayer2Name.setText(GameManager.getInstance().getPlayerAt(1).getName());
-		infoPlayer3Name.setText(GameManager.getInstance().getPlayerAt(2).getName());
-		infoPlayer4Name.setText(GameManager.getInstance().getPlayerAt(3).getName());
-		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
-		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
-		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
-		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
-		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
-		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
-		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
-
-		buttonDollarBuy.setOnAction(buttonDollarBuy());
-		buttonEuroBuy.setOnAction(buttonEuroBuy());
-		buttonFrancBuy.setOnAction(buttonFrancBuy());
-
-		buttonDollarSell.setOnAction(buttonDollarSell());
-		buttonEuroSell.setOnAction(buttonEuroSell());
-		buttonFrancSell.setOnAction(buttonFrancSell());
+		setupPlayersBar();
+		setupAccountGUI();
 
 		/*buttonTile0.setOnAction(e -> showTileActions(0));
 		buttonTile1.setOnAction(e -> showTileActions(1));
@@ -268,12 +250,13 @@ public class GameMenuController {
 		buttonTile37.setOnAction(e -> showTileActions(37));
 		buttonTile38.setOnAction(e -> showTileActions(38));
 		buttonTile39.setOnAction(e -> showTileActions(39)); */
-		buttonPlayer1.setOnAction(this::showTradeActions); // TODO this may not work
-		buttonPlayer2.setOnAction(this::showTradeActions);
-		buttonPlayer3.setOnAction(this::showTradeActions);
-		buttonPlayer4.setOnAction(this::showTradeActions);
 
-		buttons = new Button[]{
+		setupBoardGUI();
+		update();
+	}
+
+	private void setupBoardGUI() {
+		buttons = new Button[] {
 				buttonTile0, buttonTile1, buttonTile2, buttonTile3, buttonTile4,
 				buttonTile5, buttonTile6, buttonTile7, buttonTile8, buttonTile9,
 				buttonTile10, buttonTile11, buttonTile12, buttonTile13, buttonTile14,
@@ -283,12 +266,40 @@ public class GameMenuController {
 				buttonTile30, buttonTile31, buttonTile32, buttonTile33, buttonTile34,
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
-//		player = GameManager.getInstance().determineTurn();
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
 		};
-		update();
+	}
+
+	private void setupPlayersBar() {
+		infoPlayer1Name.setText(GameManager.getInstance().getPlayerAt(0).getName());
+		infoPlayer2Name.setText(GameManager.getInstance().getPlayerAt(1).getName());
+		infoPlayer3Name.setText(GameManager.getInstance().getPlayerAt(2).getName());
+		infoPlayer4Name.setText(GameManager.getInstance().getPlayerAt(3).getName());
+		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
+		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
+		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
+		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
+		buttonPlayer1.setOnAction(this::showTradeActions);
+		buttonPlayer2.setOnAction(this::showTradeActions);
+		buttonPlayer3.setOnAction(this::showTradeActions);
+		buttonPlayer4.setOnAction(this::showTradeActions);
+	}
+
+	private void setupAccountGUI() {
+		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
+		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
+		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
+
+		buttonDollarBuy.setOnAction(buttonDollarBuy());
+		buttonEuroBuy.setOnAction(buttonEuroBuy());
+		buttonFrancBuy.setOnAction(buttonFrancBuy());
+
+		buttonDollarSell.setOnAction(buttonDollarSell());
+		buttonEuroSell.setOnAction(buttonEuroSell());
+		buttonFrancSell.setOnAction(buttonFrancSell());
 	}
 
 	private void showTradeActions(ActionEvent e) {
