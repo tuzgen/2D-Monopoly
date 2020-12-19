@@ -131,7 +131,7 @@ public class Player extends Character implements Serializable {
         isArrested = arrested;
     }
 
-    public boolean GetIsBankrupt() {
+    public boolean getIsBankrupt() {
         return isBankrupt;
     }
 

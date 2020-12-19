@@ -1,6 +1,6 @@
 package gui.popups;
 
-import entity.map.tile.BuyableTile;
+import entity.map.tile.CityTile;
 import entity.player.npcs.Mafia;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,14 +17,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.GameManager;
+import management.Map;
 
-public class TilePopup {
+public class HousePopup {
 	// Constants
 
 	// State variables
 
 	// Methods
-	public void display(String title, BuyableTile tile) {
+	public static void display(String title, CityTile tile) {
 		// Initiate pop up
 		Stage window = new Stage();
 		window.initStyle(StageStyle.UNDECORATED);
@@ -34,34 +35,46 @@ public class TilePopup {
 		window.setMinHeight(400);
 
 		//texts
-		Text infoText = new Text("Do you wanna buy " + tile.getName() + "?");
+		Text infoText = new Text("Do you wanna build a house at " + tile.getName() + "?");
 		infoText.setFill(Color.WHITE);
-		Text mafiaDealText = new Text("Do you wanna deal with mafia to buy "
-				+ tile.getName() + " for " + (int)(tile.getPrice() * (Mafia.TILE_DISCOUNT))+"₺ ?");
+		Text mafiaDealText = new Text("Do you wanna deal with mafia to build a house at "
+				+ tile.getName() + " for " + (int)(tile.getPrice()*(Mafia.TILE_DISCOUNT))+"₺ ?");
 		mafiaDealText.setFill(Color.WHITE);
-		Text price = new Text(tile.getPrice() + "₺");
+		Text price = new Text(tile.getHouseBuildPrice()+ "₺");
 		price.setFill(Color.WHITE);
 
 		// A button which displays a message and quits
 		Button returnButton = new Button("Return");
 		returnButton.setOnAction( e -> {
-			System.out.println("Did not buy the tile...");
+			System.out.println("Button pressed on pop up");
 			window.close();
 		});
 
-		// A button which lets the player buy a tile
-		Button buyButton = new Button("Buy");
-		buyButton.setOnAction( e -> {
-			GameManager.getInstance().mapBuyTile(
-					GameManager.getInstance().getTurnOfPlayer(),tile.getId(), false);
+		// A button which lets the player buy a house
+		Button buildButton = new Button("Build");
+		buildButton.setOnAction( e -> {
+			System.out.println("Button pressed on pop up");
+			GameManager.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId(), false);
 			window.close();
 		});
 
-		// A button which lets the player to buy a tile cheaper using mafia favor
+		// A button which lets the player buy a house cheaper using mafia favor
 		Button mafiaButton = new Button("Deal");
 		mafiaButton.setOnAction( e -> {
-			GameManager.getInstance().mapBuyTile(
-					GameManager.getInstance().getTurnOfPlayer(), tile.getId(), true);
+			System.out.println("Button pressed on pop up");
+			GameManager.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId(), true);
+			window.close();
+		});
+
+		// A button which lets the player buy a house cheaper using mafia favor
+		Button hotelButton = new Button("Build Hotel for "+ tile.getHotelBuildPrice()+"₺");
+		hotelButton.setDisable(true);
+		if (tile.isHotelBuildAvailable()) {
+			hotelButton.setDisable(false);
+		}
+		mafiaButton.setOnAction( e -> {
+			System.out.println("Button pressed on pop up");
+			GameManager.getInstance().buildHotel(GameManager.getInstance().getTurnOfPlayer(), tile.getId(), false);
 			window.close();
 		});
 
@@ -74,12 +87,11 @@ public class TilePopup {
 		// Create layout and add Text and Button
 		VBox layout = new VBox(20);
 		layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+		layout.setAlignment(Pos.CENTER);
 		HBox hLayout = new HBox(30);
 		hLayout.setAlignment(Pos.CENTER);
-		layout.getChildren().addAll( houseView, infoText, price, hLayout);
-		layout.setAlignment(Pos.CENTER);
-		hLayout.getChildren().addAll(returnButton, buyButton);
-		layout.getChildren().addAll(mafiaDealText, mafiaButton);
+		hLayout.getChildren().addAll(returnButton, buildButton);
+		layout.getChildren().addAll(houseView, infoText, price, hLayout, mafiaDealText, mafiaButton, hotelButton);
 
 		// Set the scene for the pop up
 		Scene scene = new Scene(layout);

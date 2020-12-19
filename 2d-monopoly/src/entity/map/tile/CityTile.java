@@ -19,7 +19,10 @@ public class CityTile extends BuyableTile implements Serializable {
 		this.hotelBuildPrice = hotelBuildPrice;
 		this.colorGroup = colorGroup;
 	}
-	// TODO getters for houseBuild and hotelBuild
+
+	public int getHouseBuildPrice() { return houseBuildPrice; }
+	public int getHotelBuildPrice() { return hotelBuildPrice; }
+
 	public int getHouseCount() {
 		int result = 0;
 		// count each class in properties with class House
@@ -78,7 +81,7 @@ public class CityTile extends BuyableTile implements Serializable {
 	public boolean isHotelBuildAvailable() {
 		System.out.println(getHouseCount());
 		System.out.println(getHotelCount());
-		return getHouseCount() == 3 && getHotelCount() == 0; // TODO test
+		return getHouseCount() == 3 && getHotelCount() == 0;
 	}
 
 	public int getColorGroup() {

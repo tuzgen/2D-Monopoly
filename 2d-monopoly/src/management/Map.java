@@ -27,9 +27,6 @@ public class Map implements Serializable {
 		return tiles;
 	}
 
-	public void updateMap() {
-		// TODO what to do here
-	}
 
 	public Tile getTileAt(int index) {
 		return tiles[index];
@@ -81,21 +78,32 @@ public class Map implements Serializable {
 	}
 
 	// Invokes CityTile's setOwner method
-	public void buyTile(Player player, int tileNo) {
-		if (!((CityTile)tiles[tileNo]).isOwned())
-			((CityTile)tiles[tileNo]).setOwner(player);
+	public boolean buyTile(Player player, int tileNo) {
+		if (!((CityTile)tiles[tileNo]).isOwned()) {
+			((CityTile) tiles[tileNo]).setOwner(player);
+			return true;
+		}
+
+		return false;
 	}
 
 	// Invokes CityTile's setOwner method
-	public void sellTile(Player player, int tileNo) {
+	public boolean sellTile(Player player, int tileNo) {
 		if (((CityTile)tiles[tileNo]).getOwner().equals(player)) {
 			((CityTile)tiles[tileNo]).setOwner(null);
+			return true;
 		}
+
+		return false;
 	}
 
-	public void buildHouse(Player player, int tileNo) {
-		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo]))
+	public boolean buildHouse(Player player, int tileNo) {
+		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo])) {
 			((CityTile) tiles[tileNo]).addHouse();
+			return true;
+		}
+
+		return false;
 	}
 
 	private boolean isHouseBuildAvailable(Player player, CityTile tile) {
@@ -120,10 +128,12 @@ public class Map implements Serializable {
 				&& (Math.abs(minHouse - (tile.getHouseCount() + 1)) <= 1);
 	}
 
-	public void buildHotel(Player player, int tileNo) {
-		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo])
-		&& ((CityTile)tiles[tileNo]).isHotelBuildAvailable())
-			((CityTile)tiles[tileNo]).addHotel();
+	public boolean buildHotel(Player player, int tileNo) {
+		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo]) && ((CityTile)tiles[tileNo]).isHotelBuildAvailable()) {
+			((CityTile) tiles[tileNo]).addHotel();
+			return true;
+		}
+		return false;
 	}
 
 	private boolean isColorGroupOwnedByPlayer(Player player, int colorGroup) {
@@ -148,4 +158,5 @@ public class Map implements Serializable {
 
 		return result;
 	}
+
 }
