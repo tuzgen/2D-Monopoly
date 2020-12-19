@@ -381,11 +381,6 @@ public class GameMenuController {
 		};
 	}
 
-	public void buttonOpenPowerUpCrate() {
-		GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOfPlayerIndex());
-		update();
-	}
-
 	public void update() {
 		System.out.println(
 				Double.toString(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()));
@@ -594,5 +589,9 @@ public class GameMenuController {
 		update();
 	}
 
+	public void powerupCrate(){
+		new PowerUpPopup().display(context);
+		update();
+	}
 
 }

@@ -394,10 +394,17 @@
                               <VBox alignment="CENTER" prefHeight="389.0" prefWidth="433.0" spacing="45.0">
                                  <children>
                         
-                                    <Button fx:id="buttonPowerUpCrate" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonOpenPowerUpCrate" prefHeight="60.0" prefWidth="134.0" style="-fx-background-color: #d4f2ff; -fx-text-fill: #0047c2; -fx-border-color: #3b7ced; -fx-border-width: 5px;" text="POWERUP xxx TL" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                                    <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#powerupCrate" prefHeight="61.0" prefWidth="194.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #f09e6e; -fx-border-color: #f09e6e; -fx-border-width: 3px;" text="Power-up Crate" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                                        <font>
-                                          <Font name="System Bold" size="18.0" />
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
+                                       <graphic>
+                                          <ImageView fitHeight="49.0" fitWidth="107.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@vendor/image/crate.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                     </Button>
                                     <VBox alignment="TOP_CENTER" prefHeight="191.0" prefWidth="337.0">
                                        <children>

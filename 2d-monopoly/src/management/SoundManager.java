@@ -55,6 +55,4 @@ public class SoundManager {
     public MediaPlayer getMediaPlayer(){
         return mediaPlayer;
     }
-
-
 }
