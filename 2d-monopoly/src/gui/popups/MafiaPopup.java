@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class MafiaPopup {
 
     public void display(Stage context){
-        PauseTransition delay = new PauseTransition(Duration.millis(1500));
+        PauseTransition delay = new PauseTransition(Duration.millis(2000));
         Stage window = new Stage();
         window.initStyle(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
@@ -115,27 +115,41 @@ public class MafiaPopup {
         VBox blayout = new VBox(10);
 
         pl1.setOnAction(event -> {
-            GameManager.getInstance().getMafia().blackmail(otherPlayers.get(0), currentPlayer);
+            int result = GameManager.getInstance().getMafia().blackmail(otherPlayers.get(0), currentPlayer);
             blayout.getChildren().clear();
+            if(result == 0) {
+                endLabel.setText("You couldn't meet the requirements,\n\t\tdeal is over, leave!");
+            } else if(result == 2){
+                endLabel.setText("We don't always say what we mean.");
+            }
             blayout.getChildren().add(endLabel);
             delay.setOnFinished(e -> window.close());
             delay.play();
-
         });
 
         pl2.setOnAction(event -> {
-            GameManager.getInstance().getMafia().blackmail(otherPlayers.get(1), currentPlayer);
+            int result = GameManager.getInstance().getMafia().blackmail(otherPlayers.get(1), currentPlayer);
             blayout.getChildren().clear();
+            if(result == 0) {
+                endLabel.setText("You couldn't meet the requirements,\n\t\tdeal is over, leave!");
+            } else if(result == 2){
+                endLabel.setText("We don't always say what we mean.");
+            }
             blayout.getChildren().add(endLabel);
             delay.setOnFinished(e -> window.close());
             delay.play();
         });
 
         pl3.setOnAction(event -> {
-            GameManager.getInstance().getMafia().blackmail(otherPlayers.get(2), currentPlayer);
+            int result = GameManager.getInstance().getMafia().blackmail(otherPlayers.get(2), currentPlayer);
             blayout.getChildren().clear();
+            if(result == 0) {
+                endLabel.setText("You couldn't meet the requirements,\n\t\tdeal is over, leave!");
+            } else if(result == 2){
+                endLabel.setText("We don't always say what we mean.");
+            }
             blayout.getChildren().add(endLabel);
-            delay.setOnFinished(e-> window.close());
+            delay.setOnFinished(e -> window.close());
             delay.play();
         });
 

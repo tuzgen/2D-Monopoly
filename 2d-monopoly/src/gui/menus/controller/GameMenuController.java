@@ -699,8 +699,9 @@ public class GameMenuController {
 				btn.setStyle(Style.button_two);
 				list.getItems().add(btn);
 				int x = i;
+
 				btn.setOnAction(event -> {
-					currentPlayer.getPowerUps().get(x).activate(currentPlayer);
+					new PowerupInfoPopup(powerUps.get(x)).display(context);
 					getItems();
 				});
 			}
@@ -717,7 +718,7 @@ public class GameMenuController {
 
 				button.setOnAction(event -> {
 					if(currentPlayer.getIsArrested()){
-						currentPlayer.playCard();
+						new UseCardPopup().display(context);
 						getItems();
 					}
 				});

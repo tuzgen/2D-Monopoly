@@ -2,6 +2,7 @@ package entity.player;
 
 import entity.Account;
 import entity.Bank;
+import entity.card.GetOutOfJailCardStrategy;
 import entity.powerup.PowerUp;
 import entity.Trade;
 import entity.card.Card;

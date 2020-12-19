@@ -19,26 +19,26 @@ public class PowerUp implements Serializable {
             amount = ThreadLocalRandom.current().nextInt(3, 36);
             int[] signs = {-1, 1};
             amount *= signs[ThreadLocalRandom.current().nextInt(0, 2)];
-            behName = "Forex power-up";
+            behName = "Forex Power-up";
         }
         if(behaviour.getClass() == EarningPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextDouble(1.1, 6.0);
-            behName = "Earning power-up";
+            behName = "Earning Power-up";
 
         }
         if(behaviour.getClass() == StrikePowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextInt(2, 13);
-            behName = "Strike power-up";
+            behName = "Strike Power-up";
         }
         if(behaviour.getClass() == SlowDownPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextDouble(0.333, 0.833);
-            behName = "Slowdown power-up";
+            behName = "Slowdown Power-up";
         }
         target = "";
     }
 
-    public void activate(Player p){
-        behaviour.activate(lifetime, behaviour, amount, target, p, this);
+    public void activate(Player p, String target){
+        behaviour.activate(target, p,this);
     }
     //get and set methods
     public int getLifetime() {

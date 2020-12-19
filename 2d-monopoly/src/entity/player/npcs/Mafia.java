@@ -48,14 +48,20 @@ public class Mafia extends NPC implements Serializable {
         //todo
     }
 
-    public boolean blackmail(Player blackmailedPlayer, Player player){ // 25% ihtimalle paraya çökmesi eklenebilir. Mafia PopUp da değiştirilmeli o casede
-        Account account = player.getAccount(); // bide tur sınırı getirile bilir ona göre bırakıyorum şuan
-        double money = account.getTrl() + account.getSwissFrank() + account.getEuro() + account.getDollar();
+    public int blackmail(Player blackmailedPlayer, Player player){
+        double rate = Math.floor(((int) Math.floor(Math.random()*4)));
+        double money = bank.getAllMoneyAmount(blackmailedPlayer);
+        if(!bank.takeMoney(player, 5000))
+            return 0;
         money = money * BLACKMAILRATE / 100;
-        bank.takeMoney(blackmailedPlayer, money);
-        bank.giveMoney(player, money * (100 - shareRate) / 100);
+        if(rate == 2) {
+            double mymoney = bank.getAllMoneyAmount(player);
+            bank.takeMoney(player, mymoney * BLACKMAILRATE / 100);
+            return 2;
+        } else
+            bank.takeMoney(blackmailedPlayer, money);
         addDeal( player );
-        return true;
+        return 1;
     }
 
 
