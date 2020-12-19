@@ -413,23 +413,27 @@ public class GameMenuController {
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
 
-//		int turnOf = 4;
-//
-//		for(int i = 0; i < 4; i++){
-//			if(GameManager.getInstance().getPlayerAt(i) == player[GameManager.getInstance().getTurnOfPlayerIndex()])
-//				turnOf = i;
-//		}
 
-		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+
+		int turnOf = 4;
+		for(int i = 0; i < 4; i++){
+			if(GameManager.getInstance().getTurnOfPlayerIndex()>3){
+				turnOf = 4;
+			}else if(GameManager.getInstance().getPlayerAt(i) == player[GameManager.getInstance().getTurnOfPlayerIndex()]) {
+				turnOf = i;
+				currentPlayerName.setText(GameManager.getInstance().getPlayerAt(i).getName());
+			}
+		}
+
+
 
 		// set turn indicators for each player
 		// set opaque if the turn is the player's
-		System.out.println("Turnof -- update: " + turnOf);
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
 		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
-		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+
 
 		updateAllLocations();
 	}

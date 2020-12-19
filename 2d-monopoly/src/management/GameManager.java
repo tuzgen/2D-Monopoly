@@ -349,13 +349,11 @@ public class GameManager implements Serializable {
 	public int playTurn() {
 
 		dice.rollTheDice();
-
 		int diceTotal = dice.getSum();
 
 		int temp = turnOfPlayerIndex;
 		if(temp == 4){
 			mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
-
 			turnOfPlayerIndex = 5;
 			return 4;
 		}
