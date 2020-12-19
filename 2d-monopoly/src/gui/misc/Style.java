@@ -39,4 +39,12 @@ public class Style {
 					+ "-fx-font-size: 18;"
 					+ "-fx-font-family: Forte;";
 
+	public  final static String window_border =
+					"-fx-padding: 10;" +
+					"-fx-border-style: solid inside;" +
+					"-fx-border-width: 6;" +
+					"-fx-border-insets: 0;" +
+					"-fx-border-radius: 0;" +
+					"-fx-border-color: #CCCCFF;";
+
 }

@@ -67,13 +67,7 @@ public class PowerupInfoPopup {
         btnBox.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         allBox.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         btnBox.getChildren().addAll(useBtn, cancelBtn);
-
-        allBox.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 6;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;" +
-                "-fx-border-color: #CCCCFF;");
+        allBox.setStyle(Style.window_border);
 
         lifetimeLabel.setText("Lifetime: " + powerup.getLifetime() + " tours");
         if(powerup.getBehaviourName().equals("Forex Power-up")){

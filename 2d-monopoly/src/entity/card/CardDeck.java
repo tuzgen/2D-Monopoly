@@ -48,7 +48,7 @@ public class CardDeck implements Serializable {
                 cards[0] = new Card(new TransactionCardStrategy(), "RTUK has fined you 30.000 TL for your radio program.", -30000);
                 cards[1] = new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0);
                 cards[2] = new Card(new MovementByNumCardStrategy(), "Mafia shot a butcher in next tile, move 3 tiles backward.", -3);
-                cards[3] = new Card(new MovementToCardStrategy(), "You stabbed a guy who don't like your new music album. Get into jail!", 30);
+                cards[3] = new Card(new MovementToCardStrategy(), "You stabbed a guy who don't like your new music album. Get into jail!", 10);
             } else {
                 cards[0] = new Card(new TransactionCardStrategy(), "You went on holiday to Russia, got on a train from St. Petersburg to Moscow. Pay 50000 TL.", -50000);
                 cards[1] = new Card(new TransactionCardStrategy(), "You worked in the field, get 2000 TL.", 2000);

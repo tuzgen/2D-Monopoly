@@ -694,7 +694,7 @@ public class GameMenuController {
 
 				button.setOnAction(event -> {
 					if(currentPlayer.getIsArrested()){
-						currentPlayer.playCard();
+						new UseCardPopup().display(context);
 						getItems();
 					}
 				});
