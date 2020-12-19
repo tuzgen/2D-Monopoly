@@ -35,7 +35,7 @@ public class NewGameMenuController {
 	void startNewGame(ActionEvent event) throws Exception {
 		System.out.println("StartButton");
 		System.out.println("Invoked " + textField1.getText());
-
+		MainMenu.sm.stopMusic();
 		new GameMenu().display(context, textField1.getText(),
 				textField2.getText(),
 				checkBox2.isSelected(),
