@@ -9,6 +9,7 @@ import entity.map.property.Property;
 import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
 import entity.powerup.PowerUpCrate;
+import management.Map;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,10 +48,6 @@ public class Player extends Character implements Serializable {
         account = new Account(startMoney);
         speed = 1;
         vehicleCount = 0;
-        tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 2));
-        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 3));
-        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 4));
     }
 
     //Methods
@@ -135,7 +132,7 @@ public class Player extends Character implements Serializable {
     public void setIsArrested(boolean arrested) {
         isArrested = arrested;
         if( arrested)
-            setLocation(10);
+            setLocation(Map.JAILNO);
     }
 
     public boolean getIsBankrupt() {

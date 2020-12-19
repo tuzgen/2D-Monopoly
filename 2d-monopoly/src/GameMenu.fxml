@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
@@ -312,6 +313,16 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="166.0" prefWidth="660.0" spacing="15.0">
                            <children>
+                              <AnchorPane prefHeight="166.0" prefWidth="103.0">
+                                 <children>
+                                    <Ellipse fill="#1f84ffd6" layoutX="52.0" layoutY="83.0" radiusX="49.0" radiusY="35.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Label fx:id="roundCounter" alignment="CENTER" contentDisplay="CENTER" layoutY="48.0" prefHeight="58.0" prefWidth="103.0" text="Round 1">
+                                       <font>
+                                          <Font name="Ink Free" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                               <StackPane prefHeight="166.0" prefWidth="454.0">
                                  <children>
                                     <Polygon accessibleRole="CONTEXT_MENU" points="352.6663818359375, 79.99996948242188, 408.6663818359375, -2.000030517578125, 825.0003051757812, -2.000030517578125, 825.0004272460938, 163.99996948242188, 408.6663818359375, 163.99996948242188" stroke="BLACK" strokeType="INSIDE">

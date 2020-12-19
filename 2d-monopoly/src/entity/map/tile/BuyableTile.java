@@ -77,4 +77,5 @@ public abstract class BuyableTile extends Tile implements Serializable {
 	public void setMortgage(boolean mortgage) {
 		isMortgage = mortgage;
 	}
+
 }

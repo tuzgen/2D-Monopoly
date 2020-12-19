@@ -26,8 +26,8 @@ public class ForexManager implements Serializable {
 
     public void resetExRates(){
         forex.setDollarExRate(1.5);
-        forex.setEuroExRate(1);
-        forex.setFrankExRate(1);
+        forex.setEuroExRate(2.0);
+        forex.setFrankExRate(1.7);
     }
 
     public void calcSupDemand(){

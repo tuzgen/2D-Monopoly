@@ -35,6 +35,7 @@ public class GameManager implements Serializable {
 	Player player3;
 	Player player4;
 	int[] turnOrder;
+	int roundNo;
 
 	// state variables
 	private int turnOfPlayerIndex;
@@ -65,6 +66,7 @@ public class GameManager implements Serializable {
 		bank = Bank.getInstance();
 		map = Map.getInstance();
 		turnOfPlayerIndex = 0;
+		roundNo = 1;
 		determineTurn();
 		if(SettingsMenu.muteSound == 0)
 			MainMenu.sm.music(1);
@@ -290,7 +292,6 @@ public class GameManager implements Serializable {
 			players[getTurnOfPlayerIndex()].getAccount()
 					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() - tryAmount);
 			forexManager.push("Dollar", amount);
-			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
@@ -307,7 +308,6 @@ public class GameManager implements Serializable {
 			players[getTurnOfPlayerIndex()].getAccount()
 					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() - tryAmount);
 			forexManager.push("Euro", amount);
-			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
@@ -323,7 +323,6 @@ public class GameManager implements Serializable {
 			players[getTurnOfPlayerIndex()].getAccount()
 					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() - tryAmount);
 			forexManager.push("Frank", amount);
-			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
@@ -340,7 +339,6 @@ public class GameManager implements Serializable {
 			players[getTurnOfPlayerIndex()].getAccount()
 					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() + tryAmount);
 			forexManager.push("Dollar", -amount);
-			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
@@ -357,7 +355,6 @@ public class GameManager implements Serializable {
 			players[getTurnOfPlayerIndex()].getAccount()
 					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() + tryAmount);
 			forexManager.push("Euro", -amount);
-			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
@@ -374,7 +371,6 @@ public class GameManager implements Serializable {
 			players[getTurnOfPlayerIndex()].getAccount()
 					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() + tryAmount);
 			forexManager.push("Frank", -amount);
-			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
 					"Euro rate: " + forexManager.getEuroExRate() + "\n" +
 					"Franc rate: " + forexManager.getFrankExRate());
@@ -408,7 +404,10 @@ public class GameManager implements Serializable {
 		int diceTotal = dice.getSum();
 
 		int temp = turnOfPlayerIndex;
-		if(temp == 4){
+		/*
+		mafia and police related turns calculations
+		* */
+		if(temp == 4){ // mafia
 			if(mafia.getIsArrested()){
 				int[] dices = dice.getPair();
 				if(dices[0] == dices[1] ){
@@ -422,7 +421,7 @@ public class GameManager implements Serializable {
 			turnOfPlayerIndex = 5;
 			return 4;
 		}
-		if(temp == 5){
+		if(temp == 5){ // police
 			police.setLocation(police.getLocation() + diceTotal % Map.TILE_COUNT);
 			if (police.getAtSameLoc(mafia)) {
 				mafia.setIsArrested(true);
@@ -430,15 +429,22 @@ public class GameManager implements Serializable {
 
 			System.out.println(police.getLocation());
 			turnOfPlayerIndex = 0;
+			roundNo++;
 			return 5;
 		}
 
+		/*
+		* player related turn calculations
+		* */
+
+		/*
 		if(players[turnOfPlayerIndex] == players[turnOrder[turnOfPlayerIndex]]){
 			if(players[turnOfPlayerIndex].getIsArrested()){ // checks if the player is arrested or not
 				int[] dices = dice.getPair();
 				if(dices[0] == dices[1] ){
 					players[turnOfPlayerIndex].setIsArrested(false);
-					players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
+					int diceTotal2dotjpg = (int) (diceTotal * players[turnOfPlayerIndex].getSpeed());
+					players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal2dotjpg % Map.TILE_COUNT);
 				}
 			}else {
 				if(players[turnOfPlayerIndex].getLocation() + diceTotal > 40)
@@ -446,31 +452,35 @@ public class GameManager implements Serializable {
 				players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
 			}
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
-		} else {
+		} else */
+		/*
+		* simplified version of the
+		* turn logic and calculations
+		* */
+
+		int diceWithSpeed = 0;
+		{
 			while(players[temp] != players[turnOrder[turnOfPlayerIndex]]) {
 				temp++;
 				if(temp > 3)
 					temp = 0;
 			}
-			if(players[temp].getIsArrested()) {
+			if(players[temp].getIsArrested()) { // getting out of the jail if needed
 				int[] dices = dice.getPair();
 				if(dices[0] == dices[1] ){
 					players[temp].setIsArrested(false);
 					players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
 				}
-			}else {
-				if(players[temp].getLocation() + diceTotal > 40)
-					players[temp].getAccount().setTrl(players[temp].getAccount().getTrl() + 200);
-				players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
+			}else { // standart calculations
+				if(players[temp].getLocation() + diceTotal > 40) // passing the start tile
+					bank.giveMoney(players[temp], 200);
+				diceWithSpeed = (int) (players[temp].getSpeed() * diceTotal);
+				players[temp].setLocation(players[temp].getLocation() + diceWithSpeed % Map.TILE_COUNT);
 			}
-			System.out.println("Player: " + players[temp].getName());
+			System.out.println("Dice + speed " + diceWithSpeed);
 		}
 
-
-
 		int result = temp;
-		 // TODO add mafia and police to the loop + NPC_COUNT);
-
 		return result;
 	}
 
@@ -478,9 +488,11 @@ public class GameManager implements Serializable {
 		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6);
 	}
 
+	public int getRoundNo(){
+		return roundNo;
+	}
 	public void gotoJail(){
 		getTurnOfPlayer().setIsArrested(true);
-
 	}
 	public String toString() {
 		return players[0].toString() + players[1].toString() + players[2].toString() + players[3].toString();

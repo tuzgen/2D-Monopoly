@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import management.ForexManager;
 import management.GameManager;
 import management.Map;
 import management.SoundManager;
@@ -205,9 +206,10 @@ public class GameMenuController {
 	private Button endTurnButton = new Button();
 	@FXML
 	private Button rollRice = new Button();
+	@FXML
+	private Label roundCounter = new Label();
 
 	int[] player;
-	boolean endTurn;
 
 	private Stage context;
 	private Button[] buttons;
@@ -269,7 +271,6 @@ public class GameMenuController {
 		setupBoardGUI();
 		update();
 		endTurnButton.setDisable(true);
-		endTurn=false;
 	}
 
 	private void setupBoardGUI() {
@@ -358,7 +359,7 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == StartTile.class) {
-
+			// it is implemented not needed here
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TaxTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
@@ -367,6 +368,7 @@ public class GameMenuController {
 
 		}
 		update();
+
 	}
 
 	private void handleTileLanded(int tileNo) {
@@ -381,6 +383,7 @@ public class GameMenuController {
 			GameManager.getInstance().buyForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
+
 		};
 	}
 
@@ -390,6 +393,7 @@ public class GameMenuController {
 			GameManager.getInstance().sellForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
+
 		};
 	}
 
@@ -399,6 +403,7 @@ public class GameMenuController {
 			GameManager.getInstance().buyForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
+
 		};
 	}
 
@@ -408,6 +413,7 @@ public class GameMenuController {
 			GameManager.getInstance().sellForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
+
 		};
 	}
 
@@ -417,6 +423,7 @@ public class GameMenuController {
 			GameManager.getInstance().buyForexFranc(
 					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
+
 		};
 	}
 
@@ -429,16 +436,21 @@ public class GameMenuController {
 		};
 	}
 
-	private void endButton(ActionEvent e){
+	private void endButton(ActionEvent e) {
 		endTurnButton.setDisable(true);
-		endTurn = false;
-
 		updateAllLocations();
 		GameManager.getInstance().increaseTurn();
+
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-		while(turnOf > 3){
+		while (turnOf > 3) {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+		}
+
+		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()){
+			new ShowTradesPopup().display(context);
+			update();
+			endTurnButton.setDisable(true);
 		}
 		updateAllLocations();
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
@@ -450,6 +462,9 @@ public class GameMenuController {
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+		getItems();
+		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
+
 	}
 
 	public void update() {
@@ -464,9 +479,6 @@ public class GameMenuController {
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
-
-		endTurn = true;
-		endTurnButton.setDisable(false);
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
@@ -484,7 +496,6 @@ public class GameMenuController {
 
 		getItems();
 		updateAllLocations();
-
 	}
 
 	private void updateAllLocations() {
@@ -506,17 +517,10 @@ public class GameMenuController {
 		SoundManager sm = new SoundManager(false);
 		sm.music(2);
 		Player p = GameManager.getInstance().getTurnOfPlayer();
-
-		if(!endTurn)
-			GameManager.getInstance().playTurn();
-//		int current = GameManager.getInstance().playTurn();
-
-//		GameManager.getInstance().determineTurn();
-		// TODO 40 -> map.tilecount
-
+		GameManager.getInstance().playTurn();
 		update();
-//		showTileActions(GameManager.getInstance().getPlayerAt(current).getLocation());
-//		p.displayTiles();
+		endTurnButton.setDisable(false);
+		showTileActions(p.getLocation());
 	}
 
 	private void updateLocations(int index) {
