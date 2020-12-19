@@ -47,10 +47,6 @@ public class Player extends Character implements Serializable {
         account = new Account(startMoney);
         speed = 1;
         vehicleCount = 0;
-        tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 1));
     }
 
     //Methods
@@ -61,6 +57,11 @@ public class Player extends Character implements Serializable {
 
     public void useMafiaFavour(){ // ENUM enum
         //TODO
+    }
+
+    public void displayTiles() {
+        System.out.println(getName());
+        System.out.println(tileList.toString());
     }
 
     public boolean playCard() {

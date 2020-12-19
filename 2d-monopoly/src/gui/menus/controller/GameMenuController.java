@@ -267,7 +267,7 @@ public class GameMenuController {
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
 
-		icons = new ImageView[]{
+		icons = new ImageView[] {
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
 		};
 	}
@@ -436,8 +436,10 @@ public class GameMenuController {
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
 
-
 		updateAllLocations();
+		for (int i = 0; i < 4; i++) {
+			GameManager.getInstance().getPlayerAt(i).displayTiles();
+		}
 	}
 
 	private void updateAllLocations() {
@@ -455,13 +457,13 @@ public class GameMenuController {
 		sm.music(2);
 		Player p = GameManager.getInstance().getTurnOfPlayer();
 
-		GameManager.getInstance().playTurn();
+		int current = GameManager.getInstance().playTurn();
 
-//		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
 
 		update();
-		showTileActions(p.getLocation());
+		showTileActions(GameManager.getInstance().getPlayerAt(current).getLocation());
+		p.displayTiles();
 	}
 
 	private void updateLocations(int index) {
