@@ -27,7 +27,7 @@ public class PowerUp implements Serializable {
             amount = ThreadLocalRandom.current().nextInt(2, 13);
         }
         if(behaviour.getClass() == SlowDownPowerUpBehaviour.class){
-            amount = ThreadLocalRandom.current().nextDouble((1/3), (5/6));
+            amount = ThreadLocalRandom.current().nextDouble(0.333, 0.833);
         }
         target = "";
     }

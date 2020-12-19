@@ -186,5 +186,9 @@ public class Player extends Character implements Serializable {
     public String toString() {
         return "Name: " + getName() + "\nLocation: " + getLocation() + "\n";
     }
+
+    public ArrayList<PowerUp> getPowerUps(){
+        return powerUps;
+    }
 }
 

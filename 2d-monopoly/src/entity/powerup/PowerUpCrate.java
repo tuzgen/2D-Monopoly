@@ -11,7 +11,6 @@ public class PowerUpCrate implements Serializable {
     private final double PRICE = 50000;
     private ArrayList<PowerUp> powerUps;
     private Player player;
-    private Bank bank;
 
     public PowerUpCrate(Player p){
         powerUps = new ArrayList<PowerUp>();
@@ -23,7 +22,7 @@ public class PowerUpCrate implements Serializable {
     }
 
     public boolean buyPowerUp(){
-        if(bank.getInstance().takeMoney(player, PRICE)){
+        if(Bank.getInstance().takeMoney(player, PRICE)){
             PowerUp pu = openPowerUpCrate();
             player.addPowerUp(pu);
             return true;
@@ -32,7 +31,7 @@ public class PowerUpCrate implements Serializable {
     }
 
     private PowerUp openPowerUpCrate(){
-        int powerUpDecider = ThreadLocalRandom.current().nextInt(0, 5);
+        int powerUpDecider = ThreadLocalRandom.current().nextInt(0, 4);
         return powerUps.get(powerUpDecider);
     }
 
