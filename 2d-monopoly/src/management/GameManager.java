@@ -16,6 +16,7 @@ import java.io.*;
 
 public class GameManager implements Serializable {
 	private static final int NPC_COUNT = 2;
+	public static final int PLAYER_COUNT = 4;
 	private static final int MAX_MONEY = 1000000;
 	private static GameManager instance;
 
@@ -124,10 +125,8 @@ public class GameManager implements Serializable {
 		return instance;
 	}
 
-	public void update() {
-		while (isGameOver()) {
-
-		}
+	public int[] getDice() {
+		return dice.getPair();
 	}
 
 	public boolean isGameOver() {
@@ -221,7 +220,7 @@ public class GameManager implements Serializable {
 }
 
 	public void openPowerUpCrate(Player player) {
-		// TODO
+		// TODO fill this with the functionality in the PowerUpPopup
 	}
 
 	public void mapBuyTile(Player player, int tileNo, boolean fromMafia) {
@@ -387,14 +386,14 @@ public class GameManager implements Serializable {
 		return players[players.length - 1];
 	}
 
-	public Mafia getMafia() {return mafia; }
+	public Mafia getMafia() { return mafia; }
 
-	public Police getPolice(){return police;}
+	public Police getPolice() { return police;}
 
 	public int getTurnOfPlayerIndex() {
-		if(turnOfPlayerIndex > 3){
+		if (turnOfPlayerIndex > 3){
 			return turnOfPlayerIndex;
-		}else
+		} else
 			return turnOrder[turnOfPlayerIndex];
 	}
 
@@ -442,14 +441,12 @@ public class GameManager implements Serializable {
 				int[] dices = dice.getPair();
 				if(dices[0] == dices[1] ){
 					players[turnOfPlayerIndex].setIsArrested(false);
-					int diceTotal2dotjpg = (int) (diceTotal * players[turnOfPlayerIndex].getSpeed());
-					players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal2dotjpg % Map.TILE_COUNT);
+					players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
 				}
 			}else {
 				if(players[turnOfPlayerIndex].getLocation() + diceTotal > 40)
 					players[turnOfPlayerIndex].getAccount().setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + 200);
-				int diceTotal2dotjpg = (int) (diceTotal * players[temp].getSpeed());
-				players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal2dotjpg % Map.TILE_COUNT);
+				players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
 			}
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
 		} else */
@@ -493,6 +490,7 @@ public class GameManager implements Serializable {
 	}
 	public void gotoJail(){
 		getTurnOfPlayer().setIsArrested(true);
+
 	}
 	public String toString() {
 		return players[0].toString() + players[1].toString() + players[2].toString() + players[3].toString();

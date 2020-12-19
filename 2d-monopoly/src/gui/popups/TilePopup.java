@@ -31,7 +31,6 @@ public class TilePopup {
 		window.setMinWidth(300);
 		window.setMinHeight(400);
 
-
 		//texts
 		Text infoText = new Text("Do you wanna buy " + tile.getName() + "?");
 		infoText.setFill(Color.WHITE);
@@ -40,7 +39,6 @@ public class TilePopup {
 		mafiaDealText.setFill(Color.WHITE);
 		Text price = new Text(tile.getPrice() + "₺");
 		price.setFill(Color.WHITE);
-
 
 		// A button which displays a message and quits
 		Button returnButton = new Button("Return");

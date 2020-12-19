@@ -17,7 +17,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.GameManager;
-import management.Map;
 
 public class HousePopup {
 	// Constants

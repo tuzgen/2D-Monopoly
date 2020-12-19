@@ -361,23 +361,27 @@ public class GameMenuController {
 				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
-			// new TilePopup().display("Card Tile", (CardTile) Map.getInstance().getTileAt(tileNo));
+			// asya merge...
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
 			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
 				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 			}
+			if( !((CompanyTile)Map.getInstance().getTileAt(tileNo)).isOwned()){
+			new TilePopup().display("Company Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
+			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
-
+			// do nothing OwO
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == StartTile.class) {
-			// it is implemented not needed here
+			// unused might be deleted, handled in another place
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TaxTile.class) {
-
+			new TaxPopup().display("Tax Tile", (TaxTile) Map.getInstance().getTileAt(tileNo), tileNo != Map.LUXURYNO);
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
 			GameManager.getInstance().gotoJail();
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
 			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
 				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 			}
+			new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		}
 		update();
 
@@ -395,7 +399,6 @@ public class GameMenuController {
 			GameManager.getInstance().buyForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
-
 		};
 	}
 
@@ -405,7 +408,6 @@ public class GameMenuController {
 			GameManager.getInstance().sellForexDollar(
 					Double.parseDouble(textFieldDollar.getText()) >= 0 ? Double.parseDouble(textFieldDollar.getText()) : 0);
 			update();
-
 		};
 	}
 
@@ -415,7 +417,6 @@ public class GameMenuController {
 			GameManager.getInstance().buyForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
-
 		};
 	}
 
@@ -425,7 +426,6 @@ public class GameMenuController {
 			GameManager.getInstance().sellForexEuro(
 					Double.parseDouble(textFieldEuro.getText()) >= 0 ? Double.parseDouble(textFieldEuro.getText()) : 0);
 			update();
-
 		};
 	}
 
@@ -538,131 +538,131 @@ public class GameMenuController {
 
 	private void updateLocations(int index) {
 		if (index == 4) {
-//			System.out.println(GameManager.getInstance().getMafia().getLocation() % 40);
-			if (GameManager.getInstance().getMafia().getLocation() % 40 >= 0 && GameManager.getInstance().getMafia().getLocation() % 40 <= 10) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 14);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 44);
-			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 10 && GameManager.getInstance().getMafia().getLocation() % 40 <= 20) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 24);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 28);
-			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 20 && GameManager.getInstance().getMafia().getLocation() % 40 <= 30) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 16);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 37);
-			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 30) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 39);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 5);
+			System.out.println(GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT);
+			if (GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT <= 10) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutX() + 14);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutY() + 44);
+			} else if (GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT > 10 && GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT <= 20) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutX() + 24);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutY() + 28);
+			} else if (GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT > 20 && GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT <= 30) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutX() + 16);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutY() + 37);
+			} else if (GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT > 30) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutX() + 39);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutY() + 5);
 			}
 		} else if (index == 5) {
-//			System.out.println("Police " + GameManager.getInstance().getPolice().getLocation() % 40);
-			if (GameManager.getInstance().getPolice().getLocation() % 40 >= 0 && GameManager.getInstance().getPolice().getLocation() % 40 <= 10) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 31);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 43);
-			} else if (GameManager.getInstance().getPolice().getLocation() % 40 > 10 && GameManager.getInstance().getPolice().getLocation() % 40 <= 20) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 26);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 7);
+			System.out.println("Police " + GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT);
+			if (GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT <= 10) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutX() + 31);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutY() + 43);
+			} else if (GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT > 10 && GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT <= 20) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutX() + 26);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutY() + 7);
 			}
-			if (GameManager.getInstance().getPolice().getLocation() % 40 > 20 && GameManager.getInstance().getPolice().getLocation() % 40 <= 30) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 16);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 17);
+			if (GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT > 20 && GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT <= 30) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutX() + 16);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutY() + 17);
 			}
-			if (GameManager.getInstance().getPolice().getLocation() % 40 > 30) {
-				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 41);
-				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 29);
+			if (GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT > 30) {
+				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutX() + 41);
+				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutY() + 29);
 			}
 		} else {
-//			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % 40);
-//			System.out.println("-----------");
+			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT);
+			System.out.println("-----------");
 
 			if (index == 0) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 10) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 3);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 3);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 20);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 20);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() - 1);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() - 1);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 1);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() - 1);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() - 1);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 1);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 18);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 18);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 1);
 				}
 
 			} else if (index == 1) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 10) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 34);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 34);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 20);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 20);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 43);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 43);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 2);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 2);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 30);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 30);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 0);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 0);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 62);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 62);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 1);
 				}
 
 			} else if (index == 2) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 10) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 4);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 4);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 58);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 58);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 1);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 1);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 27);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 27);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 0);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 0);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 39);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 39);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 19);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 19);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 26);
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 26);
 				}
 
 			} else if (index == 3) {
-				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {
+				if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 10) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 33);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 33);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 60);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 20) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 60);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 10 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 20) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 44);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 44);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 25);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 25);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 20 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 30);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 30);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 40);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + Map.TILE_COUNT);
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT > 30) {
 					icons[index]
-							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 62);
+							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutX() + 62);
 					icons[index]
-							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 27);
+							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT].getLayoutY() + 27);
 				}
 			}
 		}
@@ -724,23 +724,41 @@ public class GameMenuController {
 			for(int m = 0; m < tiles.size(); m++){
 				Button bttn = new Button(tiles.get(m).getName());
 
-				switch (((CityTile) (tiles.get(m))).getColorGroup()){
+				if (tiles.get(m).getClass() != CityTile.class) {
+					bttn.setStyle(Style.button_three + "-fx-text-fill: #647399");
+					list.getItems().add(bttn);
+
+					bttn.setOnAction(event -> {
+						System.out.println("ben city tile ım");
+					});
+					continue; // skip the city tile styling if the tile is not a city
+				}
+
+				switch (((CityTile) (tiles.get(m))).getColorGroup()) {
 					case 1:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;");
+						break;
 					case 2:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;");
+						break;
 					case 3:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;");
+						break;
 					case 4:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;");
+						break;
 					case 5:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;");
+						break;
 					case 6:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;");
+						break;
 					case 7:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;");
+						break;
 					case 8:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;"); break;
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;");
+						break;
 					default:
 						bttn.setStyle(Style.button_two);
 				}
@@ -765,7 +783,7 @@ public class GameMenuController {
 	}
 
 	public void trade () {
-			//new TradePopup(1).display(context);
+		//new TradePopup(1).display(context);
 		new ShowTradesPopup().display(context);
 		update();
 	}

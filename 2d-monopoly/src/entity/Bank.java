@@ -94,4 +94,7 @@ public class Bank implements Serializable { // Methods in this class may be stat
             return false;
         }
     }
+
+	public void deleteInstance() {
+	}
 }

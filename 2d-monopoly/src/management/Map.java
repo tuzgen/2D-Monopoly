@@ -10,6 +10,7 @@ public class Map implements Serializable {
 
 	public static final int TILE_COUNT = 40;
 	public static final int JAILNO = 10;
+	public static final int LUXURYNO = 38;
 
 	public static Map getInstance() {
 		if (instance == null)
@@ -79,8 +80,8 @@ public class Map implements Serializable {
 
 	// Invokes CityTile's setOwner method
 	public boolean buyTile(Player player, int tileNo) {
-		if (!((CityTile)tiles[tileNo]).isOwned()) {
-			((CityTile) tiles[tileNo]).setOwner(player);
+		if (!((BuyableTile)tiles[tileNo]).isOwned()) {
+			((BuyableTile) tiles[tileNo]).setOwner(player);
 			player.addToTileList(tiles[tileNo]);
 			return true;
 		}
@@ -151,6 +152,15 @@ public class Map implements Serializable {
 		return result;
 	}
 
+	public boolean isColorGroupOwnedbyAnyPlayer(int colorGroup) {
+		boolean result = false;
+		for (int i = 0; i < GameManager.PLAYER_COUNT; i++) {
+			result = result || isColorGroupOwnedByPlayer(GameManager.getInstance().getPlayerAt(i), colorGroup);
+		}
+
+		return result;
+	}
+
 	public String toString() {
 		String result = "";
 
@@ -161,4 +171,8 @@ public class Map implements Serializable {
 		return result;
 	}
 
+	public void deleteInstance() {
+		tiles = null;
+		instance = null;
+	}
 }

@@ -3,6 +3,7 @@ package entity.map.tile;
 import entity.map.property.Hotel;
 import entity.map.property.House;
 import entity.map.property.Property;
+import management.Map;
 
 import java.io.Serializable;
 
@@ -22,6 +23,24 @@ public class CityTile extends BuyableTile implements Serializable {
 
 	public int getHouseBuildPrice() { return houseBuildPrice; }
 	public int getHotelBuildPrice() { return hotelBuildPrice; }
+
+	public double getRentAmount() { // TODO to be tested
+		double amount = super.getRentAmount();
+		if (Map.getInstance().isColorGroupOwnedbyAnyPlayer(colorGroup)) {
+			amount *= 2;
+
+			switch (getHouseCount()) {
+				case 1 : amount *= 2.5;
+				case 2 : amount *= 3.0;
+				case 3 : {
+					amount *= 1.5;
+					amount = getHotelCount() == 1 ? amount * 1.5 : amount;
+				}
+			}
+		}
+
+		return amount;
+	}
 
 	public int getHouseCount() {
 		int result = 0;

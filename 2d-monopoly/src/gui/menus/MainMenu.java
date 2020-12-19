@@ -31,7 +31,7 @@ public class MainMenu {
 	private AudioClip clip_main;
 
 	public void display(Stage context) {
-		GameManager.deleteInstance();
+		GameManager.getInstance().deleteInstance();
 
 		// initialize components
 		if(soundCreated == 0)

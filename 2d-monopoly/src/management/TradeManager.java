@@ -78,4 +78,8 @@ public class TradeManager implements Serializable {
         owner.removeTrade(trade);
         targetPlayer.removeTrade(trade);
     }
+
+	public void deleteInstance() {
+
+	}
 }
