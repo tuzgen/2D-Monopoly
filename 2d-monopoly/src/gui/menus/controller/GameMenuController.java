@@ -1,5 +1,6 @@
 package gui.menus.controller;
 
+import entity.Bank;
 import entity.Trade;
 import entity.card.Card;
 import entity.map.tile.*;
@@ -353,12 +354,18 @@ public class GameMenuController {
 
 	private void showTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
-			new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
-
+			if(  !((BuyableTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
+			}
+			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
+				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
 			// new TilePopup().display("Card Tile", (CardTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
-
+			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
+				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == StartTile.class) {
@@ -368,7 +375,9 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
 			GameManager.getInstance().gotoJail();
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
-
+			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
+				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+			}
 		}
 		update();
 

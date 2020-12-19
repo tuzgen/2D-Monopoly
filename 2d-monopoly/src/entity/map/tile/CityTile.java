@@ -87,4 +87,5 @@ public class CityTile extends BuyableTile implements Serializable {
 	public int getColorGroup() {
 		return colorGroup;
 	}
+
 }
