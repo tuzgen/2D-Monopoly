@@ -1,4 +1,4 @@
-package gui.menus.popups;
+package gui.popups;
 
 import entity.powerup.PowerUpCrate;
 import gui.menus.GameMenu;
