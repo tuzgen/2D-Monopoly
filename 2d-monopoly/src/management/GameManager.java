@@ -416,6 +416,7 @@ public class GameManager implements Serializable {
 
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
+		diceTotal = 2;
 
 		int temp = turnOfPlayerIndex;
 		/*

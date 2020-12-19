@@ -363,20 +363,29 @@ public class GameMenuController {
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
-		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) { // ileri geri hareketlerde sıkıntı oluyor
 			System.out.print("CARD POP UP");
 			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance() == true){
-				new CardPopup().display("Card Tile", GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
+				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
+				new CardPopup().display("Card Tile",  card);
+//				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class)
+//					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
 			}
-			else{
-				new CardPopup().display("Card Tile", GameManager.getInstance().getCommunitydeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
+			else {
+				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
+				new CardPopup().display("Card Tile", GameManager.getInstance().getCommunitydeck().drawCard(GameManager.getInstance().getTurnOfPlayer()));
+//				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class)
+//					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
+//				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
-			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
-				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
-			}
 			if( !((CompanyTile)Map.getInstance().getTileAt(tileNo)).isOwned()){
-			new TilePopup().display("Company Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
+				new TilePopup().display("Company Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
+			}
+			if(((CompanyTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
 			// do nothing OwO

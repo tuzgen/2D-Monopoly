@@ -30,6 +30,9 @@ public class Map implements Serializable {
 
 
 	public Tile getTileAt(int index) {
+		if(index < 0){
+			index = 40 + index;
+		}
 		return tiles[index % 40];
 	}
 
