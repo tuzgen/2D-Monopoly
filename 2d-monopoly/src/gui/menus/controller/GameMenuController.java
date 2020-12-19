@@ -358,8 +358,10 @@ public class GameMenuController {
 			if(  !((BuyableTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 			}
-			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
-				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+			if( ((BuyableTile)Map.getInstance().getTileAt(tileNo)).isOwned()){
+				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
 			System.out.print("CARD POP UP");
