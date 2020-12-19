@@ -32,7 +32,7 @@ public class GameManager implements Serializable {
 	Player player2;
 	Player player3;
 	Player player4;
-	Player[] turnOrder;
+	int[] turnOrder;
 
 	// state variables
 	private int turnOfPlayerIndex;
@@ -63,6 +63,7 @@ public class GameManager implements Serializable {
 		bank = Bank.getInstance();
 		map = Map.getInstance();
 		turnOfPlayerIndex = 0;
+		determineTurn();
 		if(SettingsMenu.muteSound == 0)
 			MainMenu.sm.music(1);
 	}
@@ -137,11 +138,11 @@ public class GameManager implements Serializable {
 		return false;
 	}
 
-	public Player[] determineTurn() {
+	public int[] determineTurn() {
 		int sum0, sum1, sum2, sum3;
 		Player tmp;
 		int[] arr = new int[4];
-		turnOrder = new Player[4];
+		turnOrder = new int[4];
 		dice.rollTheDice();
 		sum0 = dice.getSum();
 		arr[0] = sum0;
@@ -178,32 +179,19 @@ public class GameManager implements Serializable {
 
 		for (int i = 0; i < 4; i++) {
 			if (arr[i] == sum0) {
-				turnOrder[i] = player1;
+				turnOrder[i] = 0;
 			} else if (arr[i] == sum1) {
-				turnOrder[i] = player2;
+				turnOrder[i] = 1;
 			} else if (arr[i] == sum2) {
-				turnOrder[i] = player3;
+				turnOrder[i] = 2;
 			} else if (arr[i] == sum3) {
-				turnOrder[i] = player4;
+				turnOrder[i] = 3;
 			}
 		}
 
-
-//		if(turnOrder[0] == player1){
-//			turnOfPlayerIndex = 0;
-//		}else if(turnOrder[0] == player2){
-//			turnOfPlayerIndex = 1;
-//		}else if(turnOrder[0] == player3){
-//			turnOfPlayerIndex = 2;
-//		}else if(turnOrder[0] == player4){
-//			turnOfPlayerIndex = 3;
-//		}
-
-
-
 		for (int i = 0; i < 4; i++) {
-			System.out.println("Real: " + turnOrder[i].getName());
-			System.out.println("\tChanged: " + turnOrder[i].getName());
+			System.out.println("Real: " + players[turnOrder[i]].getName());
+			System.out.println("\tChanged: " + players[turnOrder[i]].getName());
 		}
 
 		return turnOrder;
@@ -234,12 +222,12 @@ public class GameManager implements Serializable {
 
 	public void buyForexDollar(double amount) {
 		double tryAmount = forexManager.getDollarExRate() * amount;
-		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
+		if (bank.hasEnoughTRY(players[getTurnOfPlayerIndex()], tryAmount)) {
 			// TODO refactor
-			players[turnOfPlayerIndex].getAccount()
-					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() + amount);
-			players[turnOfPlayerIndex].getAccount()
-					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setDollar(players[getTurnOfPlayerIndex()].getAccount().getDollar() + amount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() - tryAmount);
 			forexManager.push("Dollar", amount);
 			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
@@ -251,12 +239,12 @@ public class GameManager implements Serializable {
 
 	public void buyForexEuro(double amount) {
 		double tryAmount = forexManager.getEuroExRate() * amount;
-		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
+		if (bank.hasEnoughTRY(players[getTurnOfPlayerIndex()], tryAmount)) {
 			// TODO refactor
-			players[turnOfPlayerIndex].getAccount()
-					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() + amount);
-			players[turnOfPlayerIndex].getAccount()
-					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setEuro(players[getTurnOfPlayerIndex()].getAccount().getEuro() + amount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() - tryAmount);
 			forexManager.push("Euro", amount);
 			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
@@ -267,12 +255,12 @@ public class GameManager implements Serializable {
 
 	public void buyForexFranc(double amount) {
 		double tryAmount = forexManager.getFrankExRate() * amount;
-		if (bank.hasEnoughTRY(players[turnOfPlayerIndex], tryAmount)) {
+		if (bank.hasEnoughTRY(players[getTurnOfPlayerIndex()], tryAmount)) {
 			// TODO refactor
-			players[turnOfPlayerIndex].getAccount()
-					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() + amount);
-			players[turnOfPlayerIndex].getAccount()
-					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() - tryAmount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setSwissFrank(players[getTurnOfPlayerIndex()].getAccount().getSwissFrank() + amount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() - tryAmount);
 			forexManager.push("Frank", amount);
 			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
@@ -284,12 +272,12 @@ public class GameManager implements Serializable {
 
 	public void sellForexDollar(double amount) {
 		double tryAmount = forexManager.getDollarExRate() * amount;
-		if (players[turnOfPlayerIndex].getAccount().getDollar() >= amount) {
+		if (players[getTurnOfPlayerIndex()].getAccount().getDollar() >= amount) {
 			// TODO refactor
-			players[turnOfPlayerIndex].getAccount()
-					.setDollar(players[turnOfPlayerIndex].getAccount().getDollar() - amount);
-			players[turnOfPlayerIndex].getAccount()
-					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setDollar(players[getTurnOfPlayerIndex()].getAccount().getDollar() - amount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() + tryAmount);
 			forexManager.push("Dollar", -amount);
 			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
@@ -301,12 +289,12 @@ public class GameManager implements Serializable {
 
 	public void sellForexEuro(double amount) {
 		double tryAmount = forexManager.getEuroExRate() * amount;
-		if (players[turnOfPlayerIndex].getAccount().getEuro() >= amount) {
+		if (players[getTurnOfPlayerIndex()].getAccount().getEuro() >= amount) {
 			// TODO refactor
-			players[turnOfPlayerIndex].getAccount()
-					.setEuro(players[turnOfPlayerIndex].getAccount().getEuro() - amount);
-			players[turnOfPlayerIndex].getAccount()
-					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setEuro(players[getTurnOfPlayerIndex()].getAccount().getEuro() - amount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() + tryAmount);
 			forexManager.push("Euro", -amount);
 			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
@@ -318,12 +306,12 @@ public class GameManager implements Serializable {
 
 	public void sellForexFranc(double amount) {
 		double tryAmount = forexManager.getFrankExRate() * amount;
-		if (players[turnOfPlayerIndex].getAccount().getSwissFrank() >= amount) {
+		if (players[getTurnOfPlayerIndex()].getAccount().getSwissFrank() >= amount) {
 			// TODO refactor
-			players[turnOfPlayerIndex].getAccount()
-					.setSwissFrank(players[turnOfPlayerIndex].getAccount().getSwissFrank() - amount);
-			players[turnOfPlayerIndex].getAccount()
-					.setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + tryAmount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setSwissFrank(players[getTurnOfPlayerIndex()].getAccount().getSwissFrank() - amount);
+			players[getTurnOfPlayerIndex()].getAccount()
+					.setTrl(players[getTurnOfPlayerIndex()].getAccount().getTrl() + tryAmount);
 			forexManager.push("Frank", -amount);
 			forexManager.calcSupDemand(); // TODO move to end of game loop debug here
 			System.out.println("\nDollar rate: " + forexManager.getDollarExRate() + "\n" +
@@ -332,11 +320,13 @@ public class GameManager implements Serializable {
 		}
 	}
 
-	public Player getPlayerAt(int index) { return players[index]; }
+	public Player getPlayerAt(int index) {
+		return players[index];
+	}
 
 	public Player getTurnOfPlayer() {
 		if (turnOfPlayerIndex < 4) // is not mafia or police
-			return players[turnOfPlayerIndex];
+			return players[turnOrder[turnOfPlayerIndex]];
 		return players[players.length - 1];
 	}
 
@@ -344,7 +334,12 @@ public class GameManager implements Serializable {
 
 	public Police getPolice(){return police;}
 
-	public int getTurnOfPlayerIndex() { return turnOfPlayerIndex; }
+	public int getTurnOfPlayerIndex() {
+		if(turnOfPlayerIndex > 3){
+			return turnOfPlayerIndex;
+		}else
+			return turnOrder[turnOfPlayerIndex];
+	}
 
 	public int playTurn() {
 
@@ -365,11 +360,11 @@ public class GameManager implements Serializable {
 			return 5;
 		}
 
-		if(players[turnOfPlayerIndex] == turnOrder[turnOfPlayerIndex]){
+		if(players[turnOfPlayerIndex] == players[turnOrder[turnOfPlayerIndex]]){
 			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
-		} else{
-			while(players[temp]!=turnOrder[turnOfPlayerIndex]) {
+		} else {
+			while(players[temp] != players[turnOrder[turnOfPlayerIndex]]) {
 				temp++;
 				if(temp > 3)
 					temp = 0;

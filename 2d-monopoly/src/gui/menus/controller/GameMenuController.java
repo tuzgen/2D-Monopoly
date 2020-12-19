@@ -192,7 +192,7 @@ public class GameMenuController {
 	@FXML
 	private VBox root;// = new VBox();
 
-	Player[] player;
+	int[] player;
 
 	private Stage context;
 	private Button[] buttons;
@@ -283,7 +283,7 @@ public class GameMenuController {
 				buttonTile30, buttonTile31, buttonTile32, buttonTile33, buttonTile34,
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
-		player = GameManager.getInstance().determineTurn();
+//		player = GameManager.getInstance().determineTurn();
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
@@ -405,27 +405,23 @@ public class GameMenuController {
 	}
 
 	public void update() {
+
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
 		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
 		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
 		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
+
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
+		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
 
+		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
-
-		int turnOf = 4;
-		for(int i = 0; i < 4; i++){
-			if(GameManager.getInstance().getTurnOfPlayerIndex()>3){
-				turnOf = 4;
-			}else if(GameManager.getInstance().getPlayerAt(i) == player[GameManager.getInstance().getTurnOfPlayerIndex()]) {
-				turnOf = i;
-				currentPlayerName.setText(GameManager.getInstance().getPlayerAt(i).getName());
-			}
+		while(turnOf > 4){
+			GameManager.getInstance().playTurn();
+			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
-
-
 
 		// set turn indicators for each player
 		// set opaque if the turn is the player's
@@ -453,8 +449,10 @@ public class GameMenuController {
 		sm.music(2);
 
 		GameManager.getInstance().playTurn();
+
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
+
 		update();
 	}
 
