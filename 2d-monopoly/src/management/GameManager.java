@@ -16,6 +16,7 @@ import java.io.*;
 
 public class GameManager implements Serializable {
 	private static final int NPC_COUNT = 2;
+	public static final int PLAYER_COUNT = 4;
 	private static final int MAX_MONEY = 1000000;
 	private static GameManager instance;
 
@@ -58,7 +59,6 @@ public class GameManager implements Serializable {
 		players[3] = player4;
 		mafia = new Mafia();
 		police = new Police();
-
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
 		forexManager = ForexManager.getInstance();
@@ -81,11 +81,11 @@ public class GameManager implements Serializable {
 		}
 	}
 
-	public static void deleteInstance() {
-		map = null;
-		tradeManager = null;
-		forexManager = null;
-		bank = null;
+	public void deleteInstance() {
+		map.deleteInstance();
+		tradeManager.deleteInstance();
+		forexManager.deleteInstance();
+		bank.deleteInstance();
 		instance = null;
 	}
 
@@ -116,10 +116,8 @@ public class GameManager implements Serializable {
 		return instance;
 	}
 
-	public void update() {
-		while (isGameOver()) {
-
-		}
+	public int[] getDice() {
+		return dice.getPair();
 	}
 
 	public boolean isGameOver() {

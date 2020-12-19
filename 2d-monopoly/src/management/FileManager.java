@@ -16,7 +16,7 @@ public class FileManager {
 
 		ObjectInputStream loadGame = new ObjectInputStream(readFile);
 		GameManager.setInstance((GameManager) loadGame.readObject());
-		GameManager.getInstance().toString();
+		System.out.println(GameManager.getInstance().toString());
 		System.out.println("Game loaded successfully.");
 	}
 

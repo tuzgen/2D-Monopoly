@@ -30,7 +30,6 @@ public class SettingsMenu {
 	private CheckBox checkBox_colorblind, checkBox_mute;
 
 	public void display(Stage context) {
-
 		// initialize components
 		label_title = new Label("Settings");
 		label_title.setStyle(Style.text_two);

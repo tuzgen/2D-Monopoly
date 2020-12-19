@@ -32,6 +32,5 @@ public class GameMenu {
 	public void display(Stage context) throws Exception {
 		//GameManager.getInstance();
 		show(context);
-
 	}
 }

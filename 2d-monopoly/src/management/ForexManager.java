@@ -97,5 +97,6 @@ public class ForexManager implements Serializable {
     }
 
 
-
+	public void deleteInstance() {
+	}
 }

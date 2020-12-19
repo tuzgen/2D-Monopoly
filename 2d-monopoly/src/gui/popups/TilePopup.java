@@ -31,7 +31,6 @@ public class TilePopup {
 		window.setMinWidth(300);
 		window.setMinHeight(400);
 
-
 		//texts
 		Text infoText = new Text("Do you wanna buy " + tile.getName() + "?");
 		infoText.setFill(Color.WHITE);

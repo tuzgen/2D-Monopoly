@@ -206,8 +206,8 @@ public class GameMenuController {
 	@FXML
 	private Button rollRice = new Button();
 
-	boolean endTurn;
-
+	// state variables
+	private boolean endTurn;
 	private Stage context;
 	private Button[] buttons;
 	private ImageView[] icons;
@@ -223,52 +223,11 @@ public class GameMenuController {
 	public void initialize() {
 		setupPlayersBar();
 		setupAccountGUI();
-
-		/*buttonTile0.setOnAction(e -> showTileActions(0));
-		buttonTile1.setOnAction(e -> showTileActions(1));
-		buttonTile2.setOnAction(e -> showTileActions(2));
-		buttonTile3.setOnAction(e -> showTileActions(3));
-		buttonTile4.setOnAction(e -> showTileActions(4));
-		buttonTile5.setOnAction(e -> showTileActions(5));
-		buttonTile6.setOnAction(e -> showTileActions(6));
-		buttonTile7.setOnAction(e -> showTileActions(7));
-		buttonTile8.setOnAction(e -> showTileActions(8));
-		buttonTile9.setOnAction(e -> showTileActions(9));
-		buttonTile10.setOnAction(e -> showTileActions(10));
-		buttonTile11.setOnAction(e -> showTileActions(11));
-		buttonTile12.setOnAction(e -> showTileActions(12));
-		buttonTile13.setOnAction(e -> showTileActions(13));
-		buttonTile14.setOnAction(e -> showTileActions(14));
-		buttonTile15.setOnAction(e -> showTileActions(15));
-		buttonTile16.setOnAction(e -> showTileActions(16));
-		buttonTile17.setOnAction(e -> showTileActions(17));
-		buttonTile18.setOnAction(e -> showTileActions(18));
-		buttonTile19.setOnAction(e -> showTileActions(19));
-		buttonTile20.setOnAction(e -> showTileActions(20));
-		buttonTile21.setOnAction(e -> showTileActions(21));
-		buttonTile22.setOnAction(e -> showTileActions(22));
-		buttonTile23.setOnAction(e -> showTileActions(23));
-		buttonTile24.setOnAction(e -> showTileActions(24));
-		buttonTile25.setOnAction(e -> showTileActions(25));
-		buttonTile26.setOnAction(e -> showTileActions(26));
-		buttonTile27.setOnAction(e -> showTileActions(27));
-		buttonTile28.setOnAction(e -> showTileActions(28));
-		buttonTile29.setOnAction(e -> showTileActions(29));
-		buttonTile30.setOnAction(e -> showTileActions(30));
-		buttonTile31.setOnAction(e -> showTileActions(31));
-		buttonTile32.setOnAction(e -> showTileActions(32));
-		buttonTile33.setOnAction(e -> showTileActions(33));
-		buttonTile34.setOnAction(e -> showTileActions(34));
-		buttonTile35.setOnAction(e -> showTileActions(35));
-		buttonTile36.setOnAction(e -> showTileActions(36));
-		buttonTile37.setOnAction(e -> showTileActions(37));
-		buttonTile38.setOnAction(e -> showTileActions(38));
-		buttonTile39.setOnAction(e -> showTileActions(39)); */
-
 		setupBoardGUI();
+
 		update();
 		endTurnButton.setDisable(true);
-		endTurn=false;
+		endTurn = false;
 	}
 
 	private void setupBoardGUI() {
@@ -351,7 +310,7 @@ public class GameMenuController {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
-			// asya yapiyo burayi
+			// asya merge...
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
 			new TilePopup().display("Company Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
@@ -365,6 +324,7 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
 			new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		}
+
 		update();
 	}
 
@@ -376,7 +336,6 @@ public class GameMenuController {
 			update();
 		};
 	}
-
 	private EventHandler<ActionEvent> buttonDollarSell() {
 		return e -> {
 			sm.music(3);
@@ -385,7 +344,6 @@ public class GameMenuController {
 			update();
 		};
 	}
-
 	private EventHandler<ActionEvent> buttonEuroBuy() {
 		return e -> {
 			sm.music(3);
@@ -394,7 +352,6 @@ public class GameMenuController {
 			update();
 		};
 	}
-
 	private EventHandler<ActionEvent> buttonEuroSell() {
 		return e -> {
 			sm.music(3);
@@ -403,7 +360,6 @@ public class GameMenuController {
 			update();
 		};
 	}
-
 	private EventHandler<ActionEvent> buttonFrancBuy() {
 		return e -> {
 			sm.music(3);
@@ -412,7 +368,6 @@ public class GameMenuController {
 			update();
 		};
 	}
-
 	private EventHandler<ActionEvent> buttonFrancSell() {
 		return e -> {
 			sm.music(3);
@@ -433,12 +388,15 @@ public class GameMenuController {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
+
 		updateAllLocations();
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
 		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+
 		rollRice.setDisable(false);
+
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));

@@ -29,7 +29,7 @@ public class Player extends Character implements Serializable {
     private int startMoney;
     private int salary;
     private double speed;
-    private int vehicleCount;
+    private int vehicleCount, companyCount;
 
     //constructor
     public Player(Playable playable, String name){
@@ -46,19 +46,12 @@ public class Player extends Character implements Serializable {
         startMoney = 500000; // TODO change initial money
         account = new Account(startMoney);
         speed = 1;
-        vehicleCount = 0;
+        vehicleCount = 0; // TODO increment these when player buys them
+        companyCount = 0; // TODO increment these when player buys them
     }
 
     //Methods
-    public void playTurn(){
-        //TODO
-        System.out.println(super.getName());
-    }
-
-    public void useMafiaFavour(){ // ENUM enum
-        //TODO
-    }
-
+    // DEBUG
     public void displayTiles() {
         System.out.println(getName());
         System.out.println(tileList.toString());
@@ -130,7 +123,7 @@ public class Player extends Character implements Serializable {
 
     public void setIsArrested(boolean arrested) {
         isArrested = arrested;
-        if( arrested)
+        if(arrested)
             setLocation(10);
     }
 
@@ -165,6 +158,10 @@ public class Player extends Character implements Serializable {
     public int getVehicleCount() {
         return vehicleCount;
     }
+
+    public void setVehicleCount(int vehicleCount) { this.vehicleCount = vehicleCount; }
+
+    public int getCompanyCount() { return companyCount; }
 
     public int getStartMoney() {
         return startMoney;

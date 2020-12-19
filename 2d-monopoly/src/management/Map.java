@@ -28,7 +28,6 @@ public class Map implements Serializable {
 		return tiles;
 	}
 
-
 	public Tile getTileAt(int index) {
 		return tiles[index % 40];
 	}
@@ -152,6 +151,15 @@ public class Map implements Serializable {
 		return result;
 	}
 
+	public boolean isColorGroupOwnedbyAnyPlayer(int colorGroup) {
+		boolean result = false;
+		for (int i = 0; i < GameManager.PLAYER_COUNT; i++) {
+			result = result || isColorGroupOwnedByPlayer(GameManager.getInstance().getPlayerAt(i), colorGroup);
+		}
+
+		return result;
+	}
+
 	public String toString() {
 		String result = "";
 
@@ -162,4 +170,8 @@ public class Map implements Serializable {
 		return result;
 	}
 
+	public void deleteInstance() {
+		tiles = null;
+		instance = null;
+	}
 }
