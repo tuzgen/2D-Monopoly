@@ -228,7 +228,7 @@ public class GameMenuController {
 		buttonEuroSell.setOnAction(buttonEuroSell());
 		buttonFrancSell.setOnAction(buttonFrancSell());
 
-		buttonTile0.setOnAction(e -> showTileActions(0));
+		/*buttonTile0.setOnAction(e -> showTileActions(0));
 		buttonTile1.setOnAction(e -> showTileActions(1));
 		buttonTile2.setOnAction(e -> showTileActions(2));
 		buttonTile3.setOnAction(e -> showTileActions(3));
@@ -267,7 +267,7 @@ public class GameMenuController {
 		buttonTile36.setOnAction(e -> showTileActions(36));
 		buttonTile37.setOnAction(e -> showTileActions(37));
 		buttonTile38.setOnAction(e -> showTileActions(38));
-		buttonTile39.setOnAction(e -> showTileActions(39));
+		buttonTile39.setOnAction(e -> showTileActions(39)); */
 		buttonPlayer1.setOnAction(this::showTradeActions); // TODO this may not work
 		buttonPlayer2.setOnAction(this::showTradeActions);
 		buttonPlayer3.setOnAction(this::showTradeActions);
@@ -447,11 +447,14 @@ public class GameMenuController {
 	public void rollTheDice() {
 		SoundManager sm = new SoundManager();
 		sm.music(2);
+		Player p = GameManager.getInstance().getTurnOfPlayer();
 
 		GameManager.getInstance().playTurn();
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
 		update();
+		showTileActions(p.getLocation());
+
 	}
 
 	private void updateLocations(int index) {
