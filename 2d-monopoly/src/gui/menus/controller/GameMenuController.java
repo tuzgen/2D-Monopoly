@@ -203,7 +203,7 @@ public class GameMenuController {
 			{22, 37}, {32, 37},
 	};
 
-	SoundManager sm = new SoundManager();
+	SoundManager sm = new SoundManager(false);
 
 	@FXML
 	public void initialize() {
@@ -428,7 +428,7 @@ public class GameMenuController {
 	}
 
 	public void rollTheDice() {
-		SoundManager sm = new SoundManager();
+		SoundManager sm = new SoundManager(false);
 		sm.music(2);
 
 		int index = GameManager.getInstance().playTurn();
