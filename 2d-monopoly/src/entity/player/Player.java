@@ -56,10 +56,6 @@ public class Player extends Character implements Serializable {
         System.out.println(super.getName());
     }
 
-    public void useMafiaFavour(){ // ENUM enum
-        //TODO
-    }
-
     public void displayTiles() {
         System.out.println(getName());
         System.out.println(tileList.toString());
