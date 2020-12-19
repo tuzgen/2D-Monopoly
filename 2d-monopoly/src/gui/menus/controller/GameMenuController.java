@@ -509,12 +509,14 @@ public class GameMenuController {
 
 		if(!endTurn)
 			GameManager.getInstance().playTurn();
+//		int current = GameManager.getInstance().playTurn();
 
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
 
 		update();
-		showTileActions(p.getLocation());
+//		showTileActions(GameManager.getInstance().getPlayerAt(current).getLocation());
+//		p.displayTiles();
 	}
 
 	private void updateLocations(int index) {

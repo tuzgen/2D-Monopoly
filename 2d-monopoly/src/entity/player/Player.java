@@ -63,6 +63,11 @@ public class Player extends Character implements Serializable {
         //TODO
     }
 
+    public void displayTiles() {
+        System.out.println(getName());
+        System.out.println(tileList.toString());
+    }
+
     public boolean playCard() {
         if(getIsArrested() && cards.size() != 0){
             Card c = cards.get(0);
