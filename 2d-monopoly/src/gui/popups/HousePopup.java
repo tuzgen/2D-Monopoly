@@ -49,6 +49,7 @@ public class HousePopup {
 			System.out.println("Button pressed on pop up");
 			window.close();
 		});
+		returnButton.setStyle("-fx-background-color: #9999FF;");
 
 		// A button which lets the player buy a house
 		Button buildButton = new Button("Build");
@@ -57,6 +58,7 @@ public class HousePopup {
 			GameManager.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId(), false);
 			window.close();
 		});
+		buildButton.setStyle("-fx-background-color: #CCFFCC");
 
 		// A button which lets the player buy a house cheaper using mafia favor
 		Button mafiaButton = new Button("Deal");
@@ -65,6 +67,8 @@ public class HousePopup {
 			GameManager.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId(), true);
 			window.close();
 		});
+		mafiaButton.setStyle("-fx-background-color: #FF6666;");
+
 
 		// A button which lets the player buy a house cheaper using mafia favor
 		Button hotelButton = new Button("Build Hotel for "+ tile.getHotelBuildPrice()+"₺");
@@ -77,6 +81,8 @@ public class HousePopup {
 			GameManager.getInstance().buildHotel(GameManager.getInstance().getTurnOfPlayer(), tile.getId(), false);
 			window.close();
 		});
+		returnButton.setStyle("-fx-background-color: #6699CC;");
+
 
 		// Image
 		Image house = new Image("file:src/vendor/image/house.png");
@@ -86,12 +92,18 @@ public class HousePopup {
 
 		// Create layout and add Text and Button
 		VBox layout = new VBox(20);
-		layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+		layout.setBackground(new Background(new BackgroundFill( Color.rgb(102,102,153), null, null)));
 		layout.setAlignment(Pos.CENTER);
 		HBox hLayout = new HBox(30);
 		hLayout.setAlignment(Pos.CENTER);
 		hLayout.getChildren().addAll(returnButton, buildButton);
 		layout.getChildren().addAll(houseView, infoText, price, hLayout, mafiaDealText, mafiaButton, hotelButton);
+		layout.setStyle("-fx-padding: 10;" +
+				"-fx-border-style: solid inside;" +
+				"-fx-border-width: 6;" +
+				"-fx-border-insets: 0;" +
+				"-fx-border-radius: 0;" +
+				"-fx-border-color: #CCCCFF;");
 
 		// Set the scene for the pop up
 		Scene scene = new Scene(layout);

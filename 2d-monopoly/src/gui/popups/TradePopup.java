@@ -82,6 +82,12 @@ public class TradePopup {
         selectTheirs.getChildren().addAll(showTheirTiles);
         buttonsLayout.getChildren().addAll(offerBtn, cancelBtn);
         finalLayout.getChildren().addAll(selectYours, selectTheirs, buttonsLayout);
+        finalLayout.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 6;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;" +
+                "-fx-border-color: #CCCCFF;");
 
         for(int i = 0; i < yourTiles.size(); i++) {
             yourChecks.add(new CheckBox(yourTiles.get(i).getName()));
@@ -137,6 +143,8 @@ public class TradePopup {
         Scene scene = new Scene(finalLayout);
         stage.setScene(scene);
         stage.showAndWait();
+
+
     }
 
 }
