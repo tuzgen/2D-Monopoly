@@ -1,5 +1,6 @@
 package entity.map.tile;
 
+import entity.Bank;
 import entity.player.Player;
 
 import java.io.Serializable;
@@ -74,8 +75,10 @@ public abstract class BuyableTile extends Tile implements Serializable {
 		return isMortgage;
 	}
 
-	public void setMortgage(boolean mortgage) {
+	public void setMortgage(boolean mortgage, Player player) {
 		isMortgage = mortgage;
+		if( mortgage )
+			Bank.getInstance().giveMoney(player, price*MORTGAGE_RATE);
 	}
 
 }

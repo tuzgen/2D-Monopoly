@@ -449,7 +449,8 @@ public class GameManager implements Serializable {
 			}else {
 				if(players[turnOfPlayerIndex].getLocation() + diceTotal > 40)
 					players[turnOfPlayerIndex].getAccount().setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + 200);
-				players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
+				int diceTotal2dotjpg = (int) (diceTotal * players[temp].getSpeed());
+				players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal2dotjpg % Map.TILE_COUNT);
 			}
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
 		} else */
