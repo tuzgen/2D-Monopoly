@@ -446,7 +446,7 @@ public class GameMenuController {
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
 
-
+		getItems();
 		updateAllLocations();
 	}
 
@@ -630,6 +630,11 @@ public class GameMenuController {
 				Button btn = new Button(powerUps.get(i).getBehaviourName());
 				btn.setStyle(Style.button_two);
 				list.getItems().add(btn);
+				int x = i;
+				btn.setOnAction(event -> {
+					currentPlayer.getPowerUps().get(x).activate(currentPlayer);
+					getItems();
+				});
 			}
 		//Add Cards
 		list.getItems().add(label2);
@@ -641,6 +646,13 @@ public class GameMenuController {
 				Button button = new Button("Jailbreak Daddy Card");
 				button.setStyle(Style.button_two);
 				list.getItems().add(button);
+
+				button.setOnAction(event -> {
+					if(currentPlayer.getIsArrested()){
+						currentPlayer.playCard();
+						getItems();
+					}
+				});
 			}
 		//Add Tiles
 		list.getItems().add(label3);
@@ -650,17 +662,34 @@ public class GameMenuController {
 		else
 			for(int m = 0; m < tiles.size(); m++){
 				Button bttn = new Button(tiles.get(m).getName());
-				bttn.setStyle(Style.button_two);
+
+				switch (((CityTile) (tiles.get(m))).getColorGroup()){
+					case 1:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;"); break;
+					case 2:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;"); break;
+					case 3:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;"); break;
+					case 4:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;"); break;
+					case 5:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;"); break;
+					case 6:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;"); break;
+					case 7:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;"); break;
+					case 8:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;"); break;
+					default:
+						bttn.setStyle(Style.button_two);
+				}
 				list.getItems().add(bttn);
+
+				bttn.setOnAction(event -> {
+					System.out.println("ben city tile ım");
+				});
 			}
-
-
-
-
-
-		//list.getItems().add();
 		listItems.getChildren().add(list);
-
 	}
 
 	public void pauseGame() {
@@ -668,8 +697,6 @@ public class GameMenuController {
 		blurScreen();
 		new PausePopup().display(context);
 		removeBlur();
-
-			getItems();
 	}
 
 	private void removeBlur() {

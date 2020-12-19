@@ -48,9 +48,9 @@ public class Player extends Character implements Serializable {
         speed = 1;
         vehicleCount = 0;
         tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 2));
+        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 3));
+        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 4));
     }
 
     //Methods

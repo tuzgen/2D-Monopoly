@@ -38,7 +38,7 @@ public class PowerUp implements Serializable {
     }
 
     public void activate(Player p){
-        behaviour.activate(lifetime, behaviour, amount, target, p);
+        behaviour.activate(lifetime, behaviour, amount, target, p, this);
     }
     //get and set methods
     public int getLifetime() {
