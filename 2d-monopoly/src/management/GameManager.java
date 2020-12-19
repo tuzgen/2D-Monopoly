@@ -1,6 +1,5 @@
 package management;
 
-import cached.Settings;
 import entity.Bank;
 import entity.Dice;
 import entity.player.BotCharacter;
@@ -318,7 +317,11 @@ void bubbleSort(int arr[]) {
 
 	public Player getPlayerAt(int index) { return players[index]; }
 
-	public Player getTurnOfPlayer() { return players[turnOfPlayerIndex]; }
+	public Player getTurnOfPlayer() {
+		if (turnOfPlayerIndex < 4) // is not mafia or police
+			return players[turnOfPlayerIndex];
+		return players[players.length - 1];
+	}
 
 	public Mafia getMafia() {return mafia; }
 

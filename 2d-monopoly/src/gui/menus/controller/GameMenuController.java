@@ -442,7 +442,7 @@ public class GameMenuController {
 			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 20 && GameManager.getInstance().getMafia().getLocation() % 40 <= 30) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 16);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 37);
-			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 30 && GameManager.getInstance().getMafia().getLocation() % 40 < 40) {
+			} else if (GameManager.getInstance().getMafia().getLocation() % 40 > 30) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 39);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 5);
 			}
@@ -483,7 +483,7 @@ public class GameMenuController {
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() - 1);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 1);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 18);
 					icons[index]
@@ -506,7 +506,7 @@ public class GameMenuController {
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 30);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 0);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 62);
 					icons[index]
@@ -529,7 +529,7 @@ public class GameMenuController {
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 0);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 39);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 19);
 					icons[index]
@@ -552,7 +552,7 @@ public class GameMenuController {
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 30);
 					icons[index]
 							.setLayoutY(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutY() + 40);
-				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 < 40) {
+				} else if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 > 30) {
 					icons[index]
 							.setLayoutX(buttons[GameManager.getInstance().getPlayerAt(index).getLocation() % 40].getLayoutX() + 62);
 					icons[index]
