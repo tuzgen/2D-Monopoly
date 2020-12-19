@@ -27,7 +27,6 @@ public class CardDeck implements Serializable {
            drawn.activateCard(player);
            return drawn;
        } else {
-           System.out.println("ifin üstü " );
            Card drawn = cards[currentCard % DECKSIZE];
            currentCard++;
 

@@ -44,16 +44,17 @@ public class MafiaPopup {
         blackmailButton.setStyle(Style.button_one);
         jailbreakButton.setStyle(Style.button_one);
         buyCommunityCardButton.setStyle(Style.button_one);
+        Button closeBtn = new Button("Close");
+        closeBtn.setStyle(Style.button_one);
 
         layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
-        layout.getChildren().addAll(label, blackmailButton, jailbreakButton, buyCommunityCardButton);
+        layout.getChildren().addAll(label, blackmailButton, jailbreakButton, buyCommunityCardButton, closeBtn);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 6;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;" +
-                "-fx-border-color: #FF0000;");
+        layout.setStyle(Style.window_border);
+
+        closeBtn.setOnAction(event -> {
+            window.close();
+        });
 
         //Jailbreak-----------------------------------------------------------------------------
         Label jlabel = new Label("This will cost you 50.000₺. Are you sure?");
