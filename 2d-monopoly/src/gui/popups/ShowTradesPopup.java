@@ -86,9 +86,9 @@ public class ShowTradesPopup {
             endBox.getChildren().addAll(namelbl, tilesBox, buttonBox);
             endBox.setStyle("-fx-padding: 10;" +
                     "-fx-border-style: solid inside;" +
-                    "-fx-border-width: 2;" +
-                    "-fx-border-insets: 5;" +
-                    "-fx-border-radius: 5;" +
+                    "-fx-border-width: 6;" +
+                    "-fx-border-insets: 0;" +
+                    "-fx-border-radius: 0;" +
                     "-fx-border-color: teal;");
 
             mainBox.getChildren().add(endBox);

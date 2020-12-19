@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Mafia extends NPC implements Serializable {
 
+    public static final double TILE_DISCOUNT = 0.8;
     private final double JAILBREAKAMOUNT = 50000;
     private final double CARDAMOUNT = 20000;
     private final int BLACKMAILRATE = 15;
@@ -56,6 +57,7 @@ public class Mafia extends NPC implements Serializable {
         addDeal( player );
         return true;
     }
+
 
     public boolean sellTile(int tile, Player player){
         // todo

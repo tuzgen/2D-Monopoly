@@ -133,7 +133,7 @@ public class Player extends Character implements Serializable {
             setLocation(10);
     }
 
-    public boolean GetIsBankrupt() {
+    public boolean getIsBankrupt() {
         return isBankrupt;
     }
 

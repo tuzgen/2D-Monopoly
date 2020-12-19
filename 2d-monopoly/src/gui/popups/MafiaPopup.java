@@ -48,6 +48,12 @@ public class MafiaPopup {
         layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         layout.getChildren().addAll(label, blackmailButton, jailbreakButton, buyCommunityCardButton);
         layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 6;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;" +
+                "-fx-border-color: #FF0000;");
 
         //Jailbreak-----------------------------------------------------------------------------
         Label jlabel = new Label("This will cost you 50.000₺. Are you sure?");
@@ -87,6 +93,12 @@ public class MafiaPopup {
         jlayout.setAlignment(Pos.CENTER);
         jlayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene jscene = new Scene(jlayout);
+        jlayout.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 6;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;" +
+                "-fx-border-color: #FF0000;");
 
         //Blackmail----------------------------------------------------------------------------------
         ArrayList<Player> otherPlayers = new ArrayList<Player>();
@@ -139,6 +151,12 @@ public class MafiaPopup {
         blayout.getChildren().addAll(blabel, pl1, pl2, pl3);
         blayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene bscene = new Scene(blayout);
+        blayout.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 6;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;" +
+                "-fx-border-color: #FF0000;");
 
         //CommunityCard------------------------------------------------------------------------------
         Label clabel = new Label("This will cost you 20.000₺. Are you sure?");
@@ -178,6 +196,13 @@ public class MafiaPopup {
         clayout.setAlignment(Pos.CENTER);
         clayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene cscene = new Scene(clayout);
+        clayout.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 6;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;" +
+                "-fx-border-color: #FF0000;");
+
 
         // End of the popup
         jailbreakButton.setOnAction(event -> {

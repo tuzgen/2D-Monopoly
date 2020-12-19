@@ -2,6 +2,8 @@ package management;
 
 import entity.Bank;
 import entity.Dice;
+import entity.map.tile.BuyableTile;
+import entity.map.tile.CityTile;
 import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.player.User;
@@ -9,12 +11,12 @@ import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
-import sun.applet.Main;
 
 import java.io.*;
 
 public class GameManager implements Serializable {
 	private static final int NPC_COUNT = 2;
+	private static final int MAX_MONEY = 1000000;
 	private static GameManager instance;
 
 	// Cached singletons
@@ -122,20 +124,27 @@ public class GameManager implements Serializable {
 
 	public void update() {
 		while (isGameOver()) {
-			for (Player player : players) {
-				//playTurn(player);
-			}
+
 		}
 	}
 
 	public boolean isGameOver() {
 		for (Player p : players) {
-			// TODO if any player has over the limit end game
-			if (true) {
+			if (p.getAccount().getTrl() >= MAX_MONEY || isEveryoneBankrupt()) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	private boolean isEveryoneBankrupt() {
+		int count = 0;
+		for (Player p : players) {
+			if (p.getIsBankrupt()) {
+				count++;
+			}
+		}
+		return count >= 3;
 	}
 
 	public int[] determineTurn() {
@@ -212,10 +221,62 @@ public class GameManager implements Serializable {
 	public void openPowerUpCrate(Player player) {
 		// TODO
 	}
-	public void mapBuyTile(Player player, int tileNo) { map.buyTile(player, tileNo); }
-	public void mapSellTile(Player player, int tileNo) { map.sellTile(player, tileNo); }
-	public void buildHouse(Player player, int tileNo) { map.buildHouse(player, tileNo); }
-	public void buildHotel(Player player, int tileNo) { map.buildHotel(player, tileNo); }
+
+	public void mapBuyTile(Player player, int tileNo, boolean fromMafia) {
+		// if the player has enough money to buy the tile
+		// precondition: tile at tileNo is a BuyableTile
+		int price = ((BuyableTile) map.getTileAt(tileNo)).getPrice();
+		if (fromMafia) { // a deal is made with the mafia
+			mafia.addDeal(player);
+			price = (int) (price * Mafia.TILE_DISCOUNT);
+		}
+
+		if (player.getAccount().getTrl() >= price) {
+			if (map.buyTile(player, tileNo))
+				player.getAccount().setTrl(player.getAccount().getTrl() - price);
+		} else
+			System.out.println("mapBuyTile --- Buy tile failed...");
+	}
+
+	public void mapSellTile(Player player, int tileNo) {
+		if (map.sellTile(player, tileNo))
+		// add to the player's account
+			player.getAccount().setTrl(player.getAccount().getTrl() + ((BuyableTile) map.getTileAt(tileNo)).getPrice());
+
+	}
+
+	public void buildHouse(Player player, int tileNo, boolean fromMafia) {
+		// precondition: the player is on a CityTile
+		int price = ((CityTile) map.getTileAt(tileNo)).getHouseBuildPrice();
+
+		if (fromMafia) { // a deal is made with the mafia
+			mafia.addDeal(player);
+			price = (int) (price * Mafia.TILE_DISCOUNT); // discounted price
+		}
+
+		if (player.getAccount().getTrl() >= price) {
+			if (map.buildHouse(player, tileNo))
+				player.getAccount().setTrl(player.getAccount().getTrl() - price);
+		} else
+			System.out.println("mapBuildHouse --- Buy house failed...");
+	}
+
+	public void buildHotel(Player player, int tileNo, boolean fromMafia) {
+		// precondition: the player is on a CityTile
+		int price = ((CityTile) map.getTileAt(tileNo)).getHotelBuildPrice();
+
+		if (fromMafia) { // a deal is made with the mafia
+			mafia.addDeal(player);
+			price = (int) (price * Mafia.TILE_DISCOUNT); // discounted price
+		}
+
+		if (player.getAccount().getTrl() >= price) {
+			if (map.buildHotel(player, tileNo))
+				player.getAccount().setTrl(player.getAccount().getTrl() - price);
+		} else
+			System.out.println("mapBuildHouse --- Buy hotel failed...");
+	}
+
 	public double getForexDollar() { return forexManager.getDollarExRate(); }
 	public double getForexEuro() { return forexManager.getEuroExRate(); }
 	public double getForexFrank() { return forexManager.getFrankExRate(); }

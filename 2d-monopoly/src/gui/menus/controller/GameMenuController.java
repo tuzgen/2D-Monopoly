@@ -350,7 +350,7 @@ public class GameMenuController {
 
 	private void showTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
-			new TilePopup().display("City Tile", (CityTile) Map.getInstance().getTileAt(tileNo));
+			new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
 			// new TilePopup().display("Card Tile", (CardTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
@@ -366,7 +366,7 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
 
 		}
-
+		update();
 	}
 
 	private void handleTileLanded(int tileNo) {
@@ -515,7 +515,6 @@ public class GameMenuController {
 
 		update();
 		showTileActions(p.getLocation());
-
 	}
 
 	private void updateLocations(int index) {
