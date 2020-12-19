@@ -17,6 +17,7 @@ public class CardDeck implements Serializable {
         this.chance = chance;
         currentCard = 0;
         this.isMafia = isMafia;
+        createDeck();
     }
 
     public Card drawCard(Player player){ // It takes reference of the card it might cause a problem think about it
@@ -26,8 +27,10 @@ public class CardDeck implements Serializable {
            drawn.activateCard(player);
            return drawn;
        } else {
+           System.out.println("ifin üstü " );
            Card drawn = cards[currentCard % DECKSIZE];
            currentCard++;
+
            if (drawn.getCardStrategy().getClass() == GetOutOfJailCardStrategy.class) {
                player.addToDeck(new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0));
            } else

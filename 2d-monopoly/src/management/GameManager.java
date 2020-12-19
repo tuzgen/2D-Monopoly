@@ -2,6 +2,7 @@ package management;
 
 import entity.Bank;
 import entity.Dice;
+import entity.card.CardDeck;
 import entity.map.tile.BuyableTile;
 import entity.map.tile.CityTile;
 import entity.player.BotCharacter;
@@ -30,6 +31,8 @@ public class GameManager implements Serializable {
 	Player[] players;
 	Dice dice;
 	Mafia mafia;
+	CardDeck communitydeck;
+	CardDeck changedeck;
 	Police police;
 	Player player1;
 	Player player2;
@@ -61,16 +64,28 @@ public class GameManager implements Serializable {
 		mafia = new Mafia();
 		police = new Police();
 
+		communitydeck = new CardDeck(false, false);
+		changedeck = new CardDeck(true, false);
+
 		dice = new Dice();
 		tradeManager = TradeManager.getInstance();
 		forexManager = ForexManager.getInstance();
 		bank = Bank.getInstance();
 		map = Map.getInstance();
+
 		turnOfPlayerIndex = 0;
 		roundNo = 1;
 		determineTurn();
 		if(SettingsMenu.muteSound == 0)
 			MainMenu.sm.music(1);
+	}
+
+	public CardDeck getChangedeck() {
+		return changedeck;
+	}
+
+	public CardDeck getCommunitydeck() {
+		return communitydeck;
 	}
 
 	public static boolean loadGame() {

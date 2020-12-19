@@ -36,7 +36,7 @@ public class SoundManager {
         Media h = new Media(Paths.get(music).toUri().toString());
         mediaPlayer = new MediaPlayer(h);
         if(loop)
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+           mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 

@@ -3,6 +3,7 @@ package gui.menus.controller;
 import entity.Bank;
 import entity.Trade;
 import entity.card.Card;
+import entity.card.CardDeck;
 import entity.map.tile.*;
 import entity.player.Player;
 import entity.powerup.PowerUp;
@@ -361,7 +362,13 @@ public class GameMenuController {
 				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
-			// asya merge...
+			System.out.print("CARD POP UP");
+			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance() == true){
+				new CardPopup().display("Card Tile", GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
+			}
+			else{
+				new CardPopup().display("Card Tile", GameManager.getInstance().getCommunitydeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
+			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
 			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
 				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
@@ -762,6 +769,7 @@ public class GameMenuController {
 					default:
 						bttn.setStyle(Style.button_two);
 				}
+
 				list.getItems().add(bttn);
 
 				bttn.setOnAction(event -> {
