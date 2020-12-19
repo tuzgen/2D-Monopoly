@@ -1,12 +1,14 @@
 package entity.player;
 
 import entity.Account;
+import entity.Bank;
 import entity.powerup.PowerUp;
 import entity.Trade;
 import entity.card.Card;
 import entity.map.property.Property;
 import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
+import entity.powerup.PowerUpCrate;
 
 import java.io.Serializable;
 import java.util.ArrayList;

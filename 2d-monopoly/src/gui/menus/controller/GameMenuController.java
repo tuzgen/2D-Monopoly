@@ -203,7 +203,7 @@ public class GameMenuController {
 			{22, 37}, {32, 37},
 	};
 
-	SoundManager sm = new SoundManager();
+	SoundManager sm = new SoundManager(false);
 
 	@FXML
 	public void initialize() {
@@ -410,11 +410,6 @@ public class GameMenuController {
 		};
 	}
 
-	public void buttonOpenPowerUpCrate() {
-		GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOfPlayerIndex());
-		update();
-	}
-
 	public void update() {
 
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
@@ -456,7 +451,7 @@ public class GameMenuController {
 	}
 
 	public void rollTheDice() {
-		SoundManager sm = new SoundManager();
+		SoundManager sm = new SoundManager(false);
 		sm.music(2);
 		Player p = GameManager.getInstance().getTurnOfPlayer();
 
@@ -631,5 +626,9 @@ public class GameMenuController {
 		update();
 	}
 
+	public void powerupCrate(){
+		new PowerUpPopup().display(context);
+		update();
+	}
 
 }

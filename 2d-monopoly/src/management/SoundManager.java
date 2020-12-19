@@ -10,9 +10,11 @@ public class SoundManager {
     private static SoundManager instance;
     private String[] musicList;
     private MediaPlayer mediaPlayer;
+    private boolean loop = false;
 
-    public SoundManager(){
+    public SoundManager(boolean loop){
         musicList = new String[10];
+        this.loop = loop;
         musicList[0] = "../2d-monopoly/src/vendor/sound/mainmenu.mp3";
         musicList[1] = "../2d-monopoly/src/vendor/sound/gamemenu.mp3";
         musicList[2] = "../2d-monopoly/src/vendor/sound/dice.mp3";
@@ -25,7 +27,7 @@ public class SoundManager {
 
     public static SoundManager getInstance(){
         if(instance == null)
-            instance = new SoundManager();
+            instance = new SoundManager(true);
         return instance;
     }
 
@@ -33,6 +35,8 @@ public class SoundManager {
         String music = musicList[whichMusic];
         Media h = new Media(Paths.get(music).toUri().toString());
         mediaPlayer = new MediaPlayer(h);
+        if(loop)
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 
@@ -51,6 +55,4 @@ public class SoundManager {
     public MediaPlayer getMediaPlayer(){
         return mediaPlayer;
     }
-
-
 }
