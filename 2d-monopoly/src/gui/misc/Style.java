@@ -25,4 +25,18 @@ public class Style {
 
 	public final static String checkbox_one =
 			"-fx-padding: 10px;";
+
+	public final static String button_two =
+			"-fx-background-color: transparent;"
+					+ "-fx-border-width: 0;"
+					+ "-fx-font-size: 18;"
+					+ "-fx-text-fill: #090a0c;"
+					+ "-fx-font-family: Forte;";
+
+	public final static String button_three =
+			"-fx-background-color: transparent;"
+					+ "-fx-border-width: 0;"
+					+ "-fx-font-size: 18;"
+					+ "-fx-font-family: Forte;";
+
 }

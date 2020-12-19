@@ -48,9 +48,9 @@ public class Player extends Character implements Serializable {
         speed = 1;
         vehicleCount = 0;
         tileList.add(new CityTile("Istanbul", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 1));
-        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 1));
+        tileList.add(new CityTile("Ankara", 1, 1, 1, 1, 1, 2));
+        tileList.add(new CityTile("Izmir", 1, 1, 1, 1, 1, 3));
+        tileList.add(new CityTile("Adana", 1, 1, 1, 1, 1, 4));
     }
 
     //Methods
@@ -61,6 +61,11 @@ public class Player extends Character implements Serializable {
 
     public void useMafiaFavour(){ // ENUM enum
         //TODO
+    }
+
+    public void displayTiles() {
+        System.out.println(getName());
+        System.out.println(tileList.toString());
     }
 
     public boolean playCard() {
@@ -129,6 +134,8 @@ public class Player extends Character implements Serializable {
 
     public void setIsArrested(boolean arrested) {
         isArrested = arrested;
+        if( arrested)
+            setLocation(10);
     }
 
     public boolean getIsBankrupt() {
@@ -186,5 +193,11 @@ public class Player extends Character implements Serializable {
     public String toString() {
         return "Name: " + getName() + "\nLocation: " + getLocation() + "\n";
     }
+
+    public ArrayList<PowerUp> getPowerUps(){
+        return powerUps;
+    }
+
+    public ArrayList<Card> getCards() { return cards; }
 }
 

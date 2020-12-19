@@ -409,12 +409,24 @@ public class GameManager implements Serializable {
 
 		int temp = turnOfPlayerIndex;
 		if(temp == 4){
-			mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
+			if(mafia.getIsArrested()){
+				int[] dices = dice.getPair();
+				if(dices[0] == dices[1] ){
+					mafia.setIsArrested(false);
+				}
+			}
+			if( !mafia.getIsArrested()){
+				mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
+
+			}
 			turnOfPlayerIndex = 5;
 			return 4;
 		}
 		if(temp == 5){
 			police.setLocation(police.getLocation() + diceTotal % Map.TILE_COUNT);
+			if (police.getAtSameLoc(mafia)) {
+				mafia.setIsArrested(true);
+			}
 
 			System.out.println(police.getLocation());
 			turnOfPlayerIndex = 0;
@@ -422,7 +434,17 @@ public class GameManager implements Serializable {
 		}
 
 		if(players[turnOfPlayerIndex] == players[turnOrder[turnOfPlayerIndex]]){
-			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
+			if(players[turnOfPlayerIndex].getIsArrested()){ // checks if the player is arrested or not
+				int[] dices = dice.getPair();
+				if(dices[0] == dices[1] ){
+					players[turnOfPlayerIndex].setIsArrested(false);
+					players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
+				}
+			}else {
+				if(players[turnOfPlayerIndex].getLocation() + diceTotal > 40)
+					players[turnOfPlayerIndex].getAccount().setTrl(players[turnOfPlayerIndex].getAccount().getTrl() + 200);
+				players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
+			}
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
 		} else {
 			while(players[temp] != players[turnOrder[turnOfPlayerIndex]]) {
@@ -430,16 +452,36 @@ public class GameManager implements Serializable {
 				if(temp > 3)
 					temp = 0;
 			}
-			players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
+			if(players[temp].getIsArrested()) {
+				int[] dices = dice.getPair();
+				if(dices[0] == dices[1] ){
+					players[temp].setIsArrested(false);
+					players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
+				}
+			}else {
+				if(players[temp].getLocation() + diceTotal > 40)
+					players[temp].getAccount().setTrl(players[temp].getAccount().getTrl() + 200);
+				players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
+			}
 			System.out.println("Player: " + players[temp].getName());
 		}
 
+
+
 		int result = temp;
-		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6); // TODO add mafia and police to the loop + NPC_COUNT);
+		 // TODO add mafia and police to the loop + NPC_COUNT);
 
 		return result;
 	}
 
+	public void increaseTurn(){
+		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6);
+	}
+
+	public void gotoJail(){
+		getTurnOfPlayer().setIsArrested(true);
+
+	}
 	public String toString() {
 		return players[0].toString() + players[1].toString() + players[2].toString() + players[3].toString();
 	}

@@ -29,7 +29,7 @@ public class Map implements Serializable {
 
 
 	public Tile getTileAt(int index) {
-		return tiles[index];
+		return tiles[index % 40];
 	}
 
 	private void createMap() {
@@ -81,6 +81,7 @@ public class Map implements Serializable {
 	public boolean buyTile(Player player, int tileNo) {
 		if (!((CityTile)tiles[tileNo]).isOwned()) {
 			((CityTile) tiles[tileNo]).setOwner(player);
+			player.addToTileList(tiles[tileNo]);
 			return true;
 		}
 
@@ -91,6 +92,7 @@ public class Map implements Serializable {
 	public boolean sellTile(Player player, int tileNo) {
 		if (((CityTile)tiles[tileNo]).getOwner().equals(player)) {
 			((CityTile)tiles[tileNo]).setOwner(null);
+			player.removeFromTileList(tiles[tileNo]);
 			return true;
 		}
 

@@ -7,7 +7,8 @@ import java.io.Serializable;
 public class SlowDownPowerUpBehaviour implements PowerUpBehaviour, Serializable {
 
     @Override
-    public void activate(int lifetime, PowerUpBehaviour behaviour, double amount, String target, Player p) {
+    public void activate(int lifetime, PowerUpBehaviour behaviour, double amount, String target, Player p, PowerUp powerUp) {
        p.setSpeed(p.getSpeed()*amount);
+       p.removePowerUp(powerUp);
     }
 }
