@@ -10,7 +10,7 @@ public class TransportationTile extends BuyableTile implements Serializable {
 		this.rentAmount = rentAmount;
 	}
 
-	public double getRentAmount() { // TODO test
+	public double getRentAmount() { // TODO test owner setlemiyo
 		return rentAmount * Math.pow(2, getOwner().getVehicleCount());
 	}
 
