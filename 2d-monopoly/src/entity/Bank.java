@@ -39,7 +39,7 @@ public class Bank implements Serializable { // Methods in this class may be stat
         return true;
     }
 
-    public  boolean hasEnoughMoney(Player player, double amount) {
+    public boolean hasEnoughMoney(Player player, double amount) {
         plAccount = player.getAccount();
         double totalMoney = (player.getAccount().getDollar()) * forex.getDollarExRate()
                 + (player.getAccount().getEuro()) * forex.getEuroExRate()
@@ -48,6 +48,14 @@ public class Bank implements Serializable { // Methods in this class may be stat
         if(totalMoney >= amount)
             return true;
         return false;
+    }
+
+    public double getAllMoneyAmount(Player player){
+        plAccount = player.getAccount();
+        return (player.getAccount().getDollar()) * forex.getDollarExRate()
+                + (player.getAccount().getEuro()) * forex.getEuroExRate()
+                + (player.getAccount().getSwissFrank()) * forex.getFrankExRate()
+                + (player.getAccount().getTrl());
     }
 
     public boolean hasEnoughTRY(Player player, double amount) {
