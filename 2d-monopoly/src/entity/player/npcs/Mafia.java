@@ -53,12 +53,13 @@ public class Mafia extends NPC implements Serializable {
         money = money * BLACKMAILRATE / 100;
         bank.takeMoney(blackmailedPlayer, money);
         bank.giveMoney(player, money * (100 - shareRate) / 100);
+        addDeal( player );
         return true;
     }
 
     public boolean sellTile(int tile, Player player){
         // todo
-
+        addDeal( player );
         return true;
     }
 
@@ -66,6 +67,7 @@ public class Mafia extends NPC implements Serializable {
         if(!bank.takeMoney(player, CARDAMOUNT))
             return "false";
         Card card = deck.drawCard(player);
+        addDeal( player );
         return card.getFeature();
     }
 
@@ -75,7 +77,15 @@ public class Mafia extends NPC implements Serializable {
 
     public void setIsArrested(boolean arrested){
         isArrested = arrested;
-        setLocation(Map.JAILNO);
+        setLocation(10);
+
+        for(int i = pastDeals.size()-1; i > pastDeals.size()-6; i--){
+            if(i <= 0)
+                break;
+            pastDeals.get(i).setIsArrested(true);
+        }
+        pastDeals.clear();
+
     }
 
     public void addDeal(Player player){

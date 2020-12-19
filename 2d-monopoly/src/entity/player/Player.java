@@ -129,6 +129,8 @@ public class Player extends Character implements Serializable {
 
     public void setIsArrested(boolean arrested) {
         isArrested = arrested;
+        if( arrested)
+            setLocation(10);
     }
 
     public boolean GetIsBankrupt() {

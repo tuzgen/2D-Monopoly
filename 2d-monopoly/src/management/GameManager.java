@@ -348,7 +348,16 @@ public class GameManager implements Serializable {
 
 		int temp = turnOfPlayerIndex;
 		if(temp == 4){
-			mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
+			if(mafia.getIsArrested()){
+				int[] dices = dice.getPair();
+				if(dices[0] == dices[1] ){
+					mafia.setIsArrested(false);
+				}
+			}
+			if( !mafia.getIsArrested()){
+				mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
+
+			}
 			turnOfPlayerIndex = 5;
 			return 4;
 		}
@@ -399,7 +408,7 @@ public class GameManager implements Serializable {
 
 
 		int result = temp;
-		turnOfPlayerIndex = (turnOfPlayerIndex + 1) % (6); // TODO add mafia and police to the loop + NPC_COUNT);
+		 // TODO add mafia and police to the loop + NPC_COUNT);
 
 		return result;
 	}
