@@ -1,5 +1,7 @@
 package gui.menus.popups;
 
+import entity.powerup.PowerUpCrate;
+import gui.menus.GameMenu;
 import gui.misc.Style;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import management.GameManager;
 
 import javax.swing.*;
 
@@ -29,9 +32,10 @@ public class PowerUpPopup {
         HBox hBox = new HBox(10);
         Button buy = new Button("Buy");
         Button cancel = new Button("Cancel");
-        Label label = new Label("This will cost you 50.000₺. Do you want to buy a power-up crate?");
+        //PowerUpCrate crate = new PowerUpCrate(GameManager.getInstance().getTurnOfPlayer());
+        //Label label = new Label("This will cost you "+ crate.getPrice() +"₺. Do you want to buy a power-up crate?");
 
-        label.setTextFill(Color.rgb(240,158,110));
+        //label.setTextFill(Color.rgb(240,158,110));
         buy.setStyle(Style.button_one);
         cancel.setStyle(Style.button_one);
 
@@ -41,10 +45,12 @@ public class PowerUpPopup {
         hBox.setBackground(bg);
 
         hBox.getChildren().addAll(buy, cancel);
-        vBox.getChildren().addAll(label, hBox);
+        //vBox.getChildren().addAll(label, hBox);
 
         buy.setOnAction(event -> {
-
+       //     crate.buyPowerUp();
+            vBox.getChildren().remove(hBox);
+         //   label.setText("If there's one way to disrupt a man's plans,\nit is to destabilize his timeline.");
         });
 
         cancel.setOnAction(event -> {
