@@ -678,7 +678,6 @@ public class GameMenuController {
 
 				btn.setOnAction(event -> {
 					new PowerupInfoPopup(powerUps.get(x)).display(context);
-					//currentPlayer.getPowerUps().get(x).activate(currentPlayer);
 					getItems();
 				});
 			}

@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import management.GameManager;
 
@@ -26,11 +27,12 @@ public class PowerUpPopup {
         Stage stage = new Stage();
         PauseTransition delay = new PauseTransition(Duration.millis(2000));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.setTitle("Buy power-up crate");
         stage.setMinWidth(300);
         stage.setMinHeight(150);
-        Background bg = new Background(new BackgroundFill(new Color(0,0,0,1), null, null));
+        Background bg = new Background(new BackgroundFill(Color.rgb(115,115,115), null, null));
         VBox vBox = new VBox(10);
         HBox hBox = new HBox(10);
         Button buy = new Button("Buy");
@@ -61,6 +63,13 @@ public class PowerUpPopup {
         cancel.setOnAction(event -> {
             stage.close();
         });
+
+        vBox.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 6;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;" +
+                "-fx-border-color: #f09e6e;");
 
         Scene scene = new Scene(vBox);
         stage.setScene(scene);
