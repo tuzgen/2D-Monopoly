@@ -805,8 +805,10 @@ public class GameMenuController {
 	}
 
 	public void mafiaButton () {
-		new MafiaPopup().display(context);
-		update();
+		if(!GameManager.getInstance().getMafia().getIsArrested()){
+			new MafiaPopup().display(context);
+			update();
+		}
 	}
 
 	public void powerupCrate(){
