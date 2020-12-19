@@ -190,5 +190,7 @@ public class Player extends Character implements Serializable {
     public ArrayList<PowerUp> getPowerUps(){
         return powerUps;
     }
+
+    public ArrayList<Card> getCards() { return cards; }
 }
 

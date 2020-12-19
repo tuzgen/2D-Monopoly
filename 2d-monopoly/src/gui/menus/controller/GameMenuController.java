@@ -1,18 +1,25 @@
 package gui.menus.controller;
 
+import entity.Trade;
+import entity.card.Card;
 import entity.map.tile.*;
 import entity.player.Player;
+import entity.powerup.PowerUp;
+import gui.misc.Style;
 import gui.popups.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
@@ -20,6 +27,7 @@ import management.Map;
 import management.SoundManager;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class GameMenuController {
 	private static GameMenuController instance;
@@ -31,6 +39,8 @@ public class GameMenuController {
 		return instance;
 	}
 
+	@FXML
+	private AnchorPane listItems = new AnchorPane();
 	@FXML
 	private Label currentPlayerName = new Label();
 	@FXML
@@ -597,11 +607,69 @@ public class GameMenuController {
 		}
 	}
 
+	public void getItems(){
+		ListView list = new ListView();
+		Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
+		ArrayList<PowerUp> powerUps;
+		ArrayList<Tile> tiles;
+		ArrayList<Card> cards;
+		list.setStyle("-fx-font-family: Forte;");
+		Label label = new Label("Your Power-ups:");
+		Label label2 = new Label("Your special cards:");
+		Label label3 = new Label("Your special cards:");
+		label.setTextFill(Color.rgb(194,58,178));
+		label2.setTextFill(Color.rgb(194,58,178));
+		label3.setTextFill(Color.rgb(194,58,178));
+		//Add PowerUps
+		list.getItems().add(label);
+		powerUps = currentPlayer.getPowerUps();
+		if(powerUps.size() == 0)
+			list.getItems().add("No Power-Ups available!");
+		else
+			for(int i = 0; i < powerUps.size(); i++){
+				Button btn = new Button(powerUps.get(i).getBehaviourName());
+				btn.setStyle(Style.button_two);
+				list.getItems().add(btn);
+			}
+		//Add Cards
+		list.getItems().add(label2);
+		cards = currentPlayer.getCards();
+		if(cards.size() == 0)
+			list.getItems().add("No cards available!");
+		else
+			for(int k = 0; k < cards.size(); k++){
+				Button button = new Button("Jailbreak Daddy Card");
+				button.setStyle(Style.button_two);
+				list.getItems().add(button);
+			}
+		//Add Tiles
+		list.getItems().add(label3);
+		tiles = currentPlayer.getTileList();
+		if(tiles.size() == 0)
+			list.getItems().add("No tiles available!");
+		else
+			for(int m = 0; m < tiles.size(); m++){
+				Button bttn = new Button(tiles.get(m).getName());
+				bttn.setStyle(Style.button_two);
+				list.getItems().add(bttn);
+			}
+
+
+
+
+
+		//list.getItems().add();
+		listItems.getChildren().add(list);
+
+	}
+
 	public void pauseGame() {
 		SoundManager.getInstance().pauseMusic();
 		blurScreen();
 		new PausePopup().display(context);
 		removeBlur();
+
+			getItems();
 	}
 
 	private void removeBlur() {
