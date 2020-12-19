@@ -208,6 +208,8 @@ public class GameMenuController {
 	private Button rollRice = new Button();
 	@FXML
 	private Label roundCounter = new Label();
+	@FXML
+	private Label diceLabel = new Label();
 
 	int[] player;
 
@@ -424,7 +426,6 @@ public class GameMenuController {
 			GameManager.getInstance().buyForexFranc(
 					Double.parseDouble(textFieldFranc.getText()) >= 0 ? Double.parseDouble(textFieldFranc.getText()) : 0);
 			update();
-
 		};
 	}
 
@@ -454,18 +455,19 @@ public class GameMenuController {
 			endTurnButton.setDisable(true);
 		}
 		updateAllLocations();
-		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
-		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
-		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
-		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+		diamondUpdate(turnOf);
 		rollRice.setDisable(false);
+		updatePlayerLabels();
+		getItems();
+		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
+
+	}
+
+	private void updatePlayerLabels() {
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
-		getItems();
-		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
-
 	}
 
 	public void update() {
@@ -476,10 +478,7 @@ public class GameMenuController {
 		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
 
 		// player money stats in the account bar
-		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
-		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
-		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
-		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+		updatePlayerLabels();
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
@@ -488,16 +487,19 @@ public class GameMenuController {
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
 
-		// set turn indicators for each player
-		// set opaque if the turn is the player's
-		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
-		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
-		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
-		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+		diamondUpdate(turnOf);
 
 		getItems();
 		updateAllLocations();
 	}
+
+	private void diamondUpdate(int turnOf) {
+		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
+		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
+		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
+		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+	}
+
 
 	private void updateAllLocations() {
 		for (int i = 0; i < 6; i++) {
@@ -518,7 +520,8 @@ public class GameMenuController {
 		SoundManager sm = new SoundManager(false);
 		sm.music(2);
 		Player p = GameManager.getInstance().getTurnOfPlayer();
-		GameManager.getInstance().playTurn();
+		int[] dices = GameManager.getInstance().playTurn();
+		diceLabel.setText("Dices: " + dices[0] + ", " + dices[1]);
 		update();
 		endTurnButton.setDisable(false);
 		showTileActions(p.getLocation());
@@ -526,7 +529,7 @@ public class GameMenuController {
 
 	private void updateLocations(int index) {
 		if (index == 4) {
-			System.out.println(GameManager.getInstance().getMafia().getLocation() % 40);
+//			System.out.println(GameManager.getInstance().getMafia().getLocation() % 40);
 			if (GameManager.getInstance().getMafia().getLocation() % 40 >= 0 && GameManager.getInstance().getMafia().getLocation() % 40 <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutX() + 14);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 44);
@@ -541,7 +544,7 @@ public class GameMenuController {
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % 40].getLayoutY() + 5);
 			}
 		} else if (index == 5) {
-			System.out.println("Police " + GameManager.getInstance().getPolice().getLocation() % 40);
+//			System.out.println("Police " + GameManager.getInstance().getPolice().getLocation() % 40);
 			if (GameManager.getInstance().getPolice().getLocation() % 40 >= 0 && GameManager.getInstance().getPolice().getLocation() % 40 <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutX() + 31);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 43);
@@ -558,8 +561,8 @@ public class GameMenuController {
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % 40].getLayoutY() + 29);
 			}
 		} else {
-			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % 40);
-			System.out.println("-----------");
+//			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % 40);
+//			System.out.println("-----------");
 
 			if (index == 0) {
 				if (GameManager.getInstance().getPlayerAt(index).getLocation() % 40 >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % 40 <= 10) {

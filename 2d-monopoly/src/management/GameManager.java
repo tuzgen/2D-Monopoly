@@ -184,9 +184,9 @@ public class GameManager implements Serializable {
 
 		bubbleSort(arr);
 
-		for (int i = 0; i < 4; i++) {
-			System.out.println(arr[i]);
-		}
+//		for (int i = 0; i < 4; i++) {
+//			System.out.println(arr[i]);
+//		}
 
 		for (int i = 0; i < 4; i++) {
 			if (arr[i] == sum0) {
@@ -398,7 +398,7 @@ public class GameManager implements Serializable {
 			return turnOrder[turnOfPlayerIndex];
 	}
 
-	public int playTurn() {
+	public int[] playTurn() {
 
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
@@ -419,7 +419,7 @@ public class GameManager implements Serializable {
 
 			}
 			turnOfPlayerIndex = 5;
-			return 4;
+			return dice.getPair();
 		}
 		if(temp == 5){ // police
 			police.setLocation(police.getLocation() + diceTotal % Map.TILE_COUNT);
@@ -427,10 +427,9 @@ public class GameManager implements Serializable {
 				mafia.setIsArrested(true);
 			}
 
-			System.out.println(police.getLocation());
 			turnOfPlayerIndex = 0;
 			roundNo++;
-			return 5;
+			return dice.getPair();
 		}
 
 		/*
@@ -482,7 +481,7 @@ public class GameManager implements Serializable {
 		}
 
 		int result = temp;
-		return result;
+		return dice.getPair();
 	}
 
 	public void increaseTurn(){
