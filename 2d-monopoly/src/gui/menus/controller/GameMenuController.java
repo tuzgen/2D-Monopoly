@@ -4,6 +4,8 @@ import entity.Bank;
 import entity.Trade;
 import entity.card.Card;
 import entity.card.CardDeck;
+import entity.card.MovementByNumCardStrategy;
+import entity.card.MovementToCardStrategy;
 import entity.map.tile.*;
 import entity.player.Player;
 import entity.powerup.PowerUp;
@@ -396,10 +398,14 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
 			GameManager.getInstance().gotoJail();
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
-			if( ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer() ){
-				Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+			if (!((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 			}
-			new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
+			if(((TransportationTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+				}
+			}
 		}
 		update();
 
