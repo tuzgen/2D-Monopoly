@@ -15,7 +15,7 @@ public class CompanyTile extends BuyableTile implements Serializable {
 	public double getRentAmount() { // TODO test this
 		double result = 0;
 		int diceSum = GameManager.getInstance().getDice()[0] + GameManager.getInstance().getDice()[1];
-		switch (getOwner().getCompanyCount()) { // hata var amcık oğuz
+		switch (getOwner().getCompanyCount()) { // todo eror var amcık oğuz
 			case 1 : result = diceSum * 8 * COMPANY_RENT_MULTIPLIER;
 			case 2 : result *= 2.5;
 		}
