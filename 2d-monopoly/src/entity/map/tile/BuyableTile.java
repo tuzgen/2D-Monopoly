@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public abstract class BuyableTile extends Tile implements Serializable {
 	// constants
-	public final double MORTGAGE_RATE = 0.5; // TODO
+	public static final double MORTGAGE_RATE = 0.5;
 
 	// state variables
 	private boolean isOwned;

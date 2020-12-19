@@ -35,7 +35,7 @@ public class PowerUpPopup {
         HBox hBox = new HBox(10);
         Button buy = new Button("Buy");
         Button cancel = new Button("Cancel");
-        PowerUpCrate crate = new PowerUpCrate(GameManager.getInstance().getTurnOfPlayer());
+        PowerUpCrate crate = new PowerUpCrate(GameManager.getInstance().getTurnOfPlayer()); // TODO refactor move this to gameManager
         Label label = new Label("This will cost you " + crate.getPrice() + "₺. Do you want to buy a power-up crate?");
         label.setTextFill(Color.rgb(240,158,110));
         buy.setStyle(Style.button_one);
