@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -450,11 +449,10 @@
                                     <Insets top="25.0" />
                                  </HBox.margin>
                               </VBox>
-                              <ScrollPane prefHeight="389.0" prefWidth="350.0" style="-fx-background-color: #000000;">
-                                 <content>
-                                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="253.0" style="-fx-background-color: #000000;" />
-                                 </content>
-                              </ScrollPane>
+                            <AnchorPane fx:id="listItems" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="353.0" style="-fx-background-color: black;">
+                                 <padding>
+                                    <Insets right="1000.0" />
+                                 </padding></AnchorPane>
                            </children>
                         </HBox>
                      </children>

@@ -1,18 +1,25 @@
 package gui.menus.controller;
 
+import entity.Trade;
+import entity.card.Card;
 import entity.map.tile.*;
 import entity.player.Player;
+import entity.powerup.PowerUp;
+import gui.misc.Style;
 import gui.popups.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.GameManager;
@@ -20,6 +27,7 @@ import management.Map;
 import management.SoundManager;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class GameMenuController {
 	private static GameMenuController instance;
@@ -31,6 +39,8 @@ public class GameMenuController {
 		return instance;
 	}
 
+	@FXML
+	private AnchorPane listItems = new AnchorPane();
 	@FXML
 	private Label currentPlayerName = new Label();
 	@FXML
@@ -311,8 +321,6 @@ public class GameMenuController {
 		buttonFrancSell.setOnAction(buttonFrancSell());
 	}
 
-
-
 	private void showTradeActions(ActionEvent e) {
 		int playerNo = GameManager.getInstance().getTurnOfPlayerIndex();
 
@@ -466,13 +474,15 @@ public class GameMenuController {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
+
 		// set turn indicators for each player
 		// set opaque if the turn is the player's
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
 		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
-		// updating
+
+		getItems();
 		updateAllLocations();
 
 	}
@@ -495,7 +505,6 @@ public class GameMenuController {
 	public void rollTheDice() {
 		SoundManager sm = new SoundManager(false);
 		sm.music(2);
-
 		Player p = GameManager.getInstance().getTurnOfPlayer();
 
 		if(!endTurn)
@@ -639,6 +648,91 @@ public class GameMenuController {
 				}
 			}
 		}
+	}
+
+	public void getItems(){
+		ListView list = new ListView();
+		Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
+		ArrayList<PowerUp> powerUps;
+		ArrayList<Tile> tiles;
+		ArrayList<Card> cards;
+		list.setStyle("-fx-font-family: Forte;");
+		Label label = new Label("Your Power-ups:");
+		Label label2 = new Label("Your special cards:");
+		Label label3 = new Label("Your special cards:");
+		label.setTextFill(Color.rgb(194,58,178));
+		label2.setTextFill(Color.rgb(194,58,178));
+		label3.setTextFill(Color.rgb(194,58,178));
+		//Add PowerUps
+		list.getItems().add(label);
+		powerUps = currentPlayer.getPowerUps();
+		if(powerUps.size() == 0)
+			list.getItems().add("No Power-Ups available!");
+		else
+			for(int i = 0; i < powerUps.size(); i++){
+				Button btn = new Button(powerUps.get(i).getBehaviourName());
+				btn.setStyle(Style.button_two);
+				list.getItems().add(btn);
+				int x = i;
+				btn.setOnAction(event -> {
+					currentPlayer.getPowerUps().get(x).activate(currentPlayer);
+					getItems();
+				});
+			}
+		//Add Cards
+		list.getItems().add(label2);
+		cards = currentPlayer.getCards();
+		if(cards.size() == 0)
+			list.getItems().add("No cards available!");
+		else
+			for(int k = 0; k < cards.size(); k++){
+				Button button = new Button("Jailbreak Daddy Card");
+				button.setStyle(Style.button_two);
+				list.getItems().add(button);
+
+				button.setOnAction(event -> {
+					if(currentPlayer.getIsArrested()){
+						currentPlayer.playCard();
+						getItems();
+					}
+				});
+			}
+		//Add Tiles
+		list.getItems().add(label3);
+		tiles = currentPlayer.getTileList();
+		if(tiles.size() == 0)
+			list.getItems().add("No tiles available!");
+		else
+			for(int m = 0; m < tiles.size(); m++){
+				Button bttn = new Button(tiles.get(m).getName());
+
+				switch (((CityTile) (tiles.get(m))).getColorGroup()){
+					case 1:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;"); break;
+					case 2:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;"); break;
+					case 3:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;"); break;
+					case 4:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;"); break;
+					case 5:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;"); break;
+					case 6:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;"); break;
+					case 7:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;"); break;
+					case 8:
+						bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;"); break;
+					default:
+						bttn.setStyle(Style.button_two);
+				}
+				list.getItems().add(bttn);
+
+				bttn.setOnAction(event -> {
+					System.out.println("ben city tile ım");
+				});
+			}
+		listItems.getChildren().add(list);
 	}
 
 	public void pauseGame() {

@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PowerUp implements Serializable {
     private int lifetime;
     private PowerUpBehaviour behaviour;
+    private String behName;
     private double amount;
     private String target;
 
@@ -18,22 +19,26 @@ public class PowerUp implements Serializable {
             amount = ThreadLocalRandom.current().nextInt(3, 36);
             int[] signs = {-1, 1};
             amount *= signs[ThreadLocalRandom.current().nextInt(0, 2)];
+            behName = "Forex power-up";
         }
         if(behaviour.getClass() == EarningPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextDouble(1.1, 6.0);
+            behName = "Earning power-up";
 
         }
         if(behaviour.getClass() == StrikePowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextInt(2, 13);
+            behName = "Strike power-up";
         }
         if(behaviour.getClass() == SlowDownPowerUpBehaviour.class){
-            amount = ThreadLocalRandom.current().nextDouble((1/3), (5/6));
+            amount = ThreadLocalRandom.current().nextDouble(0.333, 0.833);
+            behName = "Slowdown power-up";
         }
         target = "";
     }
 
     public void activate(Player p){
-        behaviour.activate(lifetime, behaviour, amount, target, p);
+        behaviour.activate(lifetime, behaviour, amount, target, p, this);
     }
     //get and set methods
     public int getLifetime() {
@@ -47,5 +52,8 @@ public class PowerUp implements Serializable {
     }
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+    public String getBehaviourName(){
+        return behName;
     }
 }
