@@ -188,15 +188,28 @@ public class GameManager implements Serializable {
 			}
 		}
 
+
+//		if(turnOrder[0] == player1){
+//			turnOfPlayerIndex = 0;
+//		}else if(turnOrder[0] == player2){
+//			turnOfPlayerIndex = 1;
+//		}else if(turnOrder[0] == player3){
+//			turnOfPlayerIndex = 2;
+//		}else if(turnOrder[0] == player4){
+//			turnOfPlayerIndex = 3;
+//		}
+
+
+
 		for (int i = 0; i < 4; i++) {
-			System.out.println("Real: " + players[i].getName());
-			System.out.println("\tChanged: " + players[i].getName());
+			System.out.println("Real: " + turnOrder[i].getName());
+			System.out.println("\tChanged: " + turnOrder[i].getName());
 		}
 
 		return turnOrder;
 	}
 
-void bubbleSort(int arr[]) {
+	void bubbleSort(int arr[]) {
 	int n = arr.length;
 	for (int i = 0; i < n - 1; i++)
 		for (int j = 0; j < n - i - 1; j++)
@@ -354,11 +367,11 @@ void bubbleSort(int arr[]) {
 			return 5;
 		}
 
-		if(players[turnOfPlayerIndex].getName().equals(turnOrder[turnOfPlayerIndex].getName())){
+		if(players[turnOfPlayerIndex] == turnOrder[turnOfPlayerIndex]){
 			players[turnOfPlayerIndex].setLocation(players[turnOfPlayerIndex].getLocation() + diceTotal % Map.TILE_COUNT);
 			System.out.println("Player: " + players[turnOfPlayerIndex].getName());
 		} else{
-			while(!players[temp].getName().equals(turnOrder[turnOfPlayerIndex].getName())) {
+			while(players[temp]!=turnOrder[turnOfPlayerIndex]) {
 				temp++;
 				if(temp > 3)
 					temp = 0;

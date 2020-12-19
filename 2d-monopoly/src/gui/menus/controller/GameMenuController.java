@@ -192,6 +192,8 @@ public class GameMenuController {
 	@FXML
 	private VBox root;// = new VBox();
 
+	Player[] player;
+
 	private Stage context;
 	private Button[] buttons;
 	private ImageView[] icons;
@@ -281,7 +283,7 @@ public class GameMenuController {
 				buttonTile30, buttonTile31, buttonTile32, buttonTile33, buttonTile34,
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
-		Player[] player = GameManager.getInstance().determineTurn();
+		player = GameManager.getInstance().determineTurn();
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
@@ -410,6 +412,14 @@ public class GameMenuController {
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
+
+//		int turnOf = 4;
+//
+//		for(int i = 0; i < 4; i++){
+//			if(GameManager.getInstance().getPlayerAt(i) == player[GameManager.getInstance().getTurnOfPlayerIndex()])
+//				turnOf = i;
+//		}
+
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
 		// set turn indicators for each player
