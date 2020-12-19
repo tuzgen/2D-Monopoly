@@ -32,24 +32,24 @@ public class SoundManager {
     }
 
     public void music(int whichMusic){
-        //String music = musicList[whichMusic];
-        //Media h = new Media(Paths.get(music).toUri().toString());
-        //mediaPlayer = new MediaPlayer(h);
-        //if(loop)
-        //    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        //mediaPlayer.play();
+        String music = musicList[whichMusic];
+        Media h = new Media(Paths.get(music).toUri().toString());
+        mediaPlayer = new MediaPlayer(h);
+        if(loop)
+           mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 
     public void stopMusic(){
-        //mediaPlayer.stop();
+        mediaPlayer.stop();
     }
 
     public void pauseMusic(){
-        //mediaPlayer.pause();
+        mediaPlayer.pause();
     }
 
     public void continueMusic(){
-        //mediaPlayer.play();
+        mediaPlayer.play();
     }
 
     public MediaPlayer getMediaPlayer(){

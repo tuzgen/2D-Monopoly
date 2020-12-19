@@ -2,6 +2,7 @@ package gui.menus.controller;
 
 import entity.Trade;
 import entity.card.Card;
+import entity.card.CardDeck;
 import entity.map.tile.*;
 import entity.player.Player;
 import entity.powerup.PowerUp;
@@ -352,7 +353,13 @@ public class GameMenuController {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
-			// new TilePopup().display("Card Tile", (CardTile) Map.getInstance().getTileAt(tileNo));
+			System.out.print("CARD POP UP");
+			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance() == true){
+				new CardPopup().display("Card Tile", GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
+			}
+			else{
+				new CardPopup().display("Card Tile", GameManager.getInstance().getCommunitydeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
+			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
@@ -364,7 +371,7 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
 			GameManager.getInstance().gotoJail();
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
-
+			new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 		}
 		update();
 	}
@@ -507,15 +514,15 @@ public class GameMenuController {
 		sm.music(2);
 		Player p = GameManager.getInstance().getTurnOfPlayer();
 
-		if(!endTurn)
-			GameManager.getInstance().playTurn();
+
+		GameManager.getInstance().playTurn();
 //		int current = GameManager.getInstance().playTurn();
 
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount
 
 		update();
-//		showTileActions(GameManager.getInstance().getPlayerAt(current).getLocation());
+		showTileActions(p.getLocation());
 //		p.displayTiles();
 	}
 
