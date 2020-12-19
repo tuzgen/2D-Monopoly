@@ -191,8 +191,13 @@ public class GameMenuController {
 	private ImageView turnIndicator4;
 	@FXML
 	private VBox root;// = new VBox();
+	@FXML
+	private Button endTurnButton = new Button();
+	@FXML
+	private Button rollRice = new Button();
 
 	int[] player;
+	boolean endTurn;
 
 	private Stage context;
 	private Button[] buttons;
@@ -253,6 +258,8 @@ public class GameMenuController {
 
 		setupBoardGUI();
 		update();
+		endTurnButton.setDisable(true);
+		endTurn=false;
 	}
 
 	private void setupBoardGUI() {
@@ -285,6 +292,8 @@ public class GameMenuController {
 		buttonPlayer2.setOnAction(this::showTradeActions);
 		buttonPlayer3.setOnAction(this::showTradeActions);
 		buttonPlayer4.setOnAction(this::showTradeActions);
+		endTurnButton.setOnAction(this::endButton);
+		rollRice.setOnAction(this::roll);
 	}
 
 	private void setupAccountGUI() {
@@ -301,6 +310,8 @@ public class GameMenuController {
 		buttonEuroSell.setOnAction(buttonEuroSell());
 		buttonFrancSell.setOnAction(buttonFrancSell());
 	}
+
+
 
 	private void showTradeActions(ActionEvent e) {
 		int playerNo = GameManager.getInstance().getTurnOfPlayerIndex();
@@ -343,7 +354,7 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TaxTile.class) {
 
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
-
+			GameManager.getInstance().gotoJail();
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
 
 		}
@@ -410,17 +421,44 @@ public class GameMenuController {
 		};
 	}
 
-	public void update() {
+	private void endButton(ActionEvent e){
+		endTurnButton.setDisable(true);
+		endTurn = false;
 
+		updateAllLocations();
+		GameManager.getInstance().increaseTurn();
+		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+		while(turnOf > 3){
+			GameManager.getInstance().playTurn();
+			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+		}
+		updateAllLocations();
+		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
+		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
+		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
+		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+		rollRice.setDisable(false);
+		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
+		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
+		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
+		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+	}
+
+	public void update() {
+		// player money's on the player bar
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
 		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
 		infoPlayer3Money.setText(df.format(GameManager.getInstance().getPlayerAt(2).getAccount().getTrl()) + "₺");
 		infoPlayer4Money.setText(df.format(GameManager.getInstance().getPlayerAt(3).getAccount().getTrl()) + "₺");
 
+		// player money stats in the account bar
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
 		showFrancAmount.setText("CHF " + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getSwissFrank()));
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
+
+		endTurn = true;
+		endTurnButton.setDisable(false);
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
@@ -428,16 +466,15 @@ public class GameMenuController {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
-
 		// set turn indicators for each player
 		// set opaque if the turn is the player's
 		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
 		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
 		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
 		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
-
-
+		// updating
 		updateAllLocations();
+
 	}
 
 	private void updateAllLocations() {
@@ -450,12 +487,19 @@ public class GameMenuController {
 		this.context = context;
 	}
 
+	public void roll(ActionEvent e){
+		rollTheDice();
+		rollRice.setDisable(true);
+	}
+
 	public void rollTheDice() {
 		SoundManager sm = new SoundManager(false);
 		sm.music(2);
+
 		Player p = GameManager.getInstance().getTurnOfPlayer();
 
-		GameManager.getInstance().playTurn();
+		if(!endTurn)
+			GameManager.getInstance().playTurn();
 
 //		GameManager.getInstance().determineTurn();
 		// TODO 40 -> map.tilecount

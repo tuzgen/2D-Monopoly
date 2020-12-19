@@ -32,7 +32,7 @@ public class Map implements Serializable {
 	}
 
 	public Tile getTileAt(int index) {
-		return tiles[index];
+		return tiles[index % 40];
 	}
 
 	private void createMap() {
