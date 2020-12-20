@@ -20,12 +20,14 @@ public class HowToPlayMenu {
 
 		Text text_how_to_play = new Text("Git gud");
 		text_how_to_play.setStyle(Style.text_one);
+		text_how_to_play.setFill(Color.rgb(255,255,255));
 
 		Text text2 = new Text("JK this functionality is coming soon..");
 		text_how_to_play.setStyle(Style.text_two);
-
+		text2.setFill(Color.rgb(255,255,255));
 
 		VBox layout_how_to_play = new VBox(20);
+		layout_how_to_play.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
 		layout_how_to_play.setAlignment(Pos.CENTER);
 		layout_how_to_play.getChildren().addAll(
 				text_how_to_play, text2, button_return

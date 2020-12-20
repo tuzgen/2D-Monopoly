@@ -105,22 +105,49 @@ public class PowerupInfoPopup {
 
         useBtn.setOnAction(event -> {
             String targetPersonsName = ((RadioButton) tg.getSelectedToggle()).getText();
-            boolean isY = false;
+            int isY = 0;
             if(powerup.getBehaviourName().equals("Forex Power-up")){
                 powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
-                isY = true;
+                isY = 1;
             } else if(powerup.getBehaviourName().equals(("Earning Power-up"))) {
-                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
-                isY = true;
+                if(GameManager.getInstance().getTurnOfPlayer().getIsEarningMore())
+                    isY = 0;
+                else {
+                    powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
+                    isY = 1;
+                }
             } else if(powerup.getBehaviourName().equals("Strike Power-up")) {
                 powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
-                isY = true;
+                isY = 1;
             } else  if(powerup.getBehaviourName().equals("Slowdown Power-up")) {
-                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
-                isY = true;
+                Player targetP = null;
+                for(int i = 0; i < 3; i++){
+                    if(otherPlayers.get(i).getName().equals(targetPersonsName))
+                        targetP = otherPlayers.get(i);
+                }
+                if(targetP.getIsSlowedDown())
+                    isY = 2;
+                else {
+                    powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
+                    isY = 1;
+                }
             }
-            if(isY){
+            if(isY == 1){
                 label.setText("Your power corrupts\nthose who don't have it...");
+                allBox.getChildren().clear();
+                allBox.getChildren().add(label);
+                allBox.setAlignment(Pos.CENTER);
+                delay.setOnFinished(e -> window.close());
+                delay.play();
+            } else if(isY == 0){
+                label.setText("Your cannot use earning Power-Up\ntwice at the same time.");
+                allBox.getChildren().clear();
+                allBox.getChildren().add(label);
+                allBox.setAlignment(Pos.CENTER);
+                delay.setOnFinished(e -> window.close());
+                delay.play();
+            } else {
+                label.setText("Your cannot use slowdown Power-Up\ntwice at the same time for same person.");
                 allBox.getChildren().clear();
                 allBox.getChildren().add(label);
                 allBox.setAlignment(Pos.CENTER);

@@ -5,20 +5,22 @@ import gui.misc.Style;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import management.FileManager;
 import management.GameManager;
+import sun.applet.Main;
 
 public class LoadGameMenu {
 	public void display(Stage context) {
 		Button button_start = new Button("Start game");
-		button_start.setStyle(Style.button_one);
+		button_start.setStyle(Style.button_six);
 		button_start.setOnAction( e -> {
 			try {
 				FileManager.loadGame();
+				MainMenu.sm.stopMusic();
+				MainMenu.sm.music(1);
 				new GameMenu().display(context);
 			} catch (Exception exception) {
 				System.out.println(exception.toString());
@@ -33,6 +35,7 @@ public class LoadGameMenu {
 		});
 
 		VBox layout_load_game = new VBox(20);
+		layout_load_game.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
 		layout_load_game.setAlignment(Pos.CENTER);
 		layout_load_game.getChildren().addAll(
 				button_start, button_return

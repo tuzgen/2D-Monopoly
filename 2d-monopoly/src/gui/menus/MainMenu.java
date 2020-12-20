@@ -23,6 +23,7 @@ public class MainMenu {
 	// State variables
 
 	// Components
+	public static boolean colorblindMode = false;
 	private Scene scene_main_menu;
 	public static int soundCreated = 0;
 	public static SoundManager sm = SoundManager.getInstance();
