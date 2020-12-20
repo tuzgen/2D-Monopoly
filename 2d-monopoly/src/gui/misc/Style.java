@@ -5,10 +5,12 @@ public class Style {
 			"-fx-background-color: #00000000;" +
 					"-fx-border-width: 0; " +
 					"-fx-font-size: 18; " +
+					"-fx-font-family: Forte;" +
 					"-fx-text-fill: #FF0000;";
 
 	public final static String text_one =
 			"-fx-font-size: 72; " +
+					"-fx-font-family: Forte;" +
 					"-fx-text-fill: #FF0000;";
 
 	public final static String text_two =
