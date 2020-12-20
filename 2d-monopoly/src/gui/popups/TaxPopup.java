@@ -30,9 +30,9 @@ public class TaxPopup {
 		window.setMinHeight(400);
 
 		//texts
-		Text infoText = new Text(" " + tile.getName() + "?");
+		Text infoText = new Text(isIncomeTax ? "Income tax " : "Luxury tax");
 		infoText.setFill(Color.WHITE);
-		Text taxInfoText = new Text( isIncomeTax ? "Income tax " : "Luxury tax " + "pay " + tile.getAmount() + "₺." );
+		Text taxInfoText = new Text(  "Pay " + tile.getAmount() + "₺." );
 		taxInfoText.setFill(Color.WHITE);
 
 		// A button which displays a message and quits
