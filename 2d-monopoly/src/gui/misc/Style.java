@@ -48,6 +48,14 @@ public class Style {
 					"-fx-border-radius: 0;" +
 					"-fx-border-color: #CCCCFF;";
 
+	public  final static String window_border_red =
+			"-fx-padding: 10;" +
+					"-fx-border-style: solid inside;" +
+					"-fx-border-width: 6;" +
+					"-fx-border-insets: 0;" +
+					"-fx-border-radius: 0;" +
+					"-fx-border-color: #FF0000;";
+
 	public final static String label_font =
 					"-fx-font-family: Forte;"+
 							"-fx-font-size: 18;";
@@ -59,5 +67,4 @@ public class Style {
 					"-fx-font-size: 18; " +
 					"-fx-border-color: #FF0000;" +
 					"-fx-text-fill: #FF0000;";
-
 }

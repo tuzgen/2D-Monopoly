@@ -51,7 +51,7 @@ public class MafiaPopup {
         layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         layout.getChildren().addAll(label, blackmailButton, jailbreakButton, buyCommunityCardButton, closeBtn);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle(Style.window_border);
+        layout.setStyle(Style.window_border_red);
 
         closeBtn.setOnAction(event -> {
             window.close();
@@ -97,7 +97,7 @@ public class MafiaPopup {
         jlayout.setAlignment(Pos.CENTER);
         jlayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene jscene = new Scene(jlayout);
-        jlayout.setStyle(Style.window_border);
+        jlayout.setStyle(Style.window_border_red);
 
         //Blackmail----------------------------------------------------------------------------------
         ArrayList<Player> otherPlayers = new ArrayList<Player>();
@@ -172,7 +172,7 @@ public class MafiaPopup {
         blayout.getChildren().addAll(blabel, pl1, pl2, pl3, close);
         blayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene bscene = new Scene(blayout);
-        blayout.setStyle(Style.window_border);
+        blayout.setStyle(Style.window_border_red);
 
         //CommunityCard------------------------------------------------------------------------------
         Label clabel = new Label("This will cost you 20.000₺. Are you sure?");
@@ -213,7 +213,7 @@ public class MafiaPopup {
         clayout.setAlignment(Pos.CENTER);
         clayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene cscene = new Scene(clayout);
-        clayout.setStyle(Style.window_border);
+        clayout.setStyle(Style.window_border_red);
 
         // End of the popup
         jailbreakButton.setOnAction(event -> {
