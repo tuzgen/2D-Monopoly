@@ -90,17 +90,6 @@ public class GameManager implements Serializable {
 		return communitydeck;
 	}
 
-//	public static boolean loadGame() {
-//		try {
-//			FileManager.loadGame();
-//			return true;
-//
-//		} catch (Exception e) {
-//			System.err.println("Load game not successfull");
-//			return false;
-//		}
-//	}
-
 	// TODO delete Debug
 	public int[] rollTheDicePair() {
 		dice.rollTheDice();
