@@ -321,7 +321,7 @@
                                           <Font name="Ink Free" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="diceLabel" layoutX="3.0" layoutY="102.0" prefHeight="51.0" prefWidth="98.0" style="-fx-border-color: rgb(255,255,255);" text="Dices: 0, 0" textFill="WHITE">
+                                    <Label fx:id="diceLabel" alignment="CENTER" layoutX="3.0" layoutY="102.0" prefHeight="51.0" prefWidth="98.0" style="-fx-border-color: rgb(255,255,255);" text="Dices: 0, 0" textFill="WHITE">
                                        <font>
                                           <Font name="Ink Free" size="20.0" />
                                        </font>
