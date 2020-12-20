@@ -783,6 +783,7 @@ public class GameMenuController {
 			if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
 						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+						Bank.getInstance().takeWithResign(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
@@ -809,6 +810,7 @@ public class GameMenuController {
 			if (((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
 						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+						Bank.getInstance().takeWithResign(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
@@ -826,6 +828,11 @@ public class GameMenuController {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
 //
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
+//						System.out.println("lütfen gir");
+//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+//					} else{
+					Bank.getInstance().takeWithResign(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
@@ -906,7 +913,7 @@ public class GameMenuController {
 					if (Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()) {
 						//GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
 						//} else{
-						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+						Bank.getInstance().takeWithResign(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 						//}
 						Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 					}

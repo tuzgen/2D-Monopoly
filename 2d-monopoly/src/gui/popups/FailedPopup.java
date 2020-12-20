@@ -29,8 +29,8 @@ public class FailedPopup {
         Scene scene = new Scene(vbox);
 
         window.setScene(scene);
-        window.show();
+        delay.setOnFinished(event -> window.close());
         delay.play();
-        window.close();
+        window.showAndWait();
     }
 }

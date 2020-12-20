@@ -9,7 +9,7 @@ public class TransactionCardStrategy implements CardStrategy, Serializable {
     public void activateCard(Player player, Card card) {
         int paymentAmount = card.getAmount();
         if(paymentAmount < 0){
-            card.getBank().takeMoney(player, paymentAmount * (-1));
+            card.getBank().takeWithResign(player, paymentAmount * (-1));
         } else {
             card.getBank().giveMoney(player,paymentAmount);
         }
