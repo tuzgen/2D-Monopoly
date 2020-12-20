@@ -774,8 +774,9 @@ public class GameMenuController {
 				}
 
 				list.getItems().add(bttn);
-
+				int n = m;
 				bttn.setOnAction(event -> {
+					new TileOperationPopup(tiles.get(n)).display(context);
 					System.out.println("ben city tile ım");
 				});
 			}
