@@ -34,9 +34,10 @@ public class MainMenu {
 		GameManager.getInstance().deleteInstance();
 
 		// initialize components
-		if(soundCreated == 0)
+		if(soundCreated == 0) {
 			sm.music(0);
-		soundCreated = 1;
+			soundCreated = 1;
+		}
 		label_title = new Text("Monopoly Sicilia");
 		label_title.setStyle(Style.text_one);
 		label_title.setFill(Color.RED);

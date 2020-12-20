@@ -76,7 +76,7 @@ public class GameManager implements Serializable {
 		turnOfPlayerIndex = 0;
 		roundNo = 1;
 		determineTurn();
-		if(SettingsMenu.muteSound == 0)
+		if(SettingsMenu.muteSound == 0 && MainMenu.soundCreated == 0)
 			MainMenu.sm.music(1);
 	}
 

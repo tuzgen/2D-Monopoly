@@ -36,6 +36,7 @@ public class NewGameMenuController {
 		System.out.println("StartButton");
 		System.out.println("Invoked " + textField1.getText());
 		MainMenu.sm.stopMusic();
+		MainMenu.soundCreated = 0;
 		new GameMenu().display(context, textField1.getText(),
 				textField2.getText(),
 				checkBox2.isSelected(),
