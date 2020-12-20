@@ -453,6 +453,7 @@ public class GameManager implements Serializable {
 
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
+		diceTotal = 5;
 
 		int temp = turnOfPlayerIndex;
 		/*
@@ -539,7 +540,6 @@ public class GameManager implements Serializable {
 					diceWithSpeed = (int) (players[temp].getSpeed() * diceTotal);
 					players[temp].setLocation(players[temp].getLocation() + diceWithSpeed % Map.TILE_COUNT);
 				}
-//				System.out.println("Dice + speed " + diceWithSpeed);
 			}
 		}
 
@@ -556,8 +556,7 @@ public class GameManager implements Serializable {
 			}
 		}
 
-System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
-		int result = temp;
+		System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
 		return dice.getPair();
 	}
 

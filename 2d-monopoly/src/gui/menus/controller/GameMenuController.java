@@ -536,28 +536,26 @@ public class GameMenuController {
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
-//		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
-//			System.out.println("selamın hello");
-//			while (turnOf > 3) {
-//				GameManager.getInstance().playTurn();
-//				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-//			}
-//			turnOf = 0;
-//		}
+		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
+			System.out.println("selamın hello");
+			GameManager.getInstance().increaseTurn();
+			GameManager.getInstance().increaseTurn();
+			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
+		}
 		if(turnOf < 4){
-			System.out.println("selamın hello 2");
-			while(GameManager.getInstance().getPlayerAt(turnOf).getIsBankrupt()){
+			System.out.println("selamın hello 2 " + GameManager.getInstance().getTurnOfPlayer().getName());
+			while(GameManager.getInstance().getTurnOfPlayer().getIsBankrupt()){
 				GameManager.getInstance().increaseTurn();
 				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 			}
-			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
 		}
-
 
 		while (turnOf > 3) {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
+
 
 		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()) {
 			new ShowTradesPopup().display(context);
@@ -565,9 +563,11 @@ public class GameMenuController {
 			endTurnButton.setDisable(true);
 		}
 
+
 		updateAllLocations();
 		diamondUpdate(turnOf);
 		rollRice.setDisable(false);
+
 		updatePlayerLabels();
 		getItems();
 		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
