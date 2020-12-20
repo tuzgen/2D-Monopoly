@@ -3,8 +3,12 @@ package gui.popups;
 import entity.map.tile.Tile;
 import gui.misc.Style;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
@@ -35,15 +39,29 @@ public class TileOperationPopup {
         window.setMinWidth(125);
         window.setMinHeight(125);
 
-        Label label = new Label("Tile name:" + tile.getName());
+        Image house = new Image("file:src/vendor/image/city.png");
+        ImageView houseView = new ImageView(house);
+        houseView.setFitHeight(100);
+        houseView.setFitWidth(300);
+
+        Label label = new Label("Tile name: " + tile.getName());
         Label mortgagelb = new Label("Mortgage your tile: ");
         Label sellTilelb = new Label("Sell the tile: ");
         Label sellHouselb = new Label("Sell a house: ");
         Label sellHotellb = new Label("Sell a hotel: ");
         Label buildHotellb = new Label("Build an hotel: ");
         Label buildHouselb = new Label("Build an House: ");
-        label.setTextFill(Color.WHITE);
-        mortgagelb.setTextFill(Color.AQUA);
+        label.setTextFill(Color.rgb(101, 42, 73));
+        label.setStyle("-fx-font-size: 22; -fx-font-family: Forte;");
+
+        mortgagelb.setStyle(Style.label_font);
+        sellTilelb.setStyle(Style.label_font);
+        sellHouselb.setStyle(Style.label_font);
+        sellHotellb.setStyle(Style.label_font);
+        buildHotellb.setStyle(Style.label_font);
+        buildHouselb.setStyle(Style.label_font);
+
+        mortgagelb.setTextFill(Color.rgb(56,123,181));
         sellHotellb.setTextFill(Color.AQUA);
         sellHouselb.setTextFill(Color.AQUA);
         sellTilelb.setTextFill(Color.AQUA);
@@ -57,13 +75,13 @@ public class TileOperationPopup {
         Button mortgageBtn = new Button("Mortgage");
         Button buildHotelBtn = new Button("Build");
         Button buildHouseBtn = new Button("Build");
-        closeBtn.setStyle(Style.button_one);
-        sellHotelBtn.setStyle(Style.button_one);
-        sellHouseBtn.setStyle(Style.button_one);
-        sellTileBtn.setStyle(Style.button_one);
-        mortgageBtn.setStyle(Style.button_one);
-        buildHotelBtn.setStyle(Style.button_one);
-        buildHouseBtn.setStyle(Style.button_one);
+        closeBtn.setStyle(Style.button_four);
+        sellHotelBtn.setStyle(Style.button_four);
+        sellHouseBtn.setStyle(Style.button_four);
+        sellTileBtn.setStyle(Style.button_four);
+        mortgageBtn.setStyle(Style.button_four);
+        buildHotelBtn.setStyle(Style.button_four);
+        buildHouseBtn.setStyle(Style.button_four);
 
         HBox mortgageBox = new HBox(10);
         HBox sellHouseBox = new HBox(10);
@@ -83,15 +101,27 @@ public class TileOperationPopup {
         buildHotelBox.setBackground(bg);
         endBox.setBackground(bg); // may be changed
 
+        label.setAlignment(Pos.TOP_LEFT);
+        mortgageBox.setAlignment(Pos.TOP_LEFT);
+        sellHouseBox.setAlignment(Pos.TOP_LEFT);
+        sellHotelBox.setAlignment(Pos.TOP_LEFT);
+        sellTileBox.setAlignment(Pos.TOP_LEFT);
+        buildHouseBox.setAlignment(Pos.TOP_LEFT);
+        buildHotelBox.setAlignment(Pos.TOP_LEFT);
+        endBox.setAlignment(Pos.CENTER);
+        closeBtn.setAlignment(Pos.CENTER);
+
         mortgageBox.getChildren().addAll(mortgagelb, mortgageBtn);
         sellHotelBox.getChildren().addAll(sellHotellb, sellHotelBtn);
         sellHouseBox.getChildren().addAll(sellHouselb, sellHouseBtn);
         sellTileBox.getChildren().addAll(sellTilelb, sellTileBtn);
         buildHotelBox.getChildren().addAll(buildHotellb, buildHotelBtn);
         buildHouseBox.getChildren().addAll(buildHouselb, buildHouseBtn);
+        endBox.setStyle(Style.window_border);
+        endBox.getChildren().addAll(houseView, label, buildHouseBox, buildHotelBox, sellHotelBox, sellHouseBox, sellTileBox, mortgageBox, closeBtn);
 
         closeBtn.setOnAction(event -> {
-
+            window.close();
         });
 
         sellHouseBtn.setOnAction(event -> {
@@ -117,5 +147,10 @@ public class TileOperationPopup {
         buildHouseBtn.setOnAction(event -> {
 
         });
+
+        Scene scene = new Scene(endBox);
+        window.setScene(scene);
+        window.showAndWait();
+
     }
 }

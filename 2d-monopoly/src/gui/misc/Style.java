@@ -46,4 +46,16 @@ public class Style {
 					"-fx-border-radius: 0;" +
 					"-fx-border-color: #CCCCFF;";
 
+	public final static String label_font =
+					"-fx-font-family: Forte;"+
+							"-fx-font-size: 18;";
+
+	public final static  String button_four =
+			"-fx-background-color: #00000000;" +
+					"-fx-font-family: Forte;" +
+					"-fx-border-width: 1; " +
+					"-fx-font-size: 18; " +
+					"-fx-border-color: #FF0000;" +
+					"-fx-text-fill: #FF0000;";
+
 }
