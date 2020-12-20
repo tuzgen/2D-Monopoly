@@ -86,4 +86,8 @@ public class Style {
 					"-fx-font-size: 30; " +
 					"-fx-border-color: #FF0000;" +
 					"-fx-text-fill: #FF0000;";
+
+	public final static String label_font_two =
+			"-fx-font-family: Forte;"+
+					"-fx-font-size: 24;";
 }
