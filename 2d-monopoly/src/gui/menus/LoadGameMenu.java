@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import management.FileManager;
 import management.GameManager;
+import sun.applet.Main;
 
 public class LoadGameMenu {
 	public void display(Stage context) {
@@ -18,6 +19,8 @@ public class LoadGameMenu {
 		button_start.setOnAction( e -> {
 			try {
 				FileManager.loadGame();
+				MainMenu.sm.stopMusic();
+				MainMenu.sm.music(1);
 				new GameMenu().display(context);
 			} catch (Exception exception) {
 				System.out.println(exception.toString());
