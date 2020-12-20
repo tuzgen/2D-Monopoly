@@ -6,7 +6,7 @@ import entity.player.Player;
 import java.io.Serializable;
 
 public class CardDeck implements Serializable {
-    private final int DECKSIZE = 4;
+    private final int DECKSIZE = 16;
     private Card[] cards;
     private boolean chance;
     private int currentCard;
@@ -40,10 +40,23 @@ public class CardDeck implements Serializable {
 
     public void createDeck(){
         if(isMafia){
-            cards[0] = new Card(new TransactionCardStrategy(), "You inherited a fortune from his grandmother, get 40000₺.", 40000);
-            cards[1] = new Card(new TransactionCardStrategy(), "You had a car accident.", -25000);
+            cards[0] = new Card(new TransactionCardStrategy(), "You inherited a fortune from his grandmother, get 4000₺.", 4000);
+            cards[1] = new Card(new TransactionCardStrategy(), "You had a car accident. Pay 2500", -2500);
             cards[2] = new Card(new MovementByNumCardStrategy(), "Police!!! Move 5 tiles backward.", -5);
             cards[3] = new Card(new MovementToCardStrategy(), "You stole a car. Move until you arrive start tile.", 0);
+            cards[4] = new Card(new MovementToCardStrategy(), "You visited Bayburt.Go to Bayburt", 1);
+            cards[5] = new Card(new MovementToCardStrategy(), "You visited Palermo. Go to Palermo", 37);
+            cards[6] = new Card(new MovementToCardStrategy(), "Take a trip to Konya YHT . Go to Konya YHT", 5);
+            cards[7] = new Card(new MovementToCardStrategy(), "Take a trip to St Petersburg . Go to St Petersburg", 25);
+            cards[8] = new Card(new MovementByNumCardStrategy(), "There was a banana peel. Move 1 tile backward.", -1);
+            cards[9] = new Card(new MovementByNumCardStrategy(), "You found a deserted car. Move 4 tiles forward.", 4);
+            cards[10] = new Card(new MovementByNumCardStrategy(), "You discovered a secret passage. Move 8 tiles forward.", 8);
+            cards[11] = new Card(new TransactionCardStrategy(), "You spilled some exquisite wine. Pay 1000", -1000);
+            cards[12] = new Card(new TransactionCardStrategy(), "You won the small lottery. Get 3000", 3000);
+            cards[13] = new Card(new TransactionCardStrategy(), "You house exploded. Pay 6000", -6000);
+            cards[14] = new Card(new TransactionCardStrategy(), "Your friend stood you with the check. But you made him pay you extra 1000", 1000);
+            cards[15] = new Card(new TransactionCardStrategy(), "It is your birthday. Get 5000", 5000);
+
         }
         else {
             if (chance) {
@@ -51,11 +64,35 @@ public class CardDeck implements Serializable {
                 cards[1] = new Card(new GetOutOfJailCardStrategy(), "Jailbreak Daddy Card\n This card allows you to get out of jail without any charge (You can keep this card).", 0);
                 cards[2] = new Card(new MovementByNumCardStrategy(), "Mafia shot a butcher in next tile, move 3 tiles backward.", -3);
                 cards[3] = new Card(new MovementToCardStrategy(), "You stabbed a guy who don't like your new music album. Get into jail!", 30);
+                cards[4] = new Card(new MovementToCardStrategy(), "You visited Bayburt.Go to Bayburt", 1);
+                cards[5] = new Card(new MovementToCardStrategy(), "You visited Palermo. Go to Palermo", 37);
+                cards[6] = new Card(new MovementToCardStrategy(), "Take a trip to Konya YHT . Go to Konya YHT", 5);
+                cards[7] = new Card(new MovementToCardStrategy(), "Take a trip to St Petersburg . Go to St Petersburg", 25);
+                cards[8] = new Card(new MovementByNumCardStrategy(), "There was a banana peel. Move 1 tile backward.", -1);
+                cards[9] = new Card(new MovementByNumCardStrategy(), "You found a deserted car. Move 4 tiles forward.", 4);
+                cards[10] = new Card(new MovementByNumCardStrategy(), "You discovered a secret passage. Move 8 tiles forward.", 8);
+                cards[11] = new Card(new TransactionCardStrategy(), "You spilled some exquisite wine. Pay 1000", -1000);
+                cards[12] = new Card(new TransactionCardStrategy(), "You won the small lottery. Get 3000", 3000);
+                cards[13] = new Card(new TransactionCardStrategy(), "You house exploded. Pay 6000", -6000);
+                cards[14] = new Card(new TransactionCardStrategy(), "Your friend stood you with the check. Pay 1000", -1000);
+                cards[15] = new Card(new TransactionCardStrategy(), "It is your birthday. Get 5000", 5000);
             } else {
                 cards[0] = new Card(new TransactionCardStrategy(), "You went on holiday to Russia, got on a train from St. Petersburg to Moscow. Pay 50000 TL.", -50000);
                 cards[1] = new Card(new TransactionCardStrategy(), "You worked in the field, get 2000 TL.", 2000);
                 cards[2] = new Card(new MovementByNumCardStrategy(), "Police raid!!! Move 5 tiles backward .", -5);
                 cards[3] = new Card(new MovementToCardStrategy(), "You stole a car. Move until you arrive start tile.", 0);
+                cards[4] = new Card(new MovementToCardStrategy(), "You visited Bayburt.Go to Bayburt", 1);
+                cards[5] = new Card(new MovementToCardStrategy(), "You visited Palermo. Go to Palermo", 37);
+                cards[6] = new Card(new MovementToCardStrategy(), "Take a trip to Konya YHT . Go to Konya YHT", 5);
+                cards[7] = new Card(new MovementToCardStrategy(), "Take a trip to St Petersburg . Go to St Petersburg", 25);
+                cards[8] = new Card(new MovementByNumCardStrategy(), "There was a banana peel. Move 1 tile backward.", -1);
+                cards[9] = new Card(new MovementByNumCardStrategy(), "You found a deserted car. Move 4 tiles forward.", 4);
+                cards[10] = new Card(new MovementByNumCardStrategy(), "You discovered a secret passage. Move 8 tiles forward.", 8);
+                cards[11] = new Card(new TransactionCardStrategy(), "You spilled some exquisite wine. Pay 1000", -1000);
+                cards[12] = new Card(new TransactionCardStrategy(), "You won the small lottery. Get 3000", 3000);
+                cards[13] = new Card(new TransactionCardStrategy(), "You house exploded. Pay 6000", -6000);
+                cards[14] = new Card(new TransactionCardStrategy(), "Your friend stood you with the check. Pay 1000", -1000);
+                cards[15] = new Card(new TransactionCardStrategy(), "It is your birthday. Get 5000", 5000);
             }
         }
         shuffleCard();

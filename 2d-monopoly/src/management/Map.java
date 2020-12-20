@@ -120,6 +120,33 @@ public class Map implements Serializable {
 		return false;
 	}
 
+	public boolean sellHouse(Player player, int tileNo){
+		if(((CityTile) tiles[tileNo]).getHouseCount() <= 0){
+			return false;
+		}
+		if (isHouseSellAvailable(player, (CityTile) tiles[tileNo])) {
+			((CityTile) tiles[tileNo]).removeHouse();
+			Bank.getInstance().giveMoney(player, ((CityTile) tiles[tileNo]).getHouseBuildPrice() / 2);
+			return true;
+		}
+		return false;
+	}
+
+	private boolean isHouseSellAvailable(Player player, CityTile tile) {
+		// assume the player has built the house and build
+		// if the absolute difference is smaller than or equal to one
+		int maxHouse = 0; // giving absurdly high initial value
+		for (Tile t : tiles) {
+			if (t.getClass() == CityTile.class && ((CityTile) t).getColorGroup() == tile.getColorGroup()) {
+				// for every tile in the same color group as "tile"
+				maxHouse = Math.max(maxHouse, ((CityTile)t).getHouseCount());
+			}
+		}
+
+		return isColorGroupOwnedByPlayer(player, tile.getColorGroup())
+				&& (Math.abs(maxHouse - (tile.getHouseCount() - 1)) <= 1);
+	}
+
 	private boolean isHouseBuildAvailable(Player player, CityTile tile) {
 		// assume the player has built the house and build
 		// if the absolute difference is smaller than or equal to one
@@ -142,6 +169,26 @@ public class Map implements Serializable {
 		}
 		return false;
 	}
+
+
+	public boolean sellHotel( Player player, int tileNo){
+		if(((CityTile)tiles[tileNo]).getHotelCount() == 0)
+			return false;
+		else {
+			((CityTile) tiles[tileNo]).removeHotel();
+			Bank.getInstance().giveMoney(player, ((CityTile) tiles[tileNo]).getHotelBuildPrice() / 2);
+			return true;
+		}
+	}
+
+	public void hotelRekt( int tileNo){
+		if(((CityTile)tiles[tileNo]).getHotelCount() != 0) {
+			System.out.println("oteeeeeeeeeeel " + tileNo);
+			((CityTile) tiles[tileNo]).removeHotel();
+			return;
+		}
+	}
+
 
 	private boolean isColorGroupOwnedByPlayer(Player player, int colorGroup) {
 		boolean result = true;
