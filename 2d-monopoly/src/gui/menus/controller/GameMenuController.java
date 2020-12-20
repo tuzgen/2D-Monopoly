@@ -7,6 +7,7 @@ import entity.card.CardDeck;
 import entity.card.MovementByNumCardStrategy;
 import entity.card.MovementToCardStrategy;
 import entity.map.tile.*;
+import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.powerup.PowerUp;
 import gui.misc.Style;
@@ -402,6 +403,62 @@ public class GameMenuController {
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
 			if (!((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
+			}
+			if (((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+				}
+			}
+		}
+		update();
+
+	}
+
+	private void doTileActions(int tileNo) {
+		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
+			if (!((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				GameManager.getInstance().mapBuyTile(GameManager.getInstance().getTurnOfPlayer(),((BuyableTile) Map.getInstance().getTileAt(tileNo)).getId(), false);
+			}
+			if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+				}
+			}
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) { // ileri geri hareketlerde sıkıntı oluyor
+			System.out.print("CARD POP UP");
+			if (((CardTile) (Map.getInstance().getTileAt(tileNo))).getIsChance() == true) {
+				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
+				if (card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
+					updateAllLocations();
+					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
+				}
+			} else {
+				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
+				if (card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
+					updateAllLocations();
+					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
+				}
+			}
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
+			if (!((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				GameManager.getInstance().mapBuyTile(GameManager.getInstance().getTurnOfPlayer(),((BuyableTile) Map.getInstance().getTileAt(tileNo)).getId(), false);
+			}
+			if (((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+				}
+			}
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
+			// do nothing OwO
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == StartTile.class) {
+			// unused might be deleted, handled in another place
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TaxTile.class) {
+			Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((TaxTile)Map.getInstance().getTileAt(tileNo)).getAmount());
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
+			GameManager.getInstance().gotoJail();
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TransportationTile.class) {
+			if (!((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
+				GameManager.getInstance().mapBuyTile(GameManager.getInstance().getTurnOfPlayer(),((BuyableTile) Map.getInstance().getTileAt(tileNo)).getId(), false);
 			}
 			if (((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
