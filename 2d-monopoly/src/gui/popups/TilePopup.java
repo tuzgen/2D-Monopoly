@@ -52,9 +52,9 @@ public class TilePopup {
 		// A button which lets the player buy a tile
 		Button buyButton = new Button("Buy");
 		buyButton.setOnAction( e -> {
-//			GameManager.getInstance().mapBuyTile(
-//					GameManager.getInstance().getTurnOfPlayer(),tile.getId(), false);
-			Map.getInstance().buyTile(GameManager.getInstance().getTurnOfPlayer(), tile.getId());
+			GameManager.getInstance().mapBuyTile(
+					GameManager.getInstance().getTurnOfPlayer(),tile.getId(), false);
+//			Map.getInstance().buyTile(GameManager.getInstance().getTurnOfPlayer(), tile.getId());
 			window.close();
 		});
 		buyButton.setStyle("-fx-background-color: #CCFFCC");

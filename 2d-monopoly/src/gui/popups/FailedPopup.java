@@ -10,8 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-
-public class FinishPopup {
+public class FailedPopup {
     public void display(Stage context){
         PauseTransition delay = new PauseTransition(Duration.millis(2000));
         Stage window = new Stage();
@@ -23,10 +22,10 @@ public class FinishPopup {
         window.setMinHeight(125);
 
         Label label = new Label();
-        label.setText("Gameover");
+        label.setText("Failed to buy not enough money");
         VBox vbox = new VBox();
-        vbox.setPadding(new Insets(50, 50,50,50));
         vbox.getChildren().add(label);
+        vbox.setPadding(new Insets(50, 50, 50, 50));
         Scene scene = new Scene(vbox);
 
         window.setScene(scene);
