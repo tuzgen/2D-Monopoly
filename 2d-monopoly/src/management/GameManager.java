@@ -2,8 +2,6 @@ package management;
 
 import entity.Bank;
 import entity.Dice;
-import entity.Forex;
-import entity.Trade;
 import entity.card.CardDeck;
 import entity.map.tile.BuyableTile;
 import entity.map.tile.CityTile;
@@ -18,6 +16,8 @@ import gui.menus.SettingsMenu;
 import java.io.*;
 
 public class GameManager implements Serializable {
+	private static final long serialVersionUID = 6529685098267757690L;
+
 	private static final int NPC_COUNT = 2;
 	public static final int PLAYER_COUNT = 4;
 	private static final int MAX_MONEY = 1000000;
@@ -90,16 +90,16 @@ public class GameManager implements Serializable {
 		return communitydeck;
 	}
 
-	public static boolean loadGame() {
-		try {
-			FileManager.loadGame();
-			return true;
-
-		} catch (Exception e) {
-			System.err.println("Load game not successfull");
-			return false;
-		}
-	}
+//	public static boolean loadGame() {
+//		try {
+//			FileManager.loadGame();
+//			return true;
+//
+//		} catch (Exception e) {
+//			System.err.println("Load game not successfull");
+//			return false;
+//		}
+//	}
 
 	// TODO delete Debug
 	public int[] rollTheDicePair() {
@@ -124,12 +124,46 @@ public class GameManager implements Serializable {
 		return instance;
 	}
 
+	// is used in load game
 	public static synchronized void setInstance(GameManager load) {
 		instance = load; // TODO
-		forexManager = ForexManager.getInstance();
-		map = Map.getInstance();
-		tradeManager = TradeManager.getInstance();
-		bank = Bank.getInstance();
+		forexManager = load.getForexManager();
+		map = load.getMap();
+		tradeManager = load.getTradeManager();
+		bank = load.getBank();
+	}
+
+	public void setBank(Bank bank) {
+		GameManager.bank = bank;
+	}
+
+	public void setTradeManager(TradeManager tradeManager) {
+		GameManager.tradeManager = tradeManager;
+	}
+
+	public void setMap(Map map) {
+		GameManager.map = map;
+	}
+
+	public void setForexManager(ForexManager forexManager) {
+		GameManager.forexManager = forexManager;
+	}
+
+
+	private Bank getBank() {
+		return bank;
+	}
+
+	private Map getMap() {
+		return map;
+	}
+
+	private TradeManager getTradeManager() {
+		return tradeManager;
+	}
+
+	private ForexManager getForexManager() {
+		return forexManager;
 	}
 
 	// Is called on fresh new game init
@@ -267,7 +301,6 @@ public class GameManager implements Serializable {
 		if (map.sellTile(player, tileNo))
 		// add to the player's account
 			player.getAccount().setTrl(player.getAccount().getTrl() + ((BuyableTile) map.getTileAt(tileNo)).getPrice());
-
 	}
 
 	public void buildHouse(Player player, int tileNo, boolean fromMafia) {

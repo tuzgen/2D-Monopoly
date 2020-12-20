@@ -12,6 +12,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import management.FileManager;
 import management.GameManager;
 import management.SoundManager;
 
@@ -31,6 +32,7 @@ public class MainMenu {
 	private AudioClip clip_main;
 
 	public void display(Stage context) {
+		FileManager.loadSettings();
 		GameManager.getInstance().deleteInstance();
 
 		// initialize components

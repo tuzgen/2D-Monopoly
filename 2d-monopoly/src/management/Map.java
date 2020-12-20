@@ -6,6 +6,8 @@ import entity.player.Player;
 import java.io.Serializable;
 
 public class Map implements Serializable {
+	private static final long serialVersionUID = 1580945254386458072L;
+
 	private static Map instance;
 
 	public static final int TILE_COUNT = 40;

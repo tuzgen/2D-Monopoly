@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TradeManager implements Serializable {
+    private static final long serialVersionUID = -6106962975376479641L;
+
     private static TradeManager instance;
     private Bank bank;
 

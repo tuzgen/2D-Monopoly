@@ -25,10 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import management.ForexManager;
-import management.GameManager;
-import management.Map;
-import management.SoundManager;
+import management.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -458,6 +455,13 @@ public class GameMenuController {
 	private void endButton(ActionEvent e) {
 		endTurnButton.setDisable(true);
 		updateAllLocations();
+		ForexManager.getInstance().calcSupDemand();
+
+		// forex update in the gui
+		textForexDollar.setText(df.format(GameManager.getInstance().getForexDollar()));
+		textForexEuro.setText(df.format(GameManager.getInstance().getForexEuro()));
+		textForexFrank.setText(df.format(GameManager.getInstance().getForexFrank()));
+
 		GameManager.getInstance().increaseTurn();
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
@@ -466,7 +470,7 @@ public class GameMenuController {
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
 
-		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()){
+		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()) {
 			new ShowTradesPopup().display(context);
 			update();
 			endTurnButton.setDisable(true);
@@ -474,12 +478,14 @@ public class GameMenuController {
 		updateAllLocations();
 		diamondUpdate(turnOf);
 		rollRice.setDisable(false);
-		ForexManager.getInstance().calcSupDemand();
-		update();
 		updatePlayerLabels();
 		getItems();
 		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
-
+		try {
+			FileManager.saveGame();
+		} catch (Exception exception) {
+			System.out.println(exception.toString());
+		}
 	}
 
 	private void exRateTextUpdate() {
