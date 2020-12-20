@@ -48,7 +48,7 @@ public class PausePopup {
 
 		VBox layout = new VBox(10);
 		layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
-		layout.getChildren().addAll(button_continue, button_return_main_menu, button_resign);
+		layout.getChildren().addAll(button_continue, button_resign, button_return_main_menu);
 		layout.setAlignment(Pos.CENTER);
 		layout.setStyle(Style.window_border);
 
