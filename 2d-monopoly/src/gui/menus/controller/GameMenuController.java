@@ -332,23 +332,15 @@ public class GameMenuController {
 		if (e.getSource() == buttonPlayer1) {
 			if (playerNo != 0)
 				new TradePopup(0).display(context);
-			else
-				trade(); // TODO test this belongs to the turn start
 		} else if (e.getSource() == buttonPlayer2) {
 			if (playerNo != 1)
 				new TradePopup(1).display(context);
-			else
-				trade();
 		} else if (e.getSource() == buttonPlayer3) {
 			if (playerNo != 2)
 				new TradePopup(2).display(context);
-			else
-				trade();
 		} else if (e.getSource() == buttonPlayer4) {
 			if (playerNo != 3)
 				new TradePopup(3).display(context);
-			else
-				trade();
 		}
 		update();
 	}
