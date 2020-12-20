@@ -12,6 +12,7 @@ import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
 import gui.menus.controller.GameMenuController;
+import gui.popups.FailedPopup;
 
 import java.io.*;
 
@@ -274,10 +275,15 @@ public class GameManager implements Serializable {
 		}
 
 		if (player.getAccount().getTrl() >= price) {
-			if (map.buyTile(player, tileNo))
-				Bank.getInstance().takeMoney(player, price);//player.getAccount().setTrl(player.getAccount().getTrl() - price);
-		} else
-			System.out.println("mapBuyTile --- Buy tile failed...");
+			if (map.buyTile(player, tileNo)){}
+
+		} else{
+			// todo popo up at
+			if(!player.getIsBot())
+				GameMenuController.getInstance().showFailedPopUp();
+
+		}
+
 	}
 
 	public void mapSellTile(Player player, int tileNo) {

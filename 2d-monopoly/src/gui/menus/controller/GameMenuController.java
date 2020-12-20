@@ -782,7 +782,13 @@ public class GameMenuController {
 			}
 			if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
+//						System.out.println("lütfen gir");
+//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+//					} else{
+						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+//					}
+					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) { // ileri geri hareketlerde sıkıntı oluyor
@@ -808,7 +814,13 @@ public class GameMenuController {
 			}
 			if (((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
+//						System.out.println("lütfen gir");
+//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+//					} else{
+						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					//}
+					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
@@ -825,7 +837,12 @@ public class GameMenuController {
 			}
 			if (((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
+//						System.out.println("lütfen gir");
+//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+//					} else{
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
 		}
@@ -845,10 +862,17 @@ public class GameMenuController {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			if (!((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				GameManager.getInstance().mapBuyTile(GameManager.getInstance().getTurnOfPlayer(),((BuyableTile) Map.getInstance().getTileAt(tileNo)).getId(), false);
+				Map.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(),((BuyableTile) Map.getInstance().getTileAt(tileNo)).getId());
+				Map.getInstance().buildHotel(GameManager.getInstance().getTurnOfPlayer(),((BuyableTile) Map.getInstance().getTileAt(tileNo)).getId());
 			}
 			if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
+					//if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
+					//GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+					//} else{
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					//}
+					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) { // ileri geri hareketlerde sıkıntı oluyor
@@ -872,7 +896,13 @@ public class GameMenuController {
 			}
 			if (((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					if (Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()) {
+						//GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+						//} else {
+						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+
+						Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					}
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
@@ -889,13 +919,19 @@ public class GameMenuController {
 			}
 			if (((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					if (Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()) {
+						//GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+						//} else{
+						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+						//}
+						Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
+					}
 				}
 			}
 		}
 		update();
-
 	}
+
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
 		return e -> {
@@ -953,6 +989,7 @@ public class GameMenuController {
 
 	private void endButton(ActionEvent e) {
 		endButtonMethod();
+		updateTileInfo();
 		endTurnButton.setDisable(true);
 		checkIfFinished();
 	}
@@ -1088,7 +1125,6 @@ public class GameMenuController {
 	}
 
 	public void update() {
-
 
 		// player money's on the player bar
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
@@ -1474,5 +1510,9 @@ public class GameMenuController {
 					new FinishPopup().display(context);
 			}
 		}
+	}
+
+	public void showFailedPopUp(){
+		new FailedPopup().display(context);
 	}
 }

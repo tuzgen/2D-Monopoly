@@ -2,6 +2,7 @@ package entity;
 
 import entity.player.Player;
 import management.ForexManager;
+import management.GameManager;
 
 import java.io.Serializable;
 
@@ -99,7 +100,12 @@ public class Bank implements Serializable { // Methods in this class may be stat
 
             return true;
         } else {
-            //TODO
+            //plAccount.setTrl(0);
+            //plAccount.setSwissFrank(0);
+            //plAccount.setEuro(0);
+            //plAccount.setDollar(0);
+            //GameManager.getInstance().resign(player);
+            //System.out.println("resign");
             return false;
         }
     }
@@ -108,4 +114,5 @@ public class Bank implements Serializable { // Methods in this class may be stat
         // this.forexManager.deleteInstance();
         instance = null;
 	}
+
 }
