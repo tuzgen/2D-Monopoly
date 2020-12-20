@@ -1,11 +1,15 @@
 package entity.player;
 
 import entity.Account;
+import entity.Bank;
+import entity.card.GetOutOfJailCardStrategy;
 import entity.powerup.PowerUp;
 import entity.Trade;
 import entity.card.Card;
 import entity.map.property.Property;
+import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
+import entity.powerup.PowerUpCrate;
 import management.Map;
 
 import java.io.Serializable;
@@ -113,7 +117,7 @@ public class Player extends Character implements Serializable {
 
     //get-set methods
 
-    public ArrayList<Trade> getTrades(){ return trades; }
+    public  ArrayList<Trade> getTrades(){ return trades; }
 
     public boolean getIsArrested() {
         return isArrested;
@@ -191,3 +195,4 @@ public class Player extends Character implements Serializable {
 
     public ArrayList<Card> getCards() { return cards; }
 }
+
