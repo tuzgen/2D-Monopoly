@@ -56,7 +56,7 @@ public abstract class BuyableTile extends Tile implements Serializable {
 	}
 
 	public double getRentAmount() {
-		if( isMortgage == false)
+		if(!isMortgage)
 			return rentAmount;
 		return 0;
 	}

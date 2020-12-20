@@ -47,17 +47,8 @@ public class GameManager implements Serializable {
 
 	private GameManager(String name0, String name1, boolean isBot1, String name2,
 						boolean isBot2, String name3, boolean isBot3) {
-
-		System.out.println("Constructor\n" + name0 + " " + "false" + " \n" +
-				name1 + " " + isBot1 + " \n" +
-				name2 + " " + isBot2 + " \n" +
-				name3 + " " + isBot3 + " \n");
-
 		players = new Player[4];
 		player1 = new Player(new User(), name0.equals("") ? "Player1" : name0, false);
-		//player2 = new Player(isBot1 ? new User() : new BotCharacter(), name1.equals("") ? "Player2" : name1);
-		//player3 = new Player(isBot2 ? new User() : new BotCharacter(), name2.equals("") ? "Player3" : name2);
-		//player4 = new Player(isBot3 ? new User() : new BotCharacter(), name3.equals("") ? "Player4" : name3);
 		player2 = new Player(new User(), name1.equals("") ? "Player2" : name1, isBot1);
 		player3 = new Player(new User(), name2.equals("") ? "Player3" : name2, isBot2);
 		player4 = new Player( new User(), name3.equals("") ? "Player4" : name3, isBot3);
