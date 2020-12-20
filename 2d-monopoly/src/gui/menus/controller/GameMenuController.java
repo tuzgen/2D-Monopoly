@@ -11,6 +11,7 @@ import entity.map.tile.*;
 import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.powerup.PowerUp;
+import gui.menus.MainMenu;
 import gui.misc.Style;
 import gui.popups.*;
 import javafx.event.ActionEvent;
@@ -442,7 +443,7 @@ public class GameMenuController {
 				tilePriceText20, tilePriceText21
 		};
 
-		// TODO boardImage = new ImageView(new Image());
+		// TODO resolve this during merge boardImage.setImage(new Image(MainMenu.colorBlind ? "file:src/vendor/image/colorblind_board.png" : "file:src/vendor/image/board.png"));
 
 		int indexCity = 0;
 		for (int i = 0; i < Map.TILE_COUNT; i++) {
@@ -450,7 +451,7 @@ public class GameMenuController {
 				tileNameTexts[indexCity].setStyle(Style.text_four);
 				tilePriceTexts[indexCity].setStyle(Style.text_four);
 				tileNameTexts[indexCity].setText(Map.getInstance().getTileAt(i).getName());
-				tilePriceTexts[indexCity].setText(Integer.toString(((CityTile) Map.getInstance().getTileAt(i)).getPrice()) + "₺");
+				tilePriceTexts[indexCity].setText((((CityTile) Map.getInstance().getTileAt(i)).getPrice()) + "₺");
 				indexCity++;
 			}
 		}

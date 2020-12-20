@@ -437,6 +437,11 @@
                                  </font>
                               </Text>
                               <Text fx:id="tilePriceText21" layoutX="585.0" layoutY="517.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Label layoutX="572.0" layoutY="582.0" prefHeight="16.0" prefWidth="42.0" style="-fx-background-color: #E6FFEC;" text="get 15K">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
