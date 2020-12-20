@@ -22,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -213,11 +214,146 @@ public class GameMenuController {
 	private Label roundCounter = new Label();
 	@FXML
 	private Label diceLabel = new Label();
+	@FXML
+	private Text tileNameText0;
+
+	@FXML
+	private Text tilePriceText0;
+
+	@FXML
+	private Text tileNameText1;
+
+	@FXML
+	private Text tilePriceText1;
+
+	@FXML
+	private Text tileNameText2;
+
+	@FXML
+	private Text tilePriceText2;
+
+	@FXML
+	private Text tileNameText3;
+
+	@FXML
+	private Text tilePriceText3;
+
+	@FXML
+	private Text tileNameText4;
+
+	@FXML
+	private Text tilePriceText4;
+
+	@FXML
+	private Text tileNameText5;
+
+	@FXML
+	private Text tilePriceText5;
+
+	@FXML
+	private Text tileNameText6;
+
+	@FXML
+	private Text tilePriceText6;
+
+	@FXML
+	private Text tileNameText7;
+
+	@FXML
+	private Text tilePriceText7;
+
+	@FXML
+	private Text tileNameText8;
+
+	@FXML
+	private Text tilePriceText8;
+
+	@FXML
+	private Text tileNameText9;
+
+	@FXML
+	private Text tilePriceText9;
+
+	@FXML
+	private Text tileNameText10;
+
+	@FXML
+	private Text tilePriceText10;
+
+	@FXML
+	private Text tileNameText11;
+
+	@FXML
+	private Text tilePriceText11;
+
+	@FXML
+	private Text tileNameText12;
+
+	@FXML
+	private Text tilePriceText12;
+
+	@FXML
+	private Text tileNameText13;
+
+	@FXML
+	private Text tilePriceText13;
+
+	@FXML
+	private Text tileNameText14;
+
+	@FXML
+	private Text tilePriceText14;
+
+	@FXML
+	private Text tileNameText15;
+
+	@FXML
+	private Text tilePriceText15;
+
+	@FXML
+	private Text tileNameText16;
+
+	@FXML
+	private Text tilePriceText16;
+
+	@FXML
+	private Text tileNameText17;
+
+	@FXML
+	private Text tilePriceText17;
+
+	@FXML
+	private Text tileNameText18;
+
+	@FXML
+	private Text tilePriceText18;
+
+	@FXML
+	private Text tileNameText19;
+
+	@FXML
+	private Text tilePriceText19;
+
+	@FXML
+	private Text tileNameText20;
+
+	@FXML
+	private Text tilePriceText20;
+
+	@FXML
+	private Text tileNameText21;
+
+	@FXML
+	private Text tilePriceText21;
+
+	@FXML private ImageView boardImage;
+
 
 	int[] player;
 
 	private Stage context;
 	private Button[] buttons;
+	private Text[] tileNameTexts, tilePriceTexts;
 	private ImageView[] icons;
 	private final int[][] offsets = new int[][]{
 			{22, 17}, {32, 17},
@@ -289,6 +425,35 @@ public class GameMenuController {
 				buttonTile30, buttonTile31, buttonTile32, buttonTile33, buttonTile34,
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
+
+		tileNameTexts = new Text[] {
+				tileNameText0, tileNameText1, tileNameText2, tileNameText3, tileNameText4,
+				tileNameText5, tileNameText6, tileNameText7, tileNameText8, tileNameText9,
+				tileNameText10, tileNameText11, tileNameText12, tileNameText13, tileNameText14,
+				tileNameText15, tileNameText16, tileNameText17, tileNameText18, tileNameText19,
+				tileNameText20, tileNameText21
+		};
+
+		tilePriceTexts = new Text[] {
+				tilePriceText0, tilePriceText1, tilePriceText2, tilePriceText3, tilePriceText4,
+				tilePriceText5, tilePriceText6, tilePriceText7, tilePriceText8, tilePriceText9,
+				tilePriceText10, tilePriceText11, tilePriceText12, tilePriceText13, tilePriceText14,
+				tilePriceText15, tilePriceText16, tilePriceText17, tilePriceText18, tilePriceText19,
+				tilePriceText20, tilePriceText21
+		};
+
+		// TODO boardImage = new ImageView(new Image());
+
+		int indexCity = 0;
+		for (int i = 0; i < Map.TILE_COUNT; i++) {
+			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
+				tileNameTexts[indexCity].setStyle(Style.text_four);
+				tilePriceTexts[indexCity].setStyle(Style.text_four);
+				tileNameTexts[indexCity].setText(Map.getInstance().getTileAt(i).getName());
+				tilePriceTexts[indexCity].setText(Integer.toString(((CityTile) Map.getInstance().getTileAt(i)).getPrice()) + "₺");
+				indexCity++;
+			}
+		}
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice

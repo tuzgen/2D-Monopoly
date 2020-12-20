@@ -21,6 +21,10 @@ public class Style {
 			"-fx-font-size: 18; " +
 					"-fx-text-fill: #FF0000;";
 
+	public final static String text_four =
+			"-fx-font-size: 10; " +
+					"-fx-text-fill: #FF0000;";
+
 	public final static String text_FPS =
 			"-fx-text-fill: #66ff33;";
 

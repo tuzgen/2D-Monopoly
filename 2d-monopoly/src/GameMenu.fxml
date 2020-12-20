@@ -228,7 +228,7 @@
                <children>
                   <StackPane alignment="CENTER_LEFT" prefHeight="663.0" prefWidth="695.0">
                      <children>
-                        <ImageView fitHeight="623.0" fitWidth="668.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="boardImage" fitHeight="623.0" fitWidth="668.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@vendor/image/board.png" />
                            </image>
@@ -305,6 +305,138 @@
                                     <Image url="@vendor/image/diamond-blue.png" />
                                  </image>
                               </ImageView>
+                              <Text fx:id="tileNameText0" layoutX="487.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText0" layoutX="487.0" layoutY="612.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText1" layoutX="388.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText1" layoutX="388.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText2" layoutX="238.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText2" layoutX="238.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText3" layoutX="138.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText3" layoutX="138.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText4" layoutX="87.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText4" layoutX="87.0" layoutY="612.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText5" layoutX="29.0" layoutY="515.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742" />
+                              <Text fx:id="tilePriceText5" layoutX="-11.0" layoutY="517.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText6" layoutX="35.0" layoutY="419.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText6" layoutX="-10.0" layoutY="418.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText7" layoutX="35.0" layoutY="367.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText7" layoutX="-10.0" layoutY="366.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText8" layoutX="35.0" layoutY="268.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText8" layoutX="-10.0" layoutY="267.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText9" layoutX="33.0" layoutY="168.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText9" layoutX="-12.0" layoutY="167.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText10" layoutX="33.0" layoutY="117.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText10" layoutX="-12.0" layoutY="116.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText11" layoutX="87.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText11" layoutX="86.0" layoutY="21.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText12" layoutX="184.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText12" layoutX="184.0" layoutY="20.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText13" layoutX="237.0" layoutY="64.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText13" layoutX="238.0" layoutY="20.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText14" layoutX="337.0" layoutY="63.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText14" layoutX="338.0" layoutY="22.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText15" layoutX="386.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText15" layoutX="387.0" layoutY="21.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText16" layoutX="488.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText16" layoutX="489.0" layoutY="21.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText17" layoutX="540.0" layoutY="122.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText17" layoutX="584.0" layoutY="120.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText18" layoutX="537.0" layoutY="165.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText18" layoutX="584.0" layoutY="167.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText19" layoutX="535.0" layoutY="267.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText19" layoutX="585.0" layoutY="267.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText20" layoutX="534.0" layoutY="418.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText20" layoutX="585.0" layoutY="417.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText21" layoutX="534.0" layoutY="518.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText21" layoutX="585.0" layoutY="517.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
                            </children>
                         </AnchorPane>
                      </children>

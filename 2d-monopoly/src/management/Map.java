@@ -11,6 +11,7 @@ public class Map implements Serializable {
 	private static Map instance;
 
 	public static final int TILE_COUNT = 40;
+	public static final int CITY_TILE_COUNT = 22;
 	public static final int JAILNO = 10;
 	public static final int LUXURYNO = 38;
 
