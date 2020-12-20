@@ -9,7 +9,7 @@ public class Style {
 					"-fx-text-fill: #FF0000;";
 
 	public final static String text_one =
-			"-fx-font-size: 72; " +
+			"-fx-font-size: 90; " +
 					"-fx-font-family: Forte;" +
 					"-fx-text-fill: #FF0000;";
 
@@ -67,4 +67,11 @@ public class Style {
 					"-fx-font-size: 18; " +
 					"-fx-border-color: #FF0000;" +
 					"-fx-text-fill: #FF0000;";
+
+	public final static String button_five =
+			"-fx-background-color: #00000000;" +
+			"-fx-border-width: 0; " +
+			"-fx-font-size: 24; " +
+			"-fx-font-family: Forte;" +
+			"-fx-text-fill: #FF0000;";
 }
