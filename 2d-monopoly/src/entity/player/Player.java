@@ -125,7 +125,7 @@ public class Player extends Character implements Serializable {
 
     public void setIsArrested(boolean arrested) {
         isArrested = arrested;
-        if( arrested)
+        if( arrested )
             setLocation(Map.JAILNO);
     }
 

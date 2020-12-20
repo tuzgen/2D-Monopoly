@@ -370,15 +370,18 @@ public class GameMenuController {
 			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance() == true){
 				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
 				new CardPopup().display("Card Tile",  card);
-//				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class)
-//					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
+				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
+					updateAllLocations();
+					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
+				}
 			}
 			else {
 				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
-				new CardPopup().display("Card Tile", GameManager.getInstance().getCommunitydeck().drawCard(GameManager.getInstance().getTurnOfPlayer()));
-//				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class)
-//					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
-//				}
+				new CardPopup().display("Card Tile", card);
+				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
+					updateAllLocations();
+					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
+				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
 			if( !((CompanyTile)Map.getInstance().getTileAt(tileNo)).isOwned()){
@@ -474,6 +477,13 @@ public class GameMenuController {
 	private void endButton(ActionEvent e) {
 		endTurnButton.setDisable(true);
 		updateAllLocations();
+		ForexManager.getInstance().calcSupDemand();
+
+		// forex update in the gui
+		textForexDollar.setText(df.format(GameManager.getInstance().getForexDollar()));
+		textForexEuro.setText(df.format(GameManager.getInstance().getForexEuro()));
+		textForexFrank.setText(df.format(GameManager.getInstance().getForexFrank()));
+
 		GameManager.getInstance().increaseTurn();
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
@@ -514,7 +524,6 @@ public class GameMenuController {
 		updatePlayerLabels();
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-
 		while(turnOf > 4){
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
@@ -562,7 +571,6 @@ public class GameMenuController {
 
 	private void updateLocations(int index) {
 		if (index == 4) {
-			System.out.println(GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT);
 			if (GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutX() + 14);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutY() + 44);
@@ -577,7 +585,6 @@ public class GameMenuController {
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getMafia().getLocation() % Map.TILE_COUNT].getLayoutY() + 5);
 			}
 		} else if (index == 5) {
-			System.out.println("Police " + GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT);
 			if (GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT <= 10) {
 				icons[index].setLayoutX(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutX() + 31);
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutY() + 43);
@@ -595,7 +602,6 @@ public class GameMenuController {
 			}
 		} else {
 			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT);
-			System.out.println("-----------");
 
 			if (index == 0) {
 				if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 10) {

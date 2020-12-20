@@ -10,7 +10,7 @@ public class MovementByNumCardStrategy implements CardStrategy, Serializable {
     public void activateCard(Player player, Card card) {
         int amount = card.getAmount();
         int currentTileNo = player.getLocation();
-        player.setLocation(currentTileNo + amount);// THIS NEED TO UPDATE THE MAP DO NOT FORGET YOU MAY ADD IT TO THE CHARACTER CLASS
-
+        player.setLocation((40 + currentTileNo + amount) % 40);
+    // THIS NEED TO UPDATE THE MAP DO NOT FORGET YOU MAY ADD IT TO THE CHARACTER CLASS
     }
 }
