@@ -41,6 +41,7 @@ public class MafiaPopup {
 
         label.setPadding(new Insets(10,0,0,0));
         label.setTextFill(Color.WHITE);
+        label.setStyle(Style.label_font);
         blackmailButton.setStyle(Style.button_one);
         jailbreakButton.setStyle(Style.button_one);
         buyCommunityCardButton.setStyle(Style.button_one);
@@ -65,6 +66,7 @@ public class MafiaPopup {
 
         jlabel.setPadding(new Insets(10,0,0,0));
         jlabel.setTextFill(Color.WHITE);
+        jlabel.setStyle(Style.label_font);
 
         yesButton.setOnAction( e -> {
             jlayout.getChildren().removeAll(jlabel, jhlayout);
@@ -77,6 +79,7 @@ public class MafiaPopup {
             }
             finalLabel.setPadding(new Insets(10,0,0,0));
             finalLabel.setTextFill(Color.WHITE);
+            finalLabel.setStyle(Style.label_font);
             jlayout.getChildren().add(finalLabel);
             delay.setOnFinished(event -> window.close());
             delay.play();
@@ -101,6 +104,8 @@ public class MafiaPopup {
         Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
         Label blabel = new Label("I'm gonna make him an offer he can't refuse.\n\t\t\tSelect one of them.");
         Label endLabel = new Label("Great deal...");
+        blabel.setStyle(Style.label_font);
+        endLabel.setStyle(Style.label_font);
         int yourIndex = GameManager.getInstance().getTurnOfPlayerIndex();
         for(int i = 0; i < 4; i++)
             if( i != yourIndex)
@@ -108,6 +113,7 @@ public class MafiaPopup {
         Button pl1 = new Button(otherPlayers.get(0).getName());
         Button pl2 = new Button(otherPlayers.get(1).getName());
         Button pl3 = new Button(otherPlayers.get(2).getName());
+        Button close = new Button("Close");
         VBox blayout = new VBox(10);
 
         pl1.setOnAction(event -> {
@@ -149,16 +155,21 @@ public class MafiaPopup {
             delay.play();
         });
 
+        close.setOnAction(event -> {
+            window.close();
+        });
+
         pl1.setStyle(Style.button_one);
         pl2.setStyle(Style.button_one);
         pl3.setStyle(Style.button_one);
+        close.setStyle(Style.button_one);
 
         blabel.setPadding(new Insets(10,5,0,5));
         blabel.setTextFill(Color.WHITE);
         endLabel.setTextFill(Color.WHITE);
 
         blayout.setAlignment(Pos.CENTER);
-        blayout.getChildren().addAll(blabel, pl1, pl2, pl3);
+        blayout.getChildren().addAll(blabel, pl1, pl2, pl3, close);
         blayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene bscene = new Scene(blayout);
         blayout.setStyle(Style.window_border);
@@ -172,6 +183,7 @@ public class MafiaPopup {
 
         clabel.setPadding(new Insets(10,0,0,0));
         clabel.setTextFill(Color.WHITE);
+        clabel.setStyle(Style.label_font);
 
         yButton.setOnAction( e -> {
             Player player = GameManager.getInstance().getTurnOfPlayer();
