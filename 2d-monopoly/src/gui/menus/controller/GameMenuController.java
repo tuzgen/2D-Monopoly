@@ -781,6 +781,7 @@ public class GameMenuController {
 	}
 
 	public void pauseGame() {
+		sm.music(5);
 		SoundManager.getInstance().pauseMusic();
 		blurScreen();
 		new PausePopup().display(context);
@@ -806,12 +807,14 @@ public class GameMenuController {
 
 	public void mafiaButton () {
 		if(!GameManager.getInstance().getMafia().getIsArrested()){
+			sm.music(5);
 			new MafiaPopup().display(context);
 			update();
 		}
 	}
 
 	public void powerupCrate(){
+		sm.music(5);
 		new PowerUpPopup().display(context);
 		update();
 	}
