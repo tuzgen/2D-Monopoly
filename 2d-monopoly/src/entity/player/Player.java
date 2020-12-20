@@ -55,7 +55,7 @@ public class Player extends Character implements Serializable {
         isSlowedDown = false;
         isEarningMore = false;
         salary = 15000;
-        startMoney = 500000; // TODO change initial money
+        startMoney = 999999; // TODO change initial money
         account = new Account(startMoney);
         speed = 1;
         vehicleCount = 0; // TODO increment these when player buys them
@@ -237,6 +237,7 @@ public class Player extends Character implements Serializable {
     }
 
     public ArrayList<Tile> getTileList(){
+        System.out.println( "1" + tileList.isEmpty());
         return tileList;
     }
 

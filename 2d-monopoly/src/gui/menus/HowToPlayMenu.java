@@ -5,6 +5,8 @@ import gui.misc.Style;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -18,20 +20,13 @@ public class HowToPlayMenu {
 			new MainMenu().display(context);
 		});
 
-		Text text_how_to_play = new Text("Git gud");
-		text_how_to_play.setStyle(Style.text_one);
-		text_how_to_play.setFill(Color.rgb(255,255,255));
-
-		Text text2 = new Text("JK this functionality is coming soon..");
-		text_how_to_play.setStyle(Style.text_two);
-		text2.setFill(Color.rgb(255,255,255));
+		ImageView myBI= new ImageView(
+				new Image("file:src/vendor/image/how-to-play.png", 1024, 576, true,true));
 
 		VBox layout_how_to_play = new VBox(20);
 		layout_how_to_play.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
 		layout_how_to_play.setAlignment(Pos.CENTER);
-		layout_how_to_play.getChildren().addAll(
-				text_how_to_play, text2, button_return
-		);
+		layout_how_to_play.getChildren().addAll(myBI, button_return);
 
 		BorderPane layout = new BorderPane(layout_how_to_play);
 

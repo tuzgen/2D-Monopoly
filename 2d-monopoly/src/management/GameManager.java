@@ -11,6 +11,7 @@ import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
+import gui.menus.controller.GameMenuController;
 
 import java.io.*;
 
@@ -47,17 +48,8 @@ public class GameManager implements Serializable {
 
 	private GameManager(String name0, String name1, boolean isBot1, String name2,
 						boolean isBot2, String name3, boolean isBot3) {
-
-		System.out.println("Constructor\n" + name0 + " " + "false" + " \n" +
-				name1 + " " + isBot1 + " \n" +
-				name2 + " " + isBot2 + " \n" +
-				name3 + " " + isBot3 + " \n");
-
 		players = new Player[4];
 		player1 = new Player(new User(), name0.equals("") ? "Player1" : name0, false);
-		//player2 = new Player(isBot1 ? new User() : new BotCharacter(), name1.equals("") ? "Player2" : name1);
-		//player3 = new Player(isBot2 ? new User() : new BotCharacter(), name2.equals("") ? "Player3" : name2);
-		//player4 = new Player(isBot3 ? new User() : new BotCharacter(), name3.equals("") ? "Player4" : name3);
 		player2 = new Player(new User(), name1.equals("") ? "Player2" : name1, isBot1);
 		player3 = new Player(new User(), name2.equals("") ? "Player3" : name2, isBot2);
 		player4 = new Player( new User(), name3.equals("") ? "Player4" : name3, isBot3);
@@ -464,7 +456,7 @@ public class GameManager implements Serializable {
 			}
 			if( !mafia.getIsArrested()){
 				mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
-
+				GameMenuController.getInstance().mafiaTileActions(mafia.getLocation());
 			}
 			turnOfPlayerIndex = 5;
 			return dice.getPair();
@@ -536,25 +528,23 @@ public class GameManager implements Serializable {
 					diceWithSpeed = (int) (players[temp].getSpeed() * diceTotal);
 					players[temp].setLocation(players[temp].getLocation() + diceWithSpeed % Map.TILE_COUNT);
 				}
-//				System.out.println("Dice + speed " + diceWithSpeed);
 			}
 		}
 
-		if(players[turnOfPlayerIndex].getIsSlowedDown()){
-			players[turnOfPlayerIndex].setSlowDownLifetime(players[turnOfPlayerIndex].getSlowDownLifetime() - 1);
-			if(players[turnOfPlayerIndex].getSlowDownLifetime()  == 0){
-				players[turnOfPlayerIndex].deActivateSlow();
+		if(players[temp].getIsSlowedDown()){
+			players[temp].setSlowDownLifetime(players[temp].getSlowDownLifetime() - 1);
+			if(players[temp].getSlowDownLifetime()  == 0){
+				players[temp].deActivateSlow();
 			}
 		}
 
-		if(players[turnOfPlayerIndex].getIsEarningMore()){
-			if(players[turnOfPlayerIndex].getEarningLifeTime()  == roundNo){
-				players[turnOfPlayerIndex].deActivateEarn();
+		if(players[temp].getIsEarningMore()){
+			if(players[temp].getEarningLifeTime()  == roundNo){
+				players[temp].deActivateEarn();
 			}
 		}
 
-System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
-		int result = temp;
+		System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
 		return dice.getPair();
 	}
 
@@ -584,7 +574,8 @@ System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().ge
 			p.removePowerUp(p.getPowerUps().get(0));
 		}
 		while( !p.getTileList().isEmpty() ){
-			p.removeFromTileList(p.getTileList().get(0));
+			map.sellTile(p, p.getTileList().get(0).getId());
+//			p.removeFromTileList(p.getTileList().get(0));
 		}
 		while( !p.getCards().isEmpty() ){
 			p.removeFromDeck(p.getCards().get(0));

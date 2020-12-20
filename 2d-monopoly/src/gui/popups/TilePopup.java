@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.GameManager;
+import management.Map;
 
 
 public class TilePopup {
@@ -51,8 +52,9 @@ public class TilePopup {
 		// A button which lets the player buy a tile
 		Button buyButton = new Button("Buy");
 		buyButton.setOnAction( e -> {
-			GameManager.getInstance().mapBuyTile(
-					GameManager.getInstance().getTurnOfPlayer(),tile.getId(), false);
+//			GameManager.getInstance().mapBuyTile(
+//					GameManager.getInstance().getTurnOfPlayer(),tile.getId(), false);
+			Map.getInstance().buyTile(GameManager.getInstance().getTurnOfPlayer(), tile.getId());
 			window.close();
 		});
 		buyButton.setStyle("-fx-background-color: #CCFFCC");

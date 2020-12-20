@@ -97,6 +97,7 @@ public class CityTile extends BuyableTile implements Serializable {
 		}
 	}
 
+
 	public boolean isHotelBuildAvailable() {
 		System.out.println(getHouseCount());
 		System.out.println(getHotelCount());

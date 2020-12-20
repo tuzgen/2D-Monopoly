@@ -29,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import management.*;
 
@@ -351,12 +352,277 @@ public class GameMenuController {
 	@FXML
 	private Text tilePriceText21;
 
+	@FXML
+	private ImageView t1h1icon;
+
+	@FXML
+	private ImageView t1h2icon;
+
+	@FXML
+	private ImageView t1h3icon;
+
+	@FXML
+	private ImageView t1h4icon;
+
+	@FXML
+	private ImageView t2h1icon;
+
+	@FXML
+	private ImageView t2h2icon;
+
+	@FXML
+	private ImageView t2h3icon;
+
+	@FXML
+	private ImageView t2h4icon;
+
+	@FXML
+	private ImageView t3h1icon;
+
+	@FXML
+	private ImageView t3h2icon;
+
+	@FXML
+	private ImageView t3h3icon;
+
+	@FXML
+	private ImageView t3h4icon;
+
+	@FXML
+	private ImageView t4h1icon;
+
+	@FXML
+	private ImageView t4h2icon;
+
+	@FXML
+	private ImageView t4h3icon;
+
+	@FXML
+	private ImageView t4h4icon;
+
+	@FXML
+	private ImageView t5h1icon;
+
+	@FXML
+	private ImageView t5h2icon;
+
+	@FXML
+	private ImageView t5h3icon;
+
+	@FXML
+	private ImageView t5h4icon;
+
+	@FXML
+	private ImageView t6h1icon;
+
+	@FXML
+	private ImageView t6h2icon;
+
+	@FXML
+	private ImageView t6h3icon;
+
+	@FXML
+	private ImageView t6h4icon;
+
+	@FXML
+	private ImageView t7h1icon;
+
+	@FXML
+	private ImageView t7h2icon;
+
+	@FXML
+	private ImageView t7h3icon;
+
+	@FXML
+	private ImageView t7h4icon;
+
+	@FXML
+	private ImageView t8h1icon;
+
+	@FXML
+	private ImageView t8h2icon;
+
+	@FXML
+	private ImageView t8h3icon;
+
+	@FXML
+	private ImageView t8h4icon;
+
+	@FXML
+	private ImageView t9h1icon;
+
+	@FXML
+	private ImageView t9h2icon;
+
+	@FXML
+	private ImageView t9h3icon;
+
+	@FXML
+	private ImageView t9h4icon;
+
+	@FXML
+	private ImageView t10h1icon;
+
+	@FXML
+	private ImageView t10h2icon;
+
+	@FXML
+	private ImageView t10h3icon;
+
+	@FXML
+	private ImageView t10h4icon;
+
+	@FXML
+	private ImageView t11h1icon;
+
+	@FXML
+	private ImageView t11h2icon;
+
+	@FXML
+	private ImageView t11h3icon;
+
+	@FXML
+	private ImageView t11h4icon;
+
+	@FXML
+	private ImageView t12h1icon;
+
+	@FXML
+	private ImageView t12h2icon;
+
+	@FXML
+	private ImageView t12h3icon;
+
+	@FXML
+	private ImageView t12h4icon;
+
+	@FXML
+	private ImageView t13h1icon;
+
+	@FXML
+	private ImageView t13h2icon;
+
+	@FXML
+	private ImageView t13h3icon;
+
+	@FXML
+	private ImageView t13h4icon;
+
+	@FXML
+	private ImageView t14h1icon;
+
+	@FXML
+	private ImageView t14h2icon;
+
+	@FXML
+	private ImageView t14h3icon;
+
+	@FXML
+	private ImageView t14h4icon;
+
+	@FXML
+	private ImageView t15h1icon;
+
+	@FXML
+	private ImageView t15h2icon;
+
+	@FXML
+	private ImageView t15h3icon;
+
+	@FXML
+	private ImageView t15h4icon;
+
+	@FXML
+	private ImageView t16h1icon;
+
+	@FXML
+	private ImageView t16h2icon;
+
+	@FXML
+	private ImageView t16h3icon;
+
+	@FXML
+	private ImageView t16h4icon;
+
+	@FXML
+	private ImageView t17h1icon;
+
+	@FXML
+	private ImageView t17h2icon;
+
+	@FXML
+	private ImageView t17h3icon;
+
+	@FXML
+	private ImageView t17h4icon;
+
+	@FXML
+	private ImageView t18h1icon;
+
+	@FXML
+	private ImageView t18h2icon;
+
+	@FXML
+	private ImageView t18h3icon;
+
+	@FXML
+	private ImageView t18h4icon;
+
+	@FXML
+	private ImageView t19h1icon;
+
+	@FXML
+	private ImageView t19h2icon;
+
+	@FXML
+	private ImageView t19h3icon;
+
+	@FXML
+	private ImageView t19h4icon;
+
+	@FXML
+	private ImageView t20h1icon;
+
+	@FXML
+	private ImageView t20h2icon;
+
+	@FXML
+	private ImageView t20h3icon;
+
+	@FXML
+	private ImageView t20h4icon;
+
+	@FXML
+	private ImageView t21h1icon;
+
+	@FXML
+	private ImageView t21h2icon;
+
+	@FXML
+	private ImageView t21h3icon;
+
+	@FXML
+	private ImageView t21h4icon;
+
+	@FXML
+	private ImageView t22h1icon;
+
+	@FXML
+	private ImageView t22h2icon;
+
+	@FXML
+	private ImageView t22h3icon;
+
+	@FXML
+	private ImageView t22h4icon;
+
 	@FXML private ImageView boardImage;
 
 
 	int[] player;
 
 	private Stage context;
+	private ImageView[][] tileInfo;
 	private Button[] buttons;
 	private Text[] tileNameTexts, tilePriceTexts;
 	private ImageView[] icons;
@@ -365,11 +631,15 @@ public class GameMenuController {
 			{22, 27}, {32, 27},
 			{22, 37}, {32, 37},
 	};
+	int bankruptedPLayerCount;
 
 	SoundManager sm = new SoundManager(false);
 
 	@FXML
 	public void initialize() {
+		bankruptedPLayerCount = 0;
+		checkIfFinished();
+		updateAllIconPlayers();
 		setupPlayersBar();
 		setupAccountGUI();
 
@@ -448,17 +718,7 @@ public class GameMenuController {
 		};
 
 		boardImage.setImage(new Image(MainMenu.colorblindMode ? "file:src/vendor/image/colorblind_board.png" : "file:src/vendor/image/board.png"));
-
-		int indexCity = 0;
-		for (int i = 0; i < Map.TILE_COUNT; i++) {
-			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
-				tileNameTexts[indexCity].setStyle(Style.text_four);
-				tilePriceTexts[indexCity].setStyle(Style.text_four);
-				tileNameTexts[indexCity].setText(Map.getInstance().getTileAt(i).getName());
-				tilePriceTexts[indexCity].setText((((CityTile) Map.getInstance().getTileAt(i)).getPrice()) + "₺");
-				indexCity++;
-			}
-		}
+		initializeTileInfo();
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
@@ -573,6 +833,14 @@ public class GameMenuController {
 
 	}
 
+	public void mafiaTileActions(int tileNo) {
+		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
+			if(((CityTile)(Map.getInstance().getTileAt(tileNo))).getHotelCount() > 0){
+				Map.getInstance().hotelRekt(GameManager.getInstance().getMafia().getLocation());
+			}
+		}
+	}
+
 	private void doTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			if (!((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
@@ -627,12 +895,6 @@ public class GameMenuController {
 		}
 		update();
 
-	}
-
-	private void handleTileLanded(int tileNo) {
-		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
-
-		}
 	}
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {
@@ -692,9 +954,10 @@ public class GameMenuController {
 	private void endButton(ActionEvent e) {
 		endButtonMethod();
 		endTurnButton.setDisable(true);
+		checkIfFinished();
 	}
 	private void endButtonMethod(){
-		updateAllLocations();
+//		updateAllLocations();
 		ForexManager.getInstance().calcSupDemand();
 
 		// forex update in the gui
@@ -706,28 +969,27 @@ public class GameMenuController {
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
-//		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
-//			System.out.println("selamın hello");
-//			while (turnOf > 3) {
-//				GameManager.getInstance().playTurn();
-//				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-//			}
-//			turnOf = 0;
-//		}
+		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
+			System.out.println("selamın hello");
+			GameManager.getInstance().playTurn();
+			GameManager.getInstance().playTurn();
+			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
+		}
 		if(turnOf < 4){
-			System.out.println("selamın hello 2");
-			while(GameManager.getInstance().getPlayerAt(turnOf).getIsBankrupt()){
+			System.out.println("selamın hello 2 " + GameManager.getInstance().getTurnOfPlayer().getName());
+			while(GameManager.getInstance().getTurnOfPlayer().getIsBankrupt()){
 				GameManager.getInstance().increaseTurn();
 				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 			}
 			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
 		}
 
-
 		while (turnOf > 3) {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
+
 
 		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()) {
 			new ShowTradesPopup().display(context);
@@ -735,9 +997,11 @@ public class GameMenuController {
 			endTurnButton.setDisable(true);
 		}
 
+
 		updateAllLocations();
 		diamondUpdate(turnOf);
 		rollRice.setDisable(false);
+
 		updatePlayerLabels();
 		getItems();
 		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
@@ -745,6 +1009,69 @@ public class GameMenuController {
 			FileManager.saveGame();
 		} catch (Exception exception) {
 			System.out.println(exception.toString());
+		}
+	}
+
+	private void initializeTileInfo() {
+		tileInfo = new ImageView[][] {
+				{t1h1icon, t1h2icon, t1h3icon, t1h4icon},
+				{t2h1icon, t2h2icon, t2h3icon, t2h4icon},
+				{t3h1icon, t3h2icon, t3h3icon, t3h4icon},
+				{t4h1icon, t4h2icon, t4h3icon, t4h4icon},
+				{t5h1icon, t5h2icon, t5h3icon, t5h4icon},
+				{t6h1icon, t6h2icon, t6h3icon, t6h4icon},
+				{t7h1icon, t7h2icon, t7h3icon, t7h4icon},
+				{t8h1icon, t8h2icon, t8h3icon, t8h4icon},
+				{t9h1icon, t9h2icon, t9h3icon, t9h4icon},
+				{t10h1icon, t10h2icon, t10h3icon, t10h4icon},
+				{t11h1icon, t11h2icon, t11h3icon, t11h4icon},
+				{t12h1icon, t12h2icon, t12h3icon, t12h4icon},
+				{t13h1icon, t13h2icon, t13h3icon, t13h4icon},
+				{t14h1icon, t14h2icon, t14h3icon, t14h4icon},
+				{t15h1icon, t15h2icon, t15h3icon, t15h4icon},
+				{t16h1icon, t16h2icon, t16h3icon, t16h4icon},
+				{t17h1icon, t17h2icon, t17h3icon, t17h4icon},
+				{t18h1icon, t18h2icon, t18h3icon, t18h4icon},
+				{t19h1icon, t19h2icon, t19h3icon, t19h4icon},
+				{t20h1icon, t20h2icon, t20h3icon, t20h4icon},
+				{t21h1icon, t21h2icon, t21h3icon, t21h4icon},
+				{t22h1icon, t22h2icon, t22h3icon, t22h4icon}
+		};
+
+		int indexCity = 0;
+		for (int i = 0; i < Map.TILE_COUNT; i++) {
+			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
+				tileNameTexts[indexCity].setStyle(Style.text_four);
+				tilePriceTexts[indexCity].setStyle(Style.text_four);
+				tileNameTexts[indexCity].setText(Map.getInstance().getTileAt(i).getName());
+				tilePriceTexts[indexCity].setText((((CityTile) Map.getInstance().getTileAt(i)).getPrice()) + "₺");
+				indexCity++;
+			}
+		}
+	}
+
+	private void updateTileInfo() {
+		int cityIndex = 0;
+		System.out.println("UPDATE TILE INFO");
+		for (int i = 0; i < Map.TILE_COUNT; i++) {
+			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
+				for (int j = 0; j < 4; j++) { // set transparent first
+					tileInfo[cityIndex][j].setOpacity(0);
+				}
+
+				System.out.println("House count " + ((CityTile) Map.getInstance().getTileAt(i)).getHouseCount()
+						+ "\nHotel count " + ((CityTile) Map.getInstance().getTileAt(i)).getHotelCount());
+				int totalBuilding = ((CityTile) Map.getInstance().getTileAt(i)).getHouseCount()
+						+ ((CityTile) Map.getInstance().getTileAt(i)).getHotelCount();
+				switch (totalBuilding) {
+					case 4 :  tileInfo[cityIndex][3].setOpacity(1);
+					case 3 :  tileInfo[cityIndex][2].setOpacity(1);
+					case 2 :  tileInfo[cityIndex][1].setOpacity(1);
+					case 1 :  tileInfo[cityIndex][0].setOpacity(1);
+				}
+
+				cityIndex++;
+			}
 		}
 	}
 
@@ -761,6 +1088,8 @@ public class GameMenuController {
 	}
 
 	public void update() {
+
+
 		// player money's on the player bar
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
 		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
@@ -777,10 +1106,12 @@ public class GameMenuController {
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
 
+		checkIfFinished();
 		diamondUpdate(turnOf);
 
 		getItems();
 		updateAllLocations();
+		updateTileInfo();
 	}
 
 	private void diamondUpdate(int turnOf) {
@@ -817,7 +1148,6 @@ public class GameMenuController {
 		update();
 		endTurnButton.setDisable(false);
 		if(p.getIsBot()){
-			System.out.println("slaymın hello");
 			doTileActions(p.getLocation());
 		}else
 			showTileActions(p.getLocation());
@@ -1078,6 +1408,7 @@ public class GameMenuController {
 	private void removeBlur() {
 		root.setEffect(null);
 		update();
+		updateIconPlayer();
 	}
 
 	public void trade() {
@@ -1105,5 +1436,43 @@ public class GameMenuController {
 		sm.music(5);
 		new PowerUpPopup().display(context);
 		update();
+	}
+
+	public void updateIconPlayer(){
+		if(GameManager.getInstance().getTurnOfPlayer().getIsBankrupt()){
+			if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(0)){
+				iconPlayer1.setOpacity(0);
+			}else if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(1)){
+				iconPlayer2.setOpacity(0);
+			}else if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(2)){
+				iconPlayer3.setOpacity(0);
+			}else if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(3)){
+				iconPlayer4.setOpacity(0);
+			}
+		}
+	}
+
+	public void updateAllIconPlayers(){
+		for(int i = 0; i < 6; i++){
+			updateIconPlayer();
+			GameManager.getInstance().increaseTurn();
+		}
+
+	}
+
+	public void checkIfFinished(){
+		bankruptedPLayerCount= 0;
+		for(int i = 0; i < 4; i++){
+			if(GameManager.getInstance().getPlayerAt(i).getIsBankrupt())
+				bankruptedPLayerCount ++;
+		}
+		if(bankruptedPLayerCount >= 3){
+			new FinishPopup().display(context);
+		}else {
+			for(int i = 0; i < 4; i++){
+				if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getPlayerAt(i)) >= 1000000)
+					new FinishPopup().display(context);
+			}
+		}
 	}
 }
