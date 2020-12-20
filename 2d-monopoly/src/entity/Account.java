@@ -8,6 +8,7 @@ public class Account implements Serializable {
     private double euro;
     private double trl;
     private double swissFrank;
+    private double poweupRate;
 
     //Constructor
     public Account( double trl ){
@@ -15,6 +16,7 @@ public class Account implements Serializable {
         euro = 0;
         swissFrank = 0;
         this.trl = trl;
+        poweupRate = 1;
     }
 
     //Methods
@@ -48,5 +50,13 @@ public class Account implements Serializable {
 
     public void setTrl(double trl) {
         this.trl = trl;
+    }
+
+    public double getPoweupRate() {
+        return poweupRate;
+    }
+
+    public void setPoweupRate(double poweupRate) {
+        this.poweupRate = poweupRate;
     }
 }

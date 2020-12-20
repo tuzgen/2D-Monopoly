@@ -63,6 +63,8 @@ public class TradePopup {
         showYourTiles.setPadding(new Insets(10,5,0,5));
         showTheirTiles.setTextFill(Color.rgb(194,58,178));
         showYourTiles.setTextFill(Color.rgb(130,178,255));
+        showTheirTiles.setStyle(Style.label_font);
+        showYourTiles.setStyle(Style.label_font);
 
         offerBtn.setStyle(Style.button_one);
         cancelBtn.setStyle(Style.button_one);
@@ -100,11 +102,6 @@ public class TradePopup {
             selectTheirs.getChildren().add(theirChecks.get(k));
         }
 
-       // for(int j = 0; j < yourChecks.size(); j++) // will be deleted if works fine later
-         //   selectYours.getChildren().add(yourChecks.get(j));
-       // for(int m = 0; m < theirChecks.size(); m++)
-         //   selectTheirs.getChildren().add(theirChecks.get(m));
-
         selectYours.getChildren().add(yourTF);
         selectTheirs.getChildren().add(theirTF);
 
@@ -125,6 +122,7 @@ public class TradePopup {
                 Label lastLbl = new Label("We will ask, wait your next turn for a result!\nNote that the lowest price isn't always the best deal...");
                 lastLbl.setTextFill(Color.GREEN);
                 lastLbl.setAlignment(Pos.CENTER);
+                lastLbl.setStyle(Style.label_font);
                 VBox vbox = new VBox(10);
                 vbox.setAlignment(Pos.CENTER);
                 vbox.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));

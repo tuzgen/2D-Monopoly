@@ -36,15 +36,16 @@ public class MainMenu {
 		GameManager.getInstance().deleteInstance();
 
 		// initialize components
-		if(soundCreated == 0)
+		if(soundCreated == 0) {
 			sm.music(0);
-		soundCreated = 1;
+			soundCreated = 1;
+		}
 		label_title = new Text("Monopoly Sicilia");
 		label_title.setStyle(Style.text_one);
 		label_title.setFill(Color.RED);
 
 		button_new_game = new Button("New Game");
-		button_new_game.setStyle(Style.button_one);
+		button_new_game.setStyle(Style.button_five);
 		button_new_game.setOnAction( e -> {
 			try {
 				onPressed_button_new_game(context);
@@ -55,7 +56,7 @@ public class MainMenu {
 		} );
 
 		button_how_to_play = new Button("How to play");
-		button_how_to_play.setStyle(Style.button_one);
+		button_how_to_play.setStyle(Style.button_five);
 		button_how_to_play.setOnAction( e -> {
 			try {
 				onPressed_button_how_to_play(context);
@@ -65,7 +66,7 @@ public class MainMenu {
 		});
 
 		button_settings_menu = new Button("Settings");
-		button_settings_menu.setStyle(Style.button_one);
+		button_settings_menu.setStyle(Style.button_five);
 		button_settings_menu.setOnAction( e -> {
 			try {
 				onPressed_button_settings_menu(context);
@@ -75,7 +76,7 @@ public class MainMenu {
 		});
 
 		button_load_game = new Button("Load Game");
-		button_load_game.setStyle(Style.button_one);
+		button_load_game.setStyle(Style.button_five);
 		button_load_game.setOnAction( e -> {
 			try {
 				onPressed_button_load_game(context);
@@ -85,7 +86,7 @@ public class MainMenu {
 		} );
 
 		button_credits_menu = new Button("Credits");
-		button_credits_menu.setStyle(Style.button_one);
+		button_credits_menu.setStyle(Style.button_five);
 		button_credits_menu.setOnAction( e -> {
 			try {
 				onPressed_button_credits_menu(context);
@@ -95,7 +96,7 @@ public class MainMenu {
 		} );
 
 		button_quit_game = new Button("Quit Game");
-		button_quit_game.setStyle(Style.button_one);
+		button_quit_game.setStyle(Style.button_five);
 		button_quit_game.setOnAction( e -> {
 			try {
 				onPressed_button_quit_game(context);

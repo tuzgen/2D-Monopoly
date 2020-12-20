@@ -12,6 +12,7 @@ import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
+import entity.powerup.*;
 
 import java.io.*;
 
@@ -78,7 +79,7 @@ public class GameManager implements Serializable {
 		turnOfPlayerIndex = 0;
 		roundNo = 1;
 		determineTurn();
-		if(SettingsMenu.muteSound == 0)
+		if(SettingsMenu.muteSound == 0 && MainMenu.soundCreated == 0)
 			MainMenu.sm.music(1);
 	}
 
@@ -89,17 +90,6 @@ public class GameManager implements Serializable {
 	public CardDeck getCommunitydeck() {
 		return communitydeck;
 	}
-
-//	public static boolean loadGame() {
-//		try {
-//			FileManager.loadGame();
-//			return true;
-//
-//		} catch (Exception e) {
-//			System.err.println("Load game not successfull");
-//			return false;
-//		}
-//	}
 
 	// TODO delete Debug
 	public int[] rollTheDicePair() {
@@ -534,6 +524,20 @@ public class GameManager implements Serializable {
 			System.out.println("Dice + speed " + diceWithSpeed);
 		}
 
+		if(players[turnOfPlayerIndex].getIsSlowedDown()){
+			players[turnOfPlayerIndex].setSlowDownLifetime(players[turnOfPlayerIndex].getSlowDownLifetime() - 1);
+			if(players[turnOfPlayerIndex].getSlowDownLifetime()  == 0){
+				players[turnOfPlayerIndex].deActivateSlow();
+			}
+		}
+
+		if(players[turnOfPlayerIndex].getIsEarningMore()){
+			if(players[turnOfPlayerIndex].getEarningLifeTime()  == roundNo){
+				players[turnOfPlayerIndex].deActivateEarn();
+			}
+		}
+
+System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
 		int result = temp;
 		return dice.getPair();
 	}

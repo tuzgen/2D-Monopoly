@@ -325,26 +325,19 @@ public class GameMenuController {
 	private void showTradeActions(ActionEvent e) {
 		int playerNo = GameManager.getInstance().getTurnOfPlayerIndex();
 
+		sm.music(5);
 		if (e.getSource() == buttonPlayer1) {
 			if (playerNo != 0)
 				new TradePopup(0).display(context);
-			else
-				trade(); // TODO test this belongs to the turn start
 		} else if (e.getSource() == buttonPlayer2) {
 			if (playerNo != 1)
 				new TradePopup(1).display(context);
-			else
-				trade();
 		} else if (e.getSource() == buttonPlayer3) {
 			if (playerNo != 2)
 				new TradePopup(2).display(context);
-			else
-				trade();
 		} else if (e.getSource() == buttonPlayer4) {
 			if (playerNo != 3)
 				new TradePopup(3).display(context);
-			else
-				trade();
 		}
 		update();
 	}
@@ -692,6 +685,7 @@ public class GameMenuController {
 
 	public void getItems(){
 		ListView list = new ListView();
+		SoundManager sm = new SoundManager(false);
 		Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
 		ArrayList<PowerUp> powerUps;
 		ArrayList<Tile> tiles;
@@ -716,6 +710,7 @@ public class GameMenuController {
 				int x = i;
 
 				btn.setOnAction(event -> {
+					sm.music(5);
 					new PowerupInfoPopup(powerUps.get(x)).display(context);
 					getItems();
 				});
@@ -732,6 +727,7 @@ public class GameMenuController {
 				list.getItems().add(button);
 
 				button.setOnAction(event -> {
+					sm.music(5);
 					if(currentPlayer.getIsArrested()){
 						new UseCardPopup().display(context);
 						getItems();
@@ -787,8 +783,10 @@ public class GameMenuController {
 				}
 
 				list.getItems().add(bttn);
-
+				int n = m;
 				bttn.setOnAction(event -> {
+					sm.music(5);
+					new TileOperationPopup(tiles.get(n)).display(context);
 					System.out.println("ben city tile ım");
 				});
 			}
@@ -796,6 +794,7 @@ public class GameMenuController {
 	}
 
 	public void pauseGame() {
+		sm.music(5);
 		SoundManager.getInstance().pauseMusic();
 		blurScreen();
 		new PausePopup().display(context);
@@ -821,12 +820,14 @@ public class GameMenuController {
 
 	public void mafiaButton () {
 		if(!GameManager.getInstance().getMafia().getIsArrested()){
+			sm.music(5);
 			new MafiaPopup().display(context);
 			update();
 		}
 	}
 
 	public void powerupCrate(){
+		sm.music(5);
 		new PowerUpPopup().display(context);
 		update();
 	}
