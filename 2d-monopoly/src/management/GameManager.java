@@ -11,6 +11,7 @@ import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
+import gui.menus.controller.GameMenuController;
 
 import java.io.*;
 
@@ -441,7 +442,7 @@ public class GameManager implements Serializable {
 
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
-		diceTotal = 1;
+
 		int temp = turnOfPlayerIndex;
 		/*
 		mafia and police related turns calculations
@@ -462,9 +463,9 @@ public class GameManager implements Serializable {
 		}
 		if(temp == 5){ // police
 			police.setLocation(police.getLocation() + diceTotal % Map.TILE_COUNT);
-//			if (police.getAtSameLoc(mafia)) {
-//				mafia.setIsArrested(true);
-//			}
+			if (police.getAtSameLoc(mafia)) {
+				mafia.setIsArrested(true);
+			}
 
 			turnOfPlayerIndex = 0;
 			roundNo++;
