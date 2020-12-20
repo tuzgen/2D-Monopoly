@@ -679,6 +679,7 @@ public class GameMenuController {
 
 	public void getItems(){
 		ListView list = new ListView();
+		SoundManager sm = new SoundManager(false);
 		Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
 		ArrayList<PowerUp> powerUps;
 		ArrayList<Tile> tiles;
@@ -703,6 +704,7 @@ public class GameMenuController {
 				int x = i;
 
 				btn.setOnAction(event -> {
+					sm.music(5);
 					new PowerupInfoPopup(powerUps.get(x)).display(context);
 					getItems();
 				});
@@ -719,6 +721,7 @@ public class GameMenuController {
 				list.getItems().add(button);
 
 				button.setOnAction(event -> {
+					sm.music(5);
 					if(currentPlayer.getIsArrested()){
 						new UseCardPopup().display(context);
 						getItems();
@@ -776,6 +779,7 @@ public class GameMenuController {
 				list.getItems().add(bttn);
 				int n = m;
 				bttn.setOnAction(event -> {
+					sm.music(5);
 					new TileOperationPopup(tiles.get(n)).display(context);
 					System.out.println("ben city tile ım");
 				});
