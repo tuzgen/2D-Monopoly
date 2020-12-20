@@ -97,7 +97,7 @@ public class ShowTradesPopup {
             acceptBtn.setOnAction(event -> {
                 TradeManager.getInstance().acceptTrade(currentPlayer.getTrades().get(x));
                 buttonBox.getChildren().clear();
-                Label lab = new Label("Deal is done!");
+                Label lab = new Label("Deal is done if requirements met!");
                 lab.setTextFill(Color.GREEN);
                 buttonBox.getChildren().addAll(lab);
             });
