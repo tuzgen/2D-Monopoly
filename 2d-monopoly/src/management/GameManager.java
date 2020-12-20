@@ -2,6 +2,8 @@ package management;
 
 import entity.Bank;
 import entity.Dice;
+import entity.Forex;
+import entity.Trade;
 import entity.card.CardDeck;
 import entity.map.tile.BuyableTile;
 import entity.map.tile.CityTile;
@@ -124,6 +126,10 @@ public class GameManager implements Serializable {
 
 	public static synchronized void setInstance(GameManager load) {
 		instance = load; // TODO
+		forexManager = ForexManager.getInstance();
+		map = Map.getInstance();
+		tradeManager = TradeManager.getInstance();
+		bank = Bank.getInstance();
 	}
 
 	// Is called on fresh new game init
