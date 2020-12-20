@@ -1,6 +1,7 @@
 package gui.popups;
 
 import entity.map.tile.BuyableTile;
+import entity.map.tile.CityTile;
 import entity.map.tile.Tile;
 import entity.player.Player;
 import gui.misc.Style;
@@ -145,7 +146,14 @@ public class TileOperationPopup {
         });
 
         sellTileBtn.setOnAction(event -> {
-
+            if(Map.getInstance().sellTile(GameManager.getInstance().getTurnOfPlayer(), tile.getId())){
+                label.setText("Sold succesfully.");
+            }else{
+                label.setText("Hotel not sold.");
+            }
+            endBox.getChildren().removeAll( sellHotelBox, sellHouseBox, mortStatBox, buildHotelBox, buildHouseBox, closeBtn, mortgageBox, sellTileBox);
+            delay.setOnFinished(e -> window.close());
+            delay.play();
         });
 
         mortgageBtn.setOnAction(event -> {

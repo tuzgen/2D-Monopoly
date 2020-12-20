@@ -88,6 +88,7 @@ public class Map implements Serializable {
 		if (!((BuyableTile)tiles[tileNo]).isOwned()) {
 			((BuyableTile) tiles[tileNo]).setOwner(player);
 			player.addToTileList(tiles[tileNo]);
+			Bank.getInstance().takeMoney(player, ((BuyableTile) tiles[tileNo]).getPrice());
 			return true;
 		}
 
@@ -99,10 +100,12 @@ public class Map implements Serializable {
 		if (((CityTile)tiles[tileNo]).getOwner().equals(player)) {
 			((CityTile)tiles[tileNo]).setOwner(null);
 			player.removeFromTileList(tiles[tileNo]);
+			((BuyableTile)tiles[tileNo]).setOwned(false);
 			return true;
 		}
 		return false;
 	}
+
 
 	public boolean buildHouse(Player player, int tileNo) {
 		if(((CityTile) tiles[tileNo]).isMortgage())

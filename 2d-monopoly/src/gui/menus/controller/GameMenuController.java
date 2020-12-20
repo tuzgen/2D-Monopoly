@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import management.*;
 
@@ -224,11 +225,15 @@ public class GameMenuController {
 			{22, 27}, {32, 27},
 			{22, 37}, {32, 37},
 	};
+	int bankruptedPLayerCount;
 
 	SoundManager sm = new SoundManager(false);
 
 	@FXML
 	public void initialize() {
+		bankruptedPLayerCount = 0;
+		checkIfFinished();
+		updateAllIconPlayers();
 		setupPlayersBar();
 		setupAccountGUI();
 
@@ -522,9 +527,10 @@ public class GameMenuController {
 	private void endButton(ActionEvent e) {
 		endButtonMethod();
 		endTurnButton.setDisable(true);
+		checkIfFinished();
 	}
 	private void endButtonMethod(){
-		updateAllLocations();
+//		updateAllLocations();
 		ForexManager.getInstance().calcSupDemand();
 
 		// forex update in the gui
@@ -538,8 +544,8 @@ public class GameMenuController {
 
 		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
 			System.out.println("selamın hello");
-			GameManager.getInstance().increaseTurn();
-			GameManager.getInstance().increaseTurn();
+			GameManager.getInstance().playTurn();
+			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
 		}
@@ -591,6 +597,8 @@ public class GameMenuController {
 	}
 
 	public void update() {
+
+
 		// player money's on the player bar
 		infoPlayer1Money.setText(df.format(GameManager.getInstance().getPlayerAt(0).getAccount().getTrl()) + "₺");
 		infoPlayer2Money.setText(df.format(GameManager.getInstance().getPlayerAt(1).getAccount().getTrl()) + "₺");
@@ -607,10 +615,12 @@ public class GameMenuController {
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
 
+		checkIfFinished();
 		diamondUpdate(turnOf);
 
 		getItems();
 		updateAllLocations();
+
 	}
 
 	private void diamondUpdate(int turnOf) {
@@ -901,6 +911,7 @@ public class GameMenuController {
 	private void removeBlur() {
 		root.setEffect(null);
 		update();
+		updateIconPlayer();
 	}
 
 	public void trade() {
@@ -932,5 +943,43 @@ public class GameMenuController {
 
 	public static void deleteInstance() {
 		instance = null;
+	}
+
+	public void updateIconPlayer(){
+		if(GameManager.getInstance().getTurnOfPlayer().getIsBankrupt()){
+			if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(0)){
+				iconPlayer1.setOpacity(0);
+			}else if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(1)){
+				iconPlayer2.setOpacity(0);
+			}else if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(2)){
+				iconPlayer3.setOpacity(0);
+			}else if(GameManager.getInstance().getTurnOfPlayer() == GameManager.getInstance().getPlayerAt(3)){
+				iconPlayer4.setOpacity(0);
+			}
+		}
+	}
+
+	public void updateAllIconPlayers(){
+		for(int i = 0; i < 6; i++){
+			updateIconPlayer();
+			GameManager.getInstance().increaseTurn();
+		}
+
+	}
+
+	public void checkIfFinished(){
+		bankruptedPLayerCount= 0;
+		for(int i = 0; i < 4; i++){
+			if(GameManager.getInstance().getPlayerAt(i).getIsBankrupt())
+				bankruptedPLayerCount ++;
+		}
+		if(bankruptedPLayerCount >= 3){
+			new FinishPopup().display(context);
+		}else {
+			for(int i = 0; i < 4; i++){
+				if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getPlayerAt(i)) >= 1000000)
+					new FinishPopup().display(context);
+			}
+		}
 	}
 }

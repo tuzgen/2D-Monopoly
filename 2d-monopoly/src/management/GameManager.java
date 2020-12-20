@@ -453,8 +453,7 @@ public class GameManager implements Serializable {
 
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
-		diceTotal = 5;
-
+		diceTotal = 1;
 		int temp = turnOfPlayerIndex;
 		/*
 		mafia and police related turns calculations
@@ -475,9 +474,9 @@ public class GameManager implements Serializable {
 		}
 		if(temp == 5){ // police
 			police.setLocation(police.getLocation() + diceTotal % Map.TILE_COUNT);
-			if (police.getAtSameLoc(mafia)) {
-				mafia.setIsArrested(true);
-			}
+//			if (police.getAtSameLoc(mafia)) {
+//				mafia.setIsArrested(true);
+//			}
 
 			turnOfPlayerIndex = 0;
 			roundNo++;
@@ -543,16 +542,16 @@ public class GameManager implements Serializable {
 			}
 		}
 
-		if(players[turnOfPlayerIndex].getIsSlowedDown()){
-			players[turnOfPlayerIndex].setSlowDownLifetime(players[turnOfPlayerIndex].getSlowDownLifetime() - 1);
-			if(players[turnOfPlayerIndex].getSlowDownLifetime()  == 0){
-				players[turnOfPlayerIndex].deActivateSlow();
+		if(players[temp].getIsSlowedDown()){
+			players[temp].setSlowDownLifetime(players[temp].getSlowDownLifetime() - 1);
+			if(players[temp].getSlowDownLifetime()  == 0){
+				players[temp].deActivateSlow();
 			}
 		}
 
-		if(players[turnOfPlayerIndex].getIsEarningMore()){
-			if(players[turnOfPlayerIndex].getEarningLifeTime()  == roundNo){
-				players[turnOfPlayerIndex].deActivateEarn();
+		if(players[temp].getIsEarningMore()){
+			if(players[temp].getEarningLifeTime()  == roundNo){
+				players[temp].deActivateEarn();
 			}
 		}
 
@@ -586,7 +585,8 @@ public class GameManager implements Serializable {
 			p.removePowerUp(p.getPowerUps().get(0));
 		}
 		while( !p.getTileList().isEmpty() ){
-			p.removeFromTileList(p.getTileList().get(0));
+			map.sellTile(p, p.getTileList().get(0).getId());
+//			p.removeFromTileList(p.getTileList().get(0));
 		}
 		while( !p.getCards().isEmpty() ){
 			p.removeFromDeck(p.getCards().get(0));

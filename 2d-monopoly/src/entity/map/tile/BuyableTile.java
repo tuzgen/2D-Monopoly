@@ -33,7 +33,7 @@ public abstract class BuyableTile extends Tile implements Serializable {
 		return isOwned;
 	}
 
-	private void setOwned(boolean owned) {
+	public void setOwned(boolean owned) {
 		isOwned = owned;
 	}
 
