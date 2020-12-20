@@ -11,6 +11,7 @@ import entity.map.tile.*;
 import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.powerup.PowerUp;
+import gui.menus.MainMenu;
 import gui.misc.Style;
 import gui.popups.*;
 import javafx.event.ActionEvent;
@@ -838,7 +839,11 @@ public class GameMenuController {
 			list.getItems().add("No tiles available!");
 		else
 			for (int m = 0; m < tiles.size(); m++) {
-				Button bttn = new Button(tiles.get(m).getName());
+				Button bttn;
+				if(MainMenu.colorblindMode && tiles.get(m).getClass() == CityTile.class)
+					bttn = new Button(tiles.get(m).getName() + " (" + ((CityTile) tiles.get(m)).getColorGroup() + ")");
+				else
+					bttn = new Button(tiles.get(m).getName());
 
 				if (tiles.get(m).getClass() != CityTile.class) {
 					bttn.setStyle(Style.button_three + "-fx-text-fill: #647399");
@@ -850,34 +855,37 @@ public class GameMenuController {
 					continue; // skip the city tile styling if the tile is not a city
 				}
 
-				switch (((CityTile) (tiles.get(m))).getColorGroup()) {
-					case 1:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;");
-						break;
-					case 2:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;");
-						break;
-					case 3:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;");
-						break;
-					case 4:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;");
-						break;
-					case 5:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;");
-						break;
-					case 6:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;");
-						break;
-					case 7:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;");
-						break;
-					case 8:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;");
-						break;
-					default:
-						bttn.setStyle(Style.button_two);
-				}
+				if(MainMenu.colorblindMode)
+					bttn.setStyle(Style.button_two);
+				else
+					switch (((CityTile) (tiles.get(m))).getColorGroup()) {
+						case 1:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;");
+							break;
+						case 2:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;");
+							break;
+						case 3:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;");
+							break;
+						case 4:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;");
+							break;
+						case 5:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;");
+							break;
+						case 6:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;");
+							break;
+						case 7:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;");
+							break;
+						case 8:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;");
+							break;
+						default:
+							bttn.setStyle(Style.button_two);
+					}
 
 				list.getItems().add(bttn);
 				int n = m;

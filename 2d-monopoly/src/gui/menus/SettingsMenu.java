@@ -48,6 +48,13 @@ public class SettingsMenu {
 		checkBox_mute.setStyle(Style.checkbox_one);
 		checkBox_mute.setOnAction( e -> updateSettings() );
 
+		checkBox_colorblind.setOnAction(event -> {
+			if(checkBox_colorblind.isSelected() == true)
+				MainMenu.colorblindMode = true;
+			else
+				MainMenu.colorblindMode = false;
+		});
+
 		checkBox_mute.setOnAction(event -> {
 			if(checkBox_mute.isSelected() == true) {
 				MainMenu.sm.getMediaPlayer().setMute(true);
