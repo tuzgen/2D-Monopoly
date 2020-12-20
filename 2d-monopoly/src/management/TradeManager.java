@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TradeManager implements Serializable {
-    private static TradeManager tradeManager;
+    private static TradeManager instance;
     private Bank bank;
 
     private TradeManager(){
@@ -17,9 +17,9 @@ public class TradeManager implements Serializable {
     }
 
     public static TradeManager getInstance(){
-        if(tradeManager == null)
-            tradeManager = new TradeManager();
-        return tradeManager;
+        if(instance == null)
+            instance = new TradeManager();
+        return instance;
     }
 
     public boolean openTrade(Player owner, Player targetPlayer, ArrayList<Tile> targetTiles, ArrayList<Tile> offeredTiles, int offeredAmount, int requestedAmount) {
@@ -80,6 +80,7 @@ public class TradeManager implements Serializable {
     }
 
 	public void deleteInstance() {
-
+        // bank.deleteInstance();
+        instance = null;
 	}
 }

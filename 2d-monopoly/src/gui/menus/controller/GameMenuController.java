@@ -1,6 +1,7 @@
 package gui.menus.controller;
 
 import entity.Bank;
+import entity.Forex;
 import entity.Trade;
 import entity.card.Card;
 import entity.card.CardDeck;
@@ -313,9 +314,7 @@ public class GameMenuController {
 
 	private void setupAccountGUI() {
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
-		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
-		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
-		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
+		exRateTextUpdate();
 
 		buttonDollarBuy.setOnAction(buttonDollarBuy());
 		buttonEuroBuy.setOnAction(buttonEuroBuy());
@@ -365,7 +364,7 @@ public class GameMenuController {
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
 			System.out.print("CARD POP UP");
-			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance() == true){
+			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance()){
 				new CardPopup().display("Card Tile", GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer()) );
 			}
 			else{
@@ -475,10 +474,18 @@ public class GameMenuController {
 		updateAllLocations();
 		diamondUpdate(turnOf);
 		rollRice.setDisable(false);
+		ForexManager.getInstance().calcSupDemand();
+		update();
 		updatePlayerLabels();
 		getItems();
 		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
 
+	}
+
+	private void exRateTextUpdate() {
+		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
+		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
+		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
 	}
 
 	private void updatePlayerLabels() {
@@ -506,7 +513,7 @@ public class GameMenuController {
 		}
 
 		diamondUpdate(turnOf);
-
+		exRateTextUpdate();
 		getItems();
 		updateAllLocations();
 	}
@@ -818,4 +825,7 @@ public class GameMenuController {
 		update();
 	}
 
+	public static void deleteInstance() {
+		instance = null;
+	}
 }

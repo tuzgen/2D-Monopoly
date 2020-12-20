@@ -105,14 +105,16 @@ public class GameManager implements Serializable {
 		return dice.getPair();
 	}
 
+	// is called on main menu
 	public static void deleteInstance() {
-		map = null;
-		tradeManager = null;
-		forexManager = null;
-		bank = null;
+		map.deleteInstance();
+		tradeManager.deleteInstance();
+		forexManager.deleteInstance();
+		bank.deleteInstance();
 		instance = null;
 	}
 
+	// is called whenever the game manager is called after game init
 	public static synchronized GameManager getInstance() {
 		if (instance == null) {
 			instance = new GameManager("", "", false, "", false, "", false);
@@ -121,9 +123,10 @@ public class GameManager implements Serializable {
 	}
 
 	public static synchronized void setInstance(GameManager load) {
-		instance = load;
+		instance = load; // TODO
 	}
 
+	// Is called on fresh new game init
 	public static synchronized GameManager getInstance(String name0,
 													   String name1, boolean isBot1,
 													   String name2, boolean isBot2,

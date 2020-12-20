@@ -13,7 +13,7 @@ public class ForexManager implements Serializable {
     private Stack<Double> euroTrans = new Stack<Double>();
     private Stack<Double> frankTrans = new Stack<Double>();
 
-   private ForexManager(){
+    private ForexManager(){
         forex = new Forex();
         resetExRates();
     }
@@ -97,6 +97,7 @@ public class ForexManager implements Serializable {
     }
 
 
-	public void deleteInstance() {
-	}
+    public void deleteInstance() {
+        instance = null;
+    }
 }

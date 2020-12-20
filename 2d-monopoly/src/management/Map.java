@@ -119,13 +119,6 @@ public class Map implements Serializable {
 				minHouse = Math.min(minHouse, ((CityTile)t).getHouseCount());
 			}
 		}
-		/*
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				if (Math.abs(colorGroup[i].getHouseCount() - colorGroup[j].))
-			}
-		}
-		*/
 
 		return isColorGroupOwnedByPlayer(player, tile.getColorGroup())
 				&& (Math.abs(minHouse - (tile.getHouseCount() + 1)) <= 1);

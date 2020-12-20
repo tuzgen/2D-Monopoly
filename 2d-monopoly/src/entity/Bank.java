@@ -104,5 +104,7 @@ public class Bank implements Serializable { // Methods in this class may be stat
     }
 
 	public void deleteInstance() {
+        // this.forexManager.deleteInstance();
+        instance = null;
 	}
 }
