@@ -14,7 +14,7 @@
         - stealing from other players
         - stalling or jailing other players
 	- becoming immune to mafia's robberies
-	...
+	....
 	
 	In addition the mafia will have the following properties
 	- mafia robs hotels to damage the human players' economy
