@@ -84,7 +84,7 @@ public class PowerupInfoPopup {
         rb2.setText(otherPlayers.get(2).getName());
         rb2.setStyle("-fx-text-fill: red;");
 
-        lifetimeLabel.setText("Lifetime: " + powerup.getLifetime() + " tours");
+        lifetimeLabel.setText("Lifetime: " + powerup.getLifetime() + " turns");
         if(powerup.getBehaviourName().equals("Forex Power-up")){
             rb0.setText("Dollar");
             rb1.setText("Euro");
