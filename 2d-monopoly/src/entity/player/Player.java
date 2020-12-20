@@ -21,6 +21,10 @@ public class Player extends Character implements Serializable {
     //properties
     private boolean isBankrupt;
     private ArrayList<PowerUp> powerUps;
+    private int slowDownLifetime;
+    private boolean isSlowedDown;
+    private boolean isEarningMore;
+    private int earningLifeTime;
     private Account account;
     private ArrayList<Card> cards; // This was CardDeck in diagram. Changed with card array.
     private ArrayList<Tile> tileList;
@@ -31,6 +35,8 @@ public class Player extends Character implements Serializable {
     private int startMoney;
     private int salary;
     private double speed;
+    private final double INITIAL_SPEED = 1.0;
+    private final int INITIAL_SALARY = 15000;
     private int vehicleCount, companyCount;
 
     //constructor
@@ -44,12 +50,16 @@ public class Player extends Character implements Serializable {
         cards = new ArrayList<Card>();
         isArrested = false;
         isBankrupt = false;
+        isSlowedDown = false;
+        isEarningMore = false;
         salary = 15000;
         startMoney = 500000; // TODO change initial money
         account = new Account(startMoney);
         speed = 1;
         vehicleCount = 0; // TODO increment these when player buys them
         companyCount = 0; // TODO increment these when player buys them
+        slowDownLifetime = 0;
+        earningLifeTime = 0;
     }
 
     //Methods
@@ -115,6 +125,17 @@ public class Player extends Character implements Serializable {
         return powerUps.remove(powerup);
     }
 
+    public void deActivateSlow(){
+        setIsSlowedDown(false);
+        speed = INITIAL_SPEED;
+    }
+
+    public void deActivateEarn(){
+        setIsEarningMore(false);
+        setEarningLifeTime(0);
+        account.setPoweupRate(1);
+    }
+
     //get-set methods
 
     public  ArrayList<Trade> getTrades(){ return trades; }
@@ -157,6 +178,42 @@ public class Player extends Character implements Serializable {
         this.speed = speed;
     }
 
+    public double getInitialSpeed() {
+        return INITIAL_SPEED ;
+    }
+
+    public boolean getIsSlowedDown() {
+        return isSlowedDown;
+    }
+
+    public void setIsSlowedDown(Boolean slowed) {
+        isSlowedDown = slowed;
+    }
+
+    public int getSlowDownLifetime() {
+        return slowDownLifetime;
+    }
+
+    public void setSlowDownLifetime(int slowDownLifetime) {
+        this.slowDownLifetime = slowDownLifetime;
+    }
+
+    public int getEarningLifeTime() {
+        return earningLifeTime;
+    }
+
+    public void setEarningLifeTime(int earningLifeTime) {
+        this.earningLifeTime = earningLifeTime;
+    }
+
+    public boolean getIsEarningMore(){
+        return isEarningMore;
+    }
+
+    public void setIsEarningMore(boolean earningMore) {
+        isEarningMore = earningMore;
+    }
+
     public int getVehicleCount() {
         return vehicleCount;
     }
@@ -194,5 +251,7 @@ public class Player extends Character implements Serializable {
     }
 
     public ArrayList<Card> getCards() { return cards; }
+
+
 }
 

@@ -12,6 +12,7 @@ import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
+import entity.powerup.*;
 
 import java.io.*;
 
@@ -94,7 +95,7 @@ public class GameManager implements Serializable {
 			return true;
 
 		} catch (Exception e) {
-			System.err.println("Load game not successfull");
+			System.err.println("Load game not successful");
 			return false;
 		}
 	}
@@ -492,6 +493,20 @@ public class GameManager implements Serializable {
 			System.out.println("Dice + speed " + diceWithSpeed);
 		}
 
+		if(players[turnOfPlayerIndex].getIsSlowedDown()){
+			players[turnOfPlayerIndex].setSlowDownLifetime(players[turnOfPlayerIndex].getSlowDownLifetime() - 1);
+			if(players[turnOfPlayerIndex].getSlowDownLifetime()  == 0){
+				players[turnOfPlayerIndex].deActivateSlow();
+			}
+		}
+
+		if(players[turnOfPlayerIndex].getIsEarningMore()){
+			if(players[turnOfPlayerIndex].getEarningLifeTime()  == roundNo){
+				players[turnOfPlayerIndex].deActivateEarn();
+			}
+		}
+
+System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
 		int result = temp;
 		return dice.getPair();
 	}
