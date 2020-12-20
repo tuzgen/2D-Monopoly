@@ -45,6 +45,10 @@ public class GameMenuController {
 		return instance;
 	}
 
+	public static void deleteInstance() {
+		instance = null;
+	}
+
 	@FXML
 	private AnchorPane listItems = new AnchorPane();
 	@FXML
@@ -443,7 +447,7 @@ public class GameMenuController {
 				tilePriceText20, tilePriceText21
 		};
 
-		// TODO resolve this during merge boardImage.setImage(new Image(MainMenu.colorBlind ? "file:src/vendor/image/colorblind_board.png" : "file:src/vendor/image/board.png"));
+		boardImage.setImage(new Image(MainMenu.colorblindMode ? "file:src/vendor/image/colorblind_board.png" : "file:src/vendor/image/board.png"));
 
 		int indexCity = 0;
 		for (int i = 0; i < Map.TILE_COUNT; i++) {
@@ -1101,9 +1105,5 @@ public class GameMenuController {
 		sm.music(5);
 		new PowerUpPopup().display(context);
 		update();
-	}
-
-	public static void deleteInstance() {
-		instance = null;
 	}
 }

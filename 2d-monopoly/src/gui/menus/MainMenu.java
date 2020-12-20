@@ -1,5 +1,6 @@
 package gui.menus;
 
+import gui.menus.controller.GameMenuController;
 import gui.popups.ClosePopup;
 import gui.misc.FPSCounter;
 import gui.misc.Style;
@@ -34,6 +35,7 @@ public class MainMenu {
 	public void display(Stage context) {
 		FileManager.loadSettings();
 		GameManager.getInstance().deleteInstance();
+		GameMenuController.deleteInstance();
 
 		// initialize components
 		if(soundCreated == 0) {
