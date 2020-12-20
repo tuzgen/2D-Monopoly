@@ -101,6 +101,8 @@ public class Map implements Serializable {
 	}
 
 	public boolean buildHouse(Player player, int tileNo) {
+		if(((CityTile) tiles[tileNo]).isMortgage())
+			return false;
 		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo])) {
 			((CityTile) tiles[tileNo]).addHouse();
 			return true;
