@@ -1,5 +1,6 @@
 package gui.menus;
 
+import gui.menus.controller.GameMenuController;
 import gui.popups.ClosePopup;
 import gui.misc.FPSCounter;
 import gui.misc.Style;
@@ -23,17 +24,18 @@ public class MainMenu {
 	// State variables
 
 	// Components
+	public static boolean colorblindMode = false;
 	private Scene scene_main_menu;
 	public static int soundCreated = 0;
 	public static SoundManager sm = SoundManager.getInstance();
 	private Text label_title;
 	private Button button_new_game, button_settings_menu, button_how_to_play,
 			button_load_game, button_credits_menu, button_quit_game;
-	private AudioClip clip_main;
 
 	public void display(Stage context) {
 		FileManager.loadSettings();
 		GameManager.getInstance().deleteInstance();
+		GameMenuController.deleteInstance();
 
 		// initialize components
 		if(soundCreated == 0) {

@@ -11,6 +11,7 @@ import entity.map.tile.*;
 import entity.player.BotCharacter;
 import entity.player.Player;
 import entity.powerup.PowerUp;
+import gui.menus.MainMenu;
 import gui.misc.Style;
 import gui.popups.*;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -42,6 +44,10 @@ public class GameMenuController {
 		if (instance == null)
 			instance = new GameMenuController();
 		return instance;
+	}
+
+	public static void deleteInstance() {
+		instance = null;
 	}
 
 	@FXML
@@ -214,11 +220,411 @@ public class GameMenuController {
 	private Label roundCounter = new Label();
 	@FXML
 	private Label diceLabel = new Label();
+	@FXML
+	private Text tileNameText0;
+
+	@FXML
+	private Text tilePriceText0;
+
+	@FXML
+	private Text tileNameText1;
+
+	@FXML
+	private Text tilePriceText1;
+
+	@FXML
+	private Text tileNameText2;
+
+	@FXML
+	private Text tilePriceText2;
+
+	@FXML
+	private Text tileNameText3;
+
+	@FXML
+	private Text tilePriceText3;
+
+	@FXML
+	private Text tileNameText4;
+
+	@FXML
+	private Text tilePriceText4;
+
+	@FXML
+	private Text tileNameText5;
+
+	@FXML
+	private Text tilePriceText5;
+
+	@FXML
+	private Text tileNameText6;
+
+	@FXML
+	private Text tilePriceText6;
+
+	@FXML
+	private Text tileNameText7;
+
+	@FXML
+	private Text tilePriceText7;
+
+	@FXML
+	private Text tileNameText8;
+
+	@FXML
+	private Text tilePriceText8;
+
+	@FXML
+	private Text tileNameText9;
+
+	@FXML
+	private Text tilePriceText9;
+
+	@FXML
+	private Text tileNameText10;
+
+	@FXML
+	private Text tilePriceText10;
+
+	@FXML
+	private Text tileNameText11;
+
+	@FXML
+	private Text tilePriceText11;
+
+	@FXML
+	private Text tileNameText12;
+
+	@FXML
+	private Text tilePriceText12;
+
+	@FXML
+	private Text tileNameText13;
+
+	@FXML
+	private Text tilePriceText13;
+
+	@FXML
+	private Text tileNameText14;
+
+	@FXML
+	private Text tilePriceText14;
+
+	@FXML
+	private Text tileNameText15;
+
+	@FXML
+	private Text tilePriceText15;
+
+	@FXML
+	private Text tileNameText16;
+
+	@FXML
+	private Text tilePriceText16;
+
+	@FXML
+	private Text tileNameText17;
+
+	@FXML
+	private Text tilePriceText17;
+
+	@FXML
+	private Text tileNameText18;
+
+	@FXML
+	private Text tilePriceText18;
+
+	@FXML
+	private Text tileNameText19;
+
+	@FXML
+	private Text tilePriceText19;
+
+	@FXML
+	private Text tileNameText20;
+
+	@FXML
+	private Text tilePriceText20;
+
+	@FXML
+	private Text tileNameText21;
+
+	@FXML
+	private Text tilePriceText21;
+
+	@FXML
+	private ImageView t1h1icon;
+
+	@FXML
+	private ImageView t1h2icon;
+
+	@FXML
+	private ImageView t1h3icon;
+
+	@FXML
+	private ImageView t1h4icon;
+
+	@FXML
+	private ImageView t2h1icon;
+
+	@FXML
+	private ImageView t2h2icon;
+
+	@FXML
+	private ImageView t2h3icon;
+
+	@FXML
+	private ImageView t2h4icon;
+
+	@FXML
+	private ImageView t3h1icon;
+
+	@FXML
+	private ImageView t3h2icon;
+
+	@FXML
+	private ImageView t3h3icon;
+
+	@FXML
+	private ImageView t3h4icon;
+
+	@FXML
+	private ImageView t4h1icon;
+
+	@FXML
+	private ImageView t4h2icon;
+
+	@FXML
+	private ImageView t4h3icon;
+
+	@FXML
+	private ImageView t4h4icon;
+
+	@FXML
+	private ImageView t5h1icon;
+
+	@FXML
+	private ImageView t5h2icon;
+
+	@FXML
+	private ImageView t5h3icon;
+
+	@FXML
+	private ImageView t5h4icon;
+
+	@FXML
+	private ImageView t6h1icon;
+
+	@FXML
+	private ImageView t6h2icon;
+
+	@FXML
+	private ImageView t6h3icon;
+
+	@FXML
+	private ImageView t6h4icon;
+
+	@FXML
+	private ImageView t7h1icon;
+
+	@FXML
+	private ImageView t7h2icon;
+
+	@FXML
+	private ImageView t7h3icon;
+
+	@FXML
+	private ImageView t7h4icon;
+
+	@FXML
+	private ImageView t8h1icon;
+
+	@FXML
+	private ImageView t8h2icon;
+
+	@FXML
+	private ImageView t8h3icon;
+
+	@FXML
+	private ImageView t8h4icon;
+
+	@FXML
+	private ImageView t9h1icon;
+
+	@FXML
+	private ImageView t9h2icon;
+
+	@FXML
+	private ImageView t9h3icon;
+
+	@FXML
+	private ImageView t9h4icon;
+
+	@FXML
+	private ImageView t10h1icon;
+
+	@FXML
+	private ImageView t10h2icon;
+
+	@FXML
+	private ImageView t10h3icon;
+
+	@FXML
+	private ImageView t10h4icon;
+
+	@FXML
+	private ImageView t11h1icon;
+
+	@FXML
+	private ImageView t11h2icon;
+
+	@FXML
+	private ImageView t11h3icon;
+
+	@FXML
+	private ImageView t11h4icon;
+
+	@FXML
+	private ImageView t12h1icon;
+
+	@FXML
+	private ImageView t12h2icon;
+
+	@FXML
+	private ImageView t12h3icon;
+
+	@FXML
+	private ImageView t12h4icon;
+
+	@FXML
+	private ImageView t13h1icon;
+
+	@FXML
+	private ImageView t13h2icon;
+
+	@FXML
+	private ImageView t13h3icon;
+
+	@FXML
+	private ImageView t13h4icon;
+
+	@FXML
+	private ImageView t14h1icon;
+
+	@FXML
+	private ImageView t14h2icon;
+
+	@FXML
+	private ImageView t14h3icon;
+
+	@FXML
+	private ImageView t14h4icon;
+
+	@FXML
+	private ImageView t15h1icon;
+
+	@FXML
+	private ImageView t15h2icon;
+
+	@FXML
+	private ImageView t15h3icon;
+
+	@FXML
+	private ImageView t15h4icon;
+
+	@FXML
+	private ImageView t16h1icon;
+
+	@FXML
+	private ImageView t16h2icon;
+
+	@FXML
+	private ImageView t16h3icon;
+
+	@FXML
+	private ImageView t16h4icon;
+
+	@FXML
+	private ImageView t17h1icon;
+
+	@FXML
+	private ImageView t17h2icon;
+
+	@FXML
+	private ImageView t17h3icon;
+
+	@FXML
+	private ImageView t17h4icon;
+
+	@FXML
+	private ImageView t18h1icon;
+
+	@FXML
+	private ImageView t18h2icon;
+
+	@FXML
+	private ImageView t18h3icon;
+
+	@FXML
+	private ImageView t18h4icon;
+
+	@FXML
+	private ImageView t19h1icon;
+
+	@FXML
+	private ImageView t19h2icon;
+
+	@FXML
+	private ImageView t19h3icon;
+
+	@FXML
+	private ImageView t19h4icon;
+
+	@FXML
+	private ImageView t20h1icon;
+
+	@FXML
+	private ImageView t20h2icon;
+
+	@FXML
+	private ImageView t20h3icon;
+
+	@FXML
+	private ImageView t20h4icon;
+
+	@FXML
+	private ImageView t21h1icon;
+
+	@FXML
+	private ImageView t21h2icon;
+
+	@FXML
+	private ImageView t21h3icon;
+
+	@FXML
+	private ImageView t21h4icon;
+
+	@FXML
+	private ImageView t22h1icon;
+
+	@FXML
+	private ImageView t22h2icon;
+
+	@FXML
+	private ImageView t22h3icon;
+
+	@FXML
+	private ImageView t22h4icon;
+
+	@FXML private ImageView boardImage;
+
 
 	int[] player;
 
 	private Stage context;
+	private ImageView[][] tileInfo;
 	private Button[] buttons;
+	private Text[] tileNameTexts, tilePriceTexts;
 	private ImageView[] icons;
 	private final int[][] offsets = new int[][]{
 			{22, 17}, {32, 17},
@@ -294,6 +700,25 @@ public class GameMenuController {
 				buttonTile30, buttonTile31, buttonTile32, buttonTile33, buttonTile34,
 				buttonTile35, buttonTile36, buttonTile37, buttonTile38, buttonTile39
 		};
+
+		tileNameTexts = new Text[] {
+				tileNameText0, tileNameText1, tileNameText2, tileNameText3, tileNameText4,
+				tileNameText5, tileNameText6, tileNameText7, tileNameText8, tileNameText9,
+				tileNameText10, tileNameText11, tileNameText12, tileNameText13, tileNameText14,
+				tileNameText15, tileNameText16, tileNameText17, tileNameText18, tileNameText19,
+				tileNameText20, tileNameText21
+		};
+
+		tilePriceTexts = new Text[] {
+				tilePriceText0, tilePriceText1, tilePriceText2, tilePriceText3, tilePriceText4,
+				tilePriceText5, tilePriceText6, tilePriceText7, tilePriceText8, tilePriceText9,
+				tilePriceText10, tilePriceText11, tilePriceText12, tilePriceText13, tilePriceText14,
+				tilePriceText15, tilePriceText16, tilePriceText17, tilePriceText18, tilePriceText19,
+				tilePriceText20, tilePriceText21
+		};
+
+		boardImage.setImage(new Image(MainMenu.colorblindMode ? "file:src/vendor/image/colorblind_board.png" : "file:src/vendor/image/board.png"));
+		initializeTileInfo();
 
 		icons = new ImageView[]{
 				iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4, iconMafia, iconPolice
@@ -557,6 +982,7 @@ public class GameMenuController {
 				GameManager.getInstance().increaseTurn();
 				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 			}
+			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
 		}
 
 		while (turnOf > 3) {
@@ -583,6 +1009,69 @@ public class GameMenuController {
 			FileManager.saveGame();
 		} catch (Exception exception) {
 			System.out.println(exception.toString());
+		}
+	}
+
+	private void initializeTileInfo() {
+		tileInfo = new ImageView[][] {
+				{t1h1icon, t1h2icon, t1h3icon, t1h4icon},
+				{t2h1icon, t2h2icon, t2h3icon, t2h4icon},
+				{t3h1icon, t3h2icon, t3h3icon, t3h4icon},
+				{t4h1icon, t4h2icon, t4h3icon, t4h4icon},
+				{t5h1icon, t5h2icon, t5h3icon, t5h4icon},
+				{t6h1icon, t6h2icon, t6h3icon, t6h4icon},
+				{t7h1icon, t7h2icon, t7h3icon, t7h4icon},
+				{t8h1icon, t8h2icon, t8h3icon, t8h4icon},
+				{t9h1icon, t9h2icon, t9h3icon, t9h4icon},
+				{t10h1icon, t10h2icon, t10h3icon, t10h4icon},
+				{t11h1icon, t11h2icon, t11h3icon, t11h4icon},
+				{t12h1icon, t12h2icon, t12h3icon, t12h4icon},
+				{t13h1icon, t13h2icon, t13h3icon, t13h4icon},
+				{t14h1icon, t14h2icon, t14h3icon, t14h4icon},
+				{t15h1icon, t15h2icon, t15h3icon, t15h4icon},
+				{t16h1icon, t16h2icon, t16h3icon, t16h4icon},
+				{t17h1icon, t17h2icon, t17h3icon, t17h4icon},
+				{t18h1icon, t18h2icon, t18h3icon, t18h4icon},
+				{t19h1icon, t19h2icon, t19h3icon, t19h4icon},
+				{t20h1icon, t20h2icon, t20h3icon, t20h4icon},
+				{t21h1icon, t21h2icon, t21h3icon, t21h4icon},
+				{t22h1icon, t22h2icon, t22h3icon, t22h4icon}
+		};
+
+		int indexCity = 0;
+		for (int i = 0; i < Map.TILE_COUNT; i++) {
+			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
+				tileNameTexts[indexCity].setStyle(Style.text_four);
+				tilePriceTexts[indexCity].setStyle(Style.text_four);
+				tileNameTexts[indexCity].setText(Map.getInstance().getTileAt(i).getName());
+				tilePriceTexts[indexCity].setText((((CityTile) Map.getInstance().getTileAt(i)).getPrice()) + "₺");
+				indexCity++;
+			}
+		}
+	}
+
+	private void updateTileInfo() {
+		int cityIndex = 0;
+		System.out.println("UPDATE TILE INFO");
+		for (int i = 0; i < Map.TILE_COUNT; i++) {
+			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
+				for (int j = 0; j < 4; j++) { // set transparent first
+					tileInfo[cityIndex][j].setOpacity(0);
+				}
+
+				System.out.println("House count " + ((CityTile) Map.getInstance().getTileAt(i)).getHouseCount()
+						+ "\nHotel count " + ((CityTile) Map.getInstance().getTileAt(i)).getHotelCount());
+				int totalBuilding = ((CityTile) Map.getInstance().getTileAt(i)).getHouseCount()
+						+ ((CityTile) Map.getInstance().getTileAt(i)).getHotelCount();
+				switch (totalBuilding) {
+					case 4 :  tileInfo[cityIndex][3].setOpacity(1);
+					case 3 :  tileInfo[cityIndex][2].setOpacity(1);
+					case 2 :  tileInfo[cityIndex][1].setOpacity(1);
+					case 1 :  tileInfo[cityIndex][0].setOpacity(1);
+				}
+
+				cityIndex++;
+			}
 		}
 	}
 
@@ -622,7 +1111,7 @@ public class GameMenuController {
 
 		getItems();
 		updateAllLocations();
-
+		updateTileInfo();
 	}
 
 	private void diamondUpdate(int turnOf) {
@@ -659,7 +1148,6 @@ public class GameMenuController {
 		update();
 		endTurnButton.setDisable(false);
 		if(p.getIsBot()){
-			System.out.println("slaymın hello");
 			doTileActions(p.getLocation());
 		}else
 			showTileActions(p.getLocation());
@@ -850,7 +1338,11 @@ public class GameMenuController {
 			list.getItems().add("No tiles available!");
 		else
 			for (int m = 0; m < tiles.size(); m++) {
-				Button bttn = new Button(tiles.get(m).getName());
+				Button bttn;
+				if(MainMenu.colorblindMode && tiles.get(m).getClass() == CityTile.class)
+					bttn = new Button(tiles.get(m).getName() + " (" + ((CityTile) tiles.get(m)).getColorGroup() + ")");
+				else
+					bttn = new Button(tiles.get(m).getName());
 
 				if (tiles.get(m).getClass() != CityTile.class) {
 					bttn.setStyle(Style.button_three + "-fx-text-fill: #647399");
@@ -862,34 +1354,37 @@ public class GameMenuController {
 					continue; // skip the city tile styling if the tile is not a city
 				}
 
-				switch (((CityTile) (tiles.get(m))).getColorGroup()) {
-					case 1:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;");
-						break;
-					case 2:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;");
-						break;
-					case 3:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;");
-						break;
-					case 4:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;");
-						break;
-					case 5:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;");
-						break;
-					case 6:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;");
-						break;
-					case 7:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;");
-						break;
-					case 8:
-						bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;");
-						break;
-					default:
-						bttn.setStyle(Style.button_two);
-				}
+				if(MainMenu.colorblindMode)
+					bttn.setStyle(Style.button_two);
+				else
+					switch (((CityTile) (tiles.get(m))).getColorGroup()) {
+						case 1:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #F29BC8;");
+							break;
+						case 2:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #95F9EA;");
+							break;
+						case 3:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #FDF071;");
+							break;
+						case 4:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #EF6E57;");
+							break;
+						case 5:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #ADE581;");
+							break;
+						case 6:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #B893E3;");
+							break;
+						case 7:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #EFBE6E;");
+							break;
+						case 8:
+							bttn.setStyle(Style.button_three + "-fx-text-fill: #A6D3FF;");
+							break;
+						default:
+							bttn.setStyle(Style.button_two);
+					}
 
 				list.getItems().add(bttn);
 				int n = m;
@@ -941,10 +1436,6 @@ public class GameMenuController {
 		sm.music(5);
 		new PowerUpPopup().display(context);
 		update();
-	}
-
-	public static void deleteInstance() {
-		instance = null;
 	}
 
 	public void updateIconPlayer(){

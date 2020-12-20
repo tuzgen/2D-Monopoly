@@ -48,6 +48,13 @@ public class SettingsMenu {
 		checkBox_mute.setStyle(Style.checkbox_one);
 		checkBox_mute.setOnAction( e -> updateSettings() );
 
+		checkBox_colorblind.setOnAction(event -> {
+			if(checkBox_colorblind.isSelected() == true)
+				MainMenu.colorblindMode = true;
+			else
+				MainMenu.colorblindMode = false;
+		});
+
 		checkBox_mute.setOnAction(event -> {
 			if(checkBox_mute.isSelected() == true) {
 				MainMenu.sm.getMediaPlayer().setMute(true);
@@ -85,7 +92,7 @@ public class SettingsMenu {
 		);
 		layout_main_menu.setAlignment(Pos.CENTER);
 
-		layout_main_menu.setBackground(new Background(new BackgroundFill(Color.color(0, 0, 0), null, null)));
+		layout_main_menu.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
 		scene_settings_menu = new Scene(layout_main_menu, 1280, 720);
 
 		context.setScene(scene_settings_menu);

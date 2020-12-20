@@ -228,7 +228,7 @@
                <children>
                   <StackPane alignment="CENTER_LEFT" prefHeight="663.0" prefWidth="695.0">
                      <children>
-                        <ImageView fitHeight="623.0" fitWidth="668.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="boardImage" fitHeight="623.0" fitWidth="668.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@vendor/image/board.png" />
                            </image>
@@ -303,6 +303,583 @@
                               <ImageView fx:id="iconPlayer4" fitHeight="24.0" fitWidth="32.0" layoutX="596.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@vendor/image/diamond-blue.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fx:id="tileNameText0" layoutX="487.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText0" layoutX="487.0" layoutY="612.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText1" layoutX="388.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText1" layoutX="388.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText2" layoutX="238.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText2" layoutX="238.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText3" layoutX="138.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText3" layoutX="138.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText4" layoutX="87.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText4" layoutX="87.0" layoutY="612.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText5" layoutX="29.0" layoutY="515.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742" />
+                              <Text fx:id="tilePriceText5" layoutX="-11.0" layoutY="517.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText6" layoutX="35.0" layoutY="419.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText6" layoutX="-10.0" layoutY="418.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText7" layoutX="35.0" layoutY="367.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText7" layoutX="-10.0" layoutY="366.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText8" layoutX="35.0" layoutY="268.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText8" layoutX="-10.0" layoutY="267.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText9" layoutX="33.0" layoutY="168.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText9" layoutX="-12.0" layoutY="167.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText10" layoutX="33.0" layoutY="117.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tilePriceText10" layoutX="-12.0" layoutY="116.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tileNameText11" layoutX="87.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText11" layoutX="86.0" layoutY="21.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText12" layoutX="184.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText12" layoutX="184.0" layoutY="20.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText13" layoutX="237.0" layoutY="64.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText13" layoutX="238.0" layoutY="20.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText14" layoutX="337.0" layoutY="63.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText14" layoutX="338.0" layoutY="22.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText15" layoutX="386.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText15" layoutX="387.0" layoutY="21.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText16" layoutX="488.0" layoutY="62.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText16" layoutX="489.0" layoutY="21.0" rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText17" layoutX="540.0" layoutY="122.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText17" layoutX="584.0" layoutY="120.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText18" layoutX="537.0" layoutY="165.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText18" layoutX="584.0" layoutY="167.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText19" layoutX="535.0" layoutY="267.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText19" layoutX="585.0" layoutY="267.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText20" layoutX="534.0" layoutY="418.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText20" layoutX="585.0" layoutY="417.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Text fx:id="tileNameText21" layoutX="534.0" layoutY="518.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="50.87003707885742">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="tilePriceText21" layoutX="585.0" layoutY="517.0" rotate="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="40.0" />
+                              <Label layoutX="572.0" layoutY="582.0" prefHeight="16.0" prefWidth="42.0" style="-fx-background-color: #E6FFEC;" text="get 15K">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="t1h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="484.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t1h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="496.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t1h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="508.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t1h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="521.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t2h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="384.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t2h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="396.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t2h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="408.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t2h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="421.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t3h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="235.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t3h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="247.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t3h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="259.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t3h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="272.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t4h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="133.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t4h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="145.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t4h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="157.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t4h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="170.0" layoutY="541.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t5h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="85.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t5h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="97.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t5h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="109.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t5h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="122.0" layoutY="542.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t6h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="488.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t6h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="499.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t6h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="510.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t6h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="68.0" layoutY="522.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t7h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="389.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t7h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="400.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t7h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="411.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t7h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="68.0" layoutY="423.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t8h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="339.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t8h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="350.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t8h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="361.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t8h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="68.0" layoutY="373.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t9h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="241.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t9h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="252.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t9h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="66.0" layoutY="263.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t9h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="68.0" layoutY="275.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t10h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="67.0" layoutY="142.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t10h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="67.0" layoutY="153.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t10h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="67.0" layoutY="164.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t10h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="69.0" layoutY="176.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t11h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="67.0" layoutY="89.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t11h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="67.0" layoutY="100.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t11h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="67.0" layoutY="111.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t11h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="69.0" layoutY="123.0" rotate="90.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t12h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="83.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t12h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="95.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t12h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="107.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t12h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="120.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t13h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="184.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t13h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="196.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t13h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="208.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t13h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="221.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t14h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="234.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t14h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="246.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t14h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="258.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t14h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="271.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t15h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="334.0" layoutY="74.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t15h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="346.0" layoutY="74.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t15h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="358.0" layoutY="74.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t15h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="371.0" layoutY="74.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t16h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="386.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t16h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="398.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t16h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="410.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t16h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="423.0" layoutY="73.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t17h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="485.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t17h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="497.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t17h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="509.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t17h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="522.0" layoutY="72.0" rotate="180.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t18h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="536.0" layoutY="91.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t18h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="536.0" layoutY="102.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t18h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="536.0" layoutY="113.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t18h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="538.0" layoutY="125.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t19h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="141.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t19h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="152.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t19h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="163.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t19h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="537.0" layoutY="175.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t20h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="241.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t20h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="252.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t20h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="263.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t20h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="537.0" layoutY="275.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t21h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="390.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t21h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="401.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t21h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="535.0" layoutY="412.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t21h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="537.0" layoutY="424.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t22h1icon" fitHeight="12.0" fitWidth="12.0" layoutX="536.0" layoutY="490.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t22h2icon" fitHeight="12.0" fitWidth="12.0" layoutX="536.0" layoutY="501.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t22h3icon" fitHeight="12.0" fitWidth="12.0" layoutX="536.0" layoutY="512.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/house-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="t22h4icon" fitHeight="11.0" fitWidth="9.0" layoutX="538.0" layoutY="524.0" rotate="270.0">
+                                 <image>
+                                    <Image url="@vendor/image/hotel-icon.png" />
                                  </image>
                               </ImageView>
                            </children>

@@ -21,6 +21,10 @@ public class Style {
 			"-fx-font-size: 18; " +
 					"-fx-text-fill: #FF0000;";
 
+	public final static String text_four =
+			"-fx-font-size: 10; " +
+					"-fx-text-fill: #FF0000;";
+
 	public final static String text_FPS =
 			"-fx-text-fill: #66ff33;";
 
@@ -74,4 +78,12 @@ public class Style {
 			"-fx-font-size: 24; " +
 			"-fx-font-family: Forte;" +
 			"-fx-text-fill: #FF0000;";
+
+	public final static  String button_six =
+			"-fx-background-color: #00000000;" +
+					"-fx-font-family: Forte;" +
+					"-fx-border-width: 1; " +
+					"-fx-font-size: 30; " +
+					"-fx-border-color: #FF0000;" +
+					"-fx-text-fill: #FF0000;";
 }
