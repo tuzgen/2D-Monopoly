@@ -75,10 +75,19 @@ public abstract class BuyableTile extends Tile implements Serializable {
 		return isMortgage;
 	}
 
-	public void setMortgage(boolean mortgage, Player player) {
-		isMortgage = mortgage;
-		if( mortgage )
-			Bank.getInstance().giveMoney(player, price*MORTGAGE_RATE);
+	public void setMortgage(Player player) {
+		isMortgage = true;
+		Bank.getInstance().giveMoney(player, price*MORTGAGE_RATE);
 	}
+
+	public int removeMortgage(Player player) {
+		if(!isMortgage)
+			return 0;
+		isMortgage = false;
+		if(Bank.getInstance().takeMoney(player, price * MORTGAGE_RATE + price / 10))
+			return 2;
+		return 1;
+	}
+
 
 }
