@@ -467,7 +467,7 @@ public class GameManager implements Serializable {
 			}
 			if( !mafia.getIsArrested()){
 				mafia.setLocation(mafia.getLocation() + diceTotal % Map.TILE_COUNT);
-
+				GameMenuController.getInstance().mafiaTileActions(mafia.getLocation());
 			}
 			turnOfPlayerIndex = 5;
 			return dice.getPair();

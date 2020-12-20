@@ -408,6 +408,14 @@ public class GameMenuController {
 
 	}
 
+	public void mafiaTileActions(int tileNo) {
+		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
+			if(((CityTile)(Map.getInstance().getTileAt(tileNo))).getHotelCount() > 0){
+				Map.getInstance().hotelRekt(GameManager.getInstance().getMafia().getLocation());
+			}
+		}
+	}
+
 	private void doTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
 			if (!((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
@@ -462,12 +470,6 @@ public class GameMenuController {
 		}
 		update();
 
-	}
-
-	private void handleTileLanded(int tileNo) {
-		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
-
-		}
 	}
 
 	private EventHandler<ActionEvent> buttonDollarBuy() {

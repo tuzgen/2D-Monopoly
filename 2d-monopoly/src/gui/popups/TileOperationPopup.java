@@ -138,11 +138,25 @@ public class TileOperationPopup {
         });
 
         sellHouseBtn.setOnAction(event -> {
-
+            if(Map.getInstance().sellHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId())){
+                label.setText("Sold succesfully.");
+            }else{
+                label.setText("House not sold.");
+            }
+            endBox.getChildren().removeAll( sellHotelBox, sellHouseBox, mortStatBox, buildHotelBox, buildHouseBox, closeBtn, mortgageBox, sellTileBox);
+            delay.setOnFinished(e -> window.close());
+            delay.play();
         });
 
         sellHotelBtn.setOnAction(event -> {
-
+            if(Map.getInstance().sellHotel(GameManager.getInstance().getTurnOfPlayer(), tile.getId())){
+                label.setText("Sold succesfully.");
+            }else{
+                label.setText("Hotel not sold.");
+            }
+            endBox.getChildren().removeAll( sellHotelBox, sellHouseBox, mortStatBox, buildHotelBox, buildHouseBox, closeBtn, mortgageBox, sellTileBox);
+            delay.setOnFinished(e -> window.close());
+            delay.play();
         });
 
         sellTileBtn.setOnAction(event -> {
@@ -177,11 +191,12 @@ public class TileOperationPopup {
         });
 
         buildHotelBtn.setOnAction(event -> {
-            if(GameManager.getInstance().getTurnOfPlayer().getLocation() != tile.getId()){
-                label.setText("You need to be standing on the tile!!");
-            } else if(Map.getInstance().buildHotel(GameManager.getInstance().getTurnOfPlayer(), tile.getId())){
+            //if(GameManager.getInstance().getTurnOfPlayer().getLocation() != tile.getId()){
+            //label.setText("You need to be standing on the tile!!");
+            //} else
+            if(Map.getInstance().buildHotel(GameManager.getInstance().getTurnOfPlayer(), tile.getId()) && ((CityTile)(tile)).getHotelCount() <= 1){
                 label.setText("Your hotel is ready!!");
-            } else {
+            }else {
                 label.setText("Hotel build is not available!!");
             }
             endBox.getChildren().removeAll( sellHotelBox, sellHouseBox, mortStatBox, buildHotelBox, buildHouseBox, closeBtn, mortgageBox, sellTileBox);
@@ -190,9 +205,10 @@ public class TileOperationPopup {
         });
 
         buildHouseBtn.setOnAction(event -> {
-            if(GameManager.getInstance().getTurnOfPlayer().getLocation() != tile.getId()){
-                label.setText("You need to be standing on the tile!!");
-            } else if(Map.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId())) {
+            //if(GameManager.getInstance().getTurnOfPlayer().getLocation() != tile.getId()){
+                //label.setText("You need to be standing on the same tile");
+            //} else >>>   <<<<
+            if(Map.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId()) && ((CityTile)(tile)).getHouseCount() <= 3) {
                 label.setText("Your house is build!!");
             } else {
                 label.setText("House build is not available!!");

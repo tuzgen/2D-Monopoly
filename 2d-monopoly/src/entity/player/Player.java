@@ -237,6 +237,7 @@ public class Player extends Character implements Serializable {
     }
 
     public ArrayList<Tile> getTileList(){
+        System.out.println( "1" + tileList.isEmpty());
         return tileList;
     }
 
