@@ -127,6 +127,7 @@ public class TradePopup {
                 vbox.setAlignment(Pos.CENTER);
                 vbox.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
                 vbox.getChildren().add(lastLbl);
+                vbox.setStyle(Style.window_border);
                 Scene endsc = new Scene(vbox);
                 stage.setScene(endsc);
                 delay.setOnFinished(e -> stage.close());

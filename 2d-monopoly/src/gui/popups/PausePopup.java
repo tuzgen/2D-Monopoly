@@ -19,6 +19,7 @@ import management.SoundManager;
 
 
 public class PausePopup {
+
 	public void display(Stage context) {
 		Stage window = new Stage();
 
@@ -42,7 +43,9 @@ public class PausePopup {
 
 		Button button_resign = new Button("Resign");
 		button_resign.setStyle(Style.button_one);
-		button_resign.setOnAction(e -> resign(window));
+		button_resign.setOnAction(e -> {
+			resign(window);
+		});
 
 
 
@@ -50,14 +53,12 @@ public class PausePopup {
 		layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
 		layout.getChildren().addAll(button_continue, button_resign, button_return_main_menu);
 		layout.setAlignment(Pos.CENTER);
-		layout.setStyle(Style.window_border);
+		layout.setStyle(Style.window_border_red);
 
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
 		window.showAndWait();
 	}
-
-
 
 	private void onPressed_button_return_main_menu(Stage context, Stage window) {
 		// Push the settings screen to the context

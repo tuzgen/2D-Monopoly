@@ -1503,11 +1503,15 @@ public class GameMenuController {
 				bankruptedPLayerCount ++;
 		}
 		if(bankruptedPLayerCount >= 3){
-			new FinishPopup().display(context);
+			Player winner = null;
+			for(int k = 0; k < 4; k++)
+				if(!GameManager.getInstance().getPlayerAt(k).getIsBankrupt())
+					winner = GameManager.getInstance().getPlayerAt(k);
+			new FinishPopup(winner.getName(), true).display(context);
 		}else {
 			for(int i = 0; i < 4; i++){
 				if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getPlayerAt(i)) >= 1000000)
-					new FinishPopup().display(context);
+					new FinishPopup(GameManager.getInstance().getPlayerAt(i).getName(), true).display(context);
 			}
 		}
 	}
