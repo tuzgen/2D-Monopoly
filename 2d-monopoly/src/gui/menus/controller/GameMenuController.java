@@ -536,18 +536,18 @@ public class GameMenuController {
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
-		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
-			System.out.println("selamın hello");
-			while (turnOf > 3) {
-				GameManager.getInstance().playTurn();
-				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-			}
-			turnOf = 0;
-		}
+//		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
+//			System.out.println("selamın hello");
+//			while (turnOf > 3) {
+//				GameManager.getInstance().playTurn();
+//				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+//			}
+//			turnOf = 0;
+//		}
 		if(turnOf < 4){
 			System.out.println("selamın hello 2");
 			while(GameManager.getInstance().getPlayerAt(turnOf).getIsBankrupt()){
-				GameManager.getInstance().playTurn();
+				GameManager.getInstance().increaseTurn();
 				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 			}
 			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
@@ -564,6 +564,7 @@ public class GameMenuController {
 			update();
 			endTurnButton.setDisable(true);
 		}
+
 		updateAllLocations();
 		diamondUpdate(turnOf);
 		rollRice.setDisable(false);
