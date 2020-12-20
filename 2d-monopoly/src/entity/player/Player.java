@@ -55,22 +55,16 @@ public class Player extends Character implements Serializable {
         isSlowedDown = false;
         isEarningMore = false;
         salary = 15000;
-        startMoney = 150000; // TODO change initial money
+        startMoney = 150000;
         account = new Account(startMoney);
         speed = 1;
-        vehicleCount = 0; // TODO increment these when player buys them
-        companyCount = 0; // TODO increment these when player buys them
+        vehicleCount = 0;
+        companyCount = 0;
         slowDownLifetime = 0;
         earningLifeTime = 0;
     }
 
     //Methods
-    // DEBUG
-    public void displayTiles() {
-        System.out.println(getName());
-        System.out.println(tileList.toString());
-    }
-
     public boolean playCard() {
         if(getIsArrested() && cards.size() != 0){
             Card c = cards.get(0);

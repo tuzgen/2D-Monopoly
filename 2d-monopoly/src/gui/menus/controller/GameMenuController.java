@@ -782,18 +782,12 @@ public class GameMenuController {
 			}
 			if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
-//						System.out.println("lütfen gir");
-//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
-//					} else{
 						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
-//					}
 					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
-		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) { // ileri geri hareketlerde sıkıntı oluyor
-			System.out.print("CARD POP UP");
-			if (((CardTile) (Map.getInstance().getTileAt(tileNo))).getIsChance() == true) {
+		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) {
+			if (((CardTile) (Map.getInstance().getTileAt(tileNo))).getIsChance()) {
 				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
 				new CardPopup().display("Card Tile", card);
 				if (card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
@@ -814,19 +808,12 @@ public class GameMenuController {
 			}
 			if (((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
-//						System.out.println("lütfen gir");
-//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
-//					} else{
 						Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
-					//}
 					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == DoNothingTile.class) {
-			// do nothing OwO
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == StartTile.class) {
-			// unused might be deleted, handled in another place
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == TaxTile.class) {
 			new TaxPopup().display("Tax Tile", (TaxTile) Map.getInstance().getTileAt(tileNo), tileNo != Map.LUXURYNO);
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == JailTile.class) {
@@ -837,10 +824,7 @@ public class GameMenuController {
 			}
 			if (((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
-//					if(Bank.getInstance().getAllMoneyAmount(GameManager.getInstance().getTurnOfPlayer()) < ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount()){
-//						System.out.println("lütfen gir");
-//						GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
-//					} else{
+//
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 					Bank.getInstance().giveMoney(((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
@@ -1007,19 +991,15 @@ public class GameMenuController {
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 
 		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
-			System.out.println("selamın hello");
 			GameManager.getInstance().playTurn();
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
 		}
 		if(turnOf < 4){
-			System.out.println("selamın hello 2 " + GameManager.getInstance().getTurnOfPlayer().getName());
 			while(GameManager.getInstance().getTurnOfPlayer().getIsBankrupt()){
 				GameManager.getInstance().increaseTurn();
 				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 			}
-			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
 		}
 
 		while (turnOf > 3) {
@@ -1089,15 +1069,12 @@ public class GameMenuController {
 
 	private void updateTileInfo() {
 		int cityIndex = 0;
-		System.out.println("UPDATE TILE INFO");
 		for (int i = 0; i < Map.TILE_COUNT; i++) {
 			if (Map.getInstance().getTileAt(i).getClass() == CityTile.class) {
 				for (int j = 0; j < 4; j++) { // set transparent first
 					tileInfo[cityIndex][j].setOpacity(0);
 				}
 
-				System.out.println("House count " + ((CityTile) Map.getInstance().getTileAt(i)).getHouseCount()
-						+ "\nHotel count " + ((CityTile) Map.getInstance().getTileAt(i)).getHotelCount());
 				int totalBuilding = ((CityTile) Map.getInstance().getTileAt(i)).getHouseCount()
 						+ ((CityTile) Map.getInstance().getTileAt(i)).getHotelCount();
 				switch (totalBuilding) {
@@ -1384,9 +1361,6 @@ public class GameMenuController {
 					bttn.setStyle(Style.button_three + "-fx-text-fill: #647399");
 					list.getItems().add(bttn);
 
-					bttn.setOnAction(event -> {
-						System.out.println("ben city tile ım");
-					});
 					continue; // skip the city tile styling if the tile is not a city
 				}
 
@@ -1427,7 +1401,6 @@ public class GameMenuController {
 				bttn.setOnAction(event -> {
 					sm.music(5);
 					new TileOperationPopup(tiles.get(n)).display(context);
-					System.out.println("ben city tile ım");
 				});
 			}
 		listItems.getChildren().add(list);

@@ -33,7 +33,6 @@ public class NewGameMenuController {
 
 	@FXML
 	void startNewGame(ActionEvent event) throws Exception {
-		System.out.println("StartButton");
 		System.out.println("Invoked " + textField1.getText());
 		MainMenu.sm.stopMusic();
 		MainMenu.soundCreated = 0;

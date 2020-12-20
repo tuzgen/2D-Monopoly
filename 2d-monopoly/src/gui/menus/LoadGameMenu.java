@@ -24,7 +24,6 @@ public class LoadGameMenu {
 				new GameMenu().display(context);
 			} catch (Exception exception) {
 				System.out.println(exception.toString());
-				System.err.println("Load failed.");
 			}
 		});
 

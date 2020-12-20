@@ -24,7 +24,7 @@ public class CityTile extends BuyableTile implements Serializable {
 	public int getHouseBuildPrice() { return houseBuildPrice; }
 	public int getHotelBuildPrice() { return hotelBuildPrice; }
 
-	public double getRentAmount() { // TODO to be tested
+	public double getRentAmount() {
 		double amount = super.getRentAmount();
 		if (Map.getInstance().isColorGroupOwnedbyAnyPlayer(colorGroup)) {
 			amount *= 2;
@@ -58,12 +58,9 @@ public class CityTile extends BuyableTile implements Serializable {
 		for (int i = 0; i < PROPERTY_COUNT - 1; i++) {
 			if (properties[i] == null) {//.getClass() != House.class) {
 				properties[i] = new House(houseBuildPrice);
-				System.out.println("Building a house...");
 				return;
 			}
 		}
-
-		System.out.println("Cannot build a house...");
 	}
 
 	public void removeHouse() {
@@ -71,11 +68,9 @@ public class CityTile extends BuyableTile implements Serializable {
 		for (int i = 2; i >= 0; i--) {
 			if (properties[i] != null) {
 				properties[i] = null;
-				System.out.println("Removing a house...");
 				return;
 			}
 		}
-		System.out.println("Cannot remove a house...");
 	}
 
 	public int getHotelCount() {
@@ -85,10 +80,8 @@ public class CityTile extends BuyableTile implements Serializable {
 	public void addHotel() {
 		if (isHotelBuildAvailable()) {
 			properties[3] = new Hotel(hotelBuildPrice);
-			System.out.println("Building a hotel...");
 			return;
 		}
-		System.out.println("Cannot build a hotel...");
 	}
 
 	public void removeHotel() {
@@ -99,8 +92,6 @@ public class CityTile extends BuyableTile implements Serializable {
 
 
 	public boolean isHotelBuildAvailable() {
-		System.out.println(getHouseCount());
-		System.out.println(getHotelCount());
 		return getHouseCount() == 3 && getHotelCount() == 0;
 	}
 

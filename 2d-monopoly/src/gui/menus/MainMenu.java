@@ -53,7 +53,7 @@ public class MainMenu {
 				onPressed_button_new_game(context);
 
 			} catch (Exception exception) {
-				System.err.println(exception.toString());// exception.toString());
+				System.err.println(exception.toString());
 			}
 		} );
 

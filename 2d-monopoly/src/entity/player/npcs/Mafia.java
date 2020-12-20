@@ -43,11 +43,6 @@ public class Mafia extends NPC implements Serializable {
         return false;
     }
 
-
-    public void attackHotel(Tile tile){
-        //todo
-    }
-
     public int blackmail(Player blackmailedPlayer, Player player){
         double rate = Math.floor(((int) Math.floor(Math.random()*4)));
         double money = bank.getAllMoneyAmount(blackmailedPlayer);
@@ -66,7 +61,6 @@ public class Mafia extends NPC implements Serializable {
 
 
     public boolean sellTile(int tile, Player player){
-        // todo
         addDeal( player );
         return true;
     }

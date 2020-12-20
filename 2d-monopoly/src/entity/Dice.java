@@ -13,7 +13,6 @@ public class Dice implements Serializable {
 	public void rollTheDice() {
 		this.die1 = (int) (Math.random() * 6 + 1);
 		this.die2 = (int) (Math.random() * 6 + 1);
-		System.out.println("Die 1: " + this.die1 + " Die 2: " + this.die2);
 	}
 
 	public int[] getPair() {

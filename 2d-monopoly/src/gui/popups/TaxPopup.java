@@ -45,7 +45,7 @@ public class TaxPopup {
 		returnButton.setStyle("-fx-background-color: #9999FF;");
 
 		// Image
-		Image house = new Image("file:src/vendor/image/house.png"); // TODO change this image
+		Image house = new Image("file:src/vendor/image/house.png");
 		ImageView houseView = new ImageView(house);
 		houseView.setFitHeight(100);
 		houseView.setFitWidth(100);

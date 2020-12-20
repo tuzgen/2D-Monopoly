@@ -24,7 +24,7 @@ public class Bank implements Serializable { // Methods in this class may be stat
         return instance;
     }
 
-    public boolean swapMoney(Player payerPlayer, Player payeePlayer, double moneyAmount) { //Check if payer does not have enough money after todo in takeMoney function
+    public boolean swapMoney(Player payerPlayer, Player payeePlayer, double moneyAmount) { //Check if payer does not have enough money after
         if(moneyAmount == 0)
             return true;
         if(takeMoney(payerPlayer, moneyAmount)){
@@ -100,18 +100,11 @@ public class Bank implements Serializable { // Methods in this class may be stat
 
             return true;
         } else {
-            //plAccount.setTrl(0);
-            //plAccount.setSwissFrank(0);
-            //plAccount.setEuro(0);
-            //plAccount.setDollar(0);
-            //GameManager.getInstance().resign(player);
-            //System.out.println("resign");
             return false;
         }
     }
 
 	public void deleteInstance() {
-        // this.forexManager.deleteInstance();
         instance = null;
 	}
 
