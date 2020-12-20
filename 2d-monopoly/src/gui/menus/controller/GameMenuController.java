@@ -329,6 +329,7 @@ public class GameMenuController {
 	private void showTradeActions(ActionEvent e) {
 		int playerNo = GameManager.getInstance().getTurnOfPlayerIndex();
 
+		sm.music(5);
 		if (e.getSource() == buttonPlayer1) {
 			if (playerNo != 0)
 				new TradePopup(0).display(context);

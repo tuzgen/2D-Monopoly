@@ -346,7 +346,7 @@
                                              <children>
                                                 <Label prefHeight="38.0" prefWidth="135.0" text="DOLLAR" textFill="WHITE">
                                                    <font>
-                                                      <Font name="System Bold" size="18.0" />
+                                                      <Font name="Forte" size="18.0" />
                                                    </font>
                                                 </Label>
                                                 <Label fx:id="textForexDollar" alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="1.2" textAlignment="RIGHT" textFill="WHITE">
@@ -366,7 +366,7 @@
                                              <children>
                                                 <Label prefHeight="38.0" prefWidth="138.0" text="EURO" textFill="WHITE">
                                                    <font>
-                                                      <Font name="System Bold" size="18.0" />
+                                                      <Font name="Forte" size="18.0" />
                                                    </font>
                                                 </Label>
                                                 <Label fx:id="textForexEuro" alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="2.7" textAlignment="RIGHT" textFill="WHITE">
@@ -386,7 +386,7 @@
                                              <children>
                                                 <Label prefHeight="38.0" prefWidth="140.0" text="SWISS FRANC" textFill="WHITE">
                                                    <font>
-                                                      <Font name="System Bold" size="18.0" />
+                                                      <Font name="Forte" size="18.0" />
                                                    </font>
                                                 </Label>
                                                 <Label fx:id="textForexFrank" alignment="CENTER_RIGHT" layoutX="143.0" layoutY="41.0" prefHeight="38.0" prefWidth="54.0" text="0.6" textAlignment="RIGHT" textFill="WHITE">
@@ -440,9 +440,18 @@
                                                 <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e3fbeb" height="182.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="200.0" />
                                                 <AnchorPane prefHeight="170.0" prefWidth="203.0">
                                                    <children>
-                                                      <Label layoutX="21.0" layoutY="30.0" prefHeight="21.0" prefWidth="58.0" text="Dollar:" />
-                                                      <Label layoutX="21.0" layoutY="88.0" text="Euro:" />
-                                                      <Label layoutX="21.0" layoutY="147.0" text="Swiss Franc:" />
+                                                      <Label layoutX="21.0" layoutY="30.0" prefHeight="21.0" prefWidth="58.0" text="Dollar:">
+                                                         <font>
+                                                            <Font name="Forte" size="16.0" />
+                                                         </font></Label>
+                                                      <Label layoutX="21.0" layoutY="88.0" text="Euro:">
+                                                         <font>
+                                                            <Font name="Forte" size="16.0" />
+                                                         </font></Label>
+                                                      <Label layoutX="21.0" layoutY="147.0" text="Swiss Franc:">
+                                                         <font>
+                                                            <Font name="Forte" size="16.0" />
+                                                         </font></Label>
                                                       <Line endX="100.0" layoutX="101.0" layoutY="67.0" startX="-100.0" />
                                                       <Line endX="100.0" layoutX="101.0" layoutY="126.0" startX="-100.0" />
                                                       <Label fx:id="showDollarAmount" layoutX="117.0" layoutY="30.0" text="0$" />
