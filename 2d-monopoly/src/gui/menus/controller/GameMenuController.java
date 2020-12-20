@@ -280,7 +280,7 @@ public class GameMenuController {
 	}
 
 	private void setupBoardGUI() {
-		buttons = new Button[] {
+		buttons = new Button[]{
 				buttonTile0, buttonTile1, buttonTile2, buttonTile3, buttonTile4,
 				buttonTile5, buttonTile6, buttonTile7, buttonTile8, buttonTile9,
 				buttonTile10, buttonTile11, buttonTile12, buttonTile13, buttonTile14,
@@ -357,37 +357,36 @@ public class GameMenuController {
 
 	private void showTileActions(int tileNo) {
 		if (Map.getInstance().getTileAt(tileNo).getClass() == CityTile.class) {
-			if(  !((BuyableTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
+			if (!((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				new TilePopup().display("City Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 			}
-			if( ((BuyableTile)Map.getInstance().getTileAt(tileNo)).isOwned()){
+			if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CardTile.class) { // ileri geri hareketlerde sıkıntı oluyor
 			System.out.print("CARD POP UP");
-			if(((CardTile)(Map.getInstance().getTileAt(tileNo))).getIsChance() == true){
+			if (((CardTile) (Map.getInstance().getTileAt(tileNo))).getIsChance() == true) {
 				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
-				new CardPopup().display("Card Tile",  card);
-				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
+				new CardPopup().display("Card Tile", card);
+				if (card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
 					updateAllLocations();
 					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
 				}
-			}
-			else {
+			} else {
 				Card card = GameManager.getInstance().getChangedeck().drawCard(GameManager.getInstance().getTurnOfPlayer());
 				new CardPopup().display("Card Tile", card);
-				if(card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
+				if (card.getCardStrategy().getClass() == MovementByNumCardStrategy.class || card.getCardStrategy().getClass() == MovementToCardStrategy.class) {
 					updateAllLocations();
 					showTileActions(GameManager.getInstance().getTurnOfPlayer().getLocation());
 				}
 			}
 		} else if (Map.getInstance().getTileAt(tileNo).getClass() == CompanyTile.class) {
-			if( !((CompanyTile)Map.getInstance().getTileAt(tileNo)).isOwned()){
+			if (!((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				new TilePopup().display("Company Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 			}
-			if(((CompanyTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
+			if (((CompanyTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
@@ -404,7 +403,7 @@ public class GameMenuController {
 			if (!((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				new TilePopup().display("Transportation Tile", (BuyableTile) Map.getInstance().getTileAt(tileNo));
 			}
-			if(((TransportationTile)Map.getInstance().getTileAt(tileNo)).isOwned()) {
+			if (((TransportationTile) Map.getInstance().getTileAt(tileNo)).isOwned()) {
 				if (((BuyableTile) Map.getInstance().getTileAt(tileNo)).getOwner() != GameManager.getInstance().getTurnOfPlayer()) {
 					Bank.getInstance().takeMoney(GameManager.getInstance().getTurnOfPlayer(), ((BuyableTile) Map.getInstance().getTileAt(tileNo)).getRentAmount());
 				}
@@ -475,7 +474,10 @@ public class GameMenuController {
 	}
 
 	private void endButton(ActionEvent e) {
+		endButtonMethod();
 		endTurnButton.setDisable(true);
+	}
+	private void endButtonMethod(){
 		updateAllLocations();
 		ForexManager.getInstance().calcSupDemand();
 
@@ -487,12 +489,31 @@ public class GameMenuController {
 		GameManager.getInstance().increaseTurn();
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+
+		if(turnOf == 4 && GameManager.getInstance().getPlayerAt(GameManager.getInstance().getTurnOrder()[0]).getIsBankrupt()){
+			System.out.println("selamın hello");
+			while (turnOf > 3) {
+				GameManager.getInstance().playTurn();
+				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+			}
+			turnOf = 0;
+		}
+		if(turnOf < 4){
+			System.out.println("selamın hello 2");
+			while(GameManager.getInstance().getPlayerAt(turnOf).getIsBankrupt()){
+				GameManager.getInstance().playTurn();
+				turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
+			}
+			System.out.println(GameManager.getInstance().getTurnOfPlayer().getName());
+		}
+
+
 		while (turnOf > 3) {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
 
-		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()){
+		if (!GameManager.getInstance().getTurnOfPlayer().getTrades().isEmpty()) {
 			new ShowTradesPopup().display(context);
 			update();
 			endTurnButton.setDisable(true);
@@ -503,9 +524,7 @@ public class GameMenuController {
 		updatePlayerLabels();
 		getItems();
 		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
-
 	}
-
 	private void updatePlayerLabels() {
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
 		showEuroAmount.setText(df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getEuro()) + "€");
@@ -524,7 +543,8 @@ public class GameMenuController {
 		updatePlayerLabels();
 
 		int turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
-		while(turnOf > 4){
+
+		while (turnOf > 4) {
 			GameManager.getInstance().playTurn();
 			turnOf = GameManager.getInstance().getTurnOfPlayerIndex();
 		}
@@ -536,10 +556,12 @@ public class GameMenuController {
 	}
 
 	private void diamondUpdate(int turnOf) {
-		turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
-		turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
-		turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
-		turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+		if(!GameManager.getInstance().getPlayerAt(turnOf).getIsBankrupt()){
+			turnIndicator1.setOpacity(turnOf == 0 ? 1 : 0);
+			turnIndicator2.setOpacity(turnOf == 1 ? 1 : 0);
+			turnIndicator3.setOpacity(turnOf == 2 ? 1 : 0);
+			turnIndicator4.setOpacity(turnOf == 3 ? 1 : 0);
+		}
 	}
 
 
@@ -553,7 +575,7 @@ public class GameMenuController {
 		this.context = context;
 	}
 
-	public void roll(ActionEvent e){
+	public void roll(ActionEvent e) {
 		rollTheDice();
 		rollRice.setDisable(true);
 	}
@@ -566,7 +588,11 @@ public class GameMenuController {
 		diceLabel.setText("Dices: " + dices[0] + ", " + dices[1]);
 		update();
 		endTurnButton.setDisable(false);
-		showTileActions(p.getLocation());
+		if(p.getIsBot()){
+			System.out.println("slaymın hello");
+			doTileActions(p.getLocation());
+		}else
+			showTileActions(p.getLocation());
 	}
 
 	private void updateLocations(int index) {
@@ -601,8 +627,6 @@ public class GameMenuController {
 				icons[index].setLayoutY(buttons[GameManager.getInstance().getPolice().getLocation() % Map.TILE_COUNT].getLayoutY() + 29);
 			}
 		} else {
-			System.out.println("Player: " + GameManager.getInstance().getPlayerAt(index).getName() + " location: " + GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT);
-
 			if (index == 0) {
 				if (GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT >= 0 && GameManager.getInstance().getPlayerAt(index).getLocation() % Map.TILE_COUNT <= 10) {
 					icons[index]
@@ -698,7 +722,7 @@ public class GameMenuController {
 		}
 	}
 
-	public void getItems(){
+	public void getItems() {
 		ListView list = new ListView();
 		Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
 		ArrayList<PowerUp> powerUps;
@@ -708,16 +732,16 @@ public class GameMenuController {
 		Label label = new Label("Your Power-ups:");
 		Label label2 = new Label("Your special cards:");
 		Label label3 = new Label("Your special cards:");
-		label.setTextFill(Color.rgb(194,58,178));
-		label2.setTextFill(Color.rgb(194,58,178));
-		label3.setTextFill(Color.rgb(194,58,178));
+		label.setTextFill(Color.rgb(194, 58, 178));
+		label2.setTextFill(Color.rgb(194, 58, 178));
+		label3.setTextFill(Color.rgb(194, 58, 178));
 		//Add PowerUps
 		list.getItems().add(label);
 		powerUps = currentPlayer.getPowerUps();
-		if(powerUps.size() == 0)
+		if (powerUps.size() == 0)
 			list.getItems().add("No Power-Ups available!");
 		else
-			for(int i = 0; i < powerUps.size(); i++){
+			for (int i = 0; i < powerUps.size(); i++) {
 				Button btn = new Button(powerUps.get(i).getBehaviourName());
 				btn.setStyle(Style.button_two);
 				list.getItems().add(btn);
@@ -731,16 +755,16 @@ public class GameMenuController {
 		//Add Cards
 		list.getItems().add(label2);
 		cards = currentPlayer.getCards();
-		if(cards.size() == 0)
+		if (cards.size() == 0)
 			list.getItems().add("No cards available!");
 		else
-			for(int k = 0; k < cards.size(); k++){
+			for (int k = 0; k < cards.size(); k++) {
 				Button button = new Button("Jailbreak Daddy Card");
 				button.setStyle(Style.button_two);
 				list.getItems().add(button);
 
 				button.setOnAction(event -> {
-					if(currentPlayer.getIsArrested()){
+					if (currentPlayer.getIsArrested()) {
 						new UseCardPopup().display(context);
 						getItems();
 					}
@@ -749,10 +773,10 @@ public class GameMenuController {
 		//Add Tiles
 		list.getItems().add(label3);
 		tiles = currentPlayer.getTileList();
-		if(tiles.size() == 0)
+		if (tiles.size() == 0)
 			list.getItems().add("No tiles available!");
 		else
-			for(int m = 0; m < tiles.size(); m++){
+			for (int m = 0; m < tiles.size(); m++) {
 				Button bttn = new Button(tiles.get(m).getName());
 
 				if (tiles.get(m).getClass() != CityTile.class) {
@@ -812,29 +836,30 @@ public class GameMenuController {
 
 	private void removeBlur() {
 		root.setEffect(null);
+		update();
 	}
 
-	public void trade () {
+	public void trade() {
 		//new TradePopup(1).display(context);
 		new ShowTradesPopup().display(context);
 		update();
 	}
 
-	private void blurScreen () {
+	private void blurScreen() {
 		ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
 		GaussianBlur blur = new GaussianBlur(55);
 		adj.setInput(blur);
 		root.setEffect(adj);
 	}
 
-	public void mafiaButton () {
-		if(!GameManager.getInstance().getMafia().getIsArrested()){
+	public void mafiaButton() {
+		if (!GameManager.getInstance().getMafia().getIsArrested()) {
 			new MafiaPopup().display(context);
 			update();
 		}
 	}
 
-	public void powerupCrate(){
+	public void powerupCrate() {
 		new PowerUpPopup().display(context);
 		update();
 	}

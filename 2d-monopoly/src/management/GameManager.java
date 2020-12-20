@@ -12,6 +12,7 @@ import entity.player.npcs.Mafia;
 import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
+import gui.menus.controller.GameMenuController;
 
 import java.io.*;
 
@@ -38,7 +39,7 @@ public class GameManager implements Serializable {
 	Player player2;
 	Player player3;
 	Player player4;
-	int[] turnOrder;
+	public int[] turnOrder;
 	int roundNo;
 
 	// state variables
@@ -416,7 +417,6 @@ public class GameManager implements Serializable {
 
 		dice.rollTheDice();
 		int diceTotal = dice.getSum();
-		diceTotal = 2;
 
 		int temp = turnOfPlayerIndex;
 		/*
@@ -473,27 +473,40 @@ public class GameManager implements Serializable {
 
 		int diceWithSpeed = 0;
 		{
-			while(players[temp] != players[turnOrder[turnOfPlayerIndex]]) {
+			while (players[temp] != players[turnOrder[turnOfPlayerIndex]]) {
 				temp++;
-				if(temp > 3)
+				if (temp > 3)
 					temp = 0;
 			}
-			if(players[temp].getIsArrested()) { // getting out of the jail if needed
-				int[] dices = dice.getPair();
-				if(dices[0] == dices[1] ){
-					players[temp].setIsArrested(false);
-					players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
-				}
-			}else { // standart calculations
-				if(players[temp].getLocation() + diceTotal > 40) // passing the start tile
-					bank.giveMoney(players[temp], 200);
-				diceWithSpeed = (int) (players[temp].getSpeed() * diceTotal);
-				players[temp].setLocation(players[temp].getLocation() + diceWithSpeed % Map.TILE_COUNT);
+			if(players[temp].getIsBankrupt()){ // skipping the turn of the player
+//				while( players[temp].getIsBankrupt()){
+//					System.out.println("Skipped player " + players[temp]);
+//					increaseTurn();
+//					temp = turnOrder[turnOfPlayerIndex];
+//					if(temp > 3)
+//						temp = 0;
+//				}
+//				System.out.println("Current player " + players[temp]);
+				increaseTurn();
+				return playTurn();
 			}
-			System.out.println("Dice + speed " + diceWithSpeed);
+			if (!players[temp].getIsBankrupt()) {
+				if (players[temp].getIsArrested()) { // getting out of the jail if needed
+					int[] dices = dice.getPair();
+					if (dices[0] == dices[1]) {
+						players[temp].setIsArrested(false);
+						players[temp].setLocation(players[temp].getLocation() + diceTotal % Map.TILE_COUNT);
+					}
+				} else { // standart calculations
+					if (players[temp].getLocation() + diceTotal > 40) // passing the start tile
+						bank.giveMoney(players[temp], 200);
+					diceWithSpeed = (int) (players[temp].getSpeed() * diceTotal);
+					players[temp].setLocation(players[temp].getLocation() + diceWithSpeed % Map.TILE_COUNT);
+				}
+//				System.out.println("Dice + speed " + diceWithSpeed);
+			}
 		}
 
-		int result = temp;
 		return dice.getPair();
 	}
 
@@ -510,5 +523,24 @@ public class GameManager implements Serializable {
 	}
 	public String toString() {
 		return players[0].toString() + players[1].toString() + players[2].toString() + players[3].toString();
+	}
+
+	public void resign(Player p) {
+		p.setIsBankrupt(true);
+
+		while (!p.getPowerUps().isEmpty()) {
+			p.removePowerUp(p.getPowerUps().get(0));
+		}
+		while( !p.getTileList().isEmpty() ){
+			p.removeFromTileList(p.getTileList().get(0));
+		}
+		while( !p.getCards().isEmpty() ){
+			p.removeFromDeck(p.getCards().get(0));
+		}
+
+	}
+
+	public int[] getTurnOrder(){
+		return turnOrder;
 	}
 }

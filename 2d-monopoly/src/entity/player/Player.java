@@ -28,14 +28,16 @@ public class Player extends Character implements Serializable {
     private boolean isArrested;
     private ArrayList<Trade> trades;
     private Playable playable;
+    private boolean isBot;
     private int startMoney;
     private int salary;
     private double speed;
     private int vehicleCount, companyCount;
 
     //constructor
-    public Player(Playable playable, String name){
+    public Player(Playable playable, String name, boolean isBot){
         super(name);
+        this.isBot = isBot;
         this.playable = playable;
         powerUps = new ArrayList<PowerUp>();
         tileList = new ArrayList<Tile>();
@@ -71,6 +73,10 @@ public class Player extends Character implements Serializable {
 
     public void setBehavior(Playable playable) { this.playable = playable; }
 
+    public Playable getBehavior(){
+        return this.playable;
+    }
+
     public boolean addTrade(Trade trade) {
         return trades.add(trade);
     }
@@ -89,7 +95,7 @@ public class Player extends Character implements Serializable {
 
     public boolean removeFromTileList(Tile tile) {
         return tileList.remove(tile);
-    }
+    }// ownerları da kaldırması lazım tilelardan
 
     public boolean containsTile(Tile tile) {
         return tileList.contains(tile);
@@ -194,5 +200,9 @@ public class Player extends Character implements Serializable {
     }
 
     public ArrayList<Card> getCards() { return cards; }
+
+    public boolean getIsBot(){
+        return isBot;
+    }
 }
 

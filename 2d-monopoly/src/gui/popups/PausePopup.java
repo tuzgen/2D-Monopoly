@@ -1,6 +1,7 @@
 package gui.popups;
 
 import gui.menus.MainMenu;
+import gui.menus.controller.GameMenuController;
 import gui.misc.Style;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.FileManager;
+import management.GameManager;
 import management.SoundManager;
 
 
@@ -38,15 +40,23 @@ public class PausePopup {
 		button_return_main_menu.setStyle(Style.button_one);
 		button_return_main_menu.setOnAction( e -> onPressed_button_return_main_menu(context, window));
 
+		Button button_resign = new Button("Resign");
+		button_resign.setStyle(Style.button_one);
+		button_resign.setOnAction(e -> resign(window));
+
+
+
 		VBox layout = new VBox(10);
 		layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
-		layout.getChildren().addAll(button_continue, button_return_main_menu);
+		layout.getChildren().addAll(button_continue, button_return_main_menu, button_resign);
 		layout.setAlignment(Pos.CENTER);
 
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
 		window.showAndWait();
 	}
+
+
 
 	private void onPressed_button_return_main_menu(Stage context, Stage window) {
 		// Push the settings screen to the context
@@ -59,5 +69,11 @@ public class PausePopup {
 			System.err.println(e.toString());
 		}
 		new MainMenu().display(context);
+	}
+
+	private void resign(Stage window){
+		SoundManager.getInstance().continueMusic();
+		GameManager.getInstance().resign(GameManager.getInstance().getTurnOfPlayer());
+		window.close();
 	}
 }

@@ -99,7 +99,6 @@ public class Map implements Serializable {
 			player.removeFromTileList(tiles[tileNo]);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -108,7 +107,6 @@ public class Map implements Serializable {
 			((CityTile) tiles[tileNo]).addHouse();
 			return true;
 		}
-
 		return false;
 	}
 
