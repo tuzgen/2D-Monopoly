@@ -1,6 +1,7 @@
 package management;
 
 import cached.Settings;
+import entity.Bank;
 
 import java.io.*;
 
@@ -16,7 +17,27 @@ public class FileManager {
 
 		ObjectInputStream loadGame = new ObjectInputStream(readFile);
 		GameManager.setInstance((GameManager) loadGame.readObject());
-		System.out.println(GameManager.getInstance().toString());
+
+		readFile = new FileInputStream(
+				new File("local/savedgamebank.ser"));
+		loadGame = new ObjectInputStream(readFile);
+		GameManager.getInstance().setBank((Bank) loadGame.readObject());
+
+		readFile = new FileInputStream(
+				new File("local/savedgameforex.ser"));
+	 	loadGame = new ObjectInputStream(readFile);
+		GameManager.getInstance().setForexManager((ForexManager) loadGame.readObject());
+
+		readFile = new FileInputStream(
+				new File("local/savedgametrade.ser"));
+		loadGame = new ObjectInputStream(readFile);
+		GameManager.getInstance().setTradeManager((TradeManager) loadGame.readObject());
+
+		readFile = new FileInputStream(
+				new File("local/savedgamemap.ser"));
+		loadGame = new ObjectInputStream(readFile);
+		GameManager.getInstance().setMap((Map) loadGame.readObject());
+
 		System.out.println("Game loaded successfully.");
 	}
 
@@ -26,6 +47,28 @@ public class FileManager {
 
 		ObjectOutputStream saveGame = new ObjectOutputStream(writeFile);
 		saveGame.writeObject(GameManager.getInstance());
+
+
+		writeFile = new FileOutputStream(
+				new File("local/savedgamebank.ser"));
+		saveGame = new ObjectOutputStream(writeFile);
+		saveGame.writeObject(Bank.getInstance());
+
+		writeFile = new FileOutputStream(
+				new File("local/savedgameforex.ser"));
+		saveGame = new ObjectOutputStream(writeFile);
+		saveGame.writeObject(ForexManager.getInstance());
+
+		writeFile = new FileOutputStream(
+				new File("local/savedgametrade.ser"));
+		saveGame = new ObjectOutputStream(writeFile);
+		saveGame.writeObject(TradeManager.getInstance());
+
+		writeFile = new FileOutputStream(
+				new File("local/savedgamemap.ser"));
+		saveGame = new ObjectOutputStream(writeFile);
+		saveGame.writeObject(Map.getInstance());
+
 		System.out.println("Game saved successfully.");
 	}
 

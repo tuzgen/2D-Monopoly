@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import management.GameManager;
+import management.SoundManager;
 
 import javax.swing.*;
 
@@ -42,7 +43,7 @@ public class PowerUpPopup {
         label.setTextFill(Color.rgb(240,158,110));
         buy.setStyle(Style.button_one);
         cancel.setStyle(Style.button_one);
-
+        SoundManager sm = new SoundManager(false);
 
         vBox.setAlignment(Pos.CENTER);
         hBox.setAlignment(Pos.CENTER);
@@ -53,9 +54,15 @@ public class PowerUpPopup {
         vBox.getChildren().addAll(label, hBox);
 
         buy.setOnAction(event -> {
-            crate.buyPowerUp();
+
+            if(crate.buyPowerUp()){
+                label.setText("If there's one way to disrupt a man's plans,\nit is to destabilize his timeline.");
+                sm.music(4);
+            }
+            else{
+                label.setText("You don't have enough money!");
+            }
             vBox.getChildren().remove(hBox);
-            label.setText("If there's one way to disrupt a man's plans,\nit is to destabilize his timeline.");
             delay.setOnFinished(e -> stage.close());
             delay.play();
         });

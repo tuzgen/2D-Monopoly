@@ -6,6 +6,8 @@ import entity.player.Player;
 import java.io.Serializable;
 
 public class Map implements Serializable {
+	private static final long serialVersionUID = 1580945254386458072L;
+
 	private static Map instance;
 
 	public static final int TILE_COUNT = 40;
@@ -103,6 +105,8 @@ public class Map implements Serializable {
 	}
 
 	public boolean buildHouse(Player player, int tileNo) {
+		if(((CityTile) tiles[tileNo]).isMortgage())
+			return false;
 		if (isHouseBuildAvailable(player, (CityTile) tiles[tileNo])) {
 			((CityTile) tiles[tileNo]).addHouse();
 			return true;
@@ -120,13 +124,6 @@ public class Map implements Serializable {
 				minHouse = Math.min(minHouse, ((CityTile)t).getHouseCount());
 			}
 		}
-		/*
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				if (Math.abs(colorGroup[i].getHouseCount() - colorGroup[j].))
-			}
-		}
-		*/
 
 		return isColorGroupOwnedByPlayer(player, tile.getColorGroup())
 				&& (Math.abs(minHouse - (tile.getHouseCount() + 1)) <= 1);

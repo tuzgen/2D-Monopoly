@@ -29,6 +29,7 @@ public class PowerUp implements Serializable {
         if(behaviour.getClass() == StrikePowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextInt(2, 13);
             behName = "Strike Power-up";
+            lifetime = 1;
         }
         if(behaviour.getClass() == SlowDownPowerUpBehaviour.class){
             amount = ThreadLocalRandom.current().nextDouble(0.333, 0.833);

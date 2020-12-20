@@ -35,9 +35,10 @@ public class Bank implements Serializable { // Methods in this class may be stat
 
     public boolean giveMoney(Player player, double moneyAmount){
         plAccount = player.getAccount();
-        plAccount.setTrl(plAccount.getTrl() + moneyAmount);
-        return true;
+        plAccount.setTrl(plAccount.getTrl() + moneyAmount * player.getAccount().getPoweupRate());
+       return true;
     }
+
 
     public boolean hasEnoughMoney(Player player, double amount) {
         plAccount = player.getAccount();
@@ -104,5 +105,7 @@ public class Bank implements Serializable { // Methods in this class may be stat
     }
 
 	public void deleteInstance() {
+        // this.forexManager.deleteInstance();
+        instance = null;
 	}
 }

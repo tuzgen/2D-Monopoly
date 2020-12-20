@@ -13,10 +13,13 @@ import entity.player.npcs.Police;
 import gui.menus.MainMenu;
 import gui.menus.SettingsMenu;
 import gui.menus.controller.GameMenuController;
+import entity.powerup.*;
 
 import java.io.*;
 
 public class GameManager implements Serializable {
+	private static final long serialVersionUID = 6529685098267757690L;
+
 	private static final int NPC_COUNT = 2;
 	public static final int PLAYER_COUNT = 4;
 	private static final int MAX_MONEY = 1000000;
@@ -39,7 +42,7 @@ public class GameManager implements Serializable {
 	Player player2;
 	Player player3;
 	Player player4;
-	public int[] turnOrder;
+	int[] turnOrder;
 	int roundNo;
 
 	// state variables
@@ -80,7 +83,7 @@ public class GameManager implements Serializable {
 		turnOfPlayerIndex = 0;
 		roundNo = 1;
 		determineTurn();
-		if(SettingsMenu.muteSound == 0)
+		if(SettingsMenu.muteSound == 0 && MainMenu.soundCreated == 0)
 			MainMenu.sm.music(1);
 	}
 
@@ -92,31 +95,22 @@ public class GameManager implements Serializable {
 		return communitydeck;
 	}
 
-	public static boolean loadGame() {
-		try {
-			FileManager.loadGame();
-			return true;
-
-		} catch (Exception e) {
-			System.err.println("Load game not successfull");
-			return false;
-		}
-	}
-
 	// TODO delete Debug
 	public int[] rollTheDicePair() {
 		dice.rollTheDice();
 		return dice.getPair();
 	}
 
+	// is called on main menu
 	public static void deleteInstance() {
-		map = null;
-		tradeManager = null;
-		forexManager = null;
-		bank = null;
+		map.deleteInstance();
+		tradeManager.deleteInstance();
+		forexManager.deleteInstance();
+		bank.deleteInstance();
 		instance = null;
 	}
 
+	// is called whenever the game manager is called after game init
 	public static synchronized GameManager getInstance() {
 		if (instance == null) {
 			instance = new GameManager("", "", false, "", false, "", false);
@@ -124,10 +118,49 @@ public class GameManager implements Serializable {
 		return instance;
 	}
 
+	// is used in load game
 	public static synchronized void setInstance(GameManager load) {
-		instance = load;
+		instance = load; // TODO
+		forexManager = load.getForexManager();
+		map = load.getMap();
+		tradeManager = load.getTradeManager();
+		bank = load.getBank();
 	}
 
+	public void setBank(Bank bank) {
+		GameManager.bank = bank;
+	}
+
+	public void setTradeManager(TradeManager tradeManager) {
+		GameManager.tradeManager = tradeManager;
+	}
+
+	public void setMap(Map map) {
+		GameManager.map = map;
+	}
+
+	public void setForexManager(ForexManager forexManager) {
+		GameManager.forexManager = forexManager;
+	}
+
+
+	private Bank getBank() {
+		return bank;
+	}
+
+	private Map getMap() {
+		return map;
+	}
+
+	private TradeManager getTradeManager() {
+		return tradeManager;
+	}
+
+	private ForexManager getForexManager() {
+		return forexManager;
+	}
+
+	// Is called on fresh new game init
 	public static synchronized GameManager getInstance(String name0,
 													   String name1, boolean isBot1,
 													   String name2, boolean isBot2,
@@ -510,6 +543,21 @@ public class GameManager implements Serializable {
 			}
 		}
 
+		if(players[turnOfPlayerIndex].getIsSlowedDown()){
+			players[turnOfPlayerIndex].setSlowDownLifetime(players[turnOfPlayerIndex].getSlowDownLifetime() - 1);
+			if(players[turnOfPlayerIndex].getSlowDownLifetime()  == 0){
+				players[turnOfPlayerIndex].deActivateSlow();
+			}
+		}
+
+		if(players[turnOfPlayerIndex].getIsEarningMore()){
+			if(players[turnOfPlayerIndex].getEarningLifeTime()  == roundNo){
+				players[turnOfPlayerIndex].deActivateEarn();
+			}
+		}
+
+System.out.println("ASYA:  salary: "+ players[turnOfPlayerIndex].getAccount().getPoweupRate()+"powrate");
+		int result = temp;
 		return dice.getPair();
 	}
 

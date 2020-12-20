@@ -19,6 +19,8 @@ public class SoundManager {
         musicList[1] = "../2d-monopoly/src/vendor/sound/gamemenu.mp3";
         musicList[2] = "../2d-monopoly/src/vendor/sound/dice.mp3";
         musicList[3] = "../2d-monopoly/src/vendor/sound/money.mp3";
+        musicList[4] = "../2d-monopoly/src/vendor/sound/crate.mp3";
+        musicList[5] = "../2d-monopoly/src/vendor/sound/btn.mp3";
     }
 
     public static void deleteInstance(){

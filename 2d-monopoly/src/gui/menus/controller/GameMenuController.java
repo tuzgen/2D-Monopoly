@@ -1,6 +1,7 @@
 package gui.menus.controller;
 
 import entity.Bank;
+import entity.Forex;
 import entity.Trade;
 import entity.card.Card;
 import entity.card.CardDeck;
@@ -27,10 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import management.ForexManager;
-import management.GameManager;
-import management.Map;
-import management.SoundManager;
+import management.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -316,9 +314,7 @@ public class GameMenuController {
 
 	private void setupAccountGUI() {
 		currentPlayerName.setText(GameManager.getInstance().getTurnOfPlayer().getName());
-		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
-		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
-		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
+		exRateTextUpdate();
 
 		buttonDollarBuy.setOnAction(buttonDollarBuy());
 		buttonEuroBuy.setOnAction(buttonEuroBuy());
@@ -332,26 +328,19 @@ public class GameMenuController {
 	private void showTradeActions(ActionEvent e) {
 		int playerNo = GameManager.getInstance().getTurnOfPlayerIndex();
 
+		sm.music(5);
 		if (e.getSource() == buttonPlayer1) {
 			if (playerNo != 0)
 				new TradePopup(0).display(context);
-			else
-				trade(); // TODO test this belongs to the turn start
 		} else if (e.getSource() == buttonPlayer2) {
 			if (playerNo != 1)
 				new TradePopup(1).display(context);
-			else
-				trade();
 		} else if (e.getSource() == buttonPlayer3) {
 			if (playerNo != 2)
 				new TradePopup(2).display(context);
-			else
-				trade();
 		} else if (e.getSource() == buttonPlayer4) {
 			if (playerNo != 3)
 				new TradePopup(3).display(context);
-			else
-				trade();
 		}
 		update();
 	}
@@ -581,6 +570,17 @@ public class GameMenuController {
 		updatePlayerLabels();
 		getItems();
 		roundCounter.setText("Round " + GameManager.getInstance().getRoundNo());
+		try {
+			FileManager.saveGame();
+		} catch (Exception exception) {
+			System.out.println(exception.toString());
+		}
+	}
+
+	private void exRateTextUpdate() {
+		textForexDollar.setText(Double.toString(GameManager.getInstance().getForexDollar()));
+		textForexEuro.setText(Double.toString(GameManager.getInstance().getForexEuro()));
+		textForexFrank.setText(Double.toString(GameManager.getInstance().getForexFrank()));
 	}
 	private void updatePlayerLabels() {
 		showDollarAmount.setText("$" + df.format(GameManager.getInstance().getTurnOfPlayer().getAccount().getDollar()));
@@ -781,6 +781,7 @@ public class GameMenuController {
 
 	public void getItems() {
 		ListView list = new ListView();
+		SoundManager sm = new SoundManager(false);
 		Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
 		ArrayList<PowerUp> powerUps;
 		ArrayList<Tile> tiles;
@@ -805,6 +806,7 @@ public class GameMenuController {
 				int x = i;
 
 				btn.setOnAction(event -> {
+					sm.music(5);
 					new PowerupInfoPopup(powerUps.get(x)).display(context);
 					getItems();
 				});
@@ -821,7 +823,8 @@ public class GameMenuController {
 				list.getItems().add(button);
 
 				button.setOnAction(event -> {
-					if (currentPlayer.getIsArrested()) {
+					sm.music(5);
+					if(currentPlayer.getIsArrested()){
 						new UseCardPopup().display(context);
 						getItems();
 					}
@@ -876,8 +879,10 @@ public class GameMenuController {
 				}
 
 				list.getItems().add(bttn);
-
+				int n = m;
 				bttn.setOnAction(event -> {
+					sm.music(5);
+					new TileOperationPopup(tiles.get(n)).display(context);
 					System.out.println("ben city tile ım");
 				});
 			}
@@ -885,6 +890,7 @@ public class GameMenuController {
 	}
 
 	public void pauseGame() {
+		sm.music(5);
 		SoundManager.getInstance().pauseMusic();
 		blurScreen();
 		new PausePopup().display(context);
@@ -909,16 +915,21 @@ public class GameMenuController {
 		root.setEffect(adj);
 	}
 
-	public void mafiaButton() {
-		if (!GameManager.getInstance().getMafia().getIsArrested()) {
+	public void mafiaButton () {
+		if(!GameManager.getInstance().getMafia().getIsArrested()){
+			sm.music(5);
 			new MafiaPopup().display(context);
 			update();
 		}
 	}
 
-	public void powerupCrate() {
+	public void powerupCrate(){
+		sm.music(5);
 		new PowerUpPopup().display(context);
 		update();
 	}
 
+	public static void deleteInstance() {
+		instance = null;
+	}
 }

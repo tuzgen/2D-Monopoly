@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ForexManager implements Serializable {
+    private static final long serialVersionUID = 3687795584044906896L;
+
     private static ForexManager instance;
 
     private Forex forex;
@@ -13,7 +15,7 @@ public class ForexManager implements Serializable {
     private Stack<Double> euroTrans = new Stack<Double>();
     private Stack<Double> frankTrans = new Stack<Double>();
 
-   private ForexManager(){
+    private ForexManager(){
         forex = new Forex();
         resetExRates();
     }
@@ -97,6 +99,7 @@ public class ForexManager implements Serializable {
     }
 
 
-	public void deleteInstance() {
-	}
+    public void deleteInstance() {
+        instance = null;
+    }
 }

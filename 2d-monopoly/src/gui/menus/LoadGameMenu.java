@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import management.FileManager;
 import management.GameManager;
 
 public class LoadGameMenu {
@@ -16,15 +17,13 @@ public class LoadGameMenu {
 		Button button_start = new Button("Start game");
 		button_start.setStyle(Style.button_one);
 		button_start.setOnAction( e -> {
-			if (GameManager.loadGame())
-				try {
-					new GameMenu().display(context);
-				} catch (Exception exception) {
-					System.out.println(exception.toString());
-					System.err.println("Load failed.");
-				}
-			else
-				System.err.println("Load Failed");
+			try {
+				FileManager.loadGame();
+				new GameMenu().display(context);
+			} catch (Exception exception) {
+				System.out.println(exception.toString());
+				System.err.println("Load failed.");
+			}
 		});
 
 		Button button_return = new Button("Go back");

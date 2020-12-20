@@ -41,19 +41,21 @@ public class MafiaPopup {
 
         label.setPadding(new Insets(10,0,0,0));
         label.setTextFill(Color.WHITE);
+        label.setStyle(Style.label_font);
         blackmailButton.setStyle(Style.button_one);
         jailbreakButton.setStyle(Style.button_one);
         buyCommunityCardButton.setStyle(Style.button_one);
+        Button closeBtn = new Button("Close");
+        closeBtn.setStyle(Style.button_one);
 
         layout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
-        layout.getChildren().addAll(label, blackmailButton, jailbreakButton, buyCommunityCardButton);
+        layout.getChildren().addAll(label, blackmailButton, jailbreakButton, buyCommunityCardButton, closeBtn);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 6;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;" +
-                "-fx-border-color: #FF0000;");
+        layout.setStyle(Style.window_border_red);
+
+        closeBtn.setOnAction(event -> {
+            window.close();
+        });
 
         //Jailbreak-----------------------------------------------------------------------------
         Label jlabel = new Label("This will cost you 50.000₺. Are you sure?");
@@ -64,6 +66,7 @@ public class MafiaPopup {
 
         jlabel.setPadding(new Insets(10,0,0,0));
         jlabel.setTextFill(Color.WHITE);
+        jlabel.setStyle(Style.label_font);
 
         yesButton.setOnAction( e -> {
             jlayout.getChildren().removeAll(jlabel, jhlayout);
@@ -76,6 +79,7 @@ public class MafiaPopup {
             }
             finalLabel.setPadding(new Insets(10,0,0,0));
             finalLabel.setTextFill(Color.WHITE);
+            finalLabel.setStyle(Style.label_font);
             jlayout.getChildren().add(finalLabel);
             delay.setOnFinished(event -> window.close());
             delay.play();
@@ -93,18 +97,15 @@ public class MafiaPopup {
         jlayout.setAlignment(Pos.CENTER);
         jlayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene jscene = new Scene(jlayout);
-        jlayout.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 6;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;" +
-                "-fx-border-color: #FF0000;");
+        jlayout.setStyle(Style.window_border_red);
 
         //Blackmail----------------------------------------------------------------------------------
         ArrayList<Player> otherPlayers = new ArrayList<Player>();
         Player currentPlayer = GameManager.getInstance().getTurnOfPlayer();
         Label blabel = new Label("I'm gonna make him an offer he can't refuse.\n\t\t\tSelect one of them.");
         Label endLabel = new Label("Great deal...");
+        blabel.setStyle(Style.label_font);
+        endLabel.setStyle(Style.label_font);
         int yourIndex = GameManager.getInstance().getTurnOfPlayerIndex();
         for(int i = 0; i < 4; i++)
             if( i != yourIndex)
@@ -112,6 +113,7 @@ public class MafiaPopup {
         Button pl1 = new Button(otherPlayers.get(0).getName());
         Button pl2 = new Button(otherPlayers.get(1).getName());
         Button pl3 = new Button(otherPlayers.get(2).getName());
+        Button close = new Button("Close");
         VBox blayout = new VBox(10);
 
         pl1.setOnAction(event -> {
@@ -153,24 +155,24 @@ public class MafiaPopup {
             delay.play();
         });
 
+        close.setOnAction(event -> {
+            window.close();
+        });
+
         pl1.setStyle(Style.button_one);
         pl2.setStyle(Style.button_one);
         pl3.setStyle(Style.button_one);
+        close.setStyle(Style.button_one);
 
         blabel.setPadding(new Insets(10,5,0,5));
         blabel.setTextFill(Color.WHITE);
         endLabel.setTextFill(Color.WHITE);
 
         blayout.setAlignment(Pos.CENTER);
-        blayout.getChildren().addAll(blabel, pl1, pl2, pl3);
+        blayout.getChildren().addAll(blabel, pl1, pl2, pl3, close);
         blayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene bscene = new Scene(blayout);
-        blayout.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 6;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;" +
-                "-fx-border-color: #FF0000;");
+        blayout.setStyle(Style.window_border_red);
 
         //CommunityCard------------------------------------------------------------------------------
         Label clabel = new Label("This will cost you 20.000₺. Are you sure?");
@@ -181,6 +183,7 @@ public class MafiaPopup {
 
         clabel.setPadding(new Insets(10,0,0,0));
         clabel.setTextFill(Color.WHITE);
+        clabel.setStyle(Style.label_font);
 
         yButton.setOnAction( e -> {
             Player player = GameManager.getInstance().getTurnOfPlayer();
@@ -210,13 +213,7 @@ public class MafiaPopup {
         clayout.setAlignment(Pos.CENTER);
         clayout.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         Scene cscene = new Scene(clayout);
-        clayout.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 6;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;" +
-                "-fx-border-color: #FF0000;");
-
+        clayout.setStyle(Style.window_border_red);
 
         // End of the popup
         jailbreakButton.setOnAction(event -> {

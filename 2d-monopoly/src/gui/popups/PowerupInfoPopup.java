@@ -6,9 +6,7 @@ import gui.misc.Style;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
@@ -49,8 +47,14 @@ public class PowerupInfoPopup {
         Label amLabel = new Label();
         Label lifetimeLabel = new Label();
         Label enterLabel = new Label("Please enter target player's name:");
-        TextField tf = new TextField();
-        tf.setPromptText("This cannot be empty!");
+        ToggleGroup tg = new ToggleGroup();
+        RadioButton rb0 = new RadioButton();
+        RadioButton rb1 = new RadioButton();
+        RadioButton rb2 = new RadioButton();
+        rb0.setSelected(true);
+        rb0.setToggleGroup(tg);
+        rb1.setToggleGroup(tg);
+        rb2.setToggleGroup(tg);
         label.setTextFill(Color.AQUA);
         amLabel.setTextFill(Color.rgb(0, 129, 52));
         lifetimeLabel.setTextFill(Color.AQUA);
@@ -69,39 +73,50 @@ public class PowerupInfoPopup {
         btnBox.getChildren().addAll(useBtn, cancelBtn);
         allBox.setStyle(Style.window_border);
 
+        for(int i = 0; i < 4; i++)
+            if( i != yourIndex)
+                otherPlayers.add(GameManager.getInstance().getPlayerAt(i));
+
+        rb0.setText(otherPlayers.get(0).getName());
+        rb0.setStyle("-fx-text-fill: red;");
+        rb1.setText(otherPlayers.get(1).getName());
+        rb1.setStyle("-fx-text-fill: red;");
+        rb2.setText(otherPlayers.get(2).getName());
+        rb2.setStyle("-fx-text-fill: red;");
+
         lifetimeLabel.setText("Lifetime: " + powerup.getLifetime() + " tours");
         if(powerup.getBehaviourName().equals("Forex Power-up")){
+            rb0.setText("Dollar");
+            rb1.setText("Euro");
+            rb2.setText("Swiss Franc");
             amLabel.setText("Change Rate: " + df.format(powerup.getAmount()) + "%");
             enterLabel.setText("Please enter a name of currency:");
-            allBox.getChildren().addAll(lifetimeLabel, amLabel, enterLabel, tf, label, btnBox);
+            allBox.getChildren().addAll(lifetimeLabel, amLabel, enterLabel, rb0, rb1, rb2, label, btnBox);
         } else if(powerup.getBehaviourName().equals(("Earning Power-up"))) {
             amLabel.setText("Earning coefficient: " + df.format(powerup.getAmount()) + " times higher");
             allBox.getChildren().addAll(lifetimeLabel, amLabel, label, btnBox);
         } else if(powerup.getBehaviourName().equals("Strike Power-up")) {
             amLabel.setText("Move: " + df.format(powerup.getAmount()) + " tiles backward");
-            allBox.getChildren().addAll(amLabel, enterLabel, tf, label, btnBox);
+            allBox.getChildren().addAll(amLabel, enterLabel, rb0, rb1, rb2, label, btnBox);
         } else { //"Slowdown Power-up"
             amLabel.setText("Slow Rate: " + df.format(powerup.getAmount()) + "%");
-            allBox.getChildren().addAll(lifetimeLabel, amLabel, enterLabel, tf, label, btnBox);
+            allBox.getChildren().addAll(lifetimeLabel, amLabel, enterLabel, rb0, rb1, rb2, label, btnBox);
         }
 
-        for(int i = 0; i < 4; i++)
-            if( i != yourIndex)
-                otherPlayers.add(GameManager.getInstance().getPlayerAt(i));
-
         useBtn.setOnAction(event -> {
+            String targetPersonsName = ((RadioButton) tg.getSelectedToggle()).getText();
             boolean isY = false;
-            if(powerup.getBehaviourName().equals("Forex Power-up") && (tf.equals("Dollar") || tf.equals("Euro") || tf.equals("Swiss Franc") || tf.equals("Franc"))){
-                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), tf.getText());
+            if(powerup.getBehaviourName().equals("Forex Power-up")){
+                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
                 isY = true;
             } else if(powerup.getBehaviourName().equals(("Earning Power-up"))) {
-                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), tf.getText());
+                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
                 isY = true;
-            } else if(powerup.getBehaviourName().equals("Strike Power-up") && (tf.getText().equals(otherPlayers.get(0).getName()) || tf.getText().equals(otherPlayers.get(1).getName()) || tf.getText().equals(otherPlayers.get(2).getName()))) {
-                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), tf.getText());
+            } else if(powerup.getBehaviourName().equals("Strike Power-up")) {
+                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
                 isY = true;
-            } else  if(powerup.getBehaviourName().equals("Slowdown Power-up") && (tf.getText().equals(otherPlayers.get(0).getName()) || tf.getText().equals(otherPlayers.get(1).getName()) || tf.getText().equals(otherPlayers.get(2).getName()))) {
-                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), tf.getText());
+            } else  if(powerup.getBehaviourName().equals("Slowdown Power-up")) {
+                powerup.activate(GameManager.getInstance().getTurnOfPlayer(), targetPersonsName);
                 isY = true;
             }
             if(isY){

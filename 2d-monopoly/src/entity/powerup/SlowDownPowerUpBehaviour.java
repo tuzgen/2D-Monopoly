@@ -10,6 +10,7 @@ public class SlowDownPowerUpBehaviour implements PowerUpBehaviour, Serializable 
 
     @Override
     public void activate(String target, Player p, PowerUp powerUp) {
+
         ArrayList<Player> otherPlayers = new ArrayList<Player>();
         int yourIndex = GameManager.getInstance().getTurnOfPlayerIndex();
 
@@ -18,12 +19,21 @@ public class SlowDownPowerUpBehaviour implements PowerUpBehaviour, Serializable 
                 otherPlayers.add(GameManager.getInstance().getPlayerAt(i));
 
         Player targetPlayer = null;
-        for(int i = 0; i < 3; i++)
-            if(otherPlayers.get(i).getName().equals(target))
+        for(int i = 0; i < 3; i++) {
+            if (otherPlayers.get(i).getName().equals(target))
                 targetPlayer = otherPlayers.get(i);
-       targetPlayer.setSpeed(p.getSpeed()*powerUp.getAmount());
-       System.out.println(p.getPowerUps());
-       p.removePowerUp(powerUp);
-       System.out.println(p.getPowerUps());
+        }
+
+        if(!targetPlayer.getIsSlowedDown()){
+            targetPlayer.setIsSlowedDown(true);
+            targetPlayer.setSlowDownLifetime(powerUp.getLifetime());
+            targetPlayer.setSpeed(p.getSpeed()*powerUp.getAmount());
+            System.out.println(p.getPowerUps());
+            p.removePowerUp(powerUp);
+            System.out.println(p.getPowerUps());
+        }
     }
+
+
+
 }
