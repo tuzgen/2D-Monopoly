@@ -182,7 +182,16 @@ public class TileOperationPopup {
         });
 
         buildHouseBtn.setOnAction(event -> {
-
+            if(GameManager.getInstance().getTurnOfPlayer().getLocation() != tile.getId()){
+                label.setText("You need to be standing on the tile!!");
+            } else if(Map.getInstance().buildHouse(GameManager.getInstance().getTurnOfPlayer(), tile.getId())) {
+                label.setText("Your house is build!!");
+            } else {
+                label.setText("House build is not available!!");
+            }
+            endBox.getChildren().removeAll( sellHotelBox, sellHouseBox, mortStatBox, buildHotelBox, buildHouseBox, closeBtn, mortgageBox, sellTileBox);
+            delay.setOnFinished(e -> window.close());
+            delay.play();
         });
 
         Scene scene = new Scene(endBox);

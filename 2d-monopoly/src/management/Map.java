@@ -105,7 +105,6 @@ public class Map implements Serializable {
 			((CityTile) tiles[tileNo]).addHouse();
 			return true;
 		}
-
 		return false;
 	}
 
