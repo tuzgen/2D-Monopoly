@@ -1,5 +1,5 @@
-# Monopoly
-## Type: Monopoly Millionaire
+# Monopoly Sicilia
+## Derived from: Monopoly Classic
 
 ### Group Members:
     - Oğuz Orhun Tüzgen 21802313
